@@ -1,5 +1,3 @@
-# lbaw1714
-
 GROUP1714
 
 Theme: Event Management
