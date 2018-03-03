@@ -67,8 +67,7 @@
     <div class="bs-docs-section">
       <div class="row">
 
-
-        <div class="col-lg-4" style="padding-top: 23px;">
+        <div class="col-lg-6" style="padding-top: 23px;">
 
           <div class="col-lg-12" style="padding-left: 0; padding-right:0;">
             <div class="bs-ccomponent">
@@ -77,59 +76,38 @@
                 <fieldset>
                   <div class="form-group">
                     <label class="col-form-label" for="inputDefault">
-                      <b>Name</b>
+                      <b>Event Name</b>
                     </label>
-                    <p>Sir Incredible, God</p>
+                    <input type="text" class="form-control" placeholder="Enter event name" id="inputDefault">
                   </div>
 
                   <div class="form-group">
                     <label class="col-form-label" for="inputDefault">
-                      <b>About</b>
+                      <b>Start date</b>
                     </label>
-                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                      synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher
-                      retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip
-                      placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi
-                      qui.
-                    </p>
+                    <input type="text" class="form-control col-lg-6" placeholder="March 4, 2018" id="inputDefault">
+                    <input type="text" class="form-control col-lg-6" placeholder="12:00 pm" id="inputDefault">
                   </div>
 
                   <div class="form-group">
                     <label class="col-form-label" for="inputDefault">
-                      <b>Email address</b>
+                      <b>End date</b>
                     </label>
-                    <p>
-                      <a href="#">godsemail@godcorporation.god</a>
-                    </p>
+                    <input type="text" class="form-control col-lg-6" placeholder="March 4, 2018" id="inputDefault">
+                    <input type="text" class="form-control col-lg-6" placeholder="12:00 pm" id="inputDefault">
                   </div>
 
                   <div class="form-group">
                     <label class="col-form-label" for="inputDefault">
-                      <b>Address</b>
+                      <b>Event visibility</b>
                     </label>
-                    <p>
-                      <a href="#">Royal Heaven Street, 7 H7</a>
-                    </p>
+                    <select class="form-control" id="inputDefault">
+                      <option>Public</option>
+                      <option>Private</option>
+                    </select>
                   </div>
+              </fieldset>
 
-                  <div class="form-group">
-                    <label class="col-form-label" for="inputDefault">
-                      <b>Country</b>
-                    </label>
-                    <p>Heavenlandia</p>
-                  </div>
-
-                </fieldset>
-                <button type="submit" onclick="event.preventDefault(); location.href = 'register2.html';" class="btn btn-primary">Edit</button>
-                </fieldset>
-                <br>
-                <br>
-                <br>
-                <br>
-                <div style="text-align: right;">
-                  <span class="badge badge-info">Member</span>
-                  <span class="badge badge-dark">Administrator</span>
-                </div>
               </div>
               <div class="progress">
                 <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
@@ -138,279 +116,84 @@
           </div>
         </div>
 
-        <div class="col-lg-8" style="padding-top:23px">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#feed">Activity Feed</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#upcoming">Upcoming Events</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#history">Event History</a>
-            </li>
-          </ul>
+        <div class="col-lg-6" style="padding-top: 23px;">
 
-          <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade show active" id="feed">
-              <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
-                <div class="bs-ccomponent">
-                  <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">God created a new Event in Feupinhos: Feupinhos na Queima.</h5>
-                        <small>1 day ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small>Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Feupinhos attended an Event with Feupinhos: Synergy in FEUP</h5>
-                        <small class="text-muted">2 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">God is attending an Event: Super Bock Super Rock</h5>
-                        <small class="text-muted">3 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small class="text-muted">3 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small class="text-muted">3 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small class="text-muted">3 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                  </div>
+            <div class="col-lg-12" style="padding-left: 0; padding-right:0;">
+              <div class="bs-ccomponent">
+
+                <div style="background-color: #eee; padding: 20px; padding-top: 10px;">
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-form-label" for="inputDefault">
+                        <b>Location</b>
+                      </label>
+                      <input type="text" class="form-control" placeholder="Enter event location" id="inputDefault">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-form-label" for="inputDefault">
+                        <b>Lodging link</b>
+                      </label>
+                      <input type="text" class="form-control" placeholder="Enter lodging link" id="inputDefault">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-form-label" for="inputDefault">
+                        <b>Venue Information</b>
+                      </label>
+                      <input type="text" class="form-control" placeholder="Venue information" id="inputDefault">
+                    </div>
+
+                    <button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';" class="btn btn-primary">Create</button>
+                </fieldset>
+
                 </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="upcoming">
-              <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
-                <div class="bs-ccomponent">
-                  <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Piggybank Party</h5>
-                        <small>Tommorrow</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small>Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Feupinhos na Queima</h5>
-                        <small class="text-muted">In 65 days</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Super Bock Super Rock</h5>
-                        <small class="text-muted">In 138 days</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="history">
-              <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
-                <div class="bs-ccomponent">
-                  <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Sprucing up the Spruce Moose</h5>
-                        <small class="text-muted">Yesterday</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Synergy in FEUP</h5>
-                        <small>2 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small>Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Start of the Second Semester</h5>
-                        <small class="text-muted">26 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Arraial de Engenharia</h5>
-                        <small class="text-muted">122 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                  </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
           </div>
 
-        </div>
       </div>
 
 
-      <footer id="footer" style="margin: 5em 0;">
-        <div class="row">
-          <div class="col-lg-12">
-
-            <table class="list-unstyled" cellpadding="7" style="font-size: 0.9375rem; margin: -7px;">
-              <tr>
-                <td class="float-lg-right">
-                  <a href="index.html">Back to Homepage</a>
-                </td>
-                <td>
-                  <a href="#faqs">FAQ's</a>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-              </tr>
-            </table>
-            Template by
-            <a href="http://thomaspark.co">Thomas Park</a>.
-            <br> Code released by
-            <a href="https://github.com/">FEUP Students</a>.
-            <br> Based on
-            <a href="https://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from
-            <a href="http://fontawesome.io/" rel="nofollow">Font Awesome</a>. Web fonts from
-            <a href="https://fonts.google.com/" rel="nofollow">Google</a>.
-
-          </div>
-        </div>
-      </footer>
-    </div>
-
-
-
-
-    <div class="container" style="width: 100%; max-width: 400px; margin: auto; padding-top: 23px;">
-
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin: 0 auto; width: 200px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-        <a class="navbar-brand" href="#" style="margin: 0 auto;">
-          <img src="icon/logo.png"> ReEvent</a>
-      </nav>
-
-      <br>
-
-
-
-
-
-      <div id="form" style="margin-top:-22px;">
-        <legend style="background-color: #eee; padding: 10px; border-radius: 10px; border: 1px solid #ccc;">Create an Event - 1/2</legend>
-
-        <form style="background-color: #eee; padding: 20px; padding-top: 10px; border-radius: 10px; border: 1px solid #ccc;">
-          <fieldset>
-            <div class="form-group">
-              <label class="col-form-label" for="inputDefault">Event Name</label>
-              <input type="text" class="form-control" placeholder="Enter event name" id="inputDefault">
-            </div>
-            <div class="form-group">
-              <label class="col-form-label" for="inputDefault">Date</label>
-              <br>
-              <input type="text" name="daterange" placeholder="Choose a range" />
-              <script type="text/javascript">
-                $(function () {
-                  $('input[name="daterange"]').daterangepicker();
-                });
-              </script>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Start Time</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">End Time</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-primary active">
-                <input type="radio" name="options" id="option1" autocomplete="off" checked> Public
-              </label>
-              <label class="btn btn-primary">
-                <input type="radio" name="options" id="option2" autocomplete="off"> Private
-              </label>
-            </div>
-          </fieldset>
+      <footer id="footer" style="margin: 1em 0; padding-bottom: 2em; border-top: 1px solid #ddd;">
           <br>
-          <button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';" class="btn btn-primary">Next</button>
-          </fieldset>
-        </form>
+          <div class="row">
+            <div class="col-lg-12">
 
-      </div>
-
-      <footer id="footer" style="margin: 5em 0;">
-        <div class="row">
-          <div class="col-lg-12">
-
-            <table class="list-unstyled" cellpadding="7" style="font-size: 0.9375rem; margin: -7px;">
-              <tr>
-                <td class="float-lg-right">
-                  <a href="index.html">Back to Homepage</a>
-                </td>
-                <td>
-                  <a href="#faqs">FAQ's</a>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-              </tr>
-            </table>
-            Template by
-            <a href="http://thomaspark.co">Thomas Park</a>.
-            <br> Code released by
-            <a href="https://github.com/">FEUP Students</a>.
-            <br> Based on
-            <a href="https://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from
-            <a href="http://fontawesome.io/" rel="nofollow">Font Awesome</a>. Web fonts from
-            <a href="https://fonts.google.com/" rel="nofollow">Google</a>.
-
+              <table class="list-unstyled" cellpadding="7" style="font-size: 0.9375rem; margin: 0 auto;">
+                <tr>
+                  <td class="float-lg-right">
+                    <a href="#top">Back to top</a>
+                  </td>
+                  <td>
+                    <a href="index.php">Home</a>
+                  </td>
+                  <td>
+                    <a href="#about">About</a>
+                  </td>
+                  <td>
+                    <a href="#api">FAQs</a>
+                  </td>
+                  <td>
+                    <a href="#api">Contact us</a>
+                  </td>
+              </table>
+              <br>
+              <div style="text-align:center; font-size: x-small">
+                Template by
+                <a href="http://thomaspark.co">Thomas Park</a>. Code released by
+                <a href="https://github.com/">FEUP Students</a>.
+                <br> Based on
+                <a href="https://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from
+                <a href="http://fontawesome.io/" rel="nofollow">Font Awesome</a>. Web fonts from
+                <a href="https://fonts.google.com/" rel="nofollow">Google</a>.
+              </div>
+            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
     </div>
 
     <!-- Yeti Template Ends Here -->
