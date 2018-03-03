@@ -21,16 +21,33 @@
 
   	<!-- Yeti Template Starts Here -->
 
-  	<div class="container" style="width: 100%; max-width: 400px; margin: auto; padding-top: 23px;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <a class="navbar-brand" href="#" ><img src="icon/logo.png"><b> ReEvent</b></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
 
-		<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="width: 123px; margin: 0 auto;">
-			<a class="navbar-brand" href="#">LbawEvent</a>
-		</nav>
-
-	</div>
+	  <div class="collapse navbar-collapse" id="navbarColor01">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Events</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Communities</a>
+	      </li>
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0">
+	      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+	      <button type="button" class="btn btn-success" onclick="event.preventDefault(); location.href = 'login.html';">Login</button>
+	    </form>
+	  </div>
+	</nav>
 
 	<div class="container">
-		<legend style=" color: #333; padding: 20px;"><img style="padding-right: 20px;" src="icon/profile.png"><b>God's</b> profile</legend>
+		<legend style="color: #333; padding: 20px;  margin-top: 25px;"><img style="padding-right: 20px;" src="icon/profile.png"><b>God's</b> profile</legend>
 
 	<div class="bs-docs-section" >
 		<div class="row" >
@@ -67,7 +84,7 @@
 				<div class="bs-ccomponent">
 
 					<div style="background-color: #eee; padding: 20px; padding-top: 10px;">
-					  <fieldset> 
+					  <fieldset>
 					    <div class="form-group">
 						  <label class="col-form-label" for="inputDefault"><b>Name</b></label>
 						  <p>Sir Incredible, God</p>
@@ -83,6 +100,10 @@
 					    <div class="form-group">
 					      <label class="col-form-label" for="inputDefault"><b>Country</b></label>
 					      <p>Heavenlandia</p>
+					    </div>
+              <div class="form-group">
+					      <label class="col-form-label" for="inputDefault"><b>Birthdate</b></label>
+					      <p>Beginning of time</p>
 					    </div>
 					    </fieldset>
 					    <button type="submit" onclick="event.preventDefault(); location.href = 'register2.html';" class="btn btn-primary">Edit</button>
@@ -141,7 +162,7 @@
 
 		</div>
 	</div>
-	
+
 
 		<footer id="footer" style="margin: 5em 0;">
 	        <div class="row">
