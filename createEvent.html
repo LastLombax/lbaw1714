@@ -70,7 +70,7 @@
     <div class="bs-docs-section">
       <div class="row">
 
-        <div class="col-lg-6" style="padding-top: 23px;">
+        <div class="col-lg-6" style="padding-top: 23px; padding:0px">
 
           <div class="col-lg-12" style="padding-left: 0; padding-right:0;">
             <div class="bs-ccomponent">
@@ -103,43 +103,35 @@
                   <label class="col-form-label" for="inputDefault">
                     <b>Description</b>
                     <div class="form-inline form-group mb-2">
-                      <input type="text" size = "70" style="margin-right:0.25em" class="form-control col-lg-8" placeholder="Enter the description" id="inputDefault">
+                      <input type="text" size = "72" style="margin-right:0.25em" class="form-control col-lg-8" placeholder="Enter the description" id="inputDefault">
                     </div>
                   </label>
                   <br>
                   <label class="col-form-label" for="inputDefault">
                     <b>Event visibility</b>
                     <br>
-                    <div class="btn-group" data-toggle="buttons">
-                      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-primary active">
-                          <input type="radio" name="options" id="option1" autocomplete="off" checked> Public
-                        </label>
-                        <label class="btn btn-primary">
-                          <input type="radio" name="options" id="option2" autocomplete="off"> Private
-                        </label>
-                      </div>
+                    <div class="form-group">
+                      <select name="visibility" class="form-control" id="inputDefault">
+                            <option value="Public">Public</option>
+                            <option value="Private">Private</option>
+                      </select>
                     </div>
                   </label>
-
-
                 </fieldset>
+              </div>
 
-              </div>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-6" style="padding-top: 23px;">
+        <div class="col-lg-6" style="padding-top: 23px; padding:0px;">
+
 
           <div class="col-lg-12" style="padding-left: 0; padding-right:0;">
             <div class="bs-ccomponent">
 
               <div style="background-color: #eee; padding: 20px; padding-top: 10px;">
-                <fieldset>
+                <fieldset style=" margin-bottom:51.5px;">
                   <div class="form-group">
                     <label class="col-form-label" for="inputDefault">
                       <b>Location</b>
@@ -167,19 +159,18 @@
                     <input type="file" class="form-control-file" id="eventImg" aria-describedby="fileHelp">
                     <small id="fileHelp" class="form-text text-muted">Choose a event representative picture, such as a banner or photo of the venue</small>
                   </div>
-                  <button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';" class="btn btn-primary">Create</button>
                 </fieldset>
 
               </div>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+
             </div>
           </div>
+
         </div>
 
       </div>
 
+      <button type="submit" onclick="event.preventDefault(); location.href = 'event.html';" class="btn btn-primary">Create</button>
 
       <footer id="footer" style="margin: 1em 0; padding-bottom: 2em; border-top: 1px solid #ddd;">
         <br>
