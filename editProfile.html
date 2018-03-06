@@ -49,13 +49,15 @@
 						<a class="nav-link" href="#">Communities</a>
 					</li>
 				</ul>
+				<div class="float-lg-right" >
 				<form class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2" type="text" placeholder="Search">
 
-					<img style="padding-right: 5px;" src="icon/profile.png">
+					<img style="padding-right: 5px; " width="7%" height="7%" src="img/god.jpg">
 					<b>God</b>
 
 				</form>
+			</div>
 			</div>
 		</nav>
 
@@ -357,6 +359,7 @@
 										</select>
 									</div>
 
+									<br>
 									<button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';" class="btn btn-primary">Save changes</button>
 								</fieldset>
 
@@ -396,16 +399,16 @@
 										</label>
 										<input type="password" class="form-control" placeholder="Confirm New Password" id="inputDefault">
 									</div>
-
 									<div class="form-group">
-										<label class="col-form-label" for="inputDefault">
-											<b>Confirm changes with current password</b>
+										<label class="col-form-label" for="eventImg">
+											<b>Image input</b>
 										</label>
-										<input type="password" class="form-control" placeholder="Current password" id="inputDefault">
+										<input type="file" class="form-control-file" id="eventImg" aria-describedby="fileHelp">
 									</div>
 									<br>
-
+									<div>
 									<button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';" class="btn btn-primary">Save changes</button>
+								</div>
 								</fieldset>
 
 							</div>
