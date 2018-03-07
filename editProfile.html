@@ -99,7 +99,8 @@
 										<label class="col-form-label" for="inputDefault">
 											<b>Address</b>
 										</label>
-										<textarea class="form-control" placeholder="Enter your address" id="inputDefault" maxlength="600"> </textarea>
+										<input style="margin-bottom:0.5rem;" type="text" class="form-control" placeholder="Address line 1" id="inputDefault" maxlength="300">
+										<input type="text" class="form-control" placeholder="Address line 2" id="inputDefault" maxlength="300">
 										<small id="emailHelp" class="form-text text-muted">We'll never share your Address with anyone else.</small>
 									</div>
 
@@ -378,7 +379,8 @@
 
 							<div style="background-color: #eee; padding: 20px; padding-top: 10px;">
 								<h3>Account details</h3>
-								<fieldset style=" margin-bottom:76.5px;">
+								<!-- <fieldset style=" margin-bottom:6.15rem;"> -->
+								<fieldset>
 									<div class="form-group">
 										<label class="col-form-label" for="inputDefault">
 											<b>E-mail address</b>
@@ -406,7 +408,7 @@
 										<input type="file" class="form-control-file" id="eventImg" aria-describedby="fileHelp">
 									</div>
 									<div>
-									<button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';" class="btn btn-primary">Save changes</button>
+									<button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';" class="btn btn-primary" >Save changes</button>
 								</div>
 								</fieldset>
 

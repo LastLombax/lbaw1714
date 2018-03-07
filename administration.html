@@ -11,6 +11,8 @@
 	<!--FontAwesome-->
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
+	<script type="text/javascript" src="js/searchNavBar.js"></script>
+
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<!--<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>-->
@@ -84,6 +86,12 @@
 					</ul>
 
 					<div id="myTabContent" class="tab-content">
+							<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+									<input type="hidden" name="search_param" value="all" id="search_param">
+									<input type="text" class="form-control" name="x" placeholder="Search term..." maxlength="100">
+								</div>
+							</div>
 						<div class="tab-pane fade show active" id="disable-community">
 							<div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
 								<div class="bs-ccomponent">

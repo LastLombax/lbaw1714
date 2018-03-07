@@ -81,13 +81,13 @@
                     <label class="col-form-label" for="inputDefault">
                       <b>Event Name</b>
                     </label>
-                    <input type="text" class="form-control" placeholder="Enter event name" id="inputDefault" maxlength="80">
+                    <input style="width:83%" class="form-control col-xs-3" placeholder="Enter event name" id="eventName" maxlength="80">
                   </div>
 
                   <label class="col-form-label" for="inputDefault">
                     <b>Description</b>
                     <div class="form-inline form-group mb-2">
-                      <textarea style="width:530px;" class="form-control" placeholder="Description" id="inputDefault" maxlength="255"> </textarea>
+                      <textarea style="width:440px;" class="form-control" placeholder="Description" id="inputDefault" maxlength="255"> </textarea>
                     </div>
                   </label>
 
@@ -171,9 +171,10 @@
 
         </div>
 
+              <button type="submit" onclick="event.preventDefault(); location.href = 'event.html';" class="btn btn-primary d-block ml-auto mt-3">Create</button>
+
       </div>
 
-      <button type="submit" onclick="event.preventDefault(); location.href = 'event.html';" class="btn btn-primary">Create</button>
 
       <footer id="footer" style="margin: 1em 0; padding-bottom: 2em; border-top: 1px solid #ddd;">
         <br>
