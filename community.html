@@ -8,20 +8,21 @@
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<title>Feupinhos Community</title>
 
-	<!--FontAwesome-->
-	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link rel="shortcut icon" type="image/png" href="icon/favicon.png" />
 
-	<!-- Bootstrap -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="shortcut icon" type="image/png" href="icon/favicon.png"/>	
-	<!--<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>-->
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+		<!-- FontAwesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+		<!-- GoogleImports -->
+    <link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
 </head>
 
 <body style="width: 100%;">
@@ -53,11 +54,12 @@
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="text" placeholder="Search">
-				<button type="button" class="btn btn-success" onclick="event.preventDefault(); location.href = 'login.html';">Login</button>
+				<i class="material-icons" style="font-size: 32px; color: rgba(255, 255, 255, 1);">account_circle</i>
 			</form>
 		</div>
 	</nav>
+
+	<!-- <iframe style="border: none; border-bottom: 1px solid #ccc; width: 100%; height: 100px;" src="searchNavBar.html" seamless></iframe> -->
 
 	<div class="container">
 		<legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0; padding-bottom: 0;">
@@ -83,19 +85,18 @@
 											<label class="col-form-label" for="inputDefault">
 												<b>About</b>
 											</label>
-											<p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master
-												cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-												synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan
-												aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+											<p>O grupo dos feupinhos é um grupo publico da comunidade de caloiros da Faculdade de Engenharia da Universidade do Porto.
+												Este é o local em que todos os "noobs" devem estar.
+											</p>
 										</div>
 										<div class="form-group">
 											<label class="col-form-label" for="inputDefault">
 												<b>Membership details</b>
 											</label>
 											<p>
-												<a href="#" style="color: #7cbfb6">122 members</a>, including
-												<a href="#" style="color: #7cbfb6">God</a> and
-												<a href="#" style="color: #7cbfb6">Rui Leixo</a>
+												<a href="#" style="color: #f3a933dc">122 members</a>, including
+												<a href="#" style="color: #f36833">God</a> and
+												<a href="#" style="color: #f36833">Rui Leixo</a>
 											</p>
 										</div>
 										<div class="form-group">
@@ -103,7 +104,7 @@
 												<b>Administrators</b>
 											</label>
 											<p>
-												<a href="#" style="color: #7cbfb6">God</a>
+												<a href="#" style="color: #f36833">God</a>
 											</p>
 										</div>
 										<div class="form-group">
@@ -127,7 +128,7 @@
 									</div>
 								</div>
 								<div class="progress">
-									<div class="progress-bar" role="progressbar" style="width: 100%; background-color: #7cbfb6;" aria-valuenow="100" aria-valuemin="0"
+									<div class="progress-bar" role="progressbar" style="width: 100%; background-color: #f36833;" aria-valuenow="100" aria-valuemin="0"
 									 aria-valuemax="100"></div>
 								</div>
 							</div>
@@ -139,13 +140,13 @@
 				<div class="col-lg-8" style="padding-top:23px">
 					<ul class="nav nav-tabs">
 						<li class="nav-item">
-							<a class="nav-link active" data-toggle="tab" href="#feed" style="color: #7cbfb6">Activity Feed</a>
+							<a class="nav-link active" data-toggle="tab" href="#feed" style="color: #f36833">Activity Feed</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#upcoming" style="color: #7cbfb6">Upcoming Events</a>
+							<a class="nav-link" data-toggle="tab" href="#upcoming" style="color: #f36833">Upcoming Events</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#history" style="color: #7cbfb6">Event History</a>
+							<a class="nav-link" data-toggle="tab" href="#history" style="color: #f36833">Event History</a>
 						</li>
 					</ul>
 
@@ -154,53 +155,21 @@
 							<div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
 								<div class="bs-ccomponent">
 									<div class="list-group">
-										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
-											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">Feupinhos created a new Event: Feupinhos na Queima.</h5>
-												<small>1 day ago</small>
-											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small>Donec id elit non mi porta.</small>
+										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+											<h5 class="mb-1">Y'all need Jesus</h5>
+											<small class="text-muted">Right now</small>
 										</a>
 										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">Feupinhos attended an Event: Synergy in FEUP</h5>
-												<small class="text-muted">2 days ago</small>
-											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small class="text-muted">Donec id elit non mi porta.</small>
+											<h5 class="mb-1">Feupinhos created a new Event: Feupinhos na Queima.</h5>
+											<small>1 day ago</small>
 										</a>
 										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">Daniel Pinho joined Feupinhos.</h5>
-												<small class="text-muted">3 days ago</small>
-											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small class="text-muted">Donec id elit non mi porta.</small>
+											<h5 class="mb-1">Feupinhos attended an Event: Synergy in FEUP</h5>
+											<small class="text-muted">2 days ago</small>
 										</a>
 										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">List group item heading</h5>
-												<small class="text-muted">3 days ago</small>
-											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small class="text-muted">Donec id elit non mi porta.</small>
-										</a>
-										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">List group item heading</h5>
-												<small class="text-muted">3 days ago</small>
-											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small class="text-muted">Donec id elit non mi porta.</small>
-										</a>
-										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">List group item heading</h5>
-												<small class="text-muted">3 days ago</small>
-											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small class="text-muted">Donec id elit non mi porta.</small>
+											<h5 class="mb-1">Daniel Pinho joined Feupinhos.</h5>
+											<small class="text-muted">3 days ago</small>
 										</a>
 									</div>
 								</div>
@@ -209,31 +178,23 @@
 						<div class="tab-pane fade" id="upcoming">
 							<div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
 								<div class="bs-ccomponent">
-									<div class="list-group">
-										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">Piggybank Party</h5>
-												<small>Tommorrow</small>
-											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small>Donec id elit non mi porta.</small>
-										</a>
-										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">LBAW is pain :^)</h5>
-												<small class="text-muted">In 12 days</small>
-											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small class="text-muted">Donec id elit non mi porta.</small>
-										</a>
-										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">Feupinhos na Queima</h5>
-												<small class="text-muted">In 65 days</small>
-											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small class="text-muted">Donec id elit non mi porta.</small>
-										</a>
+									<div class="list-group-item list-group-item-action flex-column align-items-start">
+										<div class="d-flex w-100 justify-content-between">
+											<h5 class="mb-1">Piggybank Party</h5>
+											<small>Tomorrow</small>
+										</div>
+									 <a href="">
+										<small> Click here to see the event.</small>
+									 </a>
+									</div>
+									<div class="list-group-item list-group-item-action flex-column align-items-start">
+										<div class="d-flex w-100 justify-content-between">
+											<h5 class="mb-1">LBAW A4 </h5>
+										  <small class="text-muted">In 4 days</small>
+										</div>
+									 <a href="">
+										<small> Click here to see the event.</small>
+									 </a>
 									</div>
 								</div>
 							</div>
@@ -242,30 +203,27 @@
 							<div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
 								<div class="bs-ccomponent">
 									<div class="list-group">
-										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+										<div class="list-group-item list-group-item-action flex-column align-items-start">
 											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">Synergy in FEUP</h5>
-												<small>2 days ago</small>
+												<h5 class="mb-1">MPCP Test</h5>
+												<small>Tomorrow</small>
 											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small>Donec id elit non mi porta.</small>
-										</a>
-										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+											<p class="mb-1">The test no one wants to have!</p>
+										 <a href="">
+											<small> Click here to see the event.</small>
+										 </a>
+										</div>
+
+										<div class="list-group-item list-group-item-action flex-column align-items-start">
 											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">Start of the Second Semester</h5>
-												<small class="text-muted">26 days ago</small>
+												<h5 class="mb-1">Piggybank Party</h5>
+												<small>Tomorrow</small>
 											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small class="text-muted">Donec id elit non mi porta.</small>
-										</a>
-										<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-											<div class="d-flex w-100 justify-content-between">
-												<h5 class="mb-1">Arraial de Engenharia</h5>
-												<small class="text-muted">122 days ago</small>
-											</div>
-											<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-											<small class="text-muted">Donec id elit non mi porta.</small>
-										</a>
+											<p class="mb-1">The party to all piggy lovers!</p>
+										 <a href="">
+											<small> Click here to see the event.</small>
+										 </a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -278,6 +236,8 @@
 
 			</div>
 		</div>
+
+		<br><br>
 
 
 		<footer id="footer" style="margin: 1em 0; padding-bottom: 2em; border-top: 1px solid #ddd;">
@@ -318,13 +278,5 @@
 		</footer>
 
 	</div>
-
-	<!-- Yeti Template Ends Here -->
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/bootstrap.min.js"></script>
 </body>
-
 </html>

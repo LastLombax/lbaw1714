@@ -9,18 +9,19 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Create an Event</title>
 
-  <!--FontAwesome-->
-  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link rel="shortcut icon" type="image/png" href="icon/favicon.png" />
 
   <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" defer>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js" defer></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-  <!-- Include Date Range Picker -->
-  <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js" defer></script>
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" defer />
+  <!-- FontAwesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
+  <!-- GoogleImports -->
+  <link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body style="width: 100%;">
@@ -70,7 +71,7 @@
     <div class="bs-docs-section">
       <div class="row">
 
-        <div class="col-lg-6" style="padding-top: 23px;">
+        <div class="col-lg-6" style="padding-top: 23px; padding:0px">
 
           <div class="col-lg-12" style="padding-left: 0; padding-right:0;">
             <div class="bs-ccomponent">
@@ -81,8 +82,15 @@
                     <label class="col-form-label" for="inputDefault">
                       <b>Event Name</b>
                     </label>
-                    <input type="text" class="form-control" placeholder="Enter event name" id="inputDefault">
+                    <input type="text" style="width:83%" class="form-control col-xs-3" placeholder="Enter event name" id="eventName" maxlength="80">
                   </div>
+
+                  <label class="col-form-label" for="inputDefault">
+                    <b>Description</b>
+                    <div class="form-inline form-group mb-2">
+                      <textarea style="width:440px;" class="form-control" placeholder="Description" id="inputDefault" maxlength="255"> </textarea>
+                    </div>
+                  </label>
 
                   <label class="col-form-label" for="inputDefault">
                     <b>Start date</b>
@@ -100,51 +108,38 @@
                     </div>
                   </label>
 
-                  <label class="col-form-label" for="inputDefault">
-                    <b>Description</b>
-                    <div class="form-inline form-group mb-2">
-                      <input type="text" size = "70" style="margin-right:0.25em" class="form-control col-lg-8" placeholder="Enter the description" id="inputDefault">
-                    </div>
-                  </label>
+
                   <br>
                   <label class="col-form-label" for="inputDefault">
                     <b>Event visibility</b>
                     <br>
-                    <div class="btn-group" data-toggle="buttons">
-                      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-primary active">
-                          <input type="radio" name="options" id="option1" autocomplete="off" checked> Public
-                        </label>
-                        <label class="btn btn-primary">
-                          <input type="radio" name="options" id="option2" autocomplete="off"> Private
-                        </label>
-                      </div>
+                    <div class="form-group">
+                      <select name="visibility" class="form-control" id="inputDefault">
+                            <option value="Public">Public</option>
+                            <option value="Private">Private</option>
+                      </select>
                     </div>
                   </label>
-
-
                 </fieldset>
+              </div>
 
-              </div>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-6" style="padding-top: 23px;">
+        <div class="col-lg-6" style="padding-top: 23px; padding:0px;">
+
 
           <div class="col-lg-12" style="padding-left: 0; padding-right:0;">
             <div class="bs-ccomponent">
 
               <div style="background-color: #eee; padding: 20px; padding-top: 10px;">
-                <fieldset>
+                <fieldset style=" margin-bottom:51.3px;">
                   <div class="form-group">
                     <label class="col-form-label" for="inputDefault">
                       <b>Location</b>
                     </label>
-                    <input type="text" class="form-control" placeholder="Enter event location" id="inputDefault">
+                    <input type="text" class="form-control" placeholder="Example: Casa da Música, Porto, Portugal" id="inputDefault" maxlength="60">
                   </div>
 
                   <div class="form-group">
@@ -158,7 +153,7 @@
                     <label class="col-form-label" for="inputDefault">
                       <b>Venue Information</b>
                     </label>
-                    <input type="text" class="form-control" placeholder="Venue information" id="inputDefault">
+                    <input type="text" class="form-control" placeholder="Venue information" id="inputDefault" maxlength="100">
                   </div>
                   <div class="form-group">
                     <label class="col-form-label" for="eventImg">
@@ -167,16 +162,17 @@
                     <input type="file" class="form-control-file" id="eventImg" aria-describedby="fileHelp">
                     <small id="fileHelp" class="form-text text-muted">Choose a event representative picture, such as a banner or photo of the venue</small>
                   </div>
-                  <button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';" class="btn btn-primary">Create</button>
+                  <br>
                 </fieldset>
 
               </div>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+
             </div>
           </div>
+
         </div>
+
+              <button type="submit" onclick="event.preventDefault(); location.href = 'event.html';" class="btn btn-primary d-block ml-auto mt-3">Create</button>
 
       </div>
 
