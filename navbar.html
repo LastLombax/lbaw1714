@@ -11,20 +11,32 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">Home
+        <a class="nav-link" href="#">Home
           <span class="sr-only">(current)</span>
-        </a>	
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
+          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a class="dropdown-item" href="createEvent.html" > Add Event</a>
+            <a class="dropdown-item" href="manageEvents.html" > Manage your Events</a>
+            <a class="dropdown-item" href="viewEvents.html" > Search for Events</a>
+          </div>
+      </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Communities</a>
+          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a class="dropdown-item" href="createCommunity.html" > Add Community</a>
+            <a class="dropdown-item" href="manageCommunities.html" > Manage your Communities</a>
+            <a class="dropdown-item" href="viewCommunitys.html" > Search for Communities</a>
+          </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="viewEvents.html">Events</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Communities</a>
+        <a class="nav-link" href="administration.html">Administration</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button type="button" class="btn btn-success" onclick="event.preventDefault(); location.href = 'login.html';">Login</button>
+      <i class="material-icons" style="font-size: 32px; color: rgba(255, 255, 255, 1);">account_circle</i>
     </form>
   </div>
 </nav>

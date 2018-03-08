@@ -12,14 +12,20 @@
 
 	<link href="css/timeline.css" rel="stylesheet">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <script src="js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+
+
   <!-- FontAwesome -->
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-
   <!-- GoogleImports -->
   <link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -45,14 +51,24 @@
 					<span class="sr-only">(current)</span>
 				</a>
 			</li>
+			<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
+          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a class="dropdown-item" href="createEvent.html" > Add Event</a>
+            <a class="dropdown-item" href="manageEvents.html" > Manage your Events</a>
+            <a class="dropdown-item" href="viewEvents.html" > Search for Events</a>
+          </div>
+      </li>
+			<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Communities</a>
+          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a class="dropdown-item" href="createCommunity.html" > Add Community</a>
+            <a class="dropdown-item" href="manageCommunities.html" > Manage your Communities</a>
+            <a class="dropdown-item" href="viewCommunitys.html" > Search for Communities</a>
+          </div>
+      </li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Events</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Communities</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Administration</a>
+				<a class="nav-link" href="administration.html">Administration</a>
 			</li>
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
