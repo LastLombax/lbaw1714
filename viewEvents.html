@@ -9,18 +9,16 @@
   <title>Find Events</title>
 
   <link rel="shortcut icon" type="image/png" href="icon/favicon.png" />
-
-	<!-- Bootstrap -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<script src="js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-	<!-- FontAwesome -->
-	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-
-	<!-- GoogleImports -->
-	<link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="css/timeline.css" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!-- Bootstrap -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <script src="js/bootstrap.min.js"></script>
+      <!-- FontAwesome -->
+      <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+      <!-- GoogleImports -->
+      <link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body style="width: 100%;">
@@ -60,13 +58,49 @@
 
 
   <div class="container">
-    <div id="top-events">
+
+
+
+
+
+<br><br>
+
+
+<div class="col align-items-center">
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active show" data-toggle="tab" href="#home" style="width: 255px; text-align: center;">
+      <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0;">
+            <i class="fas fa-calendar-check"></i>
+            <span style="margin-left: .5rem;">
+            Nearby Events
+          </span>
+        </legend>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#profile" style="width: 255px; text-align: center;">
       <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0;">
           <i class="fas fa-arrow-up"></i>
           <span style="margin-left: .5rem;">
           Top Events
         </span>
       </legend>
+    </a>
+  </li>
+</ul>
+</div>
+
+<br><br>
+
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active show" id="home">
+    <p>
+      
+
+
+
+          <div id="top-events">
 
       <div class="bs-docs-section">
         <div class="row" style="width: 100%">
@@ -130,37 +164,59 @@
           </div>
         </div>
         <div>
-						<ul class="pagination ">
-							<li class="page-item disabled ">
-								<a class="page-link " href="# ">&laquo;</a>
-							</li>
-							<li class="page-item active ">
-								<a class="page-link " href="# ">1</a>
-							</li>
-							<li class="page-item ">
-								<a class="page-link " href="# ">2</a>
-							</li>
-							<li class="page-item ">
-								<a class="page-link " href="# ">3</a>
-							</li>
-							<li class="page-item ">
-								<a class="page-link " href="# ">&raquo;</a>
-							</li>
-						</ul>
-					</div>
+            <ul class="pagination ">
+              <li class="page-item disabled ">
+                <a class="page-link " href="# ">&laquo;</a>
+              </li>
+              <li class="page-item active ">
+                <a class="page-link " href="# ">1</a>
+              </li>
+              <li class="page-item ">
+                <a class="page-link " href="# ">2</a>
+              </li>
+              <li class="page-item ">
+                <a class="page-link " href="# ">3</a>
+              </li>
+              <li class="page-item ">
+                <a class="page-link " href="# ">&raquo;</a>
+              </li>
+            </ul>
+          </div>
       </div>
     </div>
 
-    <div id="nearby-events">
-        <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0;">
-            <i class="fas fa-calendar-check"></i>
-            <span style="margin-left: .5rem;">
-            Nearby Events
-          </span>
-        </legend>
+
+
+
+    </p>
+  </div>
+  <div class="tab-pane fade" id="profile">
+    <p>
+      
+
+          <div id="nearby-events">
 
         <div class="bs-docs-section">
           <div class="row" style="width: 100%">
+
+            <div class="col-lg-4">
+              <div class="bs-ccomponent">
+                <div class="card mb-4">
+                  <h3 class="card-header" style="border-bottom: 10px solid #158cb8">NOS Alive</h3>
+                  <div class="card-body">
+                    <h6 class="card-subtitle text-muted">12 - 14 July, 2018</h6>
+                  </div>
+                  <img style="width: 100%; height: 200px; object-fit: cover;" src="img/nos.png" alt="Card image">
+                  <div class="card-body">
+                    <p class="card-text">NOS Alive é um festival de música anual realizado no Passeio Maritimo de Algés, em Oeiras, Portugal. É
+                      organizado pela promotora de eventos Everything Is New e patrocinado pela NOS.</p>
+                  </div>
+                  <div class="card-footer text-muted">
+                    <a href="#" class="card-link">View more</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div class="col-lg-4">
               <div class="bs-ccomponent">
@@ -201,24 +257,7 @@
               </div>
             </div>
 
-            <div class="col-lg-4">
-              <div class="bs-ccomponent">
-                <div class="card mb-4">
-                  <h3 class="card-header" style="border-bottom: 10px solid #158cb8">NOS Alive</h3>
-                  <div class="card-body">
-                    <h6 class="card-subtitle text-muted">12 - 14 July, 2018</h6>
-                  </div>
-                  <img style="width: 100%; height: 200px; object-fit: cover;" src="img/nos.png" alt="Card image">
-                  <div class="card-body">
-                    <p class="card-text">NOS Alive é um festival de música anual realizado no Passeio Maritimo de Algés, em Oeiras, Portugal. É
-                      organizado pela promotora de eventos Everything Is New e patrocinado pela NOS.</p>
-                  </div>
-                  <div class="card-footer text-muted">
-                    <a href="#" class="card-link">View more</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
           <div>
               <ul class="pagination ">
@@ -241,6 +280,28 @@
             </div>
         </div>
       </div>
+
+
+    </p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <footer id="footer" style="margin: 1em 0; padding-bottom: 2em; border-top: 1px solid #ddd;">
       <br>
