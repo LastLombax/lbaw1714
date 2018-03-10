@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Edit Event</title>
+
+	<link rel="shortcut icon" type="image/png" href="icon/favicon.png" />
+
+  <!-- Bootstrap -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script>
+
+  <!-- FontAwesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+  <!-- GoogleImports -->
+  <link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body style="width: 100%;">
+  <!-- Yeti Template Starts Here -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+         <a class="navbar-brand" href="#">
+         <img src="icon/logo.png">
+         <b> ReEvent</b>
+         </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+            aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+               <li class="nav-item active">
+                  <a class="nav-link" href="#">Home
+                  <span class="sr-only">(current)</span>
+                  </a>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
+                  <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                     <a class="dropdown-item" href="createEvent.html" ><i class="fas fa-plus"></i> Add Event</a>
+                     <a class="dropdown-item" href="manageEvents.html" ><i class="fas fa-edit"></i> Manage your Events</a>
+                     <a class="dropdown-item" href="viewEvents.html" ><i class="fas fa-search"></i> Search for Events</a>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Communities</a>
+                  <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                     <a class="dropdown-item" href="createCommunity.html" ><i class="fas fa-plus"></i> Add Community</a>
+                     <a class="dropdown-item" href="manageCommunities.html" ><i class="fas fa-edit"></i>  Manage your Communities</a>
+                     <a class="dropdown-item" href="viewCommunitys.html" ><i class="fas fa-search"></i> Search for Communities</a>
+                  </div>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="administration.html">Administration</a>
+               </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+               <table style="font-size: 12px; color: white; text-align: right; margin-right: 15px;">
+                  <tr style="font-size: 9.5px">
+                     <td>Logged in as</td>
+                  </tr>
+                  <tr>
+                     <td style="padding-left: 5px; padding-right: 5px; border: 1px solid white; text-align: center;"></i> <b>God</b></td>
+                  </tr>
+               </table>
+               <i class="material-icons" style="font-size: 32px; color: rgba(255, 255, 255, 1);">account_circle</i>
+            </form>
+         </div>
+      </nav>
+
+  <div class="container">
+    <br>
+    <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0; padding-bottom: 10px;">
+      <i class="fas fa-calendar-check"></i>
+       Edit Event
+    </legend>
+
+      <div class="row align-items-center" style="border: 1px solid #ccc; width: 100%; margin: 0;">
+
+
+          <div class="col-lg-6 align-self-start" style="padding-left: 0; padding-right:0;">
+            <div class="bs-ccomponent">
+              <div style="background-color: #eee; padding: 20px; padding-top: 10px; height: 500px;">
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">
+                      <b>Event Name</b>
+                    </label>
+                    <input type="text" style="width:100%;" class="form-control col-xs-3" placeholder="Enter event name" id="eventName" maxlength="80">
+                  </div>
+
+                  <label class="col-form-label" for="inputDefault"  style="width:100%;">
+                    <b>Description</b>
+                    <div class="form-inline form-group mb-2" style="width:100%;">
+                      <textarea  class="form-control" placeholder="Description" id="inputDefault" maxlength="255" style="width:100%;"> </textarea>
+                    </div>
+                  </label>
+
+                  <label class="col-form-label" for="inputDefault" style="width:100%;">
+                    <b>Start date</b>
+                    <div class="form-inline form-group mb-2" style="width:100%;">
+                      <input type="text" style="margin-right:0.25em" class="form-control col-lg-8" placeholder="March 4, 2018" id="inputDefault" style="width:100%;">
+                      <input type="text" class="form-control col-lg-3" placeholder="12:00 pm" id="inputDefault" style="width:100%;">
+                    </div>
+                  </label>
+
+                  <label class="col-form-label" for="inputDefault" style="width:100%;">
+                    <b>End date</b>
+                    <div class="form-inline form-group mb-2" style="width:100%;">
+                      <input type="text" style="margin-right:0.25em" class="form-control col-lg-8" placeholder="March 4, 2018" id="inputDefault" style="width:100%;"> 
+                      <input type="text" class="form-control col-lg-3" placeholder="12:00 pm" id="inputDefault" style="width:100%;">
+                    </div>
+                  </label>
+
+
+                  <br>
+                  <label class="col-form-label" for="inputDefault">
+                    <b>Event visibility</b>
+                    <br>
+                    <div class="form-group">
+                      <select name="visibility" class="form-control" id="inputDefault">
+                            <option value="Public">Public</option>
+                            <option value="Private">Private</option>
+                      </select>
+                    </div>
+                  </label>
+                </fieldset>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="col-lg-6 align-self-start" style="padding-left: 0; padding-right:0;">
+            <div class="bs-ccomponent">
+
+              <div style="background-color: #eee; padding: 20px; padding-top: 10px; height: 500px;">
+                <fieldset style=" margin-bottom:51.3px;">
+                  <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">
+                      <b>Location</b>
+                    </label>
+                    <input type="text" class="form-control" placeholder="Example: Casa da Música, Porto, Portugal" id="inputDefault" maxlength="60">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">
+                      <b>Lodging link</b>
+                    </label>
+                    <input type="text" class="form-control" placeholder="Enter lodging link" id="inputDefault">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">
+                      <b>Venue Information</b>
+                    </label>
+                    <input type="text" class="form-control" placeholder="Venue information" id="inputDefault" maxlength="100">
+                  </div>
+                  <div class="form-group" id="imgField">
+                    <label class="col-form-label" for="eventImg">
+                      <b>Image input</b>
+                    </label>
+                    <input type="file" class="form-control-file" id="eventImg" aria-describedby="fileHelp">
+                    <script>
+                      
+                      let fileName = document.querySelector('#eventImg').value;
+                      
+                      let imgTag = document.createElement('img');
+                      imgTag.className += "src=\"" + fileName + "\"";
+                      
+                      let imgField = document.querySelector('#imgField');
+                      imgField.appendChild(imgTag);
+                    </script>
+                    <small id="fileHelp" class="form-text text-muted">Choose a event representative picture, such as a banner or photo of the venue</small>
+                  </div>
+                  <br>
+                </fieldset>
+
+              </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <button type="submit" onclick="event.preventDefault(); location.href = 'event.html';" class="btn btn-primary d-block ml-auto mt-3">Edit</button>
+    <br></br>
+    <footer id="footer " style="margin: 1em 0; padding-bottom: 2em; border-top: 1px solid #ddd; ">
+      <br>
+      <div class="row ">
+        <div class="col-lg-12 ">
+
+          <table class="list-unstyled " cellpadding="7 " style="font-size: 0.9375rem; margin: 0 auto; ">
+            <tr>
+              <td class="float-lg-right ">
+                <a href="#top ">Back to top</a>
+              </td>
+              <td>
+                <a href="memberHomepage.html">Home</a>
+              </td>
+              <td>
+                <a href="about.html">About</a>
+              </td>
+              <td>
+                <a href="faq.html">FAQs</a>
+              </td>
+              <td>
+                <a href="contact.html">Contact us</a>
+              </td>
+          </table>
+          <br>
+          <div style="text-align:center; font-size: small ">
+            Template by
+            <a href="http://thomaspark.co ">Thomas Park</a>. Code released by
+            <a href="https://github.com/ ">FEUP Students</a>.
+            <br> Based on
+            <a href="https://getbootstrap.com " rel="nofollow ">Bootstrap</a>. Icons from
+            <a href="http://fontawesome.io/ " rel="nofollow ">Font Awesome</a>. Web fonts from
+            <a href="https://fonts.google.com/ " rel="nofollow ">Google</a>.
+          </div>
+        </div>
+      </div>
+    </footer>
+    </div>
+</body>
+</html>
