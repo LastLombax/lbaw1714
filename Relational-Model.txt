@@ -1,0 +1,78 @@
+
+
+Event(idEvent, name, description, imagePath, date, country, city, address, publicLink, isPublic, idCommunity->Community)
+
+DF:{idEvent} -> {name, description, imagePath, date, country, city, address, publicLink, isPublic, idCommunity->Community}
+
+Participant(idEvent->Event, idMember->Member)
+
+DF:{idEvent->Event} -> {idMember->Member}
+
+DF:{idMember->Member} -> {idEvent->Event}
+
+EventManager(idEvent->Event, idEventAdmin->EventAdmin)
+
+
+EventCategory(idEventCategory, name, FKs)
+
+DF:{EventCategory} -> {name, FKs}
+
+
+
+
+Comment(idComment, text, timestamp, idEvent->Event)
+
+DF:{idComment} -> {text, timestamp, idEvent->Event}
+
+CommentMember(idComment->Comment, idMember->Member)
+
+DF:{idComment->Comment} -> {idMember->Member}
+DF:{idMember->Member} -> {idComment->Comment}
+
+Ticket(idTicket, price, type, initialQuantity, availableQuantity, idMember->Member, idEvent->Event)
+
+DF:{idTicket} -> {price, type, initialQuantity, availableQuantity,idMember->Member, idEvent->Event}
+
+
+Community(idCommunity, name, description, imagePath, creationDate, isPublic, FKs)
+
+DF:{idCommunity} -> {name, description, imagePath, creationDate, isPublic, FKs}
+DF:{name} -> {idCommunity, description, imagePath, creationDate, isPublic, FKs}
+
+
+CommunityCategory(idEventCategory, name, FKs)
+
+DF:{idEventCategory} -> {name, FKs}
+
+
+
+Member(idMember, name, username, password, birthdate, email, country, city, address, taxPayerNumber, about, profilePicture, registrationDate, sentEmailVerification, verifiedEmail, FKs)
+
+DF:{idMember} -> {username, password, name, birthdate, email, country, city, address, taxPayerNumber, about, profilePicture, registrationDate, sentEmailVerification, verifiedEmail, FKs}
+
+DF:{username} -> {idMember, password, name, birthdate, email, country, city, address, taxPayerNumber, about, profilePicture, registrationDate, sentEmailVerification, verifiedEmail, FKs}
+
+
+
+WebsiteAdmin(idWebsiteAdmin->Member)
+
+CommunityAdmin(idCommunityAdmin->Member, FKs)
+
+DF:{idCommunityAdmin} -> {FKs}
+
+EventAdmin(idEventAdmin->Member, FKs)
+
+DF:{idEventAdmin} -> {FKs}
+
+
+TicketPurchase(idTicketPurchase, quantity)
+
+DF:{idTicketPurchase} -> {FKs}
+
+Report(idReport, timestamp, context, FKs)
+
+DF:{idReport} -> {timestamp, context, FKs}
+
+Notification(idNotification, FKs)
+
+DF:{idNotification} -> {FKs}
