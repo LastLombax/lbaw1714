@@ -39,7 +39,7 @@ DROP TABLE IF EXISTS TicketType CASCADE;
 CREATE TABLE Comment(
 	idComment integer NOT NULL,
 	text text NOT NULL,
-	timestamp timestamp without time zone NOT NULL
+	timestamp timestamp without time zone NOT NULL,	
 );
 
 CREATE TABLE Community(
@@ -52,6 +52,11 @@ CREATE TABLE Community(
 	isPublic boolean NOT NULL
 );
 
+CREATE TABLE Community_Member(
+	idCommunity integer NOT NULL,
+	idMember integer NOT NULL
+)
+
 CREATE TABLE CommunityAdmin(
 	idCommunityAdmin integer NOT NULL
 );
@@ -59,6 +64,16 @@ CREATE TABLE CommunityAdmin(
 CREATE TABLE CommunityCategory(
 	idCommunityCategory integer NOT NULL,
 	name varchar(50) NULL
+);
+
+CREATE TABLE Community_CommunityCategory(
+	idCommunity integer NOT NULL,
+	idCommunityCategory integer NOT NULL
+);
+
+CREATE TABLE Community_CommunityAdmin(
+	idCommunity integer NOT NULL,
+	idCommunityAdmin integer NOT NULL
 );
 
 CREATE TABLE Event(
@@ -81,6 +96,21 @@ CREATE TABLE EventAdmin(
 CREATE TABLE EventCategory(
 	idEventCategory integer NOT NULL,
 	name varchar(50) NOT NULL
+);
+
+CREATE TABLE Event_EventAdmin (
+  idEvent integer NOT NULL,
+  idEventAdmin integer NOT NULL
+);
+
+CREATE TABLE Event_EventCategory (
+  idEvent integer NOT NULL,
+  idEventCategory integer NOT NULL
+);
+
+CREATE TABLE Event_Member(
+  idEvent integer NOT NULL,
+  idMember integer NOT NULL
 );
 
 CREATE TABLE Friend(
@@ -184,5 +214,96 @@ ALTER TABLE TicketType ADD CONSTRAINT PK_TicketType
 /* Create Foreign Key Constraints */
 
 ALTER TABLE Member ADD CONSTRAINT FK_Member_Member
-	FOREIGN KEY (idMember) REFERENCES Member (idMember) ON DELETE No Action ON UPDATE No Action
-;
+	FOREIGN KEY (idMember) REFERENCES Member (idMember);
+
+
+ALTER TABLE Event_EventAdmin ADD CONSTRAINT FK_Event
+	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
+
+ALTER TABLE Event_EventAdmin ADD CONSTRAINT FK_EventAdmin
+	FOREIGN KEY (idEventAdmin) REFERENCES EventAdmin (idEventAdmin);
+
+
+
+ALTER TABLE Event_Member ADD CONSTRAINT FK_Event
+	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
+
+ALTER TABLE Event_Member ADD CONSTRAINT FK_Member
+	FOREIGN KEY (idMember) REFERENCES Member (idMember);
+
+
+
+ALTER TABLE Event_EventCategory ADD CONSTRAINT FK_Event
+	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);	
+
+ALTER TABLE Event_EventCategory ADD CONSTRAINT FK_EventCategory
+	FOREIGN KEY (idEventCategory) REFERENCES EventCategory (idEventCategory);	
+
+
+
+ALTER TABLE Community_Member ADD CONSTRAINT FK_Member
+	FOREIGN KEY (idMember) REFERENCES Member (idMember);
+
+ALTER TABLE Community_Member ADD CONSTRAINT FK_Community
+	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);	
+
+
+
+ALTER TABLE Community_CommunityCategory ADD CONSTRAINT FK_Community
+	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
+
+ALTER TABLE Community_CommunityCategory ADD CONSTRAINT FK_Category
+	FOREIGN KEY (idCommunityCategory) REFERENCES CommunityCategory (idCommunityCategory);
+
+
+
+ALTER TABLE Community_CommunityAdmin ADD CONSTRAINT FK_Community
+	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
+
+ALTER TABLE Community_CommunityAdmin ADD CONSTRAINT FK_CategoryAdmin
+	FOREIGN KEY (idCommunityAdmin) REFERENCES CommunityAdmin (idCommunityAdmin);
+
+
+
+ALTER TABLE Comment ADD CONSTRAINT FK_Event
+	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
+
+ALTER TABLE Comment ADD CONSTRAINT FK_Member
+	FOREIGN KEY (idMember) REFERENCES Member (idMember);
+
+
+ALTER TABLE Ticket ADD CONSTRAINT FK_TicketType
+	FOREIGN KEY (idTicketType) REFERENCES TicketType (idTicketType);
+
+ALTER TABLE Ticket ADD CONSTRAINT FK_Member
+	FOREIGN KEY (idMember) REFERENCES Member (idMember);
+
+
+ALTER TABLE Report ADD CONSTRAINT FK_Community
+	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
+
+ALTER TABLE Report ADD CONSTRAINT FK_Member
+	FOREIGN KEY (idMember) REFERENCES Member (idMember);
+
+ALTER TABLE Report ADD CONSTRAINT FK_Event
+	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
+
+ALTER TABLE Report ADD CONSTRAINT FK_Comment
+	FOREIGN KEY (idComment) REFERENCES Comment (idComment);
+
+
+ALTER TABLE Notification ADD CONSTRAINT FK_Community
+	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
+
+ALTER TABLE Notification ADD CONSTRAINT FK_Member
+	FOREIGN KEY (idMember) REFERENCES Member (idMember);
+
+ALTER TABLE Notification ADD CONSTRAINT FK_Event
+	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
+
+ALTER TABLE Notification ADD CONSTRAINT FK_Comment
+	FOREIGN KEY (idComment) REFERENCES Comment (idComment);
+
+
+ALTER TABLE Event ADD CONSTRAINT FK_Community
+	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
