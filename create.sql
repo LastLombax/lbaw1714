@@ -38,14 +38,19 @@ DROP TABLE IF EXISTS event_eventcategory CASCADE;
 
 DROP TABLE IF EXISTS event_member CASCADE;
 
+CREATE TYPE notificationType AS ENUM ('comment', 'buddy', 'event', 'community');
+
+CREATE TYPE reportType AS ENUM ('comment', 'member', 'event', 'community');
+
+
 /* Create Tables */
 
 CREATE TABLE Comment(
 	idComment integer PRIMARY KEY,
 	text text NOT NULL,
 	timestamp timestamp without time zone NOT NULL,
-	idEvent integer,
-	idMember integer
+	event integer,
+	author integer
 );
 
 CREATE TABLE Community(
@@ -54,7 +59,7 @@ CREATE TABLE Community(
 	description varchar(256) NOT NULL,
 	creationDate date NOT NULL,
 	imagePath path NULL,
-	publicLink path NULL,
+	publicLink path UNIQUE,
 	isPublic boolean NOT NULL
 );
 
@@ -73,7 +78,8 @@ CREATE TABLE Event(
 	city varchar(50) NOT NULL,
 	address varchar(100) NOT NULL,
 	publicLink path NULL,
-	isPublic boolean NOT NULL
+	isPublic boolean NOT NULL,
+	community integer
 );
 
 CREATE TABLE EventCategory(
@@ -93,9 +99,9 @@ CREATE TABLE Invoice(
 
 CREATE TABLE Member(
 	idMember integer PRIMARY KEY,
+	name varchar(50) NOT NULL,
 	username varchar(16)  NOT NULL UNIQUE,
 	password text NOT NULL,
-	name varchar(50) NOT NULL,
 	birthdate date NOT NULL,
 	email varchar(50) NOT NULL UNIQUE,
 	country varchar(50) NULL,
@@ -113,9 +119,10 @@ CREATE TABLE Member(
 CREATE TABLE Notification(
 	idNotification integer PRIMARY KEY,
 	timestamp timestamp without time zone NOT NULL,
-	context text NOT NULL,
+	type notificationType NOT NULL,
 	community integer,
-	reporter integer,
+	recipient integer,
+	context text NOT NULL,
 	comment integer,
 	event integer
 );
@@ -123,6 +130,7 @@ CREATE TABLE Notification(
 CREATE TABLE Report(
 	idReport integer PRIMARY KEY,
 	timestamp timestamp without time zone NOT NULL,
+	type reportType NOT NULL,
 	context text NOT NULL,
 	community integer,
 	reporter integer,
@@ -132,17 +140,19 @@ CREATE TABLE Report(
 
 CREATE TABLE Ticket(
 	idTicket integer PRIMARY KEY,
-	idTicketType integer NULL,
-	idInvoice integer NOT NULL,
-	idMember integer NOT NULL
+	type integer NULL,
+	buyer integer NOT NULL,
+	idInvoice integer NOT NULL
 );
 
 CREATE TABLE TicketType(
 	idTicketType integer PRIMARY KEY,
+	type integer NOT NULL,
 	price double precision NOT NULL CHECK (price>0),
 	initialQuantity integer NOT NULL CHECK (initialQuantity>0),
 	"#availableQuantity" integer NULL,
-	description text NULL
+	description text NULL,
+	event integer NOT NULL
 );
 
 /* Tables to model Many to Many relations */
@@ -254,28 +264,28 @@ ALTER TABLE Community_CommunityCategory ADD CONSTRAINT FK_Category
 	FOREIGN KEY (idCommunityCategory) REFERENCES CommunityCategory (idCommunityCategory);
 
 ALTER TABLE Report ADD CONSTRAINT FK_Community
-	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
+	FOREIGN KEY (community) REFERENCES Community (idCommunity);
 
 ALTER TABLE Report ADD CONSTRAINT FK_Member
-	FOREIGN KEY (idMember) REFERENCES Member (idMember);
+	FOREIGN KEY (reporter) REFERENCES Member (idMember);
 
 ALTER TABLE Report ADD CONSTRAINT FK_Event
-	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
+	FOREIGN KEY (event) REFERENCES Event (idEvent);
 
 ALTER TABLE Report ADD CONSTRAINT FK_Comment
-	FOREIGN KEY (idComment) REFERENCES Comment (idComment);
+	FOREIGN KEY (comment) REFERENCES Comment (idComment);
 
 ALTER TABLE Notification ADD CONSTRAINT FK_Community
-	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
+	FOREIGN KEY (community) REFERENCES Community (idCommunity);
 
 ALTER TABLE Notification ADD CONSTRAINT FK_Member
-	FOREIGN KEY (idMember) REFERENCES Member (idMember);
+	FOREIGN KEY (recipient) REFERENCES Member (idMember);
 
 ALTER TABLE Notification ADD CONSTRAINT FK_Event
-	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
+	FOREIGN KEY (event) REFERENCES Event (idEvent);
 
 ALTER TABLE Notification ADD CONSTRAINT FK_Comment
-	FOREIGN KEY (idComment) REFERENCES Comment (idComment);
+	FOREIGN KEY (comment) REFERENCES Comment (idComment);
 
 ALTER TABLE Event ADD CONSTRAINT FK_Community
 	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
