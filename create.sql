@@ -10,13 +10,9 @@ DROP TABLE IF EXISTS Comment CASCADE;
 
 DROP TABLE IF EXISTS Community CASCADE;
 
-DROP TABLE IF EXISTS CommunityAdmin CASCADE;
-
 DROP TABLE IF EXISTS CommunityCategory CASCADE;
 
 DROP TABLE IF EXISTS Event CASCADE;
-
-DROP TABLE IF EXISTS EventAdmin CASCADE;
 
 DROP TABLE IF EXISTS EventCategory CASCADE;
 
@@ -34,18 +30,26 @@ DROP TABLE IF EXISTS Ticket CASCADE;
 
 DROP TABLE IF EXISTS TicketType CASCADE;
 
+DROP TABLE IF EXISTS Community_Member CASCADE;
+
+DROP TABLE IF EXISTS community_communitycategory CASCADE;
+
+DROP TABLE IF EXISTS event_eventcategory CASCADE;
+
+DROP TABLE IF EXISTS event_member CASCADE;
+
 /* Create Tables */
 
 CREATE TABLE Comment(
-	idComment integer NOT NULL,
+	idComment integer PRIMARY KEY,
 	text text NOT NULL,
 	timestamp timestamp without time zone NOT NULL,
 	idEvent integer,
-	idMember integer,	
+	idMember integer
 );
 
 CREATE TABLE Community(
-	idCommunity integer NOT NULL,
+	idCommunity integer PRIMARY KEY,
 	name varchar(64) NOT NULL,
 	description varchar(256) NOT NULL,
 	creationDate date NOT NULL,
@@ -54,17 +58,13 @@ CREATE TABLE Community(
 	isPublic boolean NOT NULL
 );
 
-CREATE TABLE CommunityAdmin(
-	idCommunityAdmin integer NOT NULL
-);
-
 CREATE TABLE CommunityCategory(
-	idCommunityCategory integer NOT NULL,
+	idCommunityCategory integer PRIMARY KEY,
 	name varchar(50) NULL
 );
 
 CREATE TABLE Event(
-	idEvent integer NOT NULL,
+	idEvent integer PRIMARY KEY,
 	name varchar(64) NOT NULL,
 	description varchar(516) NOT NULL,
 	imagePath path NULL,
@@ -76,17 +76,13 @@ CREATE TABLE Event(
 	isPublic boolean NOT NULL
 );
 
-CREATE TABLE EventAdmin(
-	idEventAdmin integer NOT NULL
-);
-
 CREATE TABLE EventCategory(
-	idEventCategory integer NOT NULL,
+	idEventCategory integer PRIMARY KEY,
 	name varchar(50) NOT NULL
 );
 
 CREATE TABLE Invoice(
-	idInvoice integer NOT NULL,
+	idInvoice integer PRIMARY KEY,
 	taxPayerNumber int NULL,
 	name varchar(50) NULL,
 	address text NULL,
@@ -96,7 +92,7 @@ CREATE TABLE Invoice(
 );
 
 CREATE TABLE Member(
-	idMember integer NOT NULL,
+	idMember integer PRIMARY KEY,
 	username varchar(16)  NOT NULL UNIQUE,
 	password text NOT NULL,
 	name varchar(50) NOT NULL,
@@ -115,29 +111,29 @@ CREATE TABLE Member(
 );
 
 CREATE TABLE Notification(
-	idNotification integer NOT NULL,
+	idNotification integer PRIMARY KEY,
 	acceptedInvitation boolean NULL
 );
 
 CREATE TABLE Report(
-	idReport integer NOT NULL,
+	idReport integer PRIMARY KEY,
 	timestamp timestamp without time zone NOT NULL,
 	context text NOT NULL
 );
 
 CREATE TABLE Ticket(
-	idTicket integer NOT NULL,
+	idTicket integer PRIMARY KEY,
 	idTicketType integer NULL,
 	idInvoice integer NOT NULL,
 	idMember integer NOT NULL
 );
 
 CREATE TABLE TicketType(
-	idTicketType integer NOT NULL,
+	idTicketType integer PRIMARY KEY,
 	price double precision NOT NULL CHECK (price>0),
 	initialQuantity integer NOT NULL CHECK (initialQuantity>0),
 	"#availableQuantity" integer NULL,
-	descripiton text NULL,
+	description text NULL
 );
 
 /* Tables to model Many to Many relations */
@@ -145,12 +141,13 @@ CREATE TABLE TicketType(
 /*------------Community_Member------------*/
 CREATE TABLE Community_Member(
 	idCommunity integer NOT NULL,
-	idMember integer NOT NULL
+	idMember integer NOT NULL,
+	isAdmin boolean NOT NULL
 );
 
 ALTER TABLE Community_Member ADD CONSTRAINT PK_Community_Member
 	PRIMARY KEY (idCommunity, idMember);
-	
+
 ALTER TABLE Community_Member ADD CONSTRAINT FK_Community_Member_Community
 	FOREIGN KEY (idCommunity) REFERENCES Community(idCommunity);
 
@@ -165,42 +162,12 @@ CREATE TABLE Community_CommunityCategory(
 
 ALTER TABLE Community_CommunityCategory ADD CONSTRAINT PK_Community_CommunityCategory
 	PRIMARY KEY (idCommunity, idCommunityCategory);
-	
+
 ALTER TABLE Community_CommunityCategory ADD CONSTRAINT FK_Community_CommunityCategory_Community
 	FOREIGN KEY (idCommunity) REFERENCES Community(idCommunity);
 
 ALTER TABLE Community_CommunityCategory ADD CONSTRAINT FK_Community_CommunityCategory_CommunityCategory
 	FOREIGN KEY (idCommunityCategory) REFERENCES CommunityCategory(idCommunityCategory);
-
-/*------------Community_CommunityAdmin------------*/
-CREATE TABLE Community_CommunityAdmin(
-	idCommunity integer NOT NULL,
-	idCommunityAdmin integer NOT NULL
-);
-
-ALTER TABLE Community_CommunityAdmin ADD CONSTRAINT PK_Community_CommunityAdmin
-	PRIMARY KEY (idCommunity, idCommunityAdmin);
-	
-ALTER TABLE Community_CommunityAdmin ADD CONSTRAINT FK_Community_CommunityAdmin_Community
-	FOREIGN KEY (idCommunity) REFERENCES Community(idCommunity);
-
-ALTER TABLE Community_CommunityAdmin ADD CONSTRAINT FK_Community_CommunityAdmin_CommunityAdmin
-	FOREIGN KEY (idCommunityAdmin) REFERENCES CommunityAdmin(idCommunityAdmin);
-
-/*------------Event_EventAdmin------------*/
-CREATE TABLE Event_EventAdmin (
-  idEvent integer NOT NULL,
-  idEventAdmin integer NOT NULL
-);
-
-ALTER TABLE Event_EventAdmin ADD CONSTRAINT PK_Event_EventAdmin
-	PRIMARY KEY (idEvent, idEventAdmin);
-
-ALTER TABLE Event_EventAdmin ADD CONSTRAINT FK_Event
-	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
-
-ALTER TABLE Event_EventAdmin ADD CONSTRAINT FK_Event
-	FOREIGN KEY (idEventAdmin) REFERENCES EventAdmin (idEventAdmin);
 
 /*------------Event_EventCategory------------*/
 CREATE TABLE Event_EventCategory (
@@ -208,20 +175,21 @@ CREATE TABLE Event_EventCategory (
   idEventCategory integer NOT NULL
 );
 
-ALTER TABLE Event_EventAdmin ADD CONSTRAINT PK_Event_EventAdmin
+ALTER TABLE Event_EventCategory ADD CONSTRAINT PK_Event_EventCategory
 	PRIMARY KEY (idEvent, idEventCategory);
 
 ALTER TABLE Event_EventCategory ADD CONSTRAINT FK_Event
-	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);	
+	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
 
 ALTER TABLE Event_EventCategory ADD CONSTRAINT FK_EventCategory
-	FOREIGN KEY (idEventCategory) REFERENCES EventCategory (idEventCategory);	
-	
+	FOREIGN KEY (idEventCategory) REFERENCES EventCategory (idEventCategory);
+
 
 /*------------Event_Member------------*/
 CREATE TABLE Event_Member(
   idEvent integer NOT NULL,
-  idMember integer NOT NULL
+  idMember integer NOT NULL,
+  isAdmin boolean NOT NULL
 );
 
 ALTER TABLE Event_Member ADD CONSTRAINT PK_Event_Member
@@ -253,9 +221,6 @@ ALTER TABLE Friend ADD CONSTRAINT FK_Member
 /* Create Primary Keys, FK, Indexes, Uniques, Checks */
 
 /*-------------------	Comment----------------------*/
-ALTER TABLE Comment ADD CONSTRAINT PK_Comment
-	PRIMARY KEY (idComment);
-
 ALTER TABLE Comment ADD CONSTRAINT FK_Event
 	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
 
@@ -263,61 +228,24 @@ ALTER TABLE Comment ADD CONSTRAINT FK_Member
 	FOREIGN KEY (idMember) REFERENCES Member (idMember);
 
 /*-------------------	Community----------------------*/
-ALTER TABLE Community ADD CONSTRAINT PK_Community
-	PRIMARY KEY (idCommunity);
-
-ALTER TABLE CommunityAdmin ADD CONSTRAINT PK_Member
-	PRIMARY KEY (idCommunityAdmin);
-
-ALTER TABLE CommunityCategory ADD CONSTRAINT PK_CommunityCategory
-	PRIMARY KEY (idCommunityCategory);
-
-ALTER TABLE Event ADD CONSTRAINT PK_Event
-	PRIMARY KEY (idEvent);
-
-ALTER TABLE EventAdmin ADD CONSTRAINT PK_Member
-	PRIMARY KEY (idEventAdmin);
-
-ALTER TABLE EventCategory ADD CONSTRAINT PK_EventCategory
-	PRIMARY KEY (idEventCategory);
-
-ALTER TABLE Invoice ADD CONSTRAINT PK_Invoice
-	PRIMARY KEY (idInvoice);
-
-ALTER TABLE Member ADD CONSTRAINT PK_Member
-	PRIMARY KEY (idMember);
-
-ALTER TABLE Notification ADD CONSTRAINT PK_Notification
-	PRIMARY KEY (idNotification);
-
-ALTER TABLE Report ADD CONSTRAINT PK_Report
-	PRIMARY KEY (idReport);
-
-ALTER TABLE Ticket ADD CONSTRAINT PK_TicketidEventCategory
-	PRIMARY KEY (idTicket);
-
 ALTER TABLE Ticket ADD CONSTRAINT FK_TicketType
 	FOREIGN KEY idTicketType REFERENCES TicketType(idTicketType);
 
 ALTER TABLE Ticket ADD CONSTRAINT FK_Member
 	FOREIGN KEY idMember REFERENCES Member(idMember);
 
-ALTER TABLE TicketType ADD CONSTRAINT PK_TicketType
-	PRIMARY KEY (idTicketType);
-
 /* Create Foreign Key Constraints */
-ALTER TABLE Community_Member ADD CONSTRAINT FK_Member
+ALTER TABLE Community_Member ADD CONSTRAINT FK_CommunityMember
 	FOREIGN KEY (idMember) REFERENCES Member (idMember);
 
 ALTER TABLE Community_Member ADD CONSTRAINT FK_Community
-	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);	
+	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
 
 ALTER TABLE Community_CommunityCategory ADD CONSTRAINT FK_Community
 	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
 
 ALTER TABLE Community_CommunityCategory ADD CONSTRAINT FK_Category
 	FOREIGN KEY (idCommunityCategory) REFERENCES CommunityCategory (idCommunityCategory);
-
 
 
 ALTER TABLE Community_CommunityAdmin ADD CONSTRAINT FK_Community
