@@ -112,13 +112,22 @@ CREATE TABLE Member(
 
 CREATE TABLE Notification(
 	idNotification integer PRIMARY KEY,
-	acceptedInvitation boolean NULL
+	timestamp timestamp without time zone NOT NULL,
+	context text NOT NULL,
+	community integer,
+	reporter integer,
+	comment integer,
+	event integer
 );
 
 CREATE TABLE Report(
 	idReport integer PRIMARY KEY,
 	timestamp timestamp without time zone NOT NULL,
-	context text NOT NULL
+	context text NOT NULL,
+	community integer,
+	reporter integer,
+	comment integer,
+	event integer
 );
 
 CREATE TABLE Ticket(
@@ -220,21 +229,18 @@ ALTER TABLE Friend ADD CONSTRAINT FK_Member
 
 /* Create Primary Keys, FK, Indexes, Uniques, Checks */
 
-/*-------------------	Comment----------------------*/
 ALTER TABLE Comment ADD CONSTRAINT FK_Event
 	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
 
 ALTER TABLE Comment ADD CONSTRAINT FK_Member
 	FOREIGN KEY (idMember) REFERENCES Member (idMember);
 
-/*-------------------	Community----------------------*/
 ALTER TABLE Ticket ADD CONSTRAINT FK_TicketType
-	FOREIGN KEY idTicketType REFERENCES TicketType(idTicketType);
+	FOREIGN KEY (idTicketType) REFERENCES TicketType(idTicketType);
 
 ALTER TABLE Ticket ADD CONSTRAINT FK_Member
-	FOREIGN KEY idMember REFERENCES Member(idMember);
+	FOREIGN KEY (idMember) REFERENCES Member(idMember);
 
-/* Create Foreign Key Constraints */
 ALTER TABLE Community_Member ADD CONSTRAINT FK_CommunityMember
 	FOREIGN KEY (idMember) REFERENCES Member (idMember);
 
@@ -246,20 +252,6 @@ ALTER TABLE Community_CommunityCategory ADD CONSTRAINT FK_Community
 
 ALTER TABLE Community_CommunityCategory ADD CONSTRAINT FK_Category
 	FOREIGN KEY (idCommunityCategory) REFERENCES CommunityCategory (idCommunityCategory);
-
-
-ALTER TABLE Community_CommunityAdmin ADD CONSTRAINT FK_Community
-	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
-
-ALTER TABLE Community_CommunityAdmin ADD CONSTRAINT FK_CategoryAdmin
-	FOREIGN KEY (idCommunityAdmin) REFERENCES CommunityAdmin (idCommunityAdmin);
-
-
-ALTER TABLE Ticket ADD CONSTRAINT FK_TicketType
-	FOREIGN KEY (idTicketType) REFERENCES TicketType (idTicketType);
-
-ALTER TABLE Ticket ADD CONSTRAINT FK_Member
-	FOREIGN KEY (idMember) REFERENCES Member (idMember);
 
 ALTER TABLE Report ADD CONSTRAINT FK_Community
 	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
@@ -273,7 +265,6 @@ ALTER TABLE Report ADD CONSTRAINT FK_Event
 ALTER TABLE Report ADD CONSTRAINT FK_Comment
 	FOREIGN KEY (idComment) REFERENCES Comment (idComment);
 
-
 ALTER TABLE Notification ADD CONSTRAINT FK_Community
 	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
 
@@ -285,7 +276,6 @@ ALTER TABLE Notification ADD CONSTRAINT FK_Event
 
 ALTER TABLE Notification ADD CONSTRAINT FK_Comment
 	FOREIGN KEY (idComment) REFERENCES Comment (idComment);
-
 
 ALTER TABLE Event ADD CONSTRAINT FK_Community
 	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
