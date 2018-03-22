@@ -38,6 +38,10 @@ DROP TABLE IF EXISTS event_eventcategory CASCADE;
 
 DROP TABLE IF EXISTS event_member CASCADE;
 
+DROP TYPE IF EXISTS notificationType;
+
+DROP TYPE IF EXISTS reportType;
+
 CREATE TYPE notificationType AS ENUM ('comment', 'buddy', 'event', 'community');
 
 CREATE TYPE reportType AS ENUM ('comment', 'member', 'event', 'community');
@@ -58,8 +62,8 @@ CREATE TABLE Community(
 	name varchar(64) NOT NULL,
 	description varchar(256) NOT NULL,
 	creationDate date NOT NULL,
-	imagePath path NULL,
-	publicLink path UNIQUE,
+	imagePath text NULL,
+	publicLink text UNIQUE,
 	isPublic boolean NOT NULL
 );
 
@@ -72,12 +76,12 @@ CREATE TABLE Event(
 	idEvent integer PRIMARY KEY,
 	name varchar(64) NOT NULL,
 	description varchar(516) NOT NULL,
-	imagePath path NULL,
+	imagePath text NULL,
 	date date NOT NULL,
 	country varchar(50) NOT NULL,
 	city varchar(50) NOT NULL,
 	address varchar(100) NOT NULL,
-	publicLink path NULL,
+	publicLink text NULL,
 	isPublic boolean NOT NULL,
 	community integer
 );
@@ -109,7 +113,7 @@ CREATE TABLE Member(
 	address text NULL,
 	taxPayerNumber varchar(20) NULL UNIQUE,
 	about varchar(256) NULL,
-	profilePicture path NULL,
+	profilePicture text NULL,
 	registrationDate date NOT NULL,
 	sentEmailVerification boolean NOT NULL,
 	verifiedEmail boolean NOT NULL,
@@ -240,16 +244,16 @@ ALTER TABLE Friend ADD CONSTRAINT FK_Member
 /* Create Primary Keys, FK, Indexes, Uniques, Checks */
 
 ALTER TABLE Comment ADD CONSTRAINT FK_Event
-	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
+	FOREIGN KEY (event) REFERENCES Event (idEvent);
 
 ALTER TABLE Comment ADD CONSTRAINT FK_Member
-	FOREIGN KEY (idMember) REFERENCES Member (idMember);
+	FOREIGN KEY (author) REFERENCES Member (idMember);
 
 ALTER TABLE Ticket ADD CONSTRAINT FK_TicketType
-	FOREIGN KEY (idTicketType) REFERENCES TicketType(idTicketType);
+	FOREIGN KEY (type) REFERENCES TicketType(idTicketType);
 
 ALTER TABLE Ticket ADD CONSTRAINT FK_Member
-	FOREIGN KEY (idMember) REFERENCES Member(idMember);
+	FOREIGN KEY (buyer) REFERENCES Member(idMember);
 
 ALTER TABLE Community_Member ADD CONSTRAINT FK_CommunityMember
 	FOREIGN KEY (idMember) REFERENCES Member (idMember);
@@ -288,4 +292,4 @@ ALTER TABLE Notification ADD CONSTRAINT FK_Comment
 	FOREIGN KEY (comment) REFERENCES Comment (idComment);
 
 ALTER TABLE Event ADD CONSTRAINT FK_Community
-	FOREIGN KEY (idCommunity) REFERENCES Community (idCommunity);
+	FOREIGN KEY (community) REFERENCES Community (idCommunity);
