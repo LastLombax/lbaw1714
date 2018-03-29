@@ -77,13 +77,17 @@ CREATE TABLE Event(
 	name varchar(64) NOT NULL,
 	description varchar(516) NOT NULL,
 	imagePath text NULL,
-	date date NOT NULL,
+	startDay date NOT NULL,
+	endDay date NOT NULL,
+	startTime time without time zone NOT NULL,
+	endTime time without time zone NOT NULL,
 	country varchar(50) NOT NULL,
 	city varchar(50) NOT NULL,
 	address varchar(100) NOT NULL,
 	publicLink text NULL,
 	isPublic boolean NOT NULL,
-	community integer
+	community integer,
+	
 );
 
 CREATE TABLE EventCategory(
@@ -168,9 +172,6 @@ CREATE TABLE Community_Member(
 	isAdmin boolean NOT NULL
 );
 
-ALTER TABLE Community_Member ADD CONSTRAINT PK_Community_Member
-	PRIMARY KEY (idCommunity, idMember);
-
 ALTER TABLE Community_Member ADD CONSTRAINT FK_Community_Member_Community
 	FOREIGN KEY (idCommunity) REFERENCES Community(idCommunity);
 
@@ -183,8 +184,6 @@ CREATE TABLE Community_CommunityCategory(
 	idCommunityCategory integer NOT NULL
 );
 
-ALTER TABLE Community_CommunityCategory ADD CONSTRAINT PK_Community_CommunityCategory
-	PRIMARY KEY (idCommunity, idCommunityCategory);
 
 ALTER TABLE Community_CommunityCategory ADD CONSTRAINT FK_Community_CommunityCategory_Community
 	FOREIGN KEY (idCommunity) REFERENCES Community(idCommunity);
@@ -198,8 +197,6 @@ CREATE TABLE Event_EventCategory (
   idEventCategory integer NOT NULL
 );
 
-ALTER TABLE Event_EventCategory ADD CONSTRAINT PK_Event_EventCategory
-	PRIMARY KEY (idEvent, idEventCategory);
 
 ALTER TABLE Event_EventCategory ADD CONSTRAINT FK_Event
 	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
@@ -215,9 +212,6 @@ CREATE TABLE Event_Member(
   isAdmin boolean NOT NULL
 );
 
-ALTER TABLE Event_Member ADD CONSTRAINT PK_Event_Member
-	PRIMARY KEY (idEvent, idMember);
-
 ALTER TABLE Event_Member ADD CONSTRAINT FK_Event
 	FOREIGN KEY (idEvent) REFERENCES Event (idEvent);
 
@@ -231,8 +225,6 @@ CREATE TABLE Friend(
 	accepted boolean NULL
 );
 
-ALTER TABLE Friend ADD CONSTRAINT PK_Friend
-	PRIMARY KEY (idF1, idF2);
 
 ALTER TABLE Friend ADD CONSTRAINT FK_Event
 	FOREIGN KEY (idF1) REFERENCES Member (idMember);
