@@ -18,8 +18,10 @@
     {{--<link href="css/bootstrap.min.css" rel="stylesheet">--}}
     {{--<script src="js/bootstrap.min.js"></script>--}}
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
@@ -29,6 +31,10 @@
     <link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    {{--Slideshow && Navbar --}}
+
+    {{--<link href="css/searchNavBar.css" rel="stylesheet">--}}
+    <script type="text/javascript" src="js/searchNavBar.js"></script>
     <link href="{{ asset('css/timeline.css')}}" rel="stylesheet">
 
     <script type="text/javascript">
