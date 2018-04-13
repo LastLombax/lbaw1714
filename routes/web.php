@@ -12,7 +12,23 @@
 */
 
 Route::get('/', function () {
-    return redirect('createEvent');
+    if(\Illuminate\Support\Facades\Auth::guest())
+        return view('pages/visitorHomePage');
+    else
+        return view('pages/homePage');
+});
+
+//Static Pages
+Route::get('about', function () {
+        return view('pages.static.about');
+});
+
+Route::get('contacts', function () {
+    return view('pages.static.contactUs');
+});
+
+Route::get('faq', function () {
+    return view('pages.static.faq');
 });
 
 // Cards
@@ -25,6 +41,7 @@ Route::delete('api/cards/{card_id}', 'CardController@delete');
 Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');
+
 
 // Authentication
 Route::get('createEvent', 'event\createEventController@showLoginForm')->name('login');

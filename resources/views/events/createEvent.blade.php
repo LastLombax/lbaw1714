@@ -1,4 +1,4 @@
-@extends('layouts.body')
+{{--@extends('layouts.index')--}}
 
 @section('title', $card->name)
 
