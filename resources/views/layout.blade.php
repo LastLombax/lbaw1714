@@ -10,21 +10,19 @@
 
     <title>ReEvent</title>
 
-    <link rel="shortcut icon" type="image/png" href="{{ asset('icon/favicon.png')}}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('icon/favicon.png')}}"/>
 
 
-
-    {{--<!-- Bootstrap -->--}}
-    {{--<link href="css/bootstrap.min.css" rel="stylesheet">--}}
-    {{--<script src="js/bootstrap.min.js"></script>--}}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap 4.1.0-->
+    {{--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">--}}
+    {{--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>--}}
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+
     <!-- FontAwesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <!-- GoogleImports -->
@@ -33,9 +31,9 @@
 
     {{--Slideshow && Navbar --}}
 
-    {{--<link href="css/searchNavBar.css" rel="stylesheet">--}}
     <script type="text/javascript" src="js/searchNavBar.js"></script>
     <link href="{{ asset('css/timeline.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/searchBar.css')}}" rel="stylesheet">
 
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
@@ -43,25 +41,31 @@
     </script>
 
 </head>
-<body>
-<!-- Yeti Template Starts Here -->
+<body style="width: 100%">
+
 @include('layouts.nav')
 
+{{--@include('layouts.newSearchBar')--}}
+{{--<div style="border: none; border-bottom: 1px solid #ccc; width: 100%; height: 100px;">--}}
 
-<div style="border: none; border-bottom: 1px solid #ccc; width: 100%; height: 100px;">
-    @include('layouts.searchNavBar')
+{{--</div>--}}
+
+<div class="container">
+    <legend style="color: #333; padding: 1rem; margin-left: 0.5rem; padding-left: 0; padding-bottom: 0;">
+        @yield('titleIcon')
+        <span style="margin-left: .5rem;">
+                @yield('pageTitle')
+        </span>
+    </legend>
+
+    <div class="bs-docs-section" style="margin-left: .5rem; margin-right: .5rem; padding-top: 1rem; "{{--style="padding-bottom: -1em;"--}}>
+
+        <section id="content">
+            @yield('content')
+        </section>
+    </div>
+
+    @include('layouts.footer')
 </div>
-
-<br>
-<br>
-<br>
-
-
-
-<section id="content">
-    @yield('content')
-</section>
-
-@include('layouts.footer')
 </body>
 </html>
