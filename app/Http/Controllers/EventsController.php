@@ -14,7 +14,7 @@
 		}
 
 		protected function showEvent($id){
-
+			$event = DB::select('select * from event where idevent = ?', $id);
 			return view('pages.events.event');
 		}
 
