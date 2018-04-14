@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layout')
 
 @section('title')
     Create Event | ReEvent

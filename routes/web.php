@@ -33,6 +33,8 @@ Route::get('faq', function () {
 
 // Events
 Route::get('events/create', 'EventsController@createEventForm')->name('createEvent');
+Route::get('events/{id}', 'EventsController@showEvent')->name('createEvent');
+
 
 //Route::post('events/{id}', 'EventsController@index')->name('event');
 
