@@ -31,9 +31,10 @@ Route::get('faq', function () {
     return view('pages.static.faq');
 });
 
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
+// Events
+Route::get('events/create', 'EventsController@createEventForm')->name('createEvent');
+
+//Route::post('events/{id}', 'EventsController@index')->name('event');
 
 // API
 Route::put('api/cards', 'CardController@create');
@@ -42,13 +43,7 @@ Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');
 
-
 // Authentication
-Route::get('createEvent', 'event\createEventController@showLoginForm')->name('login');
-
-
-
-
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
