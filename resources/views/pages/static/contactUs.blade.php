@@ -24,17 +24,17 @@
                             <div style="background-color: #eee; padding: 20px; padding-top: 10px;">
                                 <fieldset>
                                     <div class="form-group">
-                                        <label class="col-form-label" for="inputDefault">
+                                        <label class="col-form-label" for="name">
                                             <b>Your name</b>
                                         </label>
-                                        <input type="text" class="form-control" placeholder="Name" id="inputDefault">
+                                        <input id="name" name="name" type="text" class="form-control" placeholder="Name" >
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-form-label" for="inputDefault">
+                                        <label class="col-form-label" for="email">
                                             <b>Your e-mail address</b>
                                         </label>
-                                        <input type="email" class="form-control" placeholder="E-mail address" id="inputDefault">
+                                        <input id="email" type="email" class="form-control" placeholder="E-mail address" >
                                     </div>
 
                                     <div class="form-group">

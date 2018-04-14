@@ -32,11 +32,12 @@ Route::get('faq', function () {
 });
 
 // Events
-Route::get('events/create', 'EventsController@createEventForm')->name('createEvent');
-Route::get('events/{id}', 'EventsController@showEvent')->name('createEvent');
+Route::get('events/create', 'EventController@createEventForm')->name('createEvent');
+Route::get('events', 'EventController@index');
+Route::get('events/{event}', 'EventController@showEvent')->name('event');
 
 
-//Route::post('events/{id}', 'EventsController@index')->name('event');
+//Route::post('events/{id}', 'EventController@index')->name('event');
 
 // API
 Route::put('api/cards', 'CardController@create');

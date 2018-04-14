@@ -33,7 +33,7 @@
 
     <script type="text/javascript" src="js/searchNavBar.js"></script>
     <link href="{{ asset('css/timeline.css')}}" rel="stylesheet">
-    <link href="{{ asset('css/searchBar.css')}}" rel="stylesheet">
+    {{--<link href="{{ asset('css/searchBar.css')}}" rel="stylesheet">--}}
 
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
@@ -42,8 +42,11 @@
 
 </head>
 <body style="width: 100%">
-
-@include('layouts.nav')
+@if(\Illuminate\Support\Facades\Auth::guest())
+    @include('layouts.visitorNav')
+@else
+    @include('layouts.nav')
+@endif
 
 {{--@include('layouts.newSearchBar')--}}
 {{--<div style="border: none; border-bottom: 1px solid #ccc; width: 100%; height: 100px;">--}}

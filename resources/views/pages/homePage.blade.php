@@ -325,7 +325,7 @@
                         of a community and much more. Besides this you might need more help to understand all about! Consult our FAQ pages.
                     </p>
                     <p class="lead ">
-                        <a class="btn btn-primary btn-lg " href="# " role="button ">Take me there</a>
+                        <a class="btn btn-primary btn-lg " href="faq" role="button ">Take me there</a>
                     </p>
                 </div>
             </div>

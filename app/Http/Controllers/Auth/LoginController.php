@@ -35,4 +35,13 @@
 		public function __construct() {
 			$this->middleware('guest')->except('logout');
 		}
+
+		/**
+		 * Returns the User's username
+		 * @return string
+		 */
+		public function username() {
+			return 'username';
+		}
+
 	}

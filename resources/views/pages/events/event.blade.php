@@ -1,7 +1,8 @@
 @extends('layout')
 
 @section('title')
-    EVENT_NAME | ReEvent
+    {{--@dd($events);--}}
+    {{$event->name}} | ReEvent
 @endsection
 
 @section('titleIcon')
@@ -9,7 +10,7 @@
 @endsection
 
 @section('pageTitle')
-    EVENT_NAME
+    {{$event->name}}
 @endsection
 
 @section('content')
