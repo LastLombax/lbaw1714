@@ -1,8 +1,16 @@
 @extends('layout')
 
+@section('titleIcon')
+    <i class="fas fa-star"></i>
+@endsection
+
+
+@section('pageTitle')
+    About Us
+@endsection
+
+
 @section('content')
-    <div class="bs-docs-section">
-        <div class="container " style="padding-bottom: -30px; ">
             <div>
                 <h2>Who we are</h2>
                 <p>Nullam quis risus eget
@@ -39,6 +47,4 @@
                 </p>
 
             </div>
-        </div>
-    </div>
 @endsection

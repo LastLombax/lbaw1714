@@ -1,15 +1,14 @@
 @extends('layout')
 
-@section('content')
-    <div class="container">
-        <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0; padding-bottom: 0;">
-            <i class="fas fa-at"></i>
-            <span style="margin-left: .5rem;">
-                Contact us
-            </span>
-        </legend>
+@section('titleIcon')
+    <i class="fas fa-at"></i>
+@endsection
 
-        <div class="bs-docs-section">
+@section('pageTitle')
+    Contact Us
+@endsection
+
+@section('content')
             <div class="row">
 
                 <div class="col-lg-2"></div>
@@ -56,6 +55,4 @@
                 <div class="col-lg-2"></div>
 
             </div>
-        </div>
-    </div>
 @endsection
