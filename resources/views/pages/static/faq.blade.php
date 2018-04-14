@@ -1,15 +1,19 @@
 @extends('layout')
 
-@section('content')
-<legend style=" color: #333; padding: 20px; margin-left: 15px; padding-left: 0; padding-bottom: 1rem;">
-    <i class="fas fa-question"></i>
-    <span style="margin-left: .5rem;">
-                Frequently Asked Questions
-            </span>
-</legend>
+@section('title')
+    FAQ | ReEvent
+@endsection
 
-<div class="bs-docs-section">
-    <div class="container " style="padding-bottom: -30px; ">
+@section('titleIcon')
+    <i class="fas fa-question"></i>
+@endsection
+
+@section('pageTitle')
+    Frequently Asked Questions
+@endsection
+
+
+@section('content')
         <div>
             <h2>Question?</h2>
             <p>Nullam quis risus eget
@@ -35,6 +39,4 @@
                 nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
             </p>
         </div>
-    </div>
-</div>
 @endsection

@@ -1,18 +1,22 @@
-{{--@extends('layouts.index')--}}
+@extends('layouts.index')
 
-@section('title', $card->name)
+@section('title')
+    Create Event | ReEvent
+@endsection
+
+@section('titleIcon')
+    <i class="fas fa-calendar-check"></i>
+@endsection
+
+@section('pageTitle')
+    Create Event
+@endsection
+
+{{--@section('title', $card->name)--}}
 
 @section('content')
     <div class="container">
-        <br>
-        <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0; padding-bottom: 10px;">
-            <i class="fas fa-calendar-check"></i>
-            Create Event
-        </legend>
-
         <div class="row align-items-center" style="border: 1px solid #ccc; width: 100%; margin: 0;">
-
-
             <div class="col-lg-6 align-self-start" style="padding-left: 0; padding-right:0;">
                 <div class="bs-ccomponent">
                     <div style="background-color: #eee; padding: 20px; padding-top: 10px; height: 500px;">
@@ -109,7 +113,6 @@
                             </div>
                             <br>
                         </fieldset>
-
                     </div>
                 </div>
             </div>
@@ -117,7 +120,4 @@
     </div>
 
     <button type="submit" onclick="event.preventDefault(); location.href = 'event.html';" class="btn btn-primary d-block ml-auto mt-3">Create</button>
-    <br>
-    <br>
-
 @endsection

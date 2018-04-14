@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>ReEvent</title>
+    <title>@yield('title')</title>
 
     <link rel="shortcut icon" type="image/png" href="{{ asset('icon/favicon.png')}}"/>
 

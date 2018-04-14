@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+    Contact Us | ReEvent
+@endsection
+
 @section('titleIcon')
     <i class="fas fa-at"></i>
 @endsection
