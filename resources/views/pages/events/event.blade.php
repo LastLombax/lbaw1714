@@ -18,7 +18,7 @@
 
         <div class="col-lg-4" style="padding-top: 23px;">
             <div class="bs-ccomponent">
-                <img style="width: 100%; height: 200px; object-fit: cover;" src="img/queima.jpg" alt="Card image">
+                <img style="width: 100%; height: 200px; object-fit: cover;" src="{{$event->imagepath}}" alt="Card image">
                 <br>
                 <br>
 
@@ -32,9 +32,7 @@
                                     <label class="col-form-label" for="inputDefault">
                                         <b>Description</b>
                                     </label>
-                                    <p>As Noites da Queima arrancam, este ano, no dia 7 de maio, ao som de James Arthur, Virgul e David Carreira. A 8
-                                        de maio, Dillaz e Dub Inc têm a missão de animar a malta, antes de, na terça-feira dia 9, o grande Quim Barreiros
-                                        tome conta do palco e do espírito de todos os estudantes</p>
+                                    <p>{{$event->description}}</p>
                                 </div>
 
                                 <div class="form-group">
@@ -42,7 +40,7 @@
                                         <b>Date</b>
                                     </label>
                                     <p>
-                                        1 - 7 May, 2018
+                                        {{$event->printDate()}}
                                     </p>
                                 </div>
 
@@ -51,7 +49,7 @@
                                         <b>Location</b>
                                     </label>
                                     <p>
-                                        Machico
+                                        {{$event->address}}, {{$event->city}}
                                     </p>
                                 </div>
 
@@ -59,7 +57,7 @@
                                     <label class="col-form-label" for="inputDefault">
                                         <b>Country</b>
                                     </label>
-                                    <p>Portugal</p>
+                                    <p>{{$event->country}}</p>
                                 </div>
                                 <br>
                                 <div>

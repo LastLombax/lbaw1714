@@ -13,4 +13,15 @@ class Event extends Model
         return $this->name;
     }
 
+    public function printDate(){
+        $start = strtotime($this->startday);
+        $end = strtotime($this->endday);
+        $startT = strtotime($this->starttime);
+        $endT = strtotime($this->endtime);
+        if ($start == $end) {
+            echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('H:i', $endT);
+        } else {
+            echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('F d, Y', $end) . ", " . date('H:i', $endT);
+        }
+    }
 }
