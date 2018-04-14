@@ -646,6 +646,7 @@ INSERT INTO communitycategory VALUES (12, 'desporto');
 -- Data for Name: event; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
 --
 
+INSERT INTO event VALUES (1, 'TestingUpdate', 'this is a test', 'newImage', '2018-04-13', '2017-05-29', '06:46:00', '16:26:00', 'dogeland', 'dogecity', '0 Luster Junction', '/odio/consequat/varius/integer/ac.json', true, NULL);
 INSERT INTO event VALUES (2, 'Distributed secondary forecast', 'Unspecified superficial injury of right hand, sequela', 'http://dummyimage.com/246x193.png/5fa2dd/ffffff', '2018-04-27', '2018-05-02', '11:14:00', '22:23:00', 'Thailand', 'Khon Kaen', '26 Monument Place', '/porttitor/id/consequat/in/consequat.jsp', false, NULL);
 INSERT INTO event VALUES (3, 'Multi-tiered directional contingency', 'Nondisp fx of greater tuberosity of right humerus, sequela', 'http://dummyimage.com/165x211.jpg/ff4444/ffffff', '2018-04-08', '2017-12-23', '06:46:00', '14:24:00', 'Panama', 'Santa Marta', '77240 Continental Crossing', '/ac/nibh/fusce/lacus/purus.json', false, NULL);
 INSERT INTO event VALUES (4, 'Decentralized 3rd generation data-warehouse', 'Toxic effect of phosphorus and its compounds, assault, subs', 'http://dummyimage.com/125x191.bmp/dddddd/000000', '2018-04-08', '2017-10-05', '06:31:00', '19:26:00', 'China', 'Haiyang', '0169 Hanson Place', '/tortor/quis.jsp', false, 37);
@@ -695,7 +696,6 @@ INSERT INTO event VALUES (47, 'Reverse-engineered dynamic open architecture', 'O
 INSERT INTO event VALUES (48, 'Universal directional customer loyalty', 'Asphyx due to being trapped in bed linens, acc, sequela', 'http://dummyimage.com/235x218.jpg/ff4444/ffffff', '2018-04-12', '2018-02-21', '09:52:00', '21:43:00', 'Indonesia', 'Tambaksari', '0 Derek Junction', '/at.xml', true, NULL);
 INSERT INTO event VALUES (49, 'Ergonomic composite hierarchy', 'Sprain of interphalangeal joint of r rng fngr, sequela', 'http://dummyimage.com/184x145.png/cc0000/ffffff', '2018-04-18', '2017-06-07', '11:58:00', '12:19:00', 'Russia', 'Zheleznogorsk-Ilimskiy', '37 Corben Crossing', '/eros/vestibulum/ac/est.xml', false, NULL);
 INSERT INTO event VALUES (50, 'Virtual holistic infrastructure', 'Unspecified open wound of nose, sequela', 'http://dummyimage.com/240x246.png/ff4444/ffffff', '2018-04-22', '2017-07-03', '08:49:00', '17:41:00', 'Serbia', 'Tomaševac', '9 Gale Way', '/eget/tincidunt/eget/tempus/vel/pede/morbi.aspx', true, NULL);
-INSERT INTO event VALUES (1, 'TestingUpdate', 'this is a test', 'newImage', '2018-04-13', '2017-05-29', '06:46:00', '16:26:00', 'dogeland', 'dogecity', '0 Luster Junction', '/odio/consequat/varius/integer/ac.json', true, NULL);
 INSERT INTO event VALUES (51, 'Easter Party', 'The brand new party for this Easter', 'blahblah', '2018-04-01', '2018-04-10', '09:00:00', '09:00:00', 'Portugal', 'Amarante', 'Colegio de S Goncalo', NULL, false, NULL);
 
 
