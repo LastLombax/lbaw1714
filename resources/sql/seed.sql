@@ -23,7 +23,7 @@ CREATE TYPE reporttype AS ENUM (
 
 
 --
--- Name: comment; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: comment; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE comment (
@@ -36,7 +36,7 @@ CREATE TABLE comment (
 
 
 --
--- Name: community; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: community; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE community (
@@ -52,7 +52,7 @@ CREATE TABLE community (
 
 
 --
--- Name: community_communitycategory; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: community_communitycategory; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE community_communitycategory (
@@ -63,7 +63,7 @@ CREATE TABLE community_communitycategory (
 
 
 --
--- Name: community_member; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: community_member; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE community_member (
@@ -75,7 +75,7 @@ CREATE TABLE community_member (
 
 
 --
--- Name: communitycategory; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: communitycategory; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE communitycategory (
@@ -86,7 +86,7 @@ CREATE TABLE communitycategory (
 
 
 --
--- Name: event; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: event; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE event (
@@ -109,7 +109,7 @@ CREATE TABLE event (
 
 
 --
--- Name: event_eventcategory; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: event_eventcategory; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE event_eventcategory (
@@ -120,7 +120,7 @@ CREATE TABLE event_eventcategory (
 
 
 --
--- Name: event_member; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: event_member; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE event_member (
@@ -132,7 +132,7 @@ CREATE TABLE event_member (
 
 
 --
--- Name: eventcategory; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: eventcategory; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE eventcategory (
@@ -143,7 +143,7 @@ CREATE TABLE eventcategory (
 
 
 --
--- Name: friend; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: friend; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE friend (
@@ -155,7 +155,7 @@ CREATE TABLE friend (
 
 
 --
--- Name: invoice; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: invoice; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE invoice (
@@ -173,7 +173,7 @@ CREATE TABLE invoice (
 
 
 --
--- Name: member; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: member; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE member (
@@ -198,7 +198,7 @@ CREATE TABLE member (
 
 
 --
--- Name: notification; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: notification; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE notification (
@@ -214,7 +214,7 @@ CREATE TABLE notification (
 
 
 --
--- Name: report; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: report; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE report (
@@ -232,7 +232,7 @@ CREATE TABLE report (
 
 
 --
--- Name: ticket; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: ticket; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE ticket (
@@ -245,7 +245,7 @@ CREATE TABLE ticket (
 
 
 --
--- Name: tickettype; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: tickettype; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 CREATE TABLE tickettype (
@@ -1228,7 +1228,6 @@ INSERT INTO member VALUES (100, 'Suzi Retallick', 'sretallick2r', '6XyrlJ', '201
 INSERT INTO member VALUES (1, 'Admin', 'kschnitter0', 'admin', '2017-08-13', 'kschnitter0@hatena.ne.jp', 'Portugal', 'Machico', 'Rua A Vale de Cima', '136106253', 'I am the owner of this website, fear me', 'https://dummyimage.com/135x245.png/cc0000/ffffff', '2017-10-16', false, false, false);
 INSERT INTO member VALUES (101, 'New user Test', 'thetester', 'imbatman', '1995-04-01', 'test@test.com', NULL, NULL, NULL, '459726138', 'abot', NULL, '2018-04-01', false, false, false);
 
-
 --
 -- Data for Name: notification; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
 --
@@ -1598,7 +1597,7 @@ INSERT INTO tickettype VALUES (50, 1, 76.3499999999999943, 1504, 4349, 'Fat embo
 
 
 --
--- Name: comment_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: comment_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY comment
@@ -1606,7 +1605,7 @@ ALTER TABLE ONLY comment
 
 
 --
--- Name: community_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: community_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY community
@@ -1614,7 +1613,7 @@ ALTER TABLE ONLY community
 
 
 --
--- Name: community_publiclink_key; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: community_publiclink_key; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY community
@@ -1622,7 +1621,7 @@ ALTER TABLE ONLY community
 
 
 --
--- Name: communitycategory_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: communitycategory_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY communitycategory
@@ -1630,7 +1629,7 @@ ALTER TABLE ONLY communitycategory
 
 
 --
--- Name: event_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: event_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY event
@@ -1638,7 +1637,7 @@ ALTER TABLE ONLY event
 
 
 --
--- Name: eventcategory_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: eventcategory_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY eventcategory
@@ -1646,7 +1645,7 @@ ALTER TABLE ONLY eventcategory
 
 
 --
--- Name: invoice_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: invoice_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY invoice
@@ -1654,7 +1653,7 @@ ALTER TABLE ONLY invoice
 
 
 --
--- Name: member_email_key; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: member_email_key; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY member
@@ -1662,7 +1661,7 @@ ALTER TABLE ONLY member
 
 
 --
--- Name: member_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: member_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY member
@@ -1670,7 +1669,7 @@ ALTER TABLE ONLY member
 
 
 --
--- Name: member_taxpayernumber_key; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: member_taxpayernumber_key; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY member
@@ -1678,7 +1677,7 @@ ALTER TABLE ONLY member
 
 
 --
--- Name: member_username_key; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: member_username_key; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY member
@@ -1686,7 +1685,7 @@ ALTER TABLE ONLY member
 
 
 --
--- Name: notification_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: notification_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY notification
@@ -1694,7 +1693,7 @@ ALTER TABLE ONLY notification
 
 
 --
--- Name: report_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: report_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY report
@@ -1702,7 +1701,7 @@ ALTER TABLE ONLY report
 
 
 --
--- Name: ticket_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: ticket_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY ticket
@@ -1710,7 +1709,7 @@ ALTER TABLE ONLY ticket
 
 
 --
--- Name: tickettype_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace: 
+-- Name: tickettype_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
 
 ALTER TABLE ONLY tickettype
