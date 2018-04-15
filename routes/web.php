@@ -31,6 +31,11 @@ Route::get('faq', function () {
     return view('pages.static.faq');
 });
 
+Route::get('404', function () {
+    return view('pages.static.404');
+});
+
+
 // Events
 Route::get('events/create', 'EventController@createEventForm')->name('createEvent');
 Route::get('events', 'EventController@index');
