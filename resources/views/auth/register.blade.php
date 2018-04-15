@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
 {{--<form method="POST" action="{{ route('register') }}">--}}
@@ -38,29 +38,29 @@
 {{--</form>--}}
 
 
-<div id="form"  style="margin-top:-22px;">
-    {{ csrf_field() }}
+<div class="container" style="width: 100%; max-width: 33em;">
 
     <form method="POST" action="{{ route('login') }}" style="background-color: #eee; padding: 20px; padding-top: 10px; border-radius: 10px; border: 1px solid #ccc;">
+        {{ csrf_field() }}
         <h4> <b> Registration </b></h4>
         <fieldset>
             <div class="form-group">
                 <label class="col-form-label" for="username">Username</label>
-                <input id="username" name="username"  type="text" value="{{ old('username') }}" class="form-control" placeholder="Enter username" >
+                <input id="username" name="username"  type="text" value="{{ old('username') }}" class="form-control" placeholder="Enter username" required>
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input  id="email" type="email" value="{{ old('email') }}" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email">
+                <input  id="email" type="email" value="{{ old('email') }}" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" required>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input id="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input id="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
             </div>
 
             <div class="form-group">
                 <label for="verifyPassword">Confirm Password</label>
-                <input id="verifyPassword" type="password" class="form-control" placeholder="Confirm Password">
+                <input id="verifyPassword" type="password" class="form-control" placeholder="Confirm Password" required>
             </div>
 
             <div class="form-group">
