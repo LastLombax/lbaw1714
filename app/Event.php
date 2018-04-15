@@ -11,7 +11,7 @@ class Event extends Model
 
     //Relations
 		public function  comments(){
-			$this->hasMany('Comment');
+			return $this->hasMany('App\Comment', 'event');
 		}
 
 
