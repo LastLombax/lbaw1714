@@ -23,6 +23,6 @@ class Comment extends Model
 	}
 
 	public function authorTuple(){
-		return $this->belongsTo('Member', 'author');
+		return $this->belongsTo('App\Member', 'author');
 	}
 }
