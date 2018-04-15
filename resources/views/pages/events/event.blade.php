@@ -16,7 +16,7 @@
 @section('content')
 <div class="row">
 
-        <div class="col-lg-4" style="padding-top: 23px;">
+        <div class="col-lg-4" style="padding-top: 0;">
             <div class="bs-ccomponent">
                 <img style="width: 100%; height: 200px; object-fit: cover;" src="{{$event->imagepath}}" alt="Card image">
                 <br>
@@ -80,16 +80,13 @@
             </div>
         </div>
 
-        <div class="col-lg-8" style="padding-top:23px">
+        <div class="col-lg-8" style="padding-top:0;">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#feed">Activity Feed</a>
+                    <a class="nav-link active" data-toggle="tab" href="#comments">Comments</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#participants">Participants</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#comments">Comments</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#map">Location Map</a>
@@ -97,58 +94,52 @@
             </ul>
 
             <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade show active" id="feed">
+                <div class="tab-pane fade show active" id="comments">
                     <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                         <div class="bs-ccomponent">
                             <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">God created a new Event in Feupinhos: Feupinhos na Queima.</h5>
+                                        <h5 class="mb-1">God</h5>
                                         <small>1 day ago</small>
                                     </div>
                                     <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                    <small>Donec id elit non mi porta.</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                </div>
+                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Feupinhos attended an Event with Feupinhos: Synergy in FEUP</h5>
-                                        <small class="text-muted">2 days ago</small>
+                                        <h5 class="mb-1">Quim Barreiros</h5>
+                                        <small>2 days ago</small>
                                     </div>
                                     <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                    <small class="text-muted">Donec id elit non mi porta.</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                </div>
+                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">God is attending an Event: Super Bock Super Rock</h5>
-                                        <small class="text-muted">3 days ago</small>
+                                        <h5 class="mb-1">Rui Leixo</h5>
+                                        <small>5 days ago</small>
+                                    </div>
+                                    <p class="mb-1">Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                </div>
+                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">God</h5>
+                                        <small>5 days ago</small>
                                     </div>
                                     <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                    <small class="text-muted">Donec id elit non mi porta.</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                </div>
+                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">List group item heading</h5>
-                                        <small class="text-muted">3 days ago</small>
+                                        <h5 class="mb-1">God</h5>
+                                        <small>6 days ago</small>
                                     </div>
                                     <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                    <small class="text-muted">Donec id elit non mi porta.</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                </div>
+                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">List group item heading</h5>
-                                        <small class="text-muted">3 days ago</small>
+                                        <h5 class="mb-1">Hugo Cunha</h5>
+                                        <small>1 week ago</small>
                                     </div>
                                     <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                    <small class="text-muted">Donec id elit non mi porta.</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">List group item heading</h5>
-                                        <small class="text-muted">3 days ago</small>
-                                    </div>
-                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                    <small class="text-muted">Donec id elit non mi porta.</small>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -204,43 +195,11 @@
                         </ul>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="comments">
-                    <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
-                        <div class="bs-ccomponent">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-
-                                    <img src="img/god.jpg" style="width: 20%; height: 100px; object-fit: cover; float:left;">
-                                    <h5>God</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-top: 1rem; margin-left: 0;">
-                        <ul class="pagination ">
-                            <li class="page-item disabled ">
-                                <a class="page-link " href="# ">&laquo;</a>
-                            </li>
-                            <li class="page-item active ">
-                                <a class="page-link " href="# ">1</a>
-                            </li>
-                            <li class="page-item ">
-                                <a class="page-link " href="# ">2</a>
-                            </li>
-                            <li class="page-item ">
-                                <a class="page-link " href="# ">3</a>
-                            </li>
-                            <li class="page-item ">
-                                <a class="page-link " href="# ">&raquo;</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="tab-pane fade" id="map">
                     <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                         <div class="bs-ccomponent">
                             <div class="list-group">
-                                <img src="img/machico.PNG" style="width: 100%; height: 600px; object-fit: cover; float:left;">
+                                <img src="{{asset('img/machico.PNG')}}" style="width: 100%; height: 600px; object-fit: cover; float:left;">
 
                             </div>
                         </div>
