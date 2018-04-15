@@ -9,9 +9,11 @@ class Event extends Model
     protected $primaryKey = 'idevent';
     protected $table = 'event';
 
-    public function eventName(){
-        return $this->name;
-    }
+    //Relations
+		public function  comments(){
+			$this->hasMany('Comment');
+		}
+
 
     public function printDate(){
         $start = strtotime($this->startday);

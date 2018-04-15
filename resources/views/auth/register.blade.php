@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input id="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                <input id="password" type="password" class="form-control" placeholder="Password" required>
             </div>
 
             <div class="form-group">
@@ -65,7 +65,7 @@
 
             <div class="form-group">
                 <label for="country">Country</label>
-                <select id="country" name="country" value="{{old('country')}}" class="form-control" id="inputDefault">
+                <select id="country" name="country" class="form-control" required>
                     <option value="">Choose</option>
                     <option value="Afganistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
