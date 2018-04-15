@@ -14,7 +14,6 @@ class Event extends Model
 			return $this->hasMany('App\Comment', 'event');
 		}
 
-
     public function printDate(){
         $start = strtotime($this->startday);
         $end = strtotime($this->endday);
