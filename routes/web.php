@@ -23,7 +23,7 @@ Route::get('about', function () {
         return view('pages.static.about');
 });
 
-Route::get('contacts', function () {
+Route::get('contact', function () {
     return view('pages.static.contactUs');
 });
 
