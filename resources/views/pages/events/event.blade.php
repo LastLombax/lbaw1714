@@ -60,13 +60,15 @@
                                     <p>{{$event->country}}</p>
                                 </div>
                                 <br>
+                                @if(!\Illuminate\Support\Facades\Auth::guest())
+                                    <div>
+                                        <button type="submit" onclick="event.preventDefault(); location.href = 'register2.html';" class="btn btn-info">Add me</button>
+                                    </div>
+                                    <br>
+                                @endif
                                 <div>
-                                    <button type="submit" onclick="event.preventDefault(); location.href = 'register2.html';" class="btn btn-info">Add me</button>
-                                </div>
-                                <br>
-                                <div>
-                                    <button type="submit" onclick="event.preventDefault(); location.href = 'register2.html';" class="btn btn-info">Buy Tickets</button>
-                                    <button type="submit" onclick="event.preventDefault(); location.href = 'register2.html';" class="btn btn-info">Message the admins</button>
+                                    <button type="submit" onclick="event.preventDefault(); location.href = '';" class="btn btn-info">Buy Tickets</button>
+                                    <button type="submit" onclick="event.preventDefault(); location.href = '';" class="btn btn-info">Message the admins</button>
                                 </div>
                         </div>
 

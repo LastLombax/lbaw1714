@@ -1,6 +1,11 @@
-@extends('layout')
+@extends('homeLayout')
 
-<div class="row" style="margin: 0">
+@section('title')
+    ReEvent
+@endsection
+
+@section('content')
+<div class="row" style="margin: 0; width:100%;">
 
 
     <div class="col-lg-8">
@@ -120,3 +125,4 @@
         </div>
     </div>
 </div>
+@endsection
