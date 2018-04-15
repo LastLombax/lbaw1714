@@ -23,13 +23,18 @@ Route::get('about', function () {
         return view('pages.static.about');
 });
 
-Route::get('contacts', function () {
+Route::get('contact', function () {
     return view('pages.static.contactUs');
 });
 
 Route::get('faq', function () {
     return view('pages.static.faq');
 });
+
+Route::get('404', function () {
+    return view('pages.static.404');
+});
+
 
 // Events
 Route::get('events/create', 'EventController@createEventForm')->name('createEvent');

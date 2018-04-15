@@ -1,4 +1,5 @@
 @extends('layout')
+{{dd($event->comment)}}
 
 @section('title')
     {{--@dd($events);--}}
@@ -98,48 +99,15 @@
                     <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                         <div class="bs-ccomponent">
                             <div class="list-group">
-                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">God</h5>
-                                        <small>1 day ago</small>
+                                @foreach($event->comment as $comment)
+                                    <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">{{$comment->author}}</h5>
+                                            <small>{{$comment->timestamp}}</small>
+                                        </div>
+                                        <p class="mb-1">{{$comment->text}}</p>
                                     </div>
-                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                </div>
-                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Quim Barreiros</h5>
-                                        <small>2 days ago</small>
-                                    </div>
-                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                </div>
-                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Rui Leixo</h5>
-                                        <small>5 days ago</small>
-                                    </div>
-                                    <p class="mb-1">Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                </div>
-                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">God</h5>
-                                        <small>5 days ago</small>
-                                    </div>
-                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                </div>
-                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">God</h5>
-                                        <small>6 days ago</small>
-                                    </div>
-                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                </div>
-                                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Hugo Cunha</h5>
-                                        <small>1 week ago</small>
-                                    </div>
-                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
