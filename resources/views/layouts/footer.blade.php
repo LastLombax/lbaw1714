@@ -21,15 +21,15 @@
                         <a href="contact">Contact us</a>
                     </td>
             </table>
-            {{--<div style="text-align:center; font-size: small ">--}}
-                {{--Template by--}}
-                {{--<a href="http://thomaspark.co ">Thomas Park</a>. Code released by--}}
-                {{--<a href="https://github.com/ ">FEUP Students</a>.--}}
-                {{--<br> Based on--}}
-                {{--<a href="https://getbootstrap.com " rel="nofollow ">Bootstrap</a>. Icons from--}}
-                {{--<a href="http://fontawesome.io/ " rel="nofollow ">Font Awesome</a>. Web fonts from--}}
-                {{--<a href="https://fonts.google.com/ " rel="nofollow ">Google</a>.--}}
-            {{--</div>--}}
+            <div style="text-align:center; font-size: small ">
+                Template by
+                <a href="http://thomaspark.co ">Thomas Park</a>. Code released by
+                <a href="https://github.com/ ">FEUP Students</a>.
+                <br> Based on
+                <a href="https://getbootstrap.com " rel="nofollow ">Bootstrap</a>. Icons from
+                <a href="http://fontawesome.io/ " rel="nofollow ">Font Awesome</a>. Web fonts from
+                <a href="https://fonts.google.com/ " rel="nofollow ">Google</a>.
+            </div>
         </div>
     </div>
 </footer>
