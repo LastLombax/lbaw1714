@@ -75,7 +75,7 @@
 				'email' => $data['email'],
 				'country' => $data['country'],
 				'password' => bcrypt($data['password']),
-				'name' => "Funciona!!!!!",
+				'name' => $data['name'],
 				'registrationdate' => now()->toDateString(),
 				'verifiedemail' => false,
 				'iswebsiteadmin' => false,
