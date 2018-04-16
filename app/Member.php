@@ -11,7 +11,6 @@
 		protected $table = 'member';
 
 
-
 		use Notifiable;
 
 		// Don't add create and update timestamps in database.
@@ -24,8 +23,16 @@
 		 * @var array
 		 */
 		protected $fillable = [
-			'name', 'email', 'password', 'country'
+			'username',
+			'email',
+			'country',
+			'password',
+			'name',
+			'registrationdate',
+			'verifiedemail',
+			'iswebsiteadmin',
 		];
+
 
 		/**
 		 * The attributes that should be hidden for arrays.
@@ -38,9 +45,9 @@
 
 
 
-		public static function create($array) {
-			dd($array);
-		}
+//		public static function create($array) {
+//			dd($array);
+//		}
 
 		//Relations
 		public function  commentTuples(){

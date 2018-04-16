@@ -3,27 +3,45 @@
 @section('content')
 <div class="container" style="width: 100%; max-width: 33em;">
 
-    <form method="POST" action="{{ route('login') }}" style="background-color: #eee; padding: 20px; padding-top: 10px; border-radius: 10px; border: 1px solid #ccc;">
+    <form method="POST" action="{{ route('register') }}" style="background-color: #eee; padding: 20px; padding-top: 10px; border-radius: 10px; border: 1px solid #ccc;">
         {{ csrf_field() }}
         <h4> <b> Registration </b></h4>
         <fieldset>
             <div class="form-group">
                 <label class="col-form-label" for="username">Username</label>
-                <input id="username" name="username"  type="text" value="{{ old('username') }}" class="form-control" placeholder="Enter username" required>
+
+                @if (!$errors->has('username'))
+                    <input id="username" name="username"  type="text" value="{{ old('username') }}" class="form-control" placeholder="Enter username" required>
+                @else
+                    <input id="username" name="username"  type="text" value="{{ old('username') }}" class="form-control is-invalid" placeholder="Enter username" required>
+                @endif
+
             </div>
+
             <div class="form-group">
-                <label for="email">Email address</label>
-                <input  id="email" type="email" value="{{ old('email') }}" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" required>
+                <label class="col-form-label" for="username">Name</label>
+                <input id="name" name="name"  type="text" value="{{ old('name') }}" class="form-control" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+            <label for="email">Email address</label>
+
+                @if (!$errors->has('email'))
+                    <input  id="email" name="email" type="email" value="{{ old('email') }}" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" required>
+                @else
+                    <input  id="email" name="email" type="email" value="{{ old('email') }}" class="form-control is-invalid"  aria-describedby="emailHelp" placeholder="Enter email" required>
+                @endif
+
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input id="password" type="password" class="form-control" placeholder="Password" required>
+                <input id="password" name="password" type="password" class="form-control" placeholder="Password" required>
             </div>
 
             <div class="form-group">
-                <label for="verifyPassword">Confirm Password</label>
-                <input id="verifyPassword" type="password" class="form-control" placeholder="Confirm Password" required>
+                <label for="password_confirmation">Confirm Password</label>
+                <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Confirm Password" required>
             </div>
 
             <div class="form-group">

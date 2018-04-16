@@ -7,6 +7,7 @@
 	use App\Http\Controllers\Controller;
 	use Illuminate\Support\Facades\Validator;
 	use Illuminate\Foundation\Auth\RegistersUsers;
+	use Symfony\Component\VarDumper\Caster\DateCaster;
 
 	class RegisterController extends Controller
 	{
@@ -46,11 +47,19 @@
 		 * @return \Illuminate\Contracts\Validation\Validator
 		 */
 		protected function validator(array $data) {
+			$messages = [
+				'unique' => 'That :attribue is already in use!',
+				'max'    => 'The :attribute surpassed the maximum length :max!',
+				'email.required' => 'We need to know your e-mail address!',
+
+			];
+
 			return Validator::make($data, [
 				'username' => 'required|string|max:255',
-				'email' => 'required|string|email|max:255|unique:users',
+				'email' => 'required|string|email|max:255|unique:member',
 				'password' => 'required|string|min:6|confirmed',
-			]);
+			],
+				$messages);
 		}
 
 		/**
@@ -60,11 +69,16 @@
 		 * @return \App\Member
 		 */
 		protected function create(array $data) {
+			//dd(now()->toDateString());
 			return Member::create([
 				'username' => $data['username'],
 				'email' => $data['email'],
 				'country' => $data['country'],
 				'password' => bcrypt($data['password']),
+				'name' => "Funciona!!!!!",
+				'registrationdate' => now()->toDateString(),
+				'verifiedemail' => false,
+				'iswebsiteadmin' => false,
 			]);
 		}
 
