@@ -98,7 +98,7 @@
                     <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                         <div class="bs-ccomponent">
                             <div class="list-group">
-                                @foreach($event->comments as $comment)
+                                @foreach($event->commentTuples as $comment)
                                     <div class="list-group-item list-group-item-action flex-column align-items-start">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
