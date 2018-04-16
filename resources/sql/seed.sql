@@ -228,7 +228,8 @@ CREATE TABLE member (
     registrationdate date NOT NULL,
     --sentemailverification boolean NOT NULL,
     verifiedemail boolean NOT NULL,
-    iswebsiteadmin boolean NOT NULL
+    iswebsiteadmin boolean NOT NULL,
+    remember_token text
 );
 
 

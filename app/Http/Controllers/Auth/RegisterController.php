@@ -69,7 +69,6 @@
 		 * @return \App\Member
 		 */
 		protected function create(array $data) {
-			//dd(now()->toDateString());
 			return Member::create([
 				'username' => $data['username'],
 				'email' => $data['email'],
