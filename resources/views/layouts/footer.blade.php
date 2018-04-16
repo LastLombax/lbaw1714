@@ -18,7 +18,7 @@
                         <a href="faq">FAQs</a>
                     </td>
                     <td>
-                        <a href="contacts">Contact us</a>
+                        <a href="contact">Contact us</a>
                     </td>
             </table>
             {{--<div style="text-align:center; font-size: small ">--}}

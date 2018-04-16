@@ -10,7 +10,7 @@
 		protected $table = 'member';
 
 		//Relations
-		public function  comments(){
+		public function  commentTuples(){
 			return $this->hasMany('App\Comment', 'author');
 		}
 	}

@@ -10,7 +10,7 @@ class Event extends Model
     protected $table = 'event';
 
     //Relations
-		public function  comments(){
+		public function  commentTuples(){
 			return $this->hasMany('App\Comment', 'event');
 		}
 
