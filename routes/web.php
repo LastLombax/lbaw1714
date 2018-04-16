@@ -45,11 +45,6 @@ Route::get('events/{event}', 'EventController@showEvent')->name('event');
 //Route::post('events/{id}', 'EventController@index')->name('event');
 
 // API
-/*Route::put('api/cards', 'CardController@create');
-//Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');*/
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
