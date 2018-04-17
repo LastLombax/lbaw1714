@@ -36,7 +36,7 @@
                                     <label class="col-form-label" for="inputDefault">
                                         <b>Location</b>
                                     </label>
-                                    <p>
+                                    <p id="address">
                                         {{$event->address}}, {{$event->city}}
                                     </p>
                                 </div>
@@ -45,7 +45,9 @@
                                     <label class="col-form-label" for="inputDefault">
                                         <b>Country</b>
                                     </label>
-                                    <p>{{$event->country}}</p>
+                                    <p id="country">
+                                        {{$event->country}}
+                                    </p>
                                 </div>
                                 <br>
                                 @if(!\Illuminate\Support\Facades\Auth::guest())
@@ -58,6 +60,7 @@
                                     <button type="submit" onclick="event.preventDefault(); location.href = '';" class="btn btn-info">Buy Tickets</button>
                                     <button type="submit" onclick="event.preventDefault(); location.href = '';" class="btn btn-info">Message the admins</button>
                                 </div>
+                            </fieldset>
                         </div>
 
                         <div class="progress">
@@ -154,12 +157,16 @@
                     <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                         <div class="bs-ccomponent">
                             <div class="list-group">
-                                <img src="{{asset('img/machico.PNG')}}" style="width: 100%; height: 600px; object-fit: cover; float:left;">
-
+                                @include('pages.events.geolocation')
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr1_x1qNGarZz3rVGBTmTk2yDOAA-jkOI&callback=initMap">
+    </script>
 @endsection
