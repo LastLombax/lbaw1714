@@ -12,6 +12,12 @@
             @include('layouts.head')
     @endif
 
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     @if(Auth::guest())
