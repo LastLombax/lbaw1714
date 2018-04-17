@@ -24,7 +24,7 @@
                 <span class="fa fa-search"></span>
                 <input placeholder="Search..." style="border-radius: 5px; height: 35px; margin-right: 5px;">
             </div>
-            <button type="button" onclick="location.href='login';" class="btn btn-success" style="border-radius: 5px; height: 35px;">Login</button>
+            <button type="button" onclick="location.href='{{route('login')}}';" class="btn btn-success" style="border-radius: 5px; height: 35px;">Login</button>
         </form>
     </div>
 </nav>

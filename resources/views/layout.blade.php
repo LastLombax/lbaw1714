@@ -4,7 +4,14 @@
     @section('title')
         ReEvent
     @endsection
-    @include('layouts.head')
+
+    @if(\Illuminate\Support\Facades\Auth::guest())
+            @include('layouts.visitorHead')
+            @include('layouts.head')
+    @else
+            @include('layouts.head')
+    @endif
+
 </head>
 <body>
     @if(Auth::guest())
@@ -12,7 +19,7 @@
     @else
         @include('layouts.nav')
     @endif
-    
+
     <div class="container">
         <legend style="color: #333; padding: 1rem; margin-left: 0.5rem; padding-left: 0; padding-bottom: 0;">
             @yield('titleIcon')

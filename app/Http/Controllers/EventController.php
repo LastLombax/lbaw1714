@@ -15,15 +15,18 @@
 
 		public function createEventForm(){
 
-			return view('pages.events.create');
+			return view('pages.events.createEvent');
 
 		}
 
 		public function showEvent(Event $event){
-			//Less idiomatic $event = DB::table('event')->find($id);
-
-			//return view('pages.events.event', $event);
 
 			return view('pages.events.event')->with('event', $event);
 		}
+
+		public function editEvent(Event $event){
+			return view('pages.events.editEvent')->with('event', $event);
+		}
+
+
 	}

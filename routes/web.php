@@ -38,9 +38,9 @@ Route::get('404', function () {
 
 // Events
 Route::get('events/create', 'EventController@createEventForm')->name('createEvent');
-Route::get('events', 'EventController@index');
-Route::get('events/{event}', 'EventController@showEvent')->name('event')->where('event', '[0-9]+');;
-
+Route::get('events', 'EventController@index')->name('events');
+Route::get('events/{event}', 'EventController@showEvent')->name('event')->where('event', '[0-9]+');
+Route::get('events/{event}/edit', 'EventController@editEvent')->name('editEvent')->where('event', '[0-9]+');
 
 //Route::post('events/{id}', 'EventController@index')->name('event');
 
