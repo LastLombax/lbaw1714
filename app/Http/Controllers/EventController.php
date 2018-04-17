@@ -21,12 +21,11 @@
 
 		public function showEvent(Event $event){
 
-			return view('pages.events.editEvent')->with('event', $event);
+			return view('pages.events.event')->with('event', $event);
 		}
 
 		public function editEvent(Event $event){
-			dd($event);
-			return view('pages.events.event')->with('event', $event);
+			return view('pages.events.editEvent')->with('event', $event);
 		}
 
 
