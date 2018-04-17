@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    if(\Illuminate\Support\Facades\Auth::guest())
+    if(Auth::guest())
         return view('pages/visitorHomePage');
     else
         return view('pages/homePage');
@@ -21,19 +21,19 @@ Route::get('/', function () {
 //Static Pages
 Route::get('about', function () {
         return view('pages.static.about');
-});
+})->name('about');
 
 Route::get('contact', function () {
     return view('pages.static.contactUs');
-});
+})->name('contact');
 
 Route::get('faq', function () {
     return view('pages.static.faq');
-});
+})->name('faq');
 
 Route::get('404', function () {
     return view('pages.static.404');
-});
+})->name('404');
 
 
 // Events

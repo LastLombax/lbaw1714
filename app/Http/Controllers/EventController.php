@@ -10,7 +10,7 @@
 	{
 		public function index(){
 			$events = Event::all();
-			return view('pages.events.event')->with('events', $events);
+			return view('pages.events.showEvents')->with('events', $events);
 		}
 
 		public function createEventForm(){

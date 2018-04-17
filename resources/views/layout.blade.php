@@ -7,7 +7,7 @@
     @include('layouts.head')
 </head>
 <body>
-    @if(\Illuminate\Support\Facades\Auth::guest())
+    @if(Auth::guest())
         @include('layouts.visitorNav')
     @else
         @include('layouts.nav')
