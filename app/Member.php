@@ -11,6 +11,15 @@
 		protected $table = 'member';
 
 
+		//Relations
+		public function  commentTuples(){
+			return $this->hasMany('App\Comment', 'author');
+		}
+		public function  eventTuples(){
+			return $this->belongsToMany('App\Event','event_member', 'idmember', 'idevent');
+		}
+
+
 		use Notifiable;
 
 		// Don't add create and update timestamps in database.
@@ -49,8 +58,5 @@
 //			dd($array);
 //		}
 
-		//Relations
-		public function  commentTuples(){
-			return $this->hasMany('App\Comment', 'author');
-		}
+
 	}

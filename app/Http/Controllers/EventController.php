@@ -40,14 +40,20 @@
                 ->get();
 		}
 
-        public static function nearbyEvents(){
-            return Event::where(
-                    'startday','>=', now()->toDateString()
-                )
-                ->orderBy('startday', 'ASC')
-                ->limit(4)
-                ->get();
-        }
+		public static function nearbyEvents(){
+				return Event::where(
+								'startday','>=', now()->toDateString()
+						)
+						->orderBy('startday', 'ASC')
+						->limit(4)
+						->get();
+		}
+
+//		public static function topEvents(){ Mostrar top events, eventos com mais membros que vão
+//			return Event:: Event::memberTuples())->orderBy('attendants', 'DESC')
+//				->limit(4)
+//				->get();
+//		}
 
 
-    }
+	}

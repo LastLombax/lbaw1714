@@ -14,6 +14,10 @@ class Event extends Model
 			return $this->hasMany('App\Comment', 'event');
 		}
 
+		public function  attendants(){ //memberTuples
+			return $this->belongsToMany('App\Member','event_member', 'idevent', 'idmember');
+		}
+
     public function printDate(){
         $start = strtotime($this->startday);
         $end = strtotime($this->endday);
