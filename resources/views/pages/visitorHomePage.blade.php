@@ -37,7 +37,6 @@
 
         <br>
         <br>
-
         <div class="container" style="padding-bottom: -30px;">
             <div class="row align-items-center" style="width: 100%">
 
@@ -45,23 +44,7 @@
                     <div class="bs-ccomponent">
                         <div class="card mb-3">
                             <h3 class="card-header" style="border-bottom: 10px solid #158cb8">Nearby Events</h3>
-                            <div class="card-body">
-                                <h5 class="card-title" style="font-size: 1.2em">SuperBock Super Rock</h5>
-                                <h6 class="card-subtitle text-muted">20th July, 2018</h6>
-                            </div>
-                            <img style="width: 100%; height: 200px; object-fit: cover;" src="img/superbock.png" alt="Card image">
-                            <div class="card-body">
-                                <p class="card-text">O Super Bock Super Rock é um festival de música de Verão realizado anualmente em Portugal. É organizado desde 1995
-                                    e é, actualmente, um dos mais importantes festivais portugueses.</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item" style="font-size: 1.2em">Nos Alive</li>
-                                <li class="list-group-item" style="font-size: 1.2em">Rock in Rio</li>
-                                <li class="list-group-item" style="font-size: 1.2em">Queima das Fitas Porto</li>
-                            </ul>
-                            <div class="card-footer text-muted">
-                                <a href="#" class="card-link">More Events</a>
-                            </div>
+                            @include('pages.events.nearbyEventFragment')
                         </div>
                     </div>
                 </div>

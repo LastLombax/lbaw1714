@@ -28,5 +28,26 @@
 			return view('pages.events.editEvent')->with('event', $event);
 		}
 
+		public static function nearbyPublicEvents(){
+            return Event::where(
+                    [
+                        ['ispublic', '=', 'true'],
+                        ['startday','>=', now()->toDateString()]
+                    ]
+                )
+                ->orderBy('startday', 'ASC')
+                ->limit(4)
+                ->get();
+		}
 
-	}
+        public static function nearbyEvents(){
+            return Event::where(
+                    'startday','>=', now()->toDateString()
+                )
+                ->orderBy('startday', 'ASC')
+                ->limit(4)
+                ->get();
+        }
+
+
+    }
