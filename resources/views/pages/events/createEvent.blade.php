@@ -1,19 +1,5 @@
 @extends('layout')
 
-@section('title')
-    Create Event | ReEvent
-@endsection
-
-@section('titleIcon')
-    <i class="fas fa-calendar-check"></i>
-@endsection
-
-@section('pageTitle')
-    Create Event
-@endsection
-
-{{--@section('title', $card->name)--}}
-
 @section('content')
     <div class="container">
         <div class="row align-items-center" style="border: 1px solid #ccc; width: 100%; margin: 0;">

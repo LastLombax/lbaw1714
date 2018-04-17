@@ -1,20 +1,8 @@
 @extends('layout')
 
-@section('title')
-    {{--@dd($events);--}}
-    {{$event->name}} | ReEvent
-@endsection
-
-@section('titleIcon')
-    <i class="fas fa-calendar-check"></i>
-@endsection
-
-@section('pageTitle')
-    {{$event->name}}
-@endsection
-
 @section('content')
-<div class="row">
+    <div class="container">
+    <div class="row">
 
         <div class="col-lg-4" style="padding-top: 0;">
             <div class="bs-ccomponent">
@@ -173,4 +161,5 @@
                     </div>
                 </div>
             </div>
+        </div>
 @endsection

@@ -4,7 +4,14 @@
     @section('title')
         ReEvent
     @endsection
-    @include('layouts.head')
+
+    @if(\Illuminate\Support\Facades\Auth::guest())
+            @include('layouts.visitorHead')
+            @include('layouts.head')
+    @else
+            @include('layouts.head')
+    @endif
+
 </head>
 <body>
     @if(\Illuminate\Support\Facades\Auth::guest())
