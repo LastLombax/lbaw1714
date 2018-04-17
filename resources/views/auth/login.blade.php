@@ -31,9 +31,9 @@
                     <div class="form-group">
                         <label class="col-form-label" for="password">Password</label>
                         @if ($errors->has('username') || $errors->has('username'))
-                            <input id="password" type="password" class="form-control is-invalid"  placeholder="Password" style="border-radius: 7px; padding: 12px;" required>
+                            <input id="password" name="password" type="password" class="form-control is-invalid"  placeholder="Password" style="border-radius: 7px; padding: 12px;" required>
                         @else
-                            <input id="password" type="password" class="form-control"  placeholder="Password" style="border-radius: 7px; padding: 12px;" required>
+                            <input id="password" name="password" type="password" class="form-control"  placeholder="Password" style="border-radius: 7px; padding: 12px;" required>
                         @endif
                     </div>
                 </fieldset>
