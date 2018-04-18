@@ -21,6 +21,10 @@
        Edit Event
     </legend>
 
+      <form action="{{ route('editEvent') }}" method="POST">
+       <input type="hidden" name="_method" value="PUT">
+      {{ csrf_field() }}
+
       <div class="row align-items-center" style="border: 1px solid #ccc; width: 100%; margin: 0;">
 
 
@@ -129,5 +133,7 @@
         </div>
 
       </div>
+      </form>
+       <button type="submit" onclick="event.preventDefault(); location.href = 'event.html';" class="btn btn-primary d-block ml-auto mt-3">Edit</button>
     </div>
 @endsection

@@ -24,9 +24,14 @@
 			return view('pages.events.event')->with('event', $event);
 		}
 
-		public function editEvent(Event $event){
+		public function editEventForm(Event $event){
 			return view('pages.events.editEvent')->with('event', $event);
 		}
+
+		/*public function editEvent(Event $event){
+
+			return view('pages.events.event')->with('event', $event);
+		}*/
 
 		public static function nearbyPublicEvents(){
             return Event::where(
@@ -47,6 +52,11 @@
 						->orderBy('startday', 'ASC')
 						->limit(4)
 						->get();
+		}
+
+		public function deleteEvent(Event $event){
+
+			return view('pages.events.event')->with('event', $event);
 		}
 
 //		public static function topEvents(){ Mostrar top events, eventos com mais membros que vão

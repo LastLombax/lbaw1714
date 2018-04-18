@@ -11,16 +11,38 @@
 |
 */
 
+//Homepage
 Route::get('/', function () {
     if(Auth::guest())
         return view('pages/visitorHomePage');
     else
         return view('pages/homePage');
 });
+ 
+
+// Events
+Route::get('events', 'EventController@index')->name('events');
+Route::get('events/{event}', 'EventController@showEvent')->name('event')->where('event', '[0-9]+');
+Route::get('events/{event}/edit', 'EventController@editEventForm')->name('editEvent')->where('event', '[0-9]+');
+Route::patch('events/{event}/edit', 'EventController@editEvent');
+Route::get('events/create', 'EventController@createEventForm')->name('createEvent');
+Route::delete('events/{event}', 'EventController@deleteEvent')->name('deleteEvent');
+Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
+
+
+// API
+
+// Authentication
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
+
 
 //Static Pages
 Route::get('about', function () {
-        return view('pages.static.about');
+    return view('pages.static.about');
 })->name('about');
 
 Route::get('contact', function () {
@@ -34,23 +56,3 @@ Route::get('faq', function () {
 Route::get('404', function () {
     return view('pages.static.404');
 })->name('404');
-
-
-// Events
-Route::get('events/create', 'EventController@createEventForm')->name('createEvent');
-Route::get('events', 'EventController@index')->name('events');
-Route::get('events/{event}', 'EventController@showEvent')->name('event')->where('event', '[0-9]+');
-Route::get('events/{event}/edit', 'EventController@editEvent')->name('editEvent')->where('event', '[0-9]+');
-Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
-
-
-//Route::post('events/{id}', 'EventController@index')->name('event');
-
-// API
-
-// Authentication
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
