@@ -128,7 +128,7 @@
                                         <h5 class="card-title ">My Events</h5>
                                     </td>
                                     <td style="text-align: right; ">
-                                        <button style="margin-bottom: 10px; background-color: white; border: 1px solid #158cb8; color: #158cb8; width: 125px;" class="btn btn-success" onclick="window.location.href= 'createEvent.html';">
+                                        <button style="margin-bottom: 10px; background-color: white; border: 1px solid #158cb8; color: #158cb8; width: 125px;" class="btn btn-success" onclick="window.location.href= '{{ route('createEvent') }}';">
                                             Event
                                             <i class="fas fa-plus"></i>
                                         </button>

@@ -24,10 +24,20 @@ Route::get('/', function () {
 Route::get('events', 'EventController@index')->name('events');
 Route::get('events/{event}', 'EventController@showEvent')->name('event')->where('event', '[0-9]+');
 Route::get('events/{event}/edit', 'EventController@editEventForm')->name('editEvent')->where('event', '[0-9]+');
-Route::patch('events/{event}/edit', 'EventController@editEvent');
+Route::patch('events/{event}/edit', 'EventController@editEvent')->name('editEvent');
 Route::get('events/create', 'EventController@createEventForm')->name('createEvent');
 Route::delete('events/{event}', 'EventController@deleteEvent')->name('deleteEvent');
 Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
+
+
+// Communities
+Route::get('communities', 'CommunityController@index')->name('communities');
+Route::get('communities/{community}', 'CommunityController@showCommunity')->name('community')->where('community', '[0-9]+');
+Route::get('communities/{community}/edit', 'CommunityController@editCommunityForm')->name('editCommunity')->where('community', '[0-9]+');
+Route::patch('communities/{community}/edit', 'CommunityController@editCommunity')->name('editCommunity');
+Route::get('communities/create', 'CommunityController@createCommunityForm')->name('createCommunity');
+Route::delete('communities/{community}', 'CommunityController@deleteCommunity')->name('deleteCommunity');
+Route::get('communities/manageCommunities', 'CommunityController@manageCommunities')->name('manageCommunities');
 
 
 // API

@@ -1,85 +1,49 @@
 <?php
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use App\Community;
-use Illuminate\Http\Request;
+    use App\Event;
+    use App\Http\Controllers\Controller;
+    use Illuminate\Foundation\Request;
 
-class CommunityController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    class CommunityController extends Controller
     {
-        //
-    }
+        public function index(){
+            $communities = Community::all();
+            return view('pages.communities.showCommunities')->with('communities', $communities);
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        public function createCommunityForm(){
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            return view('pages.communities.createCommunity');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Community  $community
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Community $community)
-    {
-        //
-    }
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Community  $community
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Community $community)
-    {
-        //
-    }
+        public function showCommunity(Community $community){
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Community  $community
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Community $community)
-    {
-        //
-    }
+            return view('pages.communities.community')->with('community', $community);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Community  $community
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Community $community)
-    {
-        //
+        public function editCommunityForm(Community $community){
+            
+            return view('pages.communities.editCommunity')->with('community', $community);
+        }
+
+        public function editCommunity(Event $event){
+
+            return view('pages.events.event')->with('community', $community);
+        }
+
+        public function deleteCommunity(Community $community){
+
+            return view('pages.communities.community')->with('community', $community);
+        }
+
+//      public static function topEvents(){ Mostrar top events, eventos com mais membros que vão
+//          return Event:: Event::memberTuples())->orderBy('attendants', 'DESC')
+//              ->limit(4)
+//              ->get();
+//      }
+
+
     }
-}

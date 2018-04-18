@@ -25,13 +25,14 @@
 		}
 
 		public function editEventForm(Event $event){
+			
 			return view('pages.events.editEvent')->with('event', $event);
 		}
 
-		/*public function editEvent(Event $event){
+		public function editEvent(Event $event){
 
 			return view('pages.events.event')->with('event', $event);
-		}*/
+		}
 
 		public static function nearbyPublicEvents(){
             return Event::where(

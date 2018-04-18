@@ -10,11 +10,11 @@ class Event extends Model
     protected $table = 'event';
 
     //Relations
-		public function  commentTuples(){
+		public function commentTuples(){
 			return $this->hasMany('App\Comment', 'event');
 		}
 
-		public function  attendants(){ //memberTuples
+		public function attendants(){ //memberTuples
 			return $this->belongsToMany('App\Member','event_member', 'idevent', 'idmember');
 		}
 
