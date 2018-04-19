@@ -21,7 +21,7 @@
     </legend>
 
       <form action="{{ route('editEvent', $event)}}" method="POST">
-      {{--{{ method_field('PATCH') }}--}}
+      {{ method_field('PATCH') }}
       {{ csrf_field() }}
 
       <div class="row align-items-center" style="border: 1px solid #ccc; width: 100%; margin: 0;">
@@ -45,33 +45,25 @@
                     </div>
                   </label>
 
-                  <label class="col-form-label" for="startday" style="width:100%;">
+                  <label class="col-form-label" for="startDate" style="width:100%;">
                     <b>Start date</b>
                     <div class="form-inline form-group mb-2" style="width:100%;">
-                      <input id="startday" name ="startday" type="text" style="margin-right:0.25em" value="{{$event->startday}}" class="form-control col-lg-8" style="width:100%;">
+                      <input id="startDate" name ="startDate" type="text" style="margin-right:0.25em" value="{{$event->startday}}" class="form-control col-lg-8" style="width:100%;">
                       <input name="startTime" type="time" value ="{{$event->starttime}}" class="form-control col-lg-3" placeholder="Start time" id="inputDefault" style="width:100%;">
                     </div>
                   </label>
 
-                  <label class="col-form-label" for="endday" style="width:100%;">
+                  <label class="col-form-label" for="endDate" style="width:100%;">
                     <b>End date</b>
                     <div class="form-inline form-group mb-2" style="width:100%;">
-<<<<<<< HEAD
-                      <input id="endday" name="endday" type="date" style="margin-right:0.25em" class="form-control col-lg-8" value="{{$event->endday}}" style="width:100%;"> 
-                      <input id="endtime" name="endtime" type="time" value ="{{$event->endtime}}" class="form-control col-lg-3" placeholder="End time" style="width:100%;">
+                      <input id="endDate" name="endDate" type="date" style="margin-right:0.25em" class="form-control col-lg-8" value="{{$event->endday}}" style="width:100%;">
+                      <input id="endTime" name="endTime" type="time" value ="{{$event->endtime}}" class="form-control col-lg-3" placeholder="End time" style="width:100%;">
                     </div>
                   </label>
                   <br>
-                  <label class="col-form-label" for="visibility">
-=======
-                      <input name="endDate" type="date" style="margin-right:0.25em" class="form-control col-lg-8" value="{{$event->endday}}" id="inputDefault" style="width:100%;">
-                      <input name="endTime" type="time" value ="{{$event->endtime}}" class="form-control col-lg-3" placeholder="End time" id="inputDefault" style="width:100%;">
-                    </div>
-                  </label>
-                  <br>
-                  @include('layouts.countrySelector')
-                  <label class="col-form-label" for="inputDefault">
->>>>>>> 0383950cf5dcb824618f662f6a1fccb4e3849154
+                    @include('layouts.countrySelector')
+
+                    <label class="col-form-label" for="visibility">
                     <b>Event visibility</b>
                     <br>
                     <div class="form-group">
