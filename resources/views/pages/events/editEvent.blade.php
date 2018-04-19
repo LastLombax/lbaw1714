@@ -21,7 +21,7 @@
     </legend>
 
       <form action="{{ route('editEvent', $event)}}" method="POST">
-      {{ method_field('PATCH') }}
+      {{--{{ method_field('PATCH') }}--}}
       {{ csrf_field() }}
 
       <div class="row align-items-center" style="border: 1px solid #ccc; width: 100%; margin: 0;">
@@ -56,22 +56,32 @@
                   <label class="col-form-label" for="endday" style="width:100%;">
                     <b>End date</b>
                     <div class="form-inline form-group mb-2" style="width:100%;">
+<<<<<<< HEAD
                       <input id="endday" name="endday" type="date" style="margin-right:0.25em" class="form-control col-lg-8" value="{{$event->endday}}" style="width:100%;"> 
                       <input id="endtime" name="endtime" type="time" value ="{{$event->endtime}}" class="form-control col-lg-3" placeholder="End time" style="width:100%;">
                     </div>
                   </label>
                   <br>
                   <label class="col-form-label" for="visibility">
+=======
+                      <input name="endDate" type="date" style="margin-right:0.25em" class="form-control col-lg-8" value="{{$event->endday}}" id="inputDefault" style="width:100%;">
+                      <input name="endTime" type="time" value ="{{$event->endtime}}" class="form-control col-lg-3" placeholder="End time" id="inputDefault" style="width:100%;">
+                    </div>
+                  </label>
+                  <br>
+                  @include('layouts.countrySelector')
+                  <label class="col-form-label" for="inputDefault">
+>>>>>>> 0383950cf5dcb824618f662f6a1fccb4e3849154
                     <b>Event visibility</b>
                     <br>
                     <div class="form-group">
                       <select id="visibility" name="visibility" class="form-control" >
                         @if($event->isPublic)
-                            <option value="Public" selected="selected">Public</option>
-                            <option value="Private">Private</option>                        
+                            <option value="true" selected="selected">Public</option>
+                            <option value="false">Private</option>
                         @else
-                            <option value="Public"> Public</option>
-                            <option value="Private" selected="selected">Private</option>
+                            <option value="true">Public</option>
+                            <option value="false" selected="selected">Private</option>
                         
                         @endif
                       </select>
@@ -124,7 +134,7 @@
                       let imgField = document.querySelector('#imgField');
                       imgField.appendChild(imgTag);
                     </script>
-                    <small id="fileHelp" class="form-text text-muted">Choose a event representative picture, such as a banner or photo of the venue</small>
+                    <small id="fileHelp" class="form-text text-muted">Choose an event representative picture, such as a banner or photo of the venue</small>
                   </div>
                   <br>
                 </fieldset>

@@ -1,3 +1,7 @@
+{{--@foreach(\App\Http\Controllers\EventController::topEvents() as $event)--}}
+    {{--{{$event}}--}}
+{{--@endforeach--}}
+
 @extends('layout')
 
 @section('content')

@@ -39,6 +39,6 @@
                 position: uluru,
                 map: map
             });
-        };
+        }
     }
 </script>
