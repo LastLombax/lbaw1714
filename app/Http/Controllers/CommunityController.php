@@ -2,7 +2,7 @@
 
     namespace App\Http\Controllers;
 
-    use App\Event;
+    use App\Community;
     use App\Http\Controllers\Controller;
     use Illuminate\Foundation\Request;
 

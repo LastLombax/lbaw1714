@@ -1,8 +1,7 @@
 @extends('layout')
 
 @section('title')
-    {{--@dd($events);--}}
-    {{$event->name}} | ReEvent
+   Edit {{$event->name}}
 @endsection
 
 @section('titleIcon')
@@ -21,8 +20,8 @@
        Edit Event
     </legend>
 
-      <form action="{{ route('createEvent') }}" method="POST">
-       <input type="hidden" name="_method" value="PUT">
+      <form action="{{ route('editEvent', $event)}}" method="POST">
+      {{ method_field('PATCH') }}
       {{ csrf_field() }}
 
       <div class="row align-items-center" style="border: 1px solid #ccc; width: 100%; margin: 0;">
@@ -36,41 +35,45 @@
                     <label class="col-form-label" for="inputDefault">
                       <b>Event Name</b>
                     </label>
-                    <input type="text" style="width:100%;" class="form-control col-xs-3" placeholder="Enter event name" id="eventName" maxlength="80">
+                    <input name="name" type="text" style="width:100%;" class="form-control col-xs-3" value="{{$event->name}}" placeholder="Enter event name" id="eventName" maxlength="80">
                   </div>
 
                   <label class="col-form-label" for="inputDefault"  style="width:100%;">
                     <b>Description</b>
                     <div class="form-inline form-group mb-2" style="width:100%;">
-                      <textarea  class="form-control" placeholder="Description" id="inputDefault" maxlength="255" style="width:100%;"> </textarea>
+                      <textarea name="description" class="form-control" placeholder="Description" id="inputDefault"  maxlength="255" style="width:100%;">{{$event->description}}</textarea>
                     </div>
                   </label>
 
                   <label class="col-form-label" for="inputDefault" style="width:100%;">
                     <b>Start date</b>
                     <div class="form-inline form-group mb-2" style="width:100%;">
-                      <input type="text" style="margin-right:0.25em" class="form-control col-lg-8" placeholder="March 4, 2018" id="inputDefault" style="width:100%;">
-                      <input type="text" class="form-control col-lg-3" placeholder="12:00 pm" id="inputDefault" style="width:100%;">
+                      <input name="startDate" type="text" style="margin-right:0.25em" value="{{$event->startday}}" class="form-control col-lg-8" id="inputDefault" style="width:100%;">
+                      <input name="startTime" type="time" value ="{{$event->starttime}}" class="form-control col-lg-3" placeholder="Start time" id="inputDefault" style="width:100%;">
                     </div>
                   </label>
 
                   <label class="col-form-label" for="inputDefault" style="width:100%;">
                     <b>End date</b>
                     <div class="form-inline form-group mb-2" style="width:100%;">
-                      <input type="text" style="margin-right:0.25em" class="form-control col-lg-8" placeholder="March 4, 2018" id="inputDefault" style="width:100%;"> 
-                      <input type="text" class="form-control col-lg-3" placeholder="12:00 pm" id="inputDefault" style="width:100%;">
+                      <input name="endDay" type="date" style="margin-right:0.25em" class="form-control col-lg-8" value="{{$event->endday}}" id="inputDefault" style="width:100%;"> 
+                      <input name="endTime" type="time" value ="{{$event->endtime}}" class="form-control col-lg-3" placeholder="End time" id="inputDefault" style="width:100%;">
                     </div>
                   </label>
-
-
                   <br>
                   <label class="col-form-label" for="inputDefault">
                     <b>Event visibility</b>
                     <br>
                     <div class="form-group">
                       <select name="visibility" class="form-control" id="inputDefault">
-                            <option value="Public">Public</option>
-                            <option value="Private">Private</option>
+                        @if($event->isPublic)
+                            <option value="Public" selected="selected">Public</option>
+                            <option value="Private">Private</option>                        
+                        @else
+                            <option value="Public"> Public</option>
+                            <option value="Private" selected="selected">Private</option>
+                        
+                        @endif
                       </select>
                     </div>
                   </label>
@@ -90,14 +93,14 @@
                     <label class="col-form-label" for="inputDefault">
                       <b>Location</b>
                     </label>
-                    <input type="text" class="form-control" placeholder="Example: Casa da Música, Porto, Portugal" id="inputDefault" maxlength="60">
+                    <input type="text" name="address" class="form-control" value="{{$event->address}}" placeholder="Example: Casa da Música, Porto, Portugal" id="inputDefault" maxlength="60">
                   </div>
 
                   <div class="form-group">
                     <label class="col-form-label" for="inputDefault">
                       <b>Lodging link</b>
                     </label>
-                    <input type="text" class="form-control" placeholder="Enter lodging link" id="inputDefault">
+                    <input type="text" name="lodgingLink" class="form-control" placeholder="Enter lodging link" id="inputDefault">
                   </div>
 
                   <div class="form-group">
@@ -111,9 +114,9 @@
                       <b>Image input</b>
                     </label>
                     <input type="file" class="form-control-file" id="eventImg" aria-describedby="fileHelp">
-                    <script>
-                      
+                    <script>                      
                       let fileName = document.querySelector('#eventImg').value;
+                      console.log(fileName);
                       
                       let imgTag = document.createElement('img');
                       imgTag.className += "src=\"" + fileName + "\"";
@@ -133,7 +136,7 @@
         </div>
 
       </div>
-       <button type="submit" onclick="event.preventDefault();" href="{{ route('createEvent') }}" class="btn btn-primary d-block ml-auto mt-3">Edit</button>
+       <button type="submit" class="btn btn-primary d-block ml-auto mt-3">Edit</button>
       </form>
     </div>
 @endsection

@@ -25,13 +25,14 @@
 			return view('pages.events.event')->with('event', $event);
 		}
 
-		public function editEventForm(Event $event){
+		public function editForm(Event $event){
 			
 			return view('pages.events.editEvent')->with('event', $event);
 		}
 
-		public function editEvent(Event $event){
-
+		public function edit(Request $request){
+			dd($request);
+			$event->save();
 			return view('pages.events.event')->with('event', $event);
 		}
 

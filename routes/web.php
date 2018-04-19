@@ -23,8 +23,8 @@ Route::get('/', function () {
 // Events
 Route::get('events', 'EventController@index')->name('events');
 Route::get('events/{event}', 'EventController@showEvent')->name('event')->where('event', '[0-9]+');
-Route::get('events/{event}/edit', 'EventController@editEventForm')->name('editEvent')->where('event', '[0-9]+');
-Route::patch('events/{event}/edit', 'EventController@editEvent')->name('editEvent');
+Route::get('events/{event}/edit', 'EventController@editForm')->name('editEvent')->where('event', '[0-9]+');
+Route::patch('events/{event}', 'EventController@edit')->name('editEvent');
 Route::get('events/create', 'EventController@createEventForm')->name('createEvent');
 Route::delete('events/{event}', 'EventController@deleteEvent')->name('deleteEvent');
 Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
