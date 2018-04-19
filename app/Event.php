@@ -8,6 +8,7 @@ class Event extends Model
 {
     protected $primaryKey = 'idevent';
     protected $table = 'event';
+		public $timestamps  = false;
 
     //Relations
 		public function commentTuples(){
