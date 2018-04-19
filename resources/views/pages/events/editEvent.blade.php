@@ -32,40 +32,40 @@
               <div style="background-color: #eee; padding: 20px; padding-top: 10px; height: 500px;">
                 <fieldset>
                   <div class="form-group">
-                    <label class="col-form-label" for="inputDefault">
+                    <label class="col-form-label" for="name">
                       <b>Event Name</b>
                     </label>
-                    <input name="name" type="text" style="width:100%;" class="form-control col-xs-3" value="{{$event->name}}" placeholder="Enter event name" id="eventName" maxlength="80">
+                    <input  id="name" name="name" type="text" style="width:100%;" class="form-control col-xs-3" value="{{$event->name}}" placeholder="Enter event name" maxlength="80">
                   </div>
 
-                  <label class="col-form-label" for="inputDefault"  style="width:100%;">
+                  <label class="col-form-label" for="description"  style="width:100%;">
                     <b>Description</b>
                     <div class="form-inline form-group mb-2" style="width:100%;">
-                      <textarea name="description" class="form-control" placeholder="Description" id="inputDefault"  maxlength="255" style="width:100%;">{{$event->description}}</textarea>
+                      <textarea id="description" name="description" name="description" class="form-control" placeholder="Description" maxlength="255" style="width:100%;">{{$event->description}}</textarea>
                     </div>
                   </label>
 
-                  <label class="col-form-label" for="inputDefault" style="width:100%;">
+                  <label class="col-form-label" for="startday" style="width:100%;">
                     <b>Start date</b>
                     <div class="form-inline form-group mb-2" style="width:100%;">
-                      <input name="startDate" type="text" style="margin-right:0.25em" value="{{$event->startday}}" class="form-control col-lg-8" id="inputDefault" style="width:100%;">
+                      <input id="startday" name ="startday" type="text" style="margin-right:0.25em" value="{{$event->startday}}" class="form-control col-lg-8" style="width:100%;">
                       <input name="startTime" type="time" value ="{{$event->starttime}}" class="form-control col-lg-3" placeholder="Start time" id="inputDefault" style="width:100%;">
                     </div>
                   </label>
 
-                  <label class="col-form-label" for="inputDefault" style="width:100%;">
+                  <label class="col-form-label" for="endday" style="width:100%;">
                     <b>End date</b>
                     <div class="form-inline form-group mb-2" style="width:100%;">
-                      <input name="endDay" type="date" style="margin-right:0.25em" class="form-control col-lg-8" value="{{$event->endday}}" id="inputDefault" style="width:100%;"> 
-                      <input name="endTime" type="time" value ="{{$event->endtime}}" class="form-control col-lg-3" placeholder="End time" id="inputDefault" style="width:100%;">
+                      <input id="endday" name="endday" type="date" style="margin-right:0.25em" class="form-control col-lg-8" value="{{$event->endday}}" style="width:100%;"> 
+                      <input id="endtime" name="endtime" type="time" value ="{{$event->endtime}}" class="form-control col-lg-3" placeholder="End time" style="width:100%;">
                     </div>
                   </label>
                   <br>
-                  <label class="col-form-label" for="inputDefault">
+                  <label class="col-form-label" for="visibility">
                     <b>Event visibility</b>
                     <br>
                     <div class="form-group">
-                      <select name="visibility" class="form-control" id="inputDefault">
+                      <select id="visibility" name="visibility" class="form-control" >
                         @if($event->isPublic)
                             <option value="Public" selected="selected">Public</option>
                             <option value="Private">Private</option>                        
@@ -90,30 +90,30 @@
               <div style="background-color: #eee; padding: 20px; padding-top: 10px; height: 500px;">
                 <fieldset style=" margin-bottom:51.3px;">
                   <div class="form-group">
-                    <label class="col-form-label" for="inputDefault">
+                    <label class="col-form-label" for="address">
                       <b>Location</b>
                     </label>
-                    <input type="text" name="address" class="form-control" value="{{$event->address}}" placeholder="Example: Casa da Música, Porto, Portugal" id="inputDefault" maxlength="60">
+                    <input id="address" name="address" type="text" class="form-control" value="{{$event->address}}" placeholder="Example: Casa da Música, Porto, Portugal" maxlength="60">
                   </div>
 
                   <div class="form-group">
-                    <label class="col-form-label" for="inputDefault">
+                    <label class="col-form-label" for="lodging">
                       <b>Lodging link</b>
                     </label>
-                    <input type="text" name="lodgingLink" class="form-control" placeholder="Enter lodging link" id="inputDefault">
+                    <input id="lodging" name="lodging" type="text"class="form-control" placeholder="Enter lodging link" >
                   </div>
 
                   <div class="form-group">
-                    <label class="col-form-label" for="inputDefault">
+                    <label class="col-form-label" for="venue">
                       <b>Venue Information</b>
                     </label>
-                    <input type="text" class="form-control" placeholder="Venue information" id="inputDefault" maxlength="100">
+                    <input id="venue" name="venue"type="text" class="form-control" placeholder="Venue information" maxlength="100">
                   </div>
                   <div class="form-group" id="imgField">
-                    <label class="col-form-label" for="eventImg">
+                    <label class="col-form-label" for="image">
                       <b>Image input</b>
                     </label>
-                    <input type="file" class="form-control-file" id="eventImg" aria-describedby="fileHelp">
+                    <input t id="image" name="image" type="file" class="form-control-file" aria-describedby="fileHelp">
                     <script>                      
                       let fileName = document.querySelector('#eventImg').value;
                       console.log(fileName);

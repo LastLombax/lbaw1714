@@ -11,12 +11,16 @@ class Community extends Model
 
     //Relations
 	
-	public function attendants(){ //memberTuples
+	public function members(){ //memberTuples
 		return $this->belongsToMany('App\Member','community_member', 'idcommunity', 'idmember');
 	}
 
     public function printDate(){
         $creationDate = strtotime($this->creationDate);
         echo date('F d, Y', $creationDate);
+    }
+
+    public function numberMembers(){
+        
     }
 }

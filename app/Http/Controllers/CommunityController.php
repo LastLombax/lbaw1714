@@ -13,37 +13,45 @@
             return view('pages.communities.showCommunities')->with('communities', $communities);
         }
 
-        public function createCommunityForm(){
+        public function createForm(){
 
             return view('pages.communities.createCommunity');
 
         }
 
-        public function showCommunity(Community $community){
+        public function create(Request $request){
+
+            dd($request);
+            return view('pages.community.createCommunity');
+
+        }
+
+        public function show(Community $community){
 
             return view('pages.communities.community')->with('community', $community);
         }
 
-        public function editCommunityForm(Community $community){
+        public function editForm(Community $community){
             
             return view('pages.communities.editCommunity')->with('community', $community);
         }
 
-        public function editCommunity(Event $event){
+        public function edit(Event $event){
 
             return view('pages.events.event')->with('community', $community);
         }
 
-        public function deleteCommunity(Community $community){
+        public function delete(Community $community){
 
             return view('pages.communities.community')->with('community', $community);
         }
 
-//      public static function topEvents(){ Mostrar top events, eventos com mais membros que vão
-//          return Event:: Event::memberTuples())->orderBy('attendants', 'DESC')
-//              ->limit(4)
-//              ->get();
-//      }
+        public static function topCommunities(){ 
+            dd(DB::select('SELECT count(community_member.idmember) as attendants, community.*
+                            FROM community_member INNER JOIN community ON community_member.idcommunity = community.idcommunity
+                            GROUP BY(community.idcommunity)
+                            ORDER BY attendants DESC'));
+        }
 
 
     }

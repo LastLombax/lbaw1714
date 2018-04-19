@@ -22,21 +22,23 @@ Route::get('/', function () {
 
 // Events
 Route::get('events', 'EventController@index')->name('events');
-Route::get('events/{event}', 'EventController@showEvent')->name('event')->where('event', '[0-9]+');
+Route::get('events/{event}', 'EventController@show')->name('event')->where('event', '[0-9]+');
 Route::get('events/{event}/edit', 'EventController@editForm')->name('editEvent')->where('event', '[0-9]+');
 Route::patch('events/{event}', 'EventController@edit')->name('editEvent');
-Route::get('events/create', 'EventController@createEventForm')->name('createEvent');
-Route::delete('events/{event}', 'EventController@deleteEvent')->name('deleteEvent');
+Route::get('events/create', 'EventController@createForm')->name('createEvent');
+Route::post('events/create', 'EventController@create')->name('createEvent');
+Route::delete('events/{event}', 'EventController@delete')->name('deleteEvent');
 Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
 
 
 // Communities
 Route::get('communities', 'CommunityController@index')->name('communities');
-Route::get('communities/{community}', 'CommunityController@showCommunity')->name('community')->where('community', '[0-9]+');
-Route::get('communities/{community}/edit', 'CommunityController@editCommunityForm')->name('editCommunity')->where('community', '[0-9]+');
-Route::patch('communities/{community}/edit', 'CommunityController@editCommunity')->name('editCommunity');
-Route::get('communities/create', 'CommunityController@createCommunityForm')->name('createCommunity');
-Route::delete('communities/{community}', 'CommunityController@deleteCommunity')->name('deleteCommunity');
+Route::get('communities/{community}', 'CommunityController@show')->name('community')->where('community', '[0-9]+');
+Route::get('communities/{community}/edit', 'CommunityController@editForm')->name('editCommunity')->where('community', '[0-9]+');
+Route::patch('communities/{community}/edit', 'CommunityController@edit')->name('editCommunity');
+Route::get('communities/create', 'CommunityController@createForm')->name('createCommunity');
+Route::post('communities/create', 'CommunityController@create')->name('createCommunity');
+Route::delete('communities/{community}', 'CommunityController@delete')->name('deleteCommunity');
 Route::get('communities/manageCommunities', 'CommunityController@manageCommunities')->name('manageCommunities');
 
 

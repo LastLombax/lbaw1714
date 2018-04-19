@@ -14,13 +14,20 @@
 			return view('pages.events.showEvents')->with('events', $events);
 		}
 
-		public function createEventForm(){
+		public function createForm(){
 
 			return view('pages.events.createEvent');
 
 		}
 
-		public function showEvent(Event $event){
+		public function create(Request $request){
+
+			dd($request);
+			return view('pages.events.createEvent');
+
+		}
+
+		public function show(Event $event){
 
 			return view('pages.events.event')->with('event', $event);
 		}
@@ -58,15 +65,15 @@
 		}
 
 		//TODO In need of check of permitions
-		public function deleteEvent(Event $event){
+		public function delete(Event $event){
 
 			return view('pages.events.event')->with('event', $event);
 		}
 
 		public static function topEvents(){ //Mostrar top events, eventos com mais membros que vão
 			dd(DB::select('SELECT count(event_member.idmember) as attendants, event.*
-												FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-												GROUP BY(event.idevent)
-												ORDER BY attendants DESC'));
+							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+							GROUP BY(event.idevent)
+							ORDER BY attendants DESC'));
 		}
 	}
