@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                     <td style="padding-left: 5px; padding-right: 5px; border: 1px solid white;"><i class="fas fa-plus"></i> 
-                   <a href="{{route('createEvent')}}" style="text-decoration: none;"> <b>Add Event</b> </a>
+                   <a href="{{route('createEvent')}}" style="text-decoration: none; color: white;"> <b>Add Event</b> </a>
                     </td>
                 </tr>
             </table>

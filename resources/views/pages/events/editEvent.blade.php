@@ -21,6 +21,7 @@
     </legend>
 
       <form action="{{ route('editEvent', $event)}}" method="POST">
+
       {{ method_field('PATCH') }}
       {{ csrf_field() }}
 

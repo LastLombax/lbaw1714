@@ -16,7 +16,7 @@ class Event extends Model
 		}
 
 		public function attendants(){ //memberTuples
-			return $this->belongsToMany('App\Member','event_member', 'idevent', 'idmember');
+			return $this->belongsToMany('App\Member','event_member', 'idevent', 'idmember')->withPivot('isadmin');
 		}
 
     public function printDate(){

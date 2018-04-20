@@ -7,6 +7,7 @@
 	use Illuminate\Http\Request;
 	use Illuminate\Support\Facades\DB;
 	use Illuminate\Support\Facades\Validator;
+	use Illuminate\Support\Facades\Gate;
 
 	class EventController extends Controller
 	{
@@ -24,6 +25,24 @@
 		public function create(Request $request){
 
 			dd($request);
+
+			$this->validator($request->all())->validate();
+
+			$event = new Event();
+
+			$event->name = $request->name;
+			$event->description = $request->description;
+//			$event->imagepath
+			$event->startday = $request->startDate;
+			$event->endday = $request->endDate;
+			$event->starttime = $request->startTime;
+			$event->endtime = $request->endTime;
+			$event->country = $request->country;
+//			$event->city = $request->
+			$event->ispublic = $request->visibility;
+
+			$event->save();
+
 			return view('pages.events.createEvent');
 
 		}
@@ -38,21 +57,24 @@
 		}
 
 		public function edit(Request $request, Event $event){
+			dd($request);
+			if (Gate::allows('update-event', $event)) {
+				$this->validator($request->all())->validate();
 
-			//$this->validator($request->all())->validate();
-
-			$event->name = $request->name;
-			$event->description = $request->description;
+				$event->name = $request->name;
+				$event->description = $request->description;
 //			$event->imagepath
-			$event->startday = $request->startDate;
-			$event->endday = $request->endDate;
-			$event->starttime = $request->startTime;
-			$event->endtime = $request->endTime;
-			$event->country = $request->country;
+				$event->startday = $request->startDate;
+				$event->endday = $request->endDate;
+				$event->starttime = $request->startTime;
+				$event->endtime = $request->endTime;
+				$event->country = $request->country;
 //			$event->city = $request->
-			$event->ispublic = $request->visibility;
+				$event->ispublic = $request->visibility;
 
-			$event->save();
+				$event->save();
+			}
+
 			return view('pages.events.event')->with('event', $event);
 		}
 

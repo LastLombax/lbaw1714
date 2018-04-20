@@ -23,5 +23,8 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-    }
+
+				Gate::define('update-event', 'App\Policies\EventPolicy@update');
+
+		}
 }
