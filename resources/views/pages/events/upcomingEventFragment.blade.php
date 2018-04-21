@@ -1,6 +1,6 @@
 <?php
-$query = \App\Http\Controllers\EventController::upcomingPublicEvents();
 
+$query = \App\Http\Controllers\EventController::upcomingPublicEvents();
 
 $first = $query[0];
 

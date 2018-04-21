@@ -24,6 +24,10 @@ Route::get('search', function () {
     return view('internal.search');
 })->name('search');
 
+Route::get('slide', function () {
+    return view('internal.slideshow');
+})->name('slide');
+
 // Events
 Route::get('events', 'EventController@index')->name('events');
 Route::get('events/{event}', 'EventController@show')->name('event')->where('event', '[0-9]+');

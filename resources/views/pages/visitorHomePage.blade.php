@@ -13,8 +13,7 @@
 
 
             <div class="col-lg-8">
-                <iframe style="border: none; width: 100%; margin-right: 15px; min-height: 500px; height: 100%" src="slideshow/index.html"
-                        seamless></iframe>
+                <iframe style="border: none; width: 100%; margin-right: 15px; min-height: 500px; height: 100%" src="/slide" seamless></iframe>
             </div>
 
             <br>
@@ -38,7 +37,7 @@
         <br>
         <br>
         <div class="container" style="padding-bottom: -30px;">
-            <div class="row align-items-center" style="width: 100%">
+            <div class="row justify-content-center align-items-center">
 
                 <div class="col-lg-4 align-self-start">
                     <div class="bs-ccomponent">

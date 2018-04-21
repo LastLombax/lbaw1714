@@ -67,7 +67,7 @@ function searchEventsReceived(){
     div2.append(div3);
 
     container.append(div1);
-    
+
     if(searchFormInput.value == '')
         container.innerHTML = containerCopy;
 
