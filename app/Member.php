@@ -15,6 +15,7 @@
 		public function  commentTuples(){
 			return $this->hasMany('App\Comment', 'author');
 		}
+		
 		public function  eventTuples(){
 			return $this->belongsToMany('App\Event','event_member', 'idmember', 'idevent')->withPivot('isadmin');
 		}

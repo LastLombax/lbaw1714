@@ -23,9 +23,7 @@
 		}
 
 		public function create(Request $request){
-
 			dd($request);
-
 			$this->validator($request->all())->validate();
 
 			$event = new Event();
@@ -43,12 +41,11 @@
 
 			$event->save();
 
-			return view('pages.events.createEvent');
+			return view('pages.events.event')->with('event', $event);
 
 		}
 
 		public function show(Event $event){
-
 			return view('pages.events.event')->with('event', $event);
 		}
 
@@ -57,20 +54,23 @@
 		}
 
 		public function edit(Request $request, Event $event){
-			dd($request);
+
 			if (Gate::allows('update-event', $event)) {
 				$this->validator($request->all())->validate();
-
+			
 				$event->name = $request->name;
 				$event->description = $request->description;
-//			$event->imagepath
+				//$event->imagepath
 				$event->startday = $request->startDate;
 				$event->endday = $request->endDate;
 				$event->starttime = $request->startTime;
 				$event->endtime = $request->endTime;
 				$event->country = $request->country;
-//			$event->city = $request->
-				$event->ispublic = $request->visibility;
+				//$event->city = $request->
+				if ($request->visibility =="public")
+					$event->ispublic = true;
+				else
+					$event->ispublic = false;
 
 				$event->save();
 			}
@@ -78,10 +78,20 @@
 			return view('pages.events.event')->with('event', $event);
 		}
 
-		//TODO In need of check of permitions
-		public function deleteEvent(Event $event){
+		
+		public function delete(Event $event){
 
-			return view('pages.events.event')->with('event', $event);
+			if (Gate::allows('update-event', $event)) {
+
+				Event::find($event->idevent)->delete();
+
+				return redirect()->route('homepage');
+			}
+
+			else
+
+			 return view('pages.events.event')->with('event', $event);
+
 		}
 
 		/**Asserts the validity of the event's data
@@ -97,17 +107,18 @@
 //			];
 
 
-			return Validator::make($data, [
+			return $validate = Validator::make($data, [
 				'name' => 'required|string|max:64',
 				'description' => 'required|string|max:516',
 				'startDate'=> '',
 				'startTime' => '',
 				'endDay' => '',
 				'endTime' => '',
-				'visibility'=> 'boolean',
+				'ispublic'=> 'boolean',
 				'address' => '',
 				'lodgingLink' => '',
 			]);
+			
 		}
 
 		//Queries
@@ -130,12 +141,6 @@
 						->orderBy('startday', 'ASC')
 						->limit(4)
 						->get();
-		}
-
-		//TODO In need of check of permitions
-		public function delete(Event $event){
-
-			return view('pages.events.event')->with('event', $event);
 		}
 
 		public static function topEvents(){ //Mostrar top events, eventos com mais membros que vão
