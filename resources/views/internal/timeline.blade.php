@@ -1,71 +1,36 @@
-<div id="time">
-    <section id=timeline>
-        <div class="demo-card-wrapper">
-            <div class="demo-card demo-card--step1">
-                <div class="head">
-                    <div class="number-box">
-                        <span>01</span>
-                    </div>
-                    <h2><span class="small">Subtitle</span> Technology</h2>
-                </div>
-                <div class="body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta reiciendis deserunt doloribus consequatur, laudantium odio dolorum laboriosam.</p>
-                    <img src="http://placehold.it/1000x500" alt="Graphic">
-                </div>
-            </div>
+<?php
 
-            <div class="demo-card demo-card--step2">
-                <div class="head">
-                    <div class="number-box">
-                        <span>02</span>
-                    </div>
-                    <h2><span class="small">Subtitle</span> Confidence</h2>
-                </div>
-                <div class="body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta reiciendis deserunt doloribus consequatur, laudantium odio dolorum laboriosam.</p>
-                    <img src="http://placehold.it/1000x500" alt="Graphic">
-                </div>
-            </div>
+$query = \App\Http\Controllers\EventController::upcomingMemberEvents();
 
-            <div class="demo-card demo-card--step3">
-                <div class="head">
-                    <div class="number-box">
-                        <span>03</span>
-                    </div>
-                    <h2><span class="small">Subtitle</span> Adaptation</h2>
-                </div>
-                <div class="body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta reiciendis deserunt doloribus consequatur, laudantium odio dolorum laboriosam.</p>
-                    <img src="http://placehold.it/1000x500" alt="Graphic">
-                </div>
-            </div>
 
-            <div class="demo-card demo-card--step4">
-                <div class="head">
-                    <div class="number-box">
-                        <span>04</span>
-                    </div>
-                    <h2><span class="small">Subtitle</span> Consistency</h2>
-                </div>
-                <div class="body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta reiciendis deserunt doloribus consequatur, laudantium odio dolorum laboriosam.</p>
-                    <img src="http://placehold.it/1000x500" alt="Graphic">
-                </div>
-            </div>
+echo '<div id="time">';
+echo '<section id=timeline>';
+        echo '<div class="demo-card-wrapper">';
 
-            <div class="demo-card demo-card--step5">
-                <div class="head">
-                    <div class="number-box">
-                        <span>05</span>
-                    </div>
-                    <h2><span class="small">Subtitle</span> Conversion</h2>
-                </div>
-                <div class="body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta reiciendis deserunt doloribus consequatur, laudantium odio dolorum laboriosam.</p>
-                    <img src="http://placehold.it/1000x500" alt="Graphic">
-                </div>
-            </div>
+        $i = 0;
 
-        </div>
-    </section>
-</div>
+        foreach ($query as $event){
+            $i++;
+
+             echo ' <div class="demo-card demo-card--step' . $i . '">';
+                echo '<div class="head">';
+                    echo '<div class="number-box">';
+                        echo '<span>0' . $i . '</span>';
+                    echo '</div>';
+                    if(strlen($event->name) > 20)
+                        echo '<h2><span class="small">' . $event->startday . '</span>' . substr($event->name,0,20) . '...</h2>';
+                    else
+                        echo '<h2><span class="small">' . $event->startday . '</span>' . $event->name . '</h2>';
+                echo '</div>';
+                echo '<div class="body">';
+                   echo ' <p>' . $event->description . '</p>';
+                    echo '<img style="width: 100%; height: 200px; object-fit: cover;" src="' . $event->imagepath . '" alt="Graphic">';
+                echo '</div>';
+            echo '</div>';
+        }
+
+        echo '</div>';
+    echo '</section>';
+echo '</div>';
+
+?>

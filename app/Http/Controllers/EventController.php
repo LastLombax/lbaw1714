@@ -139,12 +139,12 @@
                 ->get();
 		}
 
-		public static function upcomingEvents(){
+		public static function upcomingMemberEvents(){
 				return Event::where(
 								'startday','>=', now()->toDateString()
 						)
 						->orderBy('startday', 'ASC')
-						->limit(4)
+						->limit(5)
 						->get();
 		}
 
