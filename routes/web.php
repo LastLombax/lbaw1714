@@ -18,7 +18,11 @@ Route::get('/', function () {
     else
         return view('pages/homePage');
 });
- 
+
+//search
+Route::get('search', function () {
+    return view('internal.search');
+})->name('search');
 
 // Events
 Route::get('events', 'EventController@index')->name('events');

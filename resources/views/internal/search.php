@@ -1,11 +1,12 @@
 <?php
 
+$query;
+
 if (isset($_GET['searchField'])) {
 
-    $query = \App\Http\Controllers\EventController::nearbyPublicEvents();
-    $messages = $query->fetchAll();
+    $query = \App\Http\Controllers\EventController::searchEventByName($_GET['searchField']);
 }
 
 // JSON encode
-echo $messages->with('data', json_encode($data));
+echo json_encode($query);
 ?>

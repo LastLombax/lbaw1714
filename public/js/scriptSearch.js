@@ -10,7 +10,7 @@ searchFormInput.addEventListener('keyup', searchEvent);
 
 function searchEvent(event) {
     let request = new XMLHttpRequest();
-    request.open('get', '../views/internal/search.php?' + encodeForAjax({'searchField': searchFormInput.value}), true);
+    request.open('get', 'search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
     request.addEventListener('load', searchEventsReceived);
     request.send();
 
@@ -28,6 +28,10 @@ function searchEventsReceived(){
         console.log(data);
         container.innerHTML = data + "<br>"
     });
+
+    if(searchFormInput.value == '')
+        container.innerHTML = containerCopy;
+
 }
 
 function encodeForAjax(data) {
