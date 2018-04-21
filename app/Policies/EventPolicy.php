@@ -41,8 +41,9 @@
 		public function update(Member $user, Event $event) {
 
 			$tuple = $user->eventTuples()->find($event->idevent);
-
-			return $tuple->pivot->isAdmin;
+			if ($tuple == null)
+				return false;
+			return $tuple->pivot->isadmin;
 
 		}
 
@@ -56,7 +57,8 @@
 		public function delete(Member $user, Event $event) {
 
 			$tuple = $user->eventTuples()->find($event->idevent);
-
-			return $tuple->pivot->isAdmin;
+			if ($tuple == null)
+				return false;
+			return $tuple->pivot->isadmin;
 		}
 	}

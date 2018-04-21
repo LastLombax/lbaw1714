@@ -17,7 +17,7 @@ Route::get('/', function () {
         return view('pages/visitorHomePage');
     else
         return view('pages/homePage');
-});
+})->name('homepage');
 
 //search
 Route::get('search', function () {
@@ -37,7 +37,6 @@ Route::patch('events/{event}', 'EventController@edit')->name('editEvent');
 Route::get('events/create', 'EventController@createForm')->name('createEvent');
 Route::post('events/create', 'EventController@create')->name('createEvent');
 Route::delete('events/{event}', 'EventController@delete')->name('deleteEvent');
-
 Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
 
 

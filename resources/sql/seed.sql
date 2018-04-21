@@ -831,7 +831,7 @@ INSERT INTO event_eventcategory VALUES (31, 7);
 --
 -- Data for Name: event_member; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
 --
-
+INSERT INTO event_member VALUES (1,101,true);
 INSERT INTO event_member VALUES (21, 43, true);
 INSERT INTO event_member VALUES (16, 12, false);
 INSERT INTO event_member VALUES (22, 71, false);
@@ -1818,7 +1818,7 @@ ALTER TABLE ONLY community_communitycategory
 --
 
 ALTER TABLE ONLY report
-    ADD CONSTRAINT fk_comment FOREIGN KEY (comment) REFERENCES comment(idcomment);
+    ADD CONSTRAINT fk_comment FOREIGN KEY (comment) REFERENCES comment(idcomment) ON DELETE CASCADE;
 
 
 --
@@ -1826,7 +1826,7 @@ ALTER TABLE ONLY report
 --
 
 ALTER TABLE ONLY notification
-    ADD CONSTRAINT fk_comment FOREIGN KEY (comment) REFERENCES comment(idcomment);
+    ADD CONSTRAINT fk_comment FOREIGN KEY (comment) REFERENCES comment(idcomment) ON DELETE CASCADE;
 
 
 --
@@ -1834,7 +1834,7 @@ ALTER TABLE ONLY notification
 --
 
 ALTER TABLE ONLY community_member
-    ADD CONSTRAINT fk_community FOREIGN KEY (idcommunity) REFERENCES community(idcommunity);
+    ADD CONSTRAINT fk_community FOREIGN KEY (idcommunity) REFERENCES community(idcommunity) ON DELETE CASCADE;
 
 
 --
@@ -1842,7 +1842,7 @@ ALTER TABLE ONLY community_member
 --
 
 ALTER TABLE ONLY community_communitycategory
-    ADD CONSTRAINT fk_community FOREIGN KEY (idcommunity) REFERENCES community(idcommunity);
+    ADD CONSTRAINT fk_community FOREIGN KEY (idcommunity) REFERENCES community(idcommunity) ON DELETE CASCADE;
 
 
 --
@@ -1850,7 +1850,7 @@ ALTER TABLE ONLY community_communitycategory
 --
 
 ALTER TABLE ONLY report
-    ADD CONSTRAINT fk_community FOREIGN KEY (community) REFERENCES community(idcommunity);
+    ADD CONSTRAINT fk_community FOREIGN KEY (community) REFERENCES community(idcommunity) ON DELETE CASCADE;
 
 
 --
@@ -1858,7 +1858,7 @@ ALTER TABLE ONLY report
 --
 
 ALTER TABLE ONLY notification
-    ADD CONSTRAINT fk_community FOREIGN KEY (community) REFERENCES community(idcommunity);
+    ADD CONSTRAINT fk_community FOREIGN KEY (community) REFERENCES community(idcommunity) ON DELETE CASCADE;
 
 
 --
@@ -1866,7 +1866,7 @@ ALTER TABLE ONLY notification
 --
 
 ALTER TABLE ONLY event
-    ADD CONSTRAINT fk_community FOREIGN KEY (community) REFERENCES community(idcommunity);
+    ADD CONSTRAINT fk_community FOREIGN KEY (community) REFERENCES community(idcommunity) ON DELETE CASCADE;
 
 
 --
@@ -1890,7 +1890,7 @@ ALTER TABLE ONLY community_communitycategory
 --
 
 ALTER TABLE ONLY community_member
-    ADD CONSTRAINT fk_community_member_community FOREIGN KEY (idcommunity) REFERENCES community(idcommunity);
+    ADD CONSTRAINT fk_community_member_community FOREIGN KEY (idcommunity) REFERENCES community(idcommunity) ON DELETE CASCADE;
 
 
 --
@@ -1898,7 +1898,7 @@ ALTER TABLE ONLY community_member
 --
 
 ALTER TABLE ONLY community_member
-    ADD CONSTRAINT fk_community_member_member FOREIGN KEY (idmember) REFERENCES member(idmember);
+    ADD CONSTRAINT fk_community_member_member FOREIGN KEY (idmember) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -1906,7 +1906,7 @@ ALTER TABLE ONLY community_member
 --
 
 ALTER TABLE ONLY community_member
-    ADD CONSTRAINT fk_communitymember FOREIGN KEY (idmember) REFERENCES member(idmember);
+    ADD CONSTRAINT fk_communitymember FOREIGN KEY (idmember) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -1922,7 +1922,7 @@ ALTER TABLE ONLY event_eventcategory
 --
 
 ALTER TABLE ONLY event_member
-    ADD CONSTRAINT fk_event FOREIGN KEY (idevent) REFERENCES event(idevent);
+    ADD CONSTRAINT fk_event FOREIGN KEY (idevent) REFERENCES event(idevent) ON DELETE CASCADE;
 
 
 --
@@ -1930,7 +1930,7 @@ ALTER TABLE ONLY event_member
 --
 
 ALTER TABLE ONLY comment
-    ADD CONSTRAINT fk_event FOREIGN KEY (event) REFERENCES event(idevent);
+    ADD CONSTRAINT fk_event FOREIGN KEY (event) REFERENCES event(idevent) ON DELETE CASCADE;
 
 
 --
@@ -1938,7 +1938,7 @@ ALTER TABLE ONLY comment
 --
 
 ALTER TABLE ONLY report
-    ADD CONSTRAINT fk_event FOREIGN KEY (event) REFERENCES event(idevent);
+    ADD CONSTRAINT fk_event FOREIGN KEY (event) REFERENCES event(idevent) ON DELETE CASCADE;
 
 
 --
@@ -1946,7 +1946,7 @@ ALTER TABLE ONLY report
 --
 
 ALTER TABLE ONLY notification
-    ADD CONSTRAINT fk_event FOREIGN KEY (event) REFERENCES event(idevent);
+    ADD CONSTRAINT fk_event FOREIGN KEY (event) REFERENCES event(idevent) ON DELETE CASCADE;
 
 
 --
@@ -1954,7 +1954,7 @@ ALTER TABLE ONLY notification
 --
 
 ALTER TABLE ONLY friend
-    ADD CONSTRAINT fk_event FOREIGN KEY (idf1) REFERENCES member(idmember);
+    ADD CONSTRAINT fk_event FOREIGN KEY (idf1) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -1970,7 +1970,7 @@ ALTER TABLE ONLY event_eventcategory
 --
 
 ALTER TABLE ONLY event_member
-    ADD CONSTRAINT fk_member FOREIGN KEY (idmember) REFERENCES member(idmember);
+    ADD CONSTRAINT fk_member FOREIGN KEY (idmember) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -1978,7 +1978,7 @@ ALTER TABLE ONLY event_member
 --
 
 ALTER TABLE ONLY comment
-    ADD CONSTRAINT fk_member FOREIGN KEY (author) REFERENCES member(idmember);
+    ADD CONSTRAINT fk_member FOREIGN KEY (author) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -1986,7 +1986,7 @@ ALTER TABLE ONLY comment
 --
 
 ALTER TABLE ONLY ticket
-    ADD CONSTRAINT fk_member FOREIGN KEY (buyer) REFERENCES member(idmember);
+    ADD CONSTRAINT fk_member FOREIGN KEY (buyer) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -1994,7 +1994,7 @@ ALTER TABLE ONLY ticket
 --
 
 ALTER TABLE ONLY report
-    ADD CONSTRAINT fk_member FOREIGN KEY (reporter) REFERENCES member(idmember);
+    ADD CONSTRAINT fk_member FOREIGN KEY (reporter) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -2002,7 +2002,7 @@ ALTER TABLE ONLY report
 --
 
 ALTER TABLE ONLY notification
-    ADD CONSTRAINT fk_member FOREIGN KEY (recipient) REFERENCES member(idmember);
+    ADD CONSTRAINT fk_member FOREIGN KEY (recipient) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -2010,7 +2010,7 @@ ALTER TABLE ONLY notification
 --
 
 ALTER TABLE ONLY friend
-    ADD CONSTRAINT fk_member FOREIGN KEY (idf2) REFERENCES member(idmember);
+    ADD CONSTRAINT fk_member FOREIGN KEY (idf2) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -2018,7 +2018,7 @@ ALTER TABLE ONLY friend
 --
 
 ALTER TABLE ONLY ticket
-    ADD CONSTRAINT fk_tickettype FOREIGN KEY (type) REFERENCES tickettype(idtickettype);
+    ADD CONSTRAINT fk_tickettype FOREIGN KEY (type) REFERENCES tickettype(idtickettype) ON DELETE CASCADE;
 
 
 --
@@ -2026,7 +2026,7 @@ ALTER TABLE ONLY ticket
 --
 
 ALTER TABLE ONLY report
-    ADD CONSTRAINT report_member_fkey FOREIGN KEY (member) REFERENCES member(idmember);
+    ADD CONSTRAINT report_member_fkey FOREIGN KEY (member) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -2034,5 +2034,5 @@ ALTER TABLE ONLY report
 --
 
 ALTER TABLE ONLY ticket
-    ADD CONSTRAINT ticket_idinvoice_fkey FOREIGN KEY (idinvoice) REFERENCES invoice(idinvoice);
+    ADD CONSTRAINT ticket_idinvoice_fkey FOREIGN KEY (idinvoice) REFERENCES invoice(idinvoice) ON DELETE CASCADE;
 
