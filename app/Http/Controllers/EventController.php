@@ -111,7 +111,7 @@
 		}
 
 		//Queries
-		public static function nearbyPublicEvents(){
+		public static function upcomingPublicEvents(){
             return Event::where(
                     [
                         ['ispublic', '=', 'true'],
@@ -123,7 +123,7 @@
                 ->get();
 		}
 
-		public static function nearbyEvents(){
+		public static function upcomingEvents(){
 				return Event::where(
 								'startday','>=', now()->toDateString()
 						)
@@ -144,4 +144,10 @@
 							GROUP BY(event.idevent)
 							ORDER BY attendants DESC'));
 		}
+
+        public static function searchEventByName($selectedName){
+            $selected = "%" . $selectedName . "%";
+
+            return Event::where('name','LIKE', $selected)->orderBy('startday', 'ASC')->limit(9)->get();
+        }
 	}

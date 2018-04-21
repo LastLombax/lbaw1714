@@ -43,8 +43,8 @@
                 <div class="col-lg-4 align-self-start">
                     <div class="bs-ccomponent">
                         <div class="card mb-3">
-                            <h3 class="card-header" style="border-bottom: 10px solid #158cb8">Nearby Events</h3>
-                            @include('pages.events.nearbyEventFragment')
+                            <h3 class="card-header" style="border-bottom: 10px solid #158cb8">Upcoming Events</h3>
+                            @include('pages.events.upcomingEventFragment')
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="col-lg-4 align-self-start">
                     <div class="bs-ccomponent">
                         <div class="card mb-3">
-                            <h3 class="card-header" style="border-bottom: 10px solid #158cb8">Upcoming Events</h3>
+                            <h3 class="card-header" style="border-bottom: 10px solid #158cb8">Nearby Events</h3>
                             <div class="card-body">
                                 <h5 class="card-title" style="font-size: 1.2em">SuperBock Super Rock</h5>
                                 <h6 class="card-subtitle text-muted">20th July, 2018</h6>

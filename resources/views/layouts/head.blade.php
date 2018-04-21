@@ -15,6 +15,8 @@
  <link rel="shortcut icon" type="image/png" href="{{ asset('icon/favicon.png') }}" />
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+ <script src="{{ asset('js/scriptSearch.js') }}" defer></script>
  <!-- Bootstrap -->
  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
