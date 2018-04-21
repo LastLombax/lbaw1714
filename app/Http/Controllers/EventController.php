@@ -149,6 +149,12 @@
 							GROUP BY(event.idevent)
 							ORDER BY attendants DESC LIMIT 2');
 		}
+        public static function memberTopEvents(){ //Mostrar top events, eventos com mais membros que vão
+            return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+							GROUP BY(event.idevent)
+							ORDER BY attendants DESC LIMIT 4');
+        }
 
         public static function searchEventByName($selectedName){
             $selected = "%" . $selectedName . "%";
