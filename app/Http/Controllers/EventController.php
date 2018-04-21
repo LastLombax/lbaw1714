@@ -4,6 +4,7 @@
 
 	use App\Event;
 	use App\Http\Controllers\Controller;
+	use Auth;
 	use Illuminate\Http\Request;
 	use Illuminate\Support\Facades\DB;
 	use Illuminate\Support\Facades\Validator;
@@ -37,10 +38,14 @@
 			$event->endtime = $request->endTime;
 			$event->country = $request->country;
 //			$event->city = $request->
-			$event->ispublic = $request->visibility;
+			if ($request->visibility =="public")
+				$event->ispublic = true;
+			else
+				$event->ispublic = false;
+
+			dd($request);
 
 			$event->save();
-
 			return view('pages.events.event')->with('event', $event);
 
 		}
@@ -57,7 +62,7 @@
 
 			if (Gate::allows('update-event', $event)) {
 				$this->validator($request->all())->validate();
-			
+
 				$event->name = $request->name;
 				$event->description = $request->description;
 				//$event->imagepath
@@ -78,7 +83,7 @@
 			return view('pages.events.event')->with('event', $event);
 		}
 
-		
+
 		public function delete(Event $event){
 
 			if (Gate::allows('update-event', $event)) {
@@ -118,7 +123,7 @@
 				'address' => '',
 				'lodgingLink' => '',
 			]);
-			
+
 		}
 
 		//Queries
@@ -149,11 +154,24 @@
 							GROUP BY(event.idevent)
 							ORDER BY attendants DESC LIMIT 2');
 		}
+
         public static function memberTopEvents(){ //Mostrar top events, eventos com mais membros que vão
             return DB::select('SELECT count(event_member.idmember) as attendants, event.*
 							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
 							GROUP BY(event.idevent)
 							ORDER BY attendants DESC LIMIT 4');
+		}
+
+		public static function manageEvents(){ //Event admin dashboard
+			$user = Auth::id();	//congrations you done it
+			return view('pages.events.manageEvents');
+
+			/*
+			return DB::select('SELECT event.name, description, imagePath,  starttime, endtime
+							FROM event, event_member, member
+							WHERE event.idevent = event_member.idevent AND event_member.idmember = ' . $user . ' AND event_member.isadmin = true
+							GROUP BY(event.idevent)');
+							*/
         }
 
         public static function searchEventByName($selectedName){
