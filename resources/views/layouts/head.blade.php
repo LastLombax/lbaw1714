@@ -25,3 +25,4 @@
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
  <link href="css/timeline.css" rel="stylesheet">
+ <link href="css/searchNavBar.css" rel="stylesheet">

@@ -1,31 +1,34 @@
-<div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-        <div class="input-group">
-            <div class="input-group-btn search-panel">
-                <button id="filterBy" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span id="search_concept">Filter by</span> <span class="caret"></span>
-                </button>
-                <div class="dropdown-menu" role="menu" aria-labelledby="filterBy" style="padding-left: 10px; padding-right: 10px;">
-                    <li class="form-group dropdown-item">
-                        <label class="col-form-label" for="inputDefault">
-                            <b>Price</b>
-                        </label>
-                        <input type="number" min="0" > to
-                        <input type="number" min="1" >
-                    </li>
-                    <li class="form-group">
-                        <label class="col-form-label" for="inputDefault">
-                            <b>Categories</b>
-                        </label>
-                        <input type="text" class="form-control col-xs-3" placeholder="Enter category name" id="categorySearch" maxlength="80">
-                    </li>
-                </div>
-            </div>
-            <input type="hidden" name="search_param" value="all" id="search_param">
-            <input type="text" class="form-control" name="x" placeholder="Search term...">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-          </span>
-        </div>
-    </div>
-</div>
+<form action="" method="get">
+    <ul class="searchNav">
+        <li id="options">
+            <a href="#">Filter</a>
+            <ul class="subSearchNav">
+                <li>
+                    <a>
+                        <table>
+                            <tr>
+                                <td>
+                                    Price
+                                </td>
+                                <td>
+                                    <input type="number" min="0" >
+                                </td>
+                                <td>
+                                    to
+                                </td>
+                                <td>
+                                    <input type="number" min="1" >
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li id="search">
+            <input type="text" name="search_text" id="search_text" placeholder="Search"/>
+            <input type="button" name="search_button" id="search_button">
+        </li>
+    </ul>
+</form>
+<script src="prefixfree-1.0.7.js" type="text/javascript"></script>
