@@ -6,6 +6,8 @@
     background: #ddd;
     height: 60px;
     display: block;
+    margin-bottom: 0 !important;
+
 }
 
 .searchNav li {
@@ -98,6 +100,7 @@
     opacity: 0;
     transition: all 0.1s;
     background-color: #eeeeee;
+    margin-bottom: 0 !important;
 }
 .subSearchNav li {
     float: none;
@@ -106,6 +109,8 @@
     font-size: 2.5em;
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
+    margin-bottom: 0 !important;
+
 }
 .subSearchNav li td{
     padding: 5px;

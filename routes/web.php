@@ -28,6 +28,10 @@ Route::get('slide', function () {
     return view('internal.slideshow');
 })->name('slide');
 
+Route::get('time', function () {
+    return view('internal.timeline');
+})->name('time');
+
 // Events
 Route::get('events', 'EventController@index')->name('events');
 Route::get('events/{event}', 'EventController@show')->name('event')->where('event', '[0-9]+');

@@ -1,6 +1,13 @@
 'use strict';
 
 let container = document.querySelector('.container');
+let timeline = document.querySelector('#time');
+let timelineCopy;
+
+if(timeline != null){
+    timelineCopy = timeline.innerHTML;
+}
+
 let containerCopy = container.innerHTML;
 let searchFormInput = document.querySelector('input[id=search_text]');
 
@@ -17,12 +24,17 @@ function searchEvent(event) {
 
 function searchEventsReceived(){
     let lines = JSON.parse(this.responseText);
+
     container.innerHTML = '';
+
+    if(timeline != null)
+        timeline.innerHTML = '';
 
     let div1 = document.createElement('div');
     div1.classList.add('nearby-events');
 
     div1.innerHTML =
+        '        <br>' +
         '        <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0;">\n' +
         '            <i class="fas fa-calendar-check"></i>\n' +
         '            <span style="margin-left: .5rem;">\n' +
@@ -40,7 +52,7 @@ function searchEventsReceived(){
     lines.forEach(function(data){
         console.log(data);
         div3.innerHTML +=
-            '            <div class="col-lg-4">\n' +
+            '            <div class="col-lg-4 align-self-start">\n' +
             '              <div class="bs-ccomponent">\n' +
             '                <div class="card mb-4">\n' +
             '                  <h3 class="card-header" style="border-bottom: 10px solid #158cb8">' + data.name + '</h3>\n' +
@@ -68,8 +80,10 @@ function searchEventsReceived(){
 
     container.append(div1);
 
-    if(searchFormInput.value == '')
+    if(searchFormInput.value == ''){
         container.innerHTML = containerCopy;
+        timeline.innerHTML = timelineCopy;
+    }
 
 }
 
