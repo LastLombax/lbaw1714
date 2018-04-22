@@ -14,7 +14,7 @@
 	{
 		public function index(){
 			$events = Event::all();
-			return view('pages.events.showEvents')->with('events', $events);
+			return view('pages.events.viewEvents')->with('events', $events);
 		}
 
 		public function createForm(){
@@ -160,19 +160,20 @@
 						->get();
 		}
 
-		public static function topEvents(){ //Mostrar top events, eventos com mais membros que vão
+		public static function topEvents($limit){ //Mostrar top events, eventos com mais membros que vão
 			return DB::select('SELECT count(event_member.idmember) as attendants, event.*
 							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
 							GROUP BY(event.idevent)
-							ORDER BY attendants DESC LIMIT 2');
+							ORDER BY attendants DESC LIMIT ' . $limit);
 		}
 
-        public static function memberTopEvents(){ //Mostrar top events, eventos com mais membros que vão
+        public static function memberTopEvents($limit, $offset){ //Mostrar top events, eventos com mais membros que vão
             return DB::select('SELECT count(event_member.idmember) as attendants, event.*
 							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
 							GROUP BY(event.idevent)
-							ORDER BY attendants DESC LIMIT 4');
+							ORDER BY attendants DESC LIMIT ' . $limit . ' OFFSET ' . $offset);
 		}
+
 
 		public static function manageEvents(){ //Event admin dashboard
 			$user = Auth::id();	//congrations you done it

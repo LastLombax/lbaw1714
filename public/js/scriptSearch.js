@@ -54,16 +54,16 @@ function searchEventsReceived(){
         div3.innerHTML +=
             '            <div class="col-lg-4 align-self-start">\n' +
             '              <div class="bs-ccomponent">\n' +
-            '                <div class="card mb-4">\n' +
-            '                  <h3 class="card-header" style="border-bottom: 10px solid #158cb8">' + data.name + '</h3>\n' +
+            '                <div class="card mb-4" style="box-shadow: 1px 1px 30px #ddd;">\n' +
             '                  <div class="card-body">\n' +
-            '                    <h6 class="card-subtitle text-muted">' + data.startDay + '</h6>\n' +
+            '                  <h3 class="card-title" style="background-color: #fff;"><a style="color: #000;" href="{{asset(\\\'events/\' + data.idevent +\'\\\')}}">' + data.name + '</a></h3>\n' +
+            '                    <h6 class="card-subtitle text-muted">' + data.startday + '</h6>\n' +
             '                  </div>\n' +
             '                  <img style="width: 100%; height: 200px; object-fit: cover;" src="'+ data.imagepath +'" alt="Card image">\n' +
             '                  <div class="card-body">\n' +
             '                    <p class="card-text">'+ data.description +'</p>\n' +
             '                  </div>\n' +
-            '                  <div class="card-footer text-muted">\n' +
+            '                  <div class="card-footer text-muted" style="background-color: #fff; text-align: right;">\n' +
             '                    <a href="{{asset(\'events/' + data.idevent +'\')}}" class="card-link">Open event</a>\n' +
             '                  </div>\n' +
             '                </div>\n' +

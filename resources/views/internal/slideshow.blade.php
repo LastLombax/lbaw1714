@@ -1,6 +1,6 @@
 <?php
 
-$query = \App\Http\Controllers\EventController::topEvents();
+$query = \App\Http\Controllers\EventController::topEvents(2,0);
 
 
 echo '<!DOCTYPE html>';

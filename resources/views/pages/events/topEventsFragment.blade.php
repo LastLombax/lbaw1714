@@ -1,6 +1,6 @@
 <?php
 
-$query = \App\Http\Controllers\EventController::memberTopEvents();
+$query = \App\Http\Controllers\EventController::memberTopEvents(4,0);
 
 $first = $query[0];
 
