@@ -1,4 +1,132 @@
-body {
-    padding-top: 30px;
-    background-color: #eee;
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+.searchNav {
+    margin-left: -42px;
+    margin-right: auto;
+    background: #ddd;
+    height: 60px;
+    display: block;
+    margin-bottom: 0 !important;
+
+}
+
+.searchNav li {
+    float: left;
+    list-style-type: none;
+    position: relative;
+}
+
+.searchNav li a {
+    font-size: 16px;
+    color: #666;
+    display: block;
+    line-height: 60px;
+    padding: 0 26px;
+    text-decoration: none;
+    border-left: 1px solid #2e2e2e;
+    font-family: Montserrat, sans-serif;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.searchNav li a:hover {
+}
+
+#settings a {
+    padding: 18px;
+    height: 24px;
+    font-size: 10px;
+    line-height: 24px;
+}
+
+#search {
+    width: calc(100% - 117px);
+    margin: 4px;
+}
+#search_text{
+    width: calc(100% - 60px);
+    padding: 15px 0 15px 20px;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    border: 0 none;
+    height: 52px;
+    margin-right: 0;
+    color: #666;
+    outline: none;
+    background: #fff;
+    float: left;
+    box-sizing: border-box;
+    transition: all 0.15s;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #666;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #666;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #666;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #666;
+}
+#search_button {
+    border: 0 none;
+    background: #bbb url("../icon/search.png") center no-repeat;
+    width: 60px;
+    float: left;
+    padding: 0;
+    text-align: center;
+    height: 52px;
+    cursor: pointer;
+}
+
+#options a{
+    border-left: 0 none;
+}
+#options > a {
+    background-image: url('../icon/triangle.png');
+    background-position: 85% center;
+    background-repeat: no-repeat;
+    padding-right: 42px;
+}
+.subSearchNav {
+    margin-left: -42px;
+    visibility: hidden;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    left: 0px;
+    width: 367px;
+    height: auto;
+    opacity: 0;
+    transition: all 0.1s;
+    background-color: #eeeeee;
+    margin-bottom: 0 !important;
+}
+.subSearchNav li {
+    float: none;
+}
+.subSearchNav li a {
+    font-size: 2.5em;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    margin-bottom: 0 !important;
+
+}
+.subSearchNav li td{
+    padding: 5px;
+}
+.subSearchNav li a input {
+    border: 1px solid #ddd;
+    width: 100px;
+    background: #fff;
+    height: 40px;
+}
+.subSearchNav li a input:focus {
+    background: #fff;
+}
+#options:hover .subSearchNav {
+    z-index: 9999;
+    visibility: visible;
+    top: 100%;
+    opacity: 1;
 }

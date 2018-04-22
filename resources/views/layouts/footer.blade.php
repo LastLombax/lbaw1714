@@ -12,13 +12,13 @@
                         <a href="/">Home</a>
                     </td>
                     <td>
-                        <a href="about">About</a>
+                        <a href="{{route('about')}}">About</a>
                     </td>
                     <td>
-                        <a href="faq">FAQs</a>
+                        <a href="{{route('faq')}}">FAQs</a>
                     </td>
                     <td>
-                        <a href="contacts">Contact us</a>
+                        <a href="{{route('contact')}}">Contact us</a>
                     </td>
             </table>
             {{--<div style="text-align:center; font-size: small ">--}}

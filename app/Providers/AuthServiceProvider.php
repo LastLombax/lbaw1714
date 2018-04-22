@@ -13,8 +13,6 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-      'App\Card' => 'App\Policies\CardPolicy',
-      'App\Item' => 'App\Policies\ItemPolicy'
     ];
 
     /**
@@ -25,5 +23,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-    }
+
+				Gate::define('update-delete-event', 'App\Policies\EventPolicy@update');
+				Gate::define('delete-event', 'App\Policies\EventPolicy@delete');
+
+
+		}
 }

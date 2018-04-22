@@ -18,8 +18,8 @@ class Comment extends Model
 		return $this->authorTuple()->name;
 	}
 
-	public function event(){
-		return $this->belongsTo('Event', 'event');
+	public function eventTuple(){
+		return $this->belongsTo('App\Event', 'event');
 	}
 
 	public function authorTuple(){

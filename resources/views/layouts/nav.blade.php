@@ -4,10 +4,6 @@
         <b> ReEvent</b>
     </a>
 
-    @if (Auth::check())
-        <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
-    @endif
-
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,9 +18,9 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
                 <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                    <a class="dropdown-item" href="createEvent.html" ><i class="fas fa-plus"></i> Add Event</a>
-                    <a class="dropdown-item" href="manageEvents.html" ><i class="fas fa-edit"></i> Manage your Events</a>
-                    <a class="dropdown-item" href="viewEvents.html" ><i class="fas fa-search"></i> Search for Events</a>
+                    <a class="dropdown-item" href="{{route('createEvent')}}" ><i class="fas fa-plus"></i> Add Event</a>
+                    <a class="dropdown-item" href="{{route('manageEvents')}}" ><i class="fas fa-edit"></i> Manage your Events</a>
+                    <a class="dropdown-item" href="{{route('events')}}" ><i class="fas fa-search"></i> Search for Events</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -42,13 +38,28 @@
         <form class="form-inline my-2 my-lg-0">
             <table style="font-size: 12px; color: white; text-align: right; margin-right: 15px;">
                 <tr style="font-size: 9.5px">
-                    <td>Welcome, God</td>
+                    <td>
+                        @if (Auth::check())
+                            Welcome, <span>{{ Auth::user()->name }}</span>
+                        @endif
+                    </td>
                 </tr>
                 <tr>
-                    <td style="padding-left: 5px; padding-right: 5px; border: 1px solid white;"><i class="fas fa-plus"></i> <b>Add Event</b></td>
+                    <td style="padding-left: 5px; padding-right: 5px; border: 1px solid white;"><i class="fas fa-plus"></i> 
+                   <a href="{{route('createEvent')}}" style="text-decoration: none; color: white;"> <b>Add Event</b> </a>
+                    </td>
                 </tr>
             </table>
-            <i class="material-icons" style="font-size: 32px; color: rgba(255, 255, 255, 1);">account_circle</i>
+            @if (Auth::check())
+                <div class="nav-item dropdown">
+                    <i class="material-icons" style="font-size: 32px; color: rgba(255, 255, 255, 1); cursor: pointer;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">account_circle</i>
+                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(-85px, 42px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <a class="dropdown-item" href="myProfile.html" ><i class="fas fa-user"></i> My Profile</a>
+                        <a class="dropdown-item" href="myFriends.html" ><i class="fas fa-users"></i>  My Friends</a>
+                        <a class="dropdown-item" href="{{ url('/logout') }}" ><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            @endif
         </form>
     </div>
 </nav>

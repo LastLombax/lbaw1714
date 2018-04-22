@@ -2,10 +2,12 @@
 
 	namespace App\Http\Controllers\Auth;
 
+	use App\Member;
 	use App\User;
 	use App\Http\Controllers\Controller;
 	use Illuminate\Support\Facades\Validator;
 	use Illuminate\Foundation\Auth\RegistersUsers;
+	use Symfony\Component\VarDumper\Caster\DateCaster;
 
 	class RegisterController extends Controller
 	{
@@ -45,24 +47,37 @@
 		 * @return \Illuminate\Contracts\Validation\Validator
 		 */
 		protected function validator(array $data) {
+			$messages = [
+				'unique' => 'That :attribue is already in use!',
+				'max'    => 'The :attribute surpassed the maximum length :max!',
+				'email.required' => 'We need to know your e-mail address!',
+
+			];
+
 			return Validator::make($data, [
-				'name' => 'required|string|max:255',
-				'email' => 'required|string|email|max:255|unique:users',
+				'username' => 'required|string|max:255',
+				'email' => 'required|string|email|max:255|unique:member',
 				'password' => 'required|string|min:6|confirmed',
-			]);
+			],
+				$messages);
 		}
 
 		/**
-		 * Create a new user instance after a valid registration.
+		 * Create a new Member instance after a valid registration.
 		 *
 		 * @param  array $data
-		 * @return \App\User
+		 * @return \App\Member
 		 */
 		protected function create(array $data) {
-			return User::create([
-				'name' => $data['name'],
+			return Member::create([
+				'username' => $data['username'],
 				'email' => $data['email'],
+				'country' => $data['country'],
 				'password' => bcrypt($data['password']),
+				'name' => $data['name'],
+				'registrationdate' => now()->toDateString(),
+				'verifiedemail' => false,
+				'iswebsiteadmin' => false,
 			]);
 		}
 
