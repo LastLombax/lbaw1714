@@ -4,6 +4,7 @@
 
 	use App\Event;
 	use App\Http\Controllers\Controller;
+	use App\Member;
 	use Auth;
 	use Illuminate\Http\Request;
 	use Illuminate\Support\Facades\DB;
@@ -52,8 +53,7 @@
 				]
 			);
 
-			return view('pages.events.event')->with('event', $event);
-
+			return redirect()->route('event', $event->idevent);
 		}
 
 		public function show(Event $event){
@@ -110,6 +110,10 @@
 			 return view('pages.events.event')->with('event', $event);
 
 		}
+
+	protected function inviteMember(Request $request, Event $event){
+			dd($request);
+	}
 
 		/**Asserts the validity of the event's data
 		 * @param array $data Event's attributes present in the request
@@ -175,16 +179,19 @@
 		}
 
 
-		public static function manageEvents(){ //Event admin dashboard
-			$user = Auth::id();	//congrations you done it
+		public static function memberManageEvents(){
+
+			$user = Auth::id();	
+
+			return DB::select('SELECT event.idevent, event.name, description, imagePath, startday, endday
+				FROM event, event_member, member
+				WHERE event.idevent = event_member.idevent AND event_member.idmember = ' . $user . ' AND event_member.isadmin = true
+				GROUP BY(event.idevent)');
+		}
+
+		public static function manageEvents(){
 			return view('pages.events.manageEvents');
 
-			/*
-			return DB::select('SELECT event.name, description, imagePath,  starttime, endtime
-							FROM event, event_member, member
-							WHERE event.idevent = event_member.idevent AND event_member.idmember = ' . $user . ' AND event_member.isadmin = true
-							GROUP BY(event.idevent)');
-							*/
         }
 
         public static function searchEventByName($selectedName){
