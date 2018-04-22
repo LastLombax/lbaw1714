@@ -162,16 +162,20 @@
 							ORDER BY attendants DESC LIMIT 4');
 		}
 
-		public static function manageEvents(){ //Event admin dashboard
-			$user = Auth::id();	//congrations you done it
+		public static function memberManageEvents(){
+
+			$user = Auth::id();	
+
+			return DB::select('SELECT event.idevent, event.name, description, imagePath, startday, endday
+				FROM event, event_member, member
+				WHERE event.idevent = event_member.idevent AND event_member.idmember = ' . $user . ' AND event_member.isadmin = true
+				GROUP BY(event.idevent)');
+		}
+
+		public static function manageEvents(){			
+			
 			return view('pages.events.manageEvents');
 
-			/*
-			return DB::select('SELECT event.name, description, imagePath,  starttime, endtime
-							FROM event, event_member, member
-							WHERE event.idevent = event_member.idevent AND event_member.idmember = ' . $user . ' AND event_member.isadmin = true
-							GROUP BY(event.idevent)');
-							*/
         }
 
         public static function searchEventByName($selectedName){
