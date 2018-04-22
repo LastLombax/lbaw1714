@@ -2032,4 +2032,3 @@ ALTER TABLE ONLY report
 
 ALTER TABLE ONLY ticket
     ADD CONSTRAINT ticket_idinvoice_fkey FOREIGN KEY (idinvoice) REFERENCES invoice(idinvoice) ON DELETE CASCADE;
-
