@@ -216,7 +216,8 @@
 
     <div class="modal fade" id="modalInvite" tabindex="-1" role="dialog" aria-labelledby="modalInviteTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form class="modal-content" action="" method="POST">
+            <form method="POST" action="{{route('inviteEvent', $event)}}" class="modal-content">
+                {{ csrf_field()}}
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalInviteTitle">Invite people</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

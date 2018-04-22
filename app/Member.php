@@ -7,6 +7,7 @@
 
 	class Member extends Authenticatable
 	{
+
 		protected $primaryKey = 'idmember';
 		protected $table = 'member';
 

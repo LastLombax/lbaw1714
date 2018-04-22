@@ -42,6 +42,8 @@ Route::get('events/create', 'EventController@createForm')->name('createEvent');
 Route::post('events/create', 'EventController@create')->name('createEvent');
 Route::delete('events/{event}', 'EventController@delete')->name('deleteEvent');
 Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
+Route::post('ajax/events/inviteMember', 'EventController@inviteMember')->name('inviteEvent');
+
 
 
 // Communities
