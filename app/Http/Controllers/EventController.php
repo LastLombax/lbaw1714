@@ -24,28 +24,34 @@
 		}
 
 		public function create(Request $request){
-			dd($request);
 			$this->validator($request->all())->validate();
 
 			$event = new Event();
 
 			$event->name = $request->name;
 			$event->description = $request->description;
-//			$event->imagepath
+
 			$event->startday = $request->startDate;
 			$event->endday = $request->endDate;
 			$event->starttime = $request->startTime;
 			$event->endtime = $request->endTime;
 			$event->country = $request->country;
-//			$event->city = $request->
-			if ($request->visibility =="public")
-				$event->ispublic = true;
-			else
-				$event->ispublic = false;
+			$event->address = $request->address;
+			$event->city = $request->city;
+			$event->ispublic = $request->visibility;
+			$event->imagepath = $request->imagePath;
 
-			dd($request);
 
 			$event->save();
+
+
+			DB::table('event_member')->insert(
+				[	'idevent' => $event->idevent,
+					'idmember' => Auth::user()->idmember,
+					'isadmin' => true,
+				]
+			);
+
 			return view('pages.events.event')->with('event', $event);
 
 		}
@@ -59,23 +65,24 @@
 		}
 
 		public function edit(Request $request, Event $event){
-
-			if (Gate::allows('update-event', $event)) {
+			if (Gate::allows('update-delete-event', $event)) {
 				$this->validator($request->all())->validate();
 
 				$event->name = $request->name;
 				$event->description = $request->description;
-				//$event->imagepath
+
+				if(isset($request->imagepath))
+					$event->imagepath = $request->imagepath;
+
 				$event->startday = $request->startDate;
 				$event->endday = $request->endDate;
 				$event->starttime = $request->startTime;
 				$event->endtime = $request->endTime;
 				$event->country = $request->country;
-				//$event->city = $request->
-				if ($request->visibility =="public")
-					$event->ispublic = true;
-				else
-					$event->ispublic = false;
+				$event->city = $request->city;
+				$event->address = $request->address;
+
+				$event->ispublic = $request->visibility;
 
 				$event->save();
 			}
@@ -86,9 +93,14 @@
 
 		public function delete(Event $event){
 
-			if (Gate::allows('update-event', $event)) {
+			if (Gate::allows('update-delete-event', $event)) {
 
-				Event::find($event->idevent)->delete();
+				//Event::find($event->idevent)->delete();
+				try {
+					$event->delete();
+				} catch (\Exception $e) {
+					echo "<script>console.log( 'Exception deleting event: ');</script>";
+				}
 
 				return redirect()->route('homepage');
 			}

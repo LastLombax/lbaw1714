@@ -62,7 +62,12 @@
                     </div>
                   </label>
                   <br>
-                    @include('layouts.countrySelector')
+                  <label class="col-form-label" for="country" style="width:100%;">
+                    <b>Country</b>
+                    <div class="form-inline form-group mb-2" style="width:100%;">
+                      @include('layouts.countrySelector')
+                    </div>
+                  </label>
 
                     <label class="col-form-label" for="visibility">
                     <b>Event visibility</b>
@@ -97,6 +102,13 @@
                       <b>Location</b>
                     </label>
                     <input id="address" name="address" type="text" class="form-control" value="{{$event->address}}" placeholder="Example: Casa da Música, Porto, Portugal" maxlength="60">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-form-label" for="city">
+                      <b>City</b>
+                    </label>
+                    <input id="city" name = "city" type="text" class="form-control" value="{{$event->city}}" placeholder="Example: Funchal, Lisboa, Porto" maxlength="5f0"  required>
                   </div>
 
                   <div class="form-group">
