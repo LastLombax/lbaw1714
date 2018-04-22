@@ -112,7 +112,14 @@
 		}
 
 	protected function inviteMember(Request $request, Event $event){
-			dd($request);
+			$username = $request->usernameField;
+			$idEvent = $event->idevent;
+			$user = Member::where('username', '=', $username)->get()[0]->idmember;
+			if($user != null){
+			return DB::insert('INSERT INTO notification VALUES
+				('. now() . ' , event, null, ' . idMember . ', "You were invited to" , null, ' . $idEvent . ')'
+				);
+			};
 	}
 
 		/**Asserts the validity of the event's data
@@ -181,7 +188,7 @@
 
 		public static function memberManageEvents(){
 
-			$user = Auth::id();	
+			$user = Auth::id();
 
 			return DB::select('SELECT event.idevent, event.name, description, imagePath, startday, endday
 				FROM event, event_member, member
