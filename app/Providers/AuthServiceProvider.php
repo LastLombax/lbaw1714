@@ -24,7 +24,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-				Gate::define('update-event', 'App\Policies\EventPolicy@update');
+				Gate::define('update-delete-event', 'App\Policies\EventPolicy@update');
+				Gate::define('delete-event', 'App\Policies\EventPolicy@delete');
+
 
 		}
 }
