@@ -3,17 +3,6 @@
 @section('content')
 
     <script type="text/javascript" defer>
-        function searchUsers(value){
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("userSearchResults").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("POST", "ajax_info.txt", true);
-            http.send();
-        }
-
         function confirmDeletion(form) {
             if (confirm("Are you sure you want to delete the event? \n WARNING: You cannot go back"))
                 form.submit();
@@ -227,7 +216,7 @@
 
     <div class="modal fade" id="modalInvite" tabindex="-1" role="dialog" aria-labelledby="modalInviteTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <form class="modal-content" action="" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalInviteTitle">Invite people</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -236,18 +225,15 @@
                 </div>
                 <div class="modal-body">
                     <div id="search">
-                        <input type="text" name="search_text" id="search_text" placeholder="Search" onchange="searchUsers(this.value);"/>
-                        <input type="button" name="search_button" id="search_button">
-                    </div>
-                    <div id="userSearchResults">
-
+                        <input type="text" name="search_text" id="search_text" placeholder="Input username..."/>
+                        <!--<input type="button" name="search_button" id="search_button">-->
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send invite</button>
+                    <button type="submit" class="btn btn-primary" >Send invite</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection
