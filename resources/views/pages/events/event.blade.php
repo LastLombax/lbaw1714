@@ -225,14 +225,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="search">
-                        <input type="text" name="search_text" id="search_text" placeholder="Input username..."/>
-                        <!--<input type="button" name="search_button" id="search_button">-->
-                    </div>
+                    <input type="text" name="usernameField" id="usernameField" placeholder="Input username..."/>
+                    <!--<input type="button" name="search_button" id="search_button">-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" >Send invite</button>
+                    <button type="submit" class="btn btn-primary">Send invite</button>
                 </div>
             </form>
         </div>
