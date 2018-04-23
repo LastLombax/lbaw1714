@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
 
 use App\Member;
 use Illuminate\Http\Request;
@@ -26,9 +27,9 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function editForm(Member $member)
-    {
-        //
+    public function editForm(){
+        $member = Auth::user();
+        return view('pages.members.editProfile')->with('member', $member);
     }
 
     /**
