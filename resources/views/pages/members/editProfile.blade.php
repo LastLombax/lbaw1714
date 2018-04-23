@@ -56,7 +56,7 @@
                                 </div>
 
                                 <br>
-                                <button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </fieldset>
 
                         </div>
@@ -111,7 +111,7 @@
                                 </div>
 
                             </fieldset>
-                            <button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';" class="btn btn-primary ">Save changes</button>
+                            <button type="submit" class="btn btn-primary ">Save changes</button>
 
                         </div>
                         <div class="progress">
