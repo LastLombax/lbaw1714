@@ -14,7 +14,6 @@
         </nav>
 
         <br>
-
             <form method="POST" action="{{ route('register') }}" style="margin-top:-22px; background-color: #eee; padding: 20px; padding-top: 10px; border-radius: 10px; border: 1px solid #ccc;">
                 {{ csrf_field() }}
                 <fieldset>
@@ -25,13 +24,26 @@
                             <input id="username" name="username"  type="text" value="{{ old('username') }}" class="form-control" placeholder="Enter username" required>
                         @else
                             <input id="username" name="username"  type="text" value="{{ old('username') }}" class="form-control is-invalid" placeholder="Enter username" required>
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Error: </strong>{{$errors->first('username')}}
+                            </div>
                         @endif
 
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label" for="username">Name</label>
-                        <input id="name" name="name"  type="text" value="{{ old('name') }}" class="form-control" placeholder="Enter your name" required>
+
+                        @if (!$errors->has('name'))
+                            <input id="name" name="name"  type="text" value="{{ old('name') }}" class="form-control" placeholder="Enter your name" required>
+                        @else
+                            <input id="name" name="name"  type="text" value="{{ old('name') }}" class="form-control is-invalid" placeholder="Enter your name" required>
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Error: </strong>{{$errors->first('name')}}
+                            </div>
+                        @endif
                     </div>
 
                     <div class="form-group">
@@ -41,18 +53,42 @@
                             <input  id="email" name="email" type="email" value="{{ old('email') }}" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" required>
                         @else
                             <input  id="email" name="email" type="email" value="{{ old('email') }}" class="form-control is-invalid"  aria-describedby="emailHelp" placeholder="Enter email" required>
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Error: </strong>{{$errors->first('email')}}
+                            </div>
                         @endif
 
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input id="password" name="password" type="password" class="form-control" placeholder="Password" required>
+
+                        @if (!$errors->has('password'))
+                            <input id="password" name="password" type="password" class="form-control" placeholder="Password" required>
+                        @else
+                            <input id="password" name="password" type="password" class="form-control is-invalid" placeholder="Password" required>
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Error: </strong>{{$errors->first('password')}}
+                            </div>
+                        @endif
+
                     </div>
 
                     <div class="form-group">
                         <label for="password_confirmation">Confirm Password</label>
-                        <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Confirm Password" required>
+
+                        @if (!$errors->has('password'))
+                            <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Confirm Password" required>
+                        @else
+                            <input id="password_confirmation" name="password_confirmation" type="password" class="form-control is-invalid" placeholder="Confirm Password" required>
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Error: </strong>{{$errors->first('password')}}
+                            </div>
+                        @endif
+
                     </div>
 
                     @include('layouts.countrySelector')

@@ -4,14 +4,14 @@
     <div class="container"> 
      <form method="POST" action="{{ route('createEvent') }}">
           {{ csrf_field() }}
-        <div class="row align-items-center" style="border: 1px solid #ccc; width: 100%; margin: 0;">
-   
-            <div class="col-lg-6 align-self-start" style="padding-left: 0; padding-right:0;">
-                <div class="bs-ccomponent">
-                    <div style="background-color: #eee; padding: 20px; padding-top: 10px; height: 500px;">
+        <div class="row align-items-center">
 
-           
-                        <fieldset>
+            <div class="col-md align-self-start" style="padding-left: 0; padding-right:0; margin:10px; min-width: 300px">
+                <div class="bs-ccomponent">
+
+                    <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
+
+                    <fieldset>
                             <div class="form-group">
                                 <label class="col-form-label" for="name">
                                     <b>Event Name</b>
@@ -41,6 +41,7 @@
                                     <input id="endTime" name ="endTime" required type="time" class="form-control col-lg-3" placeholder="12:00 pm" style="width:100%;">
                                 </div>
                             </label>
+
                             <label class="col-form-label" for="country" style="width:100%;">
                                 <b>Country</b>
                                 <div class="form-inline form-group mb-2" style="width:100%;">
@@ -51,25 +52,23 @@
                             <label class="col-form-label" for="visibility">
                                 <b>Event Visibility</b>
                                 <br>
-                                <div class="form-group">
                                     <select id="visibility" name="visibility" class="form-control" required>
                                         <option value="true">Public</option>
                                         <option value="false">Private</option>
                                     </select>
-                                </div>
                             </label>
+
                         </fieldset>
                     </div>
-
                 </div>
             </div>
 
 
-            <div class="col-lg-6 align-self-start" style="padding-left: 0; padding-right:0;">
+            <div class="col-md align-self-start" style="padding-left: 0; padding-right:0; margin:10px; min-width: 300px">
                 <div class="bs-ccomponent">
 
-                    <div style="background-color: #eee; padding: 20px; padding-top: 10px; height: 500px;">
-                        <fieldset style=" margin-bottom:51.3px;">
+                    <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
+                        <fieldset>
                             <div class="form-group">
                                 <label class="col-form-label" for="address">
                                     <b>Location</b>
@@ -97,30 +96,49 @@
                                 </label>
                                 <input id="venue" name="venue" type="text" class="form-control" placeholder="Venue information" maxlength="100" required>
                             </div>
-                            <div class="form-group" id="imgField">
-                                <label class="col-form-label" for="eventImage">
-                                    <b>Image input</b>
-                                </label>
-                                <input id="imagePath" name="imagePath" type="file" class="form-control-file" aria-describedby="fileHelp">
-                                <script>
-                                    let fileName = document.querySelector('#imagePath').value;
-
-                                    let imgTag = document.createElement('img');
-                                    imgTag.className += "src=\"" + fileName + "\"";
-
-                                    let imgField = document.querySelector('#imgField');
-                                    imgField.appendChild(imgTag);
-                                </script>
-                                <small id="fileHelp" class="form-text text-muted">Choose a event representative picture, such as a banner or photo of the venue</small>
-                            </div>
-                            <br>
                         </fieldset>
                     </div>
                 </div>
             </div>
+
+             <div class="col-md align-self-start" style="padding-left: 0; padding-right:0; margin:10px; min-width: 300px">
+                 <div style="background-color: #eee; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
+                     <div class="row align-items-center" >
+                         <div class="col-md align-self-start">
+
+                             <img style="width: 100%; height: 200px; object-fit: cover;"" src="{{asset('img/addImage.png')}}">
+
+                         </div>
+                         <div class="col-md align-self-start">
+                             <div class="form-group" id="imgField" style="padding: 10px;">
+                                 <div class="row">
+                                     <div class="col">
+                                         <label for="eventImage">
+                                             <b>Image input</b>
+                                         </label>
+                                         <input id="imagePath" name="imagePath" type="file" class="form-control-file" aria-describedby="fileHelp">
+                                         <script>
+                                             let fileName = document.querySelector('#imagePath').value;
+
+                                             let imgTag = document.createElement('img');
+                                             imgTag.className += "src=\"" + fileName + "\"";
+
+                                             let imgField = document.querySelector('#imgField');
+                                             imgField.appendChild(imgTag);
+                                         </script>
+                                     </div>
+                                     <div class="col">
+                                         <small id="fileHelp" class="form-text text-muted">Choose a event representative picture, such as a banner or photo of the venue</small>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
         </div>
        
-        <button type="submit"  class="btn btn-primary d-block ml-auto mt-3">Create</button>
+        <button type="submit" style="box-shadow: 1px 1px 30px #ddd;"  class="btn btn-primary d-block ml-auto mt-3">Create</button>
    
       </form>
     </div>
