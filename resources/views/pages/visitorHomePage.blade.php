@@ -105,7 +105,7 @@
                         <p class="lead">Need help? This is just a bit of what our platform has to offer. You can see events, join them, buy tickets, be part
                             of a community and much more. Besides this you might need more help to understand all about! Consult our FAQ pages.</p>
                         <p class="lead">
-                            <a class="btn btn-primary btn-lg" href="#" role="button">Take me there</a>
+                            <a class="btn btn-primary btn-lg" href="{{route('faq')}}" role="button">Take me there</a>
                         </p>
                     </div>
                 </div>

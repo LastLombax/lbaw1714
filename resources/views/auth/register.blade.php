@@ -10,7 +10,7 @@
     <div class="container" style="width: 100%; max-width: 400px; margin: auto; padding-top: 23px;">
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin: 0 auto; width: 200px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-            <a class="navbar-brand" href="index.html" style="margin: 0 auto;"><img src="icon/logo.png"> ReEvent</a>
+            <a class="navbar-brand" href="/" style="margin: 0 auto;"><img src="icon/logo.png"> ReEvent</a>
         </nav>
 
         <br>
