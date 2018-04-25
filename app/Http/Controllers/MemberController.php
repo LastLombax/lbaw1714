@@ -79,28 +79,31 @@ class MemberController extends Controller
     }
 
     public static function profileUpcoming($member)
-    {$todayDate = date('Y-m-d H:i:s');
-        $todayHour = date('Y-m-d H:i:s');
+    {
+        $todayDate = date('Y-m-d');
+        $todayHour = date('H:i:s');
         return DB::select('
-                        SELECT name, description, imagePath,  starttime, endtime
+                        SELECT "event".idevent, name, description, imagePath, startday, starttime, endtime
                         FROM "event", "event_member"
-                        WHERE "event".idevent = "event_member".idevent AND "event_member".idmember ='.$member.'                     
-                        Order BY "event".startday');
+                        WHERE "event".idevent = "event_member".idevent AND "event_member".idmember ='.$member.'  
+                         AND "event".startday >= \'' . $todayDate . ' \'                  
+                        Order BY "event".startday DESC');
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset
     }
     
     public static function profileHistory($member)
     {
-        $todayDate = date('Y-m-d H:i:s');
-        $todayHour = date('Y-m-d H:i:s');
+        $todayDate =date('Y-m-d');
+        $todayHour = date('H:i:s');
+        
         return DB::select('
-                        SELECT name, description, imagePath, startday, endday, starttime, endtime
+                        SELECT "event".idevent, name, description, imagePath, startday, endday, starttime, endtime
                         FROM "event"
                         INNER JOIN event_member
                         ON "event".idevent= "event_member".idevent AND "event_member".idmember = '.$member . '
-                        WHERE "event".startday >= ' . $todayDate . '
-                        Order BY "event".startday');
+                        WHERE "event".startday <= \'' . $todayDate . ' \'
+                        Order BY "event".startday DESC');
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset
     }
