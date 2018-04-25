@@ -48,14 +48,14 @@
 		 */
 		protected function validator(array $data) {
 			$messages = [
-				'unique' => 'That :attribue is already in use!',
+				'unique' => 'That :attribute is already in use!',
 				'max'    => 'The :attribute surpassed the maximum length :max!',
 				'email.required' => 'We need to know your e-mail address!',
 
 			];
 
 			return Validator::make($data, [
-				'username' => 'required|string|max:255',
+				'username' => 'required|string|unique:member|min:3|max:255',
 				'email' => 'required|string|email|max:255|unique:member',
 				'password' => 'required|string|min:6|confirmed',
 			],
