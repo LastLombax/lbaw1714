@@ -75,7 +75,6 @@
                                     <br>
                                     <br>
                                     <div style="text-align: right;">
-                                        <span class="badge badge-info">Member</span>
                                         <span class="badge badge-dark">Administrator</span>
                                     </div>
                                 </fieldset></div>
@@ -106,7 +105,7 @@
                                 <div class="bs-ccomponent">
                                     <div class="list-group">
                                     
-                                        @include('pages.members.profileFeed', ['$member' => $member->id]);
+                                        @include('pages.members.profileFeed', ['$member' => $member->id])
 
                                     </div>
                                 </div>
@@ -117,7 +116,7 @@
                                 <div class="bs-ccomponent">
                                     <div class="list-group">
 
-                                       @include('pages.members.profileUpcoming', ['$member' => $member->id]);
+                                       @include('pages.members.profileUpcoming', ['$member' => $member->id])
 
                                     </div>
                                 </div>
@@ -128,7 +127,7 @@
                                 <div class="bs-ccomponent">
                                     <div class="list-group">
 
-                                      @include('pages.members.profileHistory', ['$member' => $member->id]);
+                                      @include('pages.members.profileHistory', ['$member' => $member->id])
                                 </div>
                             </div>
                         </div>
@@ -156,53 +155,7 @@
             </div>
         </div>
 
-        <footer id="footer " style="margin: 1em 0; padding-bottom: 2em; border-top: 1px solid #ddd; ">
-            <br>
-            <div class="row ">
-                <div class="col-lg-12 ">
-
-                    <table class="list-unstyled " cellpadding="7 " style="font-size: 0.9375rem; margin: 0 auto; ">
-                        <tbody><tr>
-                            <td class="float-lg-right ">
-                                <a href="#top ">Back to top</a>
-                            </td>
-                            <td>
-                                <a href="memberHomepage.html">Home</a>
-                            </td>
-                            <td>
-                                <a href="about.html">About</a>
-                            </td>
-                            <td>
-                                <a href="faq.html">FAQs</a>
-                            </td>
-                            <td>
-                                <a href="contact.html">Contact us</a>
-                            </td>
-                    </tr></tbody></table>
-                    <br>
-                    <div style="text-align:center; font-size: small ">
-                        Template by
-                        <a href="http://thomaspark.co ">Thomas Park</a>. Code released by
-                        <a href="https://github.com/ ">FEUP Students</a>.
-                        <br> Based on
-                        <a href="https://getbootstrap.com " rel="nofollow ">Bootstrap</a>. Icons from
-                        <a href="http://fontawesome.io/ " rel="nofollow ">Font Awesome</a>. Web fonts from
-                        <a href="https://fonts.google.com/ " rel="nofollow ">Google</a>.
-                    </div>
-                </div>
-            </div>
-        </footer>
-        </div>
-
-        <!-- Yeti Template Ends Here -->
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-
-
-
+       
 </div>
 @endsection
 

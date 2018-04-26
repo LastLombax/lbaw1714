@@ -4,7 +4,7 @@
 $query = \App\Http\Controllers\MemberController::profileUpcoming($member->idmember);
 
 if (empty($query))
-    echo 'This member hasn\'t participated in events in the past';
+    echo 'This member isn\'t participating in any events';
 
 $today = time();
 $eventsLink = route('events');

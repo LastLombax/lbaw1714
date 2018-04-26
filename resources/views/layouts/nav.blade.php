@@ -26,9 +26,9 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Communities</a>
                 <div class="dropdown-menu" x-placement="bottom-start" >
-                    <a class="dropdown-item" href="createCommunity.html" ><i class="fas fa-plus"></i> Add Community</a>
-                    <a class="dropdown-item" href="manageCommunities.html" ><i class="fas fa-edit"></i>  Manage your Communities</a>
-                    <a class="dropdown-item" href="viewCommunities.html" ><i class="fas fa-search"></i> Search for Communities</a>
+                    <a class="dropdown-item" href="{{route('createCommunity')}}" ><i class="fas fa-plus"></i> Add Community</a>
+                    <a class="dropdown-item" href="{{route('manageCommunities')}}" ><i class="fas fa-edit"></i>  Manage your Communities</a>
+                    <a class="dropdown-item" href="{{route('communities')}}" ><i class="fas fa-search"></i> Search for Communities</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -54,7 +54,8 @@
                 <div class="nav-item dropdown">
                     <i class="material-icons" style="font-size: 32px; color: rgba(255, 255, 255, 1); cursor: pointer;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">account_circle</i>
                     <div class="dropdown-menu" x-placement="bottom-start" style="position: flex; transform: translate3d(-85px, 42px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item" href="myProfile.html" ><i class="fas fa-user"></i> My Profile</a>
+
+                        <a class="dropdown-item" href="/members/{{Auth::user()->username}}" class="fas fa-user"></i> My Profile</a>
                         <a class="dropdown-item" href="myFriends.html" ><i class="fas fa-users"></i>  My Friends</a>
                         <a class="dropdown-item" href="{{ url('/logout') }}" ><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
