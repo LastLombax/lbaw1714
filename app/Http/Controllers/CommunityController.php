@@ -5,6 +5,7 @@
     use App\Community;
     use App\Http\Controllers\Controller;
     use Illuminate\Foundation\Request;
+    use Illuminate\Support\Facades\DB;
 
     class CommunityController extends Controller
     {
@@ -46,11 +47,11 @@
             return view('pages.communities.community')->with('community', $community);
         }
 
-        public static function topCommunities(){ 
-            dd(DB::select('SELECT count(community_member.idmember) as attendants, community.*
+        public static function topCommunities($limit, $offset){ 
+            return DB::select('SELECT count(community_member.idmember) as attendants, community.*
                             FROM community_member INNER JOIN community ON community_member.idcommunity = community.idcommunity
                             GROUP BY(community.idcommunity)
-                            ORDER BY attendants DESC'));
+                            ORDER BY attendants DESC LIMIT ' . $limit . ' OFFSET ' . $offset);
         }
 
 

@@ -33,7 +33,7 @@
                                                 <b>Membership details</b>
                                             </label>
                                             <p>
-                                                <a href="#" style="color: #f3a933dc">{{$community->members()}} members</a>, including
+                                                <a href="#" style="color: #f3a933dc">FALTA NUMERO DE MEMBERS AQUI</a>, including
                                                 <a href="#" style="color: #f36833">God</a> and
                                                 <a href="#" style="color: #f36833">Rui Leixo</a>
                                             </p>
