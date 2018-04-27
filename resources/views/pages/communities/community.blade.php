@@ -94,27 +94,14 @@
                         </li>
                     </ul>
 
-                    <div id="myTabContent" class="tab-content">
+                    <div id="communityTab" class="tab-content">
                         <div class="tab-pane fade show active" id="feed">
                             <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                                 <div class="bs-ccomponent">
                                     <div class="list-group">
-                                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <h5 class="mb-1">Y'all need Jesus</h5>
-                                            <small class="text-muted">Right now</small>
-                                        </a>
-                                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <h5 class="mb-1">Feupinhos created a new Event: Feupinhos na Queima.</h5>
-                                            <small>1 day ago</small>
-                                        </a>
-                                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <h5 class="mb-1">Feupinhos attended an Event: Synergy in FEUP</h5>
-                                            <small class="text-muted">2 days ago</small>
-                                        </a>
-                                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <h5 class="mb-1">Daniel Pinho joined Feupinhos.</h5>
-                                            <small class="text-muted">3 days ago</small>
-                                        </a>
+
+                                        @include('pages.communities.communityFeed', ['$community' => $community->idcommunity])
+                               
                                     </div>
                                 </div>
                             </div>
@@ -141,24 +128,12 @@
                         <div class="tab-pane fade" id="upcoming">
                             <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                                 <div class="bs-ccomponent">
-                                    <div class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">Piggybank Party</h5>
-                                            <small>Tomorrow</small>
-                                        </div>
-                                        <a href="">
-                                            <small> Click here to see the event.</small>
-                                        </a>
+                                    <div class="list-group">
+
+                                        @include('pages.communities.communityUpcoming', ['$community' => $community->idcommunity])
+                               
                                     </div>
-                                    <div class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">LBAW A4 </h5>
-                                            <small class="text-muted">In 4 days</small>
-                                        </div>
-                                        <a href="">
-                                            <small> Click here to see the event.</small>
-                                        </a>
-                                    </div>
+                                   
                                 </div>
                             </div>
                             <div style="margin-top: 1rem; margin-left: 0;">
@@ -184,28 +159,10 @@
                         <div class="tab-pane fade" id="history">
                             <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                                 <div class="bs-ccomponent">
-                                    <div class="list-group">
-                                        <div class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h5 class="mb-1">MPCP Test</h5>
-                                                <small>Tomorrow</small>
-                                            </div>
-                                            <p class="mb-1">The test no one wants to have!</p>
-                                            <a href="">
-                                                <small> Click here to see the event.</small>
-                                            </a>
-                                        </div>
+                                    <div class="list-group">                                       
 
-                                        <div class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h5 class="mb-1">Piggybank Party</h5>
-                                                <small>Tomorrow</small>
-                                            </div>
-                                            <p class="mb-1">The party to all piggy lovers!</p>
-                                            <a href="">
-                                                <small> Click here to see the event.</small>
-                                            </a>
-                                        </div>
+                                     @include('pages.communities.communityHistory', ['$community' => $community->idcommunity])
+
                                     </div>
                                 </div>
                             </div>

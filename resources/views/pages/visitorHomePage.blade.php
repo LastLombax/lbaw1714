@@ -72,31 +72,16 @@
                         </div>
                     </div>
                 </div>
+                
 
                 <div class="col-lg-4 align-self-start">
-                    <div class="bs-ccomponent">
-                        <div class="card mb-3">
-                            <h3 class="card-header" style="border-bottom: 10px solid #f36833">Top Communities</h3>
-                            <div class="card-body">
-                                <h5 class="card-title" style="font-size: 1.2em">Feupinhos</h5>
-                                <h6 class="card-subtitle text-muted">521 members</h6>
-                            </div>
-                            <img style="width: 100%; height: 200px; object-fit: cover;" src="img/caloiros.jpg" alt="Card image">
-                            <div class="card-body">
-                                <p class="card-text">O grupo dos feupinhos é um grupo publico da comunidade de caloiros da Faculdade de Engenharia da Universidade do
-                                    Porto. Este é o local em que todos os "noobs" devem estar.</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item" style="font-size: 1.2em">Desajeitados</li>
-                                <li class="list-group-item" style="font-size: 1.2em">Os Lambe Botas</li>
-                                <li class="list-group-item" style="font-size: 1.2em">Primeiros dos ultimos</li>
-                            </ul>
-                            <div class="card-footer text-muted">
-                                <a href="#" class="card-link" style="color: #f36833;">More Communities</a>
-                            </div>
-                        </div>
+                <div class="bs-ccomponent ">
+                    <div class="card mb-3 " style="box-shadow: 1px 1px 5px #ddd; ">
+                        <h3 class="card-header " style="border-bottom: 10px solid #f36833 ">Top Communities</h3>
+                        @include('pages.communities.topCommunitiesFragment')
                     </div>
                 </div>
+            </div>
 
                 <div class="col">
                     <br>

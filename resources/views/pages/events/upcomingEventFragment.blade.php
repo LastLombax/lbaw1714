@@ -21,8 +21,8 @@ $eventsLink = route('events');
 foreach ($query as $event){
     echo '<li class="list-group-item" style="font-size: 1.2em">';
     $link = $eventsLink . '/' . $event->idevent;
-    echo "<a href=\"$link\"> . $event->name</a>";
-    echo '</li>';
+    echo "<a href=\"$link\"> 	$event->name</a>";
+    echo '</li>';	
 }
 
 echo '</ul>';

@@ -54,5 +54,43 @@
                             ORDER BY attendants DESC LIMIT ' . $limit . ' OFFSET ' . $offset);
         }
 
+    public static function communityFeed($community)
+    {
+        return DB::select('SELECT timestamp, community, recipient, comment, comment, event
+                           FROM "notification"
+                           WHERE "notification".community = '.$community.'
+                           ORDER BY "notification".timestamp');
+
+        //    LIMIT $selectedLimit OFFSET $selectedOffset
+    }
+
+    public static function communityUpcoming($community)
+    {
+        $todayDate = date('Y-m-d');
+        $todayHour = date('H:i:s');
+        return DB::select('
+                        SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
+                        FROM "event", "community"
+                        WHERE "community".idcommunity = '. $community .'
+                         AND "event".startday >= \'' . $todayDate . ' \'                  
+                        Order BY "event".startday DESC');
+
+        //    LIMIT $selectedLimit OFFSET $selectedOffset
+    }
+    
+    public static function communityHistory($community)
+    {
+        $todayDate = date('Y-m-d');
+        $todayHour = date('H:i:s');
+        return DB::select('
+                        SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
+                        FROM "event", "community"
+                        WHERE "community".idcommunity = '. $community .'
+                         AND "event".startday <= \'' . $todayDate . ' \'                  
+                        Order BY "event".startday DESC');
+
+        //    LIMIT $selectedLimit OFFSET $selectedOffset
+    }
+
 
     }
