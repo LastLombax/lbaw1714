@@ -27,6 +27,8 @@ DROP TABLE IF EXISTS TicketType CASCADE;
 
 DROP TABLE IF EXISTS Community_Member CASCADE;
 
+DROP TABLE IF EXISTS Country CASCADE;
+
 DROP TABLE IF EXISTS community_communitycategory CASCADE;
 
 DROP TABLE IF EXISTS event_eventcategory CASCADE;
@@ -143,6 +145,11 @@ CREATE TABLE event (
 );
 
 
+CREATE TABLE country (
+    idcountry SERIAL NOT NULL,
+    name character varying(50) NOT NULL
+);
+
 
 --
 -- Name: event_eventcategory; Type: TABLE; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
@@ -226,7 +233,6 @@ CREATE TABLE member (
     about character varying(256),
     profilepicture text,
     registrationdate date NOT NULL,
-    --sentemailverification boolean NOT NULL,
     verifiedemail boolean NOT NULL,
     iswebsiteadmin boolean NOT NULL,
     remember_token text
@@ -2032,3 +2038,28 @@ ALTER TABLE ONLY report
 
 ALTER TABLE ONLY ticket
     ADD CONSTRAINT ticket_idinvoice_fkey FOREIGN KEY (idinvoice) REFERENCES invoice(idinvoice) ON DELETE CASCADE;
+
+
+--Triggers
+DROP TRIGGER IF EXISTS inviteFriend ON friend;
+DROP FUNCTION IF EXISTS checkDuplicateFriend();
+
+CREATE OR REPLACE FUNCTION checkDuplicateFriend() RETURNS TRIGGER AS $BODY$
+BEGIN
+	IF EXISTS
+		(SELECT *
+			FROM "friend"
+			WHERE 	("friend".idfriend1 = NEW.idfriend1 AND "friend".idfriend2 = NEW.idfriend2) OR
+					("friend".idfriend1 = NEW.idfriend2 AND "friend".idfriend2 = NEW.idfriend1))
+		THEN RAISE EXCEPTION 'Duplicate Friendship Tuple';
+	END IF;
+END
+$BODY$ LANGUAGE plpgsql;
+
+CREATE TRIGGER inviteFriend
+  BEFORE INSERT ON "friend"
+    EXECUTE PROCEDURE checkDuplicateFriend();
+
+---------------------------------------------------------------------
+
+
