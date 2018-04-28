@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('extraScript')
+    <script src="{{ asset('js/displaySubmitedImage.jsg') }}" defer></script>
+@endsection
+
 @section('content')
     <div class="container"> 
      <form method="POST" action="{{ route('createEvent') }}">
@@ -102,15 +106,6 @@
                                     <b>Image input</b>
                                 </label>
                                 <input id="imagePath" name="imagePath" type="file" class="form-control-file" aria-describedby="fileHelp">
-                                <script>
-                                    let fileName = document.querySelector('#imagePath').value;
-
-                                    let imgTag = document.createElement('img');
-                                    imgTag.className += "src=\"" + fileName + "\"";
-
-                                    let imgField = document.querySelector('#imgField');
-                                    imgField.appendChild(imgTag);
-                                </script>
                                 <small id="fileHelp" class="form-text text-muted">Choose a event representative picture, such as a banner or photo of the venue</small>
                             </div>
                             <br>
