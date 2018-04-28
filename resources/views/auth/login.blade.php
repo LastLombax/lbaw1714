@@ -10,7 +10,7 @@
     <div class="container" style="width: 100%; max-width: 400px; margin: auto; padding-top: 23px;">
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin: 0 auto; width: 200px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-            <a class="navbar-brand" href="index.html" style="margin: 0 auto;"><img src="icon/logo.png"> ReEvent</a>
+            <a class="navbar-brand" href="/" style="margin: 0 auto;"><img src="icon/logo.png"> ReEvent</a>
         </nav>
 
         <br>
@@ -24,6 +24,10 @@
                         <label class="col-form-label" for="username">Username</label>
                         @if ($errors->has('username') || $errors->has('username'))
                             <input id="username"  name="username" type="text" class="form-control is-invalid" placeholder="Enter Username"  style="border-radius: 7px; padding: 12px;" required>
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Error: </strong>{{$errors->first('username')}}
+                            </div>
                         @else
                             <input id="username"  name="username" type="text" class="form-control" placeholder="Enter Username"  style="border-radius: 7px; padding: 12px;" required>
                         @endif
@@ -32,6 +36,10 @@
                         <label class="col-form-label" for="password">Password</label>
                         @if ($errors->has('username') || $errors->has('username'))
                             <input id="password" name="password" type="password" class="form-control is-invalid"  placeholder="Password" style="border-radius: 7px; padding: 12px;" required>
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Error: </strong>{{$errors->first('username')}}
+                            </div>
                         @else
                             <input id="password" name="password" type="password" class="form-control"  placeholder="Password" style="border-radius: 7px; padding: 12px;" required>
                         @endif

@@ -20,7 +20,4 @@ class Community extends Model
         echo date('F d, Y', $creationDate);
     }
 
-    public function numberMembers(){
-        
-    }
 }

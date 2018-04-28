@@ -5,6 +5,7 @@
     use App\Community;
     use App\Http\Controllers\Controller;
     use Illuminate\Foundation\Request;
+    use Illuminate\Support\Facades\DB;
 
     class CommunityController extends Controller
     {
@@ -46,12 +47,50 @@
             return view('pages.communities.community')->with('community', $community);
         }
 
-        public static function topCommunities(){ 
-            dd(DB::select('SELECT count(community_member.idmember) as attendants, community.*
+        public static function topCommunities($limit, $offset){ 
+            return DB::select('SELECT count(community_member.idmember) as attendants, community.*
                             FROM community_member INNER JOIN community ON community_member.idcommunity = community.idcommunity
                             GROUP BY(community.idcommunity)
-                            ORDER BY attendants DESC'));
+                            ORDER BY attendants DESC LIMIT ' . $limit . ' OFFSET ' . $offset);
         }
+
+    public static function communityFeed($community)
+    {
+        return DB::select('SELECT timestamp, community, recipient, comment, comment, event
+                           FROM "notification"
+                           WHERE "notification".community = '.$community.'
+                           ORDER BY "notification".timestamp');
+
+        //    LIMIT $selectedLimit OFFSET $selectedOffset
+    }
+
+    public static function communityUpcoming($community)
+    {
+        $todayDate = date('Y-m-d');
+        $todayHour = date('H:i:s');
+        return DB::select('
+                        SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
+                        FROM "event", "community"
+                        WHERE "community".idcommunity = '. $community .'
+                         AND "event".startday >= \'' . $todayDate . ' \'                  
+                        Order BY "event".startday DESC');
+
+        //    LIMIT $selectedLimit OFFSET $selectedOffset
+    }
+    
+    public static function communityHistory($community)
+    {
+        $todayDate = date('Y-m-d');
+        $todayHour = date('H:i:s');
+        return DB::select('
+                        SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
+                        FROM "event", "community"
+                        WHERE "community".idcommunity = '. $community .'
+                         AND "event".startday <= \'' . $todayDate . ' \'                  
+                        Order BY "event".startday DESC');
+
+        //    LIMIT $selectedLimit OFFSET $selectedOffset
+    }
 
 
     }

@@ -32,6 +32,14 @@ Route::get('time', function () {
     return view('internal.timeline');
 })->name('time');
 
+
+// Member
+Route::get('members/edit', 'MemberController@editForm')->name('editForm');
+Route::get('members/{username}', 'MemberController@show')->name('profile')->where('username', '\w{3,}');
+Route::patch('members/edit', 'MemberController@edit')->name('editForm');
+Route::get('/password/reset', 'MemberController@passResetForm')->name('passReset');
+Route::patch('/password/reset', 'MemberController@passReset')->name('passReset');
+
 // Events
 Route::get('events', 'EventController@index')->name('events');
 Route::get('events/{event}', 'EventController@show')->name('event')->where('event', '[0-9]+');

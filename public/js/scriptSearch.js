@@ -1,5 +1,7 @@
 'use strict';
 
+let siteRoot = document.location.origin; //"http://localhost:8000/"
+
 let container = document.querySelector('.container');
 let timeline = document.querySelector('#time');
 let timelineCopy;
@@ -15,7 +17,7 @@ searchFormInput.addEventListener('keyup', searchEvent);
 
 function searchEvent(event) {
     let request = new XMLHttpRequest();
-    request.open('get', 'search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
+    request.open('get', siteRoot + '/search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
     request.addEventListener('load', searchEventsReceived);
     request.send();
 
@@ -51,6 +53,9 @@ function searchEventsReceived(){
 
     lines.forEach(function(data){
         console.log(data);
+
+        let link = siteRoot + '/events/' + data.idevent;
+
         div3.innerHTML +=
             '            <div class="col-lg-4 align-self-start">\n' +
             '              <div class="bs-ccomponent">\n' +
@@ -64,7 +69,7 @@ function searchEventsReceived(){
             '                    <p class="card-text">'+ data.description +'</p>\n' +
             '                  </div>\n' +
             '                  <div class="card-footer text-muted" style="background-color: #fff; text-align: right;">\n' +
-            '                    <a href="{{asset(\'events/' + data.idevent +'\')}}" class="card-link">Open event</a>\n' +
+            '                    <a href="' + link + '" class="card-link">Open event</a>\n' +
             '                  </div>\n' +
             '                </div>\n' +
             '              </div>\n' +

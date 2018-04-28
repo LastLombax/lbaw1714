@@ -1,1 +1,1 @@
-{{dd($events)}}
+{{dd($communities)}}

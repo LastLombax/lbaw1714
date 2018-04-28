@@ -20,7 +20,6 @@
         <div class="bs-docs-section">
           <div class="row" style="width: 100%">
           @include('pages.events.manageEventsFragment')
-
           </div>
          
         </div>

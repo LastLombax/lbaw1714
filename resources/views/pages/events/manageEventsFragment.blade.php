@@ -16,7 +16,7 @@ foreach ($query as $event){
 	           <h6 class="card-subtitle text-muted">';
 	          
 	          $start = strtotime($event->startday);
-		      $end = strtotime($event->endday);
+		        $end = strtotime($event->endday);
 		      if ($start == $end) 
 		          echo date('F d, Y', $start);
 		      else 
