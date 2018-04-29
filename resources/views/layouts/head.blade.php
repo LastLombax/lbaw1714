@@ -30,7 +30,7 @@
  <link href="{{asset('css/searchNavBar.css')}}" rel="stylesheet">
  <link href="{{asset('timeline/css/style.scss')}}" rel="stylesheet">
 
- @yield('extraScript');
+ @yield('extraScript')
 
 
 

@@ -107,7 +107,7 @@ CREATE TABLE community_communitycategory (
 CREATE TABLE community_member (
     idcommunity integer NOT NULL,
     idmember integer NOT NULL,
-    isadmin boolean NOT NULL
+    isadmin boolean DEFAULT false NOT NULL
 );
 
 
@@ -169,6 +169,7 @@ CREATE TABLE event_eventcategory (
 CREATE TABLE event_member (
     idevent integer NOT NULL,
     idmember integer NOT NULL,
+    isgoing boolean DEFAULT false NOT NULL,
     isadmin boolean NOT NULL
 );
 
@@ -192,7 +193,7 @@ CREATE TABLE eventcategory (
 CREATE TABLE friend (
     idf1 integer NOT NULL,
     idf2 integer NOT NULL,
-    accepted boolean
+    accepted boolean DEFAULT false NOT NULL
 );
 
 
@@ -282,7 +283,8 @@ CREATE TABLE ticket (
     idticket SERIAL NOT NULL,
     type integer,
     buyer integer NOT NULL,
-    idinvoice integer NOT NULL
+    idinvoice integer NOT NULL,
+    used boolean DEFAULT false NOT NULL
 );
 
 
@@ -834,106 +836,106 @@ INSERT INTO event_eventcategory VALUES (31, 7);
 --
 -- Data for Name: event_member; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
 --
-INSERT INTO event_member VALUES (1,101,true);
-INSERT INTO event_member VALUES (21, 43, true);
-INSERT INTO event_member VALUES (16, 12, false);
-INSERT INTO event_member VALUES (22, 71, false);
-INSERT INTO event_member VALUES (17, 2, true);
-INSERT INTO event_member VALUES (44, 48, false);
-INSERT INTO event_member VALUES (44, 26, false);
-INSERT INTO event_member VALUES (10, 34, false);
-INSERT INTO event_member VALUES (12, 53, true);
-INSERT INTO event_member VALUES (48, 71, false);
-INSERT INTO event_member VALUES (45, 65, false);
-INSERT INTO event_member VALUES (22, 87, false);
-INSERT INTO event_member VALUES (3, 77, true);
-INSERT INTO event_member VALUES (17, 43, true);
-INSERT INTO event_member VALUES (29, 84, false);
-INSERT INTO event_member VALUES (46, 85, false);
-INSERT INTO event_member VALUES (32, 14, true);
-INSERT INTO event_member VALUES (13, 38, true);
-INSERT INTO event_member VALUES (13, 90, true);
-INSERT INTO event_member VALUES (35, 72, false);
-INSERT INTO event_member VALUES (32, 72, false);
-INSERT INTO event_member VALUES (10, 98, false);
-INSERT INTO event_member VALUES (35, 1, true);
-INSERT INTO event_member VALUES (24, 7, false);
-INSERT INTO event_member VALUES (24, 99, true);
-INSERT INTO event_member VALUES (17, 22, false);
-INSERT INTO event_member VALUES (18, 99, false);
-INSERT INTO event_member VALUES (45, 11, false);
-INSERT INTO event_member VALUES (48, 36, false);
-INSERT INTO event_member VALUES (2, 23, false);
-INSERT INTO event_member VALUES (14, 50, false);
-INSERT INTO event_member VALUES (7, 78, false);
-INSERT INTO event_member VALUES (27, 13, false);
-INSERT INTO event_member VALUES (20, 90, false);
-INSERT INTO event_member VALUES (47, 62, false);
-INSERT INTO event_member VALUES (29, 62, false);
-INSERT INTO event_member VALUES (31, 19, true);
-INSERT INTO event_member VALUES (8, 11, true);
-INSERT INTO event_member VALUES (42, 20, false);
-INSERT INTO event_member VALUES (20, 59, true);
-INSERT INTO event_member VALUES (36, 60, false);
-INSERT INTO event_member VALUES (10, 71, false);
-INSERT INTO event_member VALUES (39, 57, true);
-INSERT INTO event_member VALUES (9, 74, true);
-INSERT INTO event_member VALUES (16, 18, false);
-INSERT INTO event_member VALUES (17, 6, true);
-INSERT INTO event_member VALUES (35, 70, false);
-INSERT INTO event_member VALUES (12, 54, false);
-INSERT INTO event_member VALUES (23, 38, true);
-INSERT INTO event_member VALUES (45, 83, true);
-INSERT INTO event_member VALUES (31, 7, false);
-INSERT INTO event_member VALUES (13, 55, true);
-INSERT INTO event_member VALUES (36, 8, false);
-INSERT INTO event_member VALUES (4, 57, true);
-INSERT INTO event_member VALUES (25, 53, true);
-INSERT INTO event_member VALUES (32, 56, false);
-INSERT INTO event_member VALUES (43, 59, false);
-INSERT INTO event_member VALUES (34, 67, false);
-INSERT INTO event_member VALUES (9, 10, true);
-INSERT INTO event_member VALUES (40, 1, true);
-INSERT INTO event_member VALUES (1, 62, false);
-INSERT INTO event_member VALUES (38, 50, true);
-INSERT INTO event_member VALUES (33, 30, true);
-INSERT INTO event_member VALUES (6, 79, false);
-INSERT INTO event_member VALUES (21, 78, true);
-INSERT INTO event_member VALUES (28, 22, false);
-INSERT INTO event_member VALUES (29, 64, false);
-INSERT INTO event_member VALUES (13, 36, true);
-INSERT INTO event_member VALUES (38, 57, true);
-INSERT INTO event_member VALUES (29, 59, false);
-INSERT INTO event_member VALUES (44, 47, false);
-INSERT INTO event_member VALUES (26, 54, true);
-INSERT INTO event_member VALUES (38, 58, false);
-INSERT INTO event_member VALUES (20, 6, true);
-INSERT INTO event_member VALUES (21, 89, false);
-INSERT INTO event_member VALUES (15, 46, false);
-INSERT INTO event_member VALUES (1, 90, true);
-INSERT INTO event_member VALUES (50, 63, false);
-INSERT INTO event_member VALUES (48, 48, true);
-INSERT INTO event_member VALUES (39, 8, false);
-INSERT INTO event_member VALUES (12, 25, true);
-INSERT INTO event_member VALUES (14, 74, false);
-INSERT INTO event_member VALUES (46, 38, true);
-INSERT INTO event_member VALUES (50, 55, false);
-INSERT INTO event_member VALUES (50, 80, true);
-INSERT INTO event_member VALUES (29, 83, true);
-INSERT INTO event_member VALUES (40, 18, false);
-INSERT INTO event_member VALUES (37, 44, false);
-INSERT INTO event_member VALUES (20, 50, false);
-INSERT INTO event_member VALUES (48, 43, false);
-INSERT INTO event_member VALUES (7, 46, false);
-INSERT INTO event_member VALUES (10, 18, true);
-INSERT INTO event_member VALUES (34, 81, false);
-INSERT INTO event_member VALUES (43, 17, true);
-INSERT INTO event_member VALUES (10, 79, false);
-INSERT INTO event_member VALUES (26, 44, true);
-INSERT INTO event_member VALUES (40, 20, true);
-INSERT INTO event_member VALUES (8, 80, true);
-INSERT INTO event_member VALUES (11, 85, true);
-INSERT INTO event_member VALUES (38, 1, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (1,101,true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (21, 43, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (16, 12, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (22, 71, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (17, 2, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (44, 48, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (44, 26, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (10, 34, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (12, 53, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (48, 71, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (45, 65, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (22, 87, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (3, 77, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (17, 43, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (29, 84, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (46, 85, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (32, 14, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (13, 38, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (13, 90, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (35, 72, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (32, 72, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (10, 98, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (35, 1, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (24, 7, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (24, 99, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (17, 22, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (18, 99, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (45, 11, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (48, 36, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (2, 23, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (14, 50, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (7, 78, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (27, 13, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (20, 90, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (47, 62, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (29, 62, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (31, 19, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (8, 11, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (42, 20, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (20, 59, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (36, 60, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (10, 71, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (39, 57, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (9, 74, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (16, 18, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (17, 6, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (35, 70, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (12, 54, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (23, 38, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (45, 83, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (31, 7, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (13, 55, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (36, 8, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (4, 57, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (25, 53, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (32, 56, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (43, 59, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (34, 67, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (9, 10, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (40, 1, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (1, 62, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (38, 50, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (33, 30, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (6, 79, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (21, 78, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (28, 22, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (29, 64, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (13, 36, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (38, 57, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (29, 59, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (44, 47, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (26, 54, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (38, 58, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (20, 6, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (21, 89, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (15, 46, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (1, 90, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (50, 63, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (48, 48, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (39, 8, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (12, 25, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (14, 74, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (46, 38, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (50, 55, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (50, 80, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (29, 83, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (40, 18, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (37, 44, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (20, 50, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (48, 43, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (7, 46, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (10, 18, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (34, 81, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (43, 17, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (10, 79, false);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (26, 44, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (40, 20, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (8, 80, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (11, 85, true);
+INSERT INTO event_member(idevent, idmember, isadmin) VALUES (38, 1, false);
 
 
 --
@@ -2049,17 +2051,32 @@ BEGIN
 	IF EXISTS
 		(SELECT *
 			FROM "friend"
-			WHERE 	("friend".idfriend1 = NEW.idfriend1 AND "friend".idfriend2 = NEW.idfriend2) OR
-					("friend".idfriend1 = NEW.idfriend2 AND "friend".idfriend2 = NEW.idfriend1))
+			WHERE 	("friend".idf1 = NEW.idf1 AND "friend".idf2 = NEW.idf2) OR
+					("friend".idf1 = NEW.idf2 AND "friend".idf2 = NEW.idf1))
 		THEN RAISE EXCEPTION 'Duplicate Friendship Tuple';
 	END IF;
+	RETURN NEW;
 END
 $BODY$ LANGUAGE plpgsql;
 
 CREATE TRIGGER inviteFriend
   BEFORE INSERT ON "friend"
-    EXECUTE PROCEDURE checkDuplicateFriend();
+    FOR EACH ROW EXECUTE PROCEDURE checkDuplicateFriend();
 
 ---------------------------------------------------------------------
 
+CREATE OR REPLACE FUNCTION inviteCommunityMembers(integer, integer) RETURNS VOID AS $BODY$
+DECLARE
+	idevent ALIAS FOR $1;
+	idcommunity ALIAS FOR $2;
+	tuple RECORD;
+BEGIN
+ FOR tuple IN (SELECT community_member.idmember as idmember, community_member.isadmin  as isadmin
+      FROM community_member
+      WHERE community_member.idcommunity = idcommunity) LOOP
+    INSERT INTO event_member VALUES(idevent, tuple.idmember, tuple.isadmin);
+    --TODO Falta gerar as notificacoes
+  END LOOP;
+END;
+$BODY$ LANGUAGE plpgsql;
 
