@@ -3,12 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Event extends Model
 {
     protected $primaryKey = 'idevent';
     protected $table = 'event';
-	public $timestamps  = false;
+		public $timestamps  = false;
 
     
 	public function commentTuples(){
@@ -29,5 +30,12 @@ class Event extends Model
         else 
             echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('F d, Y', $end) . ", " . date('H:i', $endT);
         
-    }   
+    }
+
+    public function imagePath(){
+			if($this->imagepath == null)
+				return 'LINK para imagem null';
+			else
+				return Storage::url($this->imagepath);
+		}
 }

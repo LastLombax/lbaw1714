@@ -20,7 +20,7 @@
 
             <div class="col-lg-4" style="padding-top: 0;">
                 <div class="bs-ccomponent">
-                    <img style="width: 100%; height: 200px; object-fit: cover;" src="{{Storage::url($event->imagepath)}}"
+                    <img style="width: 100%; height: 200px; object-fit: cover;" src="{{$event->imagePath()}}"
                          alt="Card image">
                     <br>
                     <br>
