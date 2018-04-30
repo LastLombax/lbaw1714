@@ -15,6 +15,11 @@ class Community extends Model
 		return $this->belongsToMany('App\Member','community_member', 'idcommunity', 'idmember');
 	}
 
+    public function numMembers(){
+        return count($this->members);
+    }
+
+
     public function printDate(){
         $creationDate = strtotime($this->creationDate);
         echo date('F d, Y', $creationDate);

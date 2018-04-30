@@ -33,7 +33,7 @@
                                                 <b>Membership details</b>
                                             </label>
                                             <p>
-                                                <a href="#" style="color: #f3a933dc">FALTA NUMERO DE MEMBERS AQUI</a>, including
+                                                <a href="#" style="color: #f3a933dc">{{$community->numMembers()}} members</a>, including
                                                 <a href="#" style="color: #f36833">God</a> and
                                                 <a href="#" style="color: #f36833">Rui Leixo</a>
                                             </p>
@@ -43,7 +43,9 @@
                                                 <b>Administrators</b>
                                             </label>
                                             <p>
+                                             <!--   {{$community->admins}} -->
                                                 <a href="#" style="color: #f36833">God</a>
+                                                
                                             </p>
                                         </div>
                                         <div class="form-group">
