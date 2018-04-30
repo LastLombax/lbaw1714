@@ -20,7 +20,7 @@
        Edit Event
     </legend>
 
-      <form action="{{ route('editEvent', $event)}}" method="POST">
+      <form action="{{ route('editEvent', $event)}}" method="POST" enctype="multipart/form-data">
 
       {{ method_field('PATCH') }}
       {{ csrf_field() }}
@@ -128,17 +128,7 @@
                     <label class="col-form-label" for="image">
                       <b>Image input</b>
                     </label>
-                    <input t id="image" name="image" type="file" class="form-control-file" aria-describedby="fileHelp">
-                    <script>                      
-                      let fileName = document.querySelector('#eventImg').value;
-                      console.log(fileName);
-                      
-                      let imgTag = document.createElement('img');
-                      imgTag.className += "src=\"" + fileName + "\"";
-                      
-                      let imgField = document.querySelector('#imgField');
-                      imgField.appendChild(imgTag);
-                    </script>
+                    <input id="image" name="image" type="file" class="form-control-file" aria-describedby="fileHelp">
                     <small id="fileHelp" class="form-text text-muted">Choose an event representative picture, such as a banner or photo of the venue</small>
                   </div>
                   <br>

@@ -1,5 +1,7 @@
 <?php
 
+	use Illuminate\Support\Facades\Storage;
+
 	$query = \App\Http\Controllers\EventController::upcomingPublicEvents();
 
 	if (count($query) == 0) {
@@ -14,7 +16,7 @@
 		echo '<h5 class="card-title" style="font-size: 1.2em">' . $first->name . '</h5>';
 		echo '<h6 class="card-subtitle text-muted">' . $first->startday . '</h6>';
 		echo '</div>';
-		echo '<img style="width: 100%; height: 200px; object-fit: cover;" src="' . $first->imagepath . '" alt="Card image">';
+		echo '<img style="width: 100%; height: 200px; object-fit: cover;" src="' . Storage::url($first->imagepath) . '" alt="Card image">';
 		echo '<div class="card-body">';
 		echo '<p class="card-text">' . $first->description . '</p>';
 		echo '</div>';

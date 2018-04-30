@@ -134,7 +134,9 @@
                                     @foreach($event->commentTuples as $comment)
                                         <div class="list-group-item list-group-item-action flex-column align-items-start">
                                             <div class="d-flex w-100 justify-content-between">
-                                                <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
+                                                <a href="{{route('profile', $comment->authorTuple->username)}}">
+                                                    <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
+                                                </a>
                                                 <small>{{$comment->printDate()}}</small>
                                             </div>
                                             <p class="mb-1">{{$comment->text}}</p>
@@ -166,7 +168,7 @@
                     <div class="tab-pane fade" id="participants">
                         <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                             <div class="bs-ccomponent">
-                                @each('pages.events.partials.participant', $event->attendants()->get(), 'member')
+                               @each('pages.events.partials.participant', $event->attendants, 'member') {{--TODO ADD partial if collection is empty--}}
                             </div>
                         </div>
                         <div style="margin-top: 1rem; margin-left: 0;">

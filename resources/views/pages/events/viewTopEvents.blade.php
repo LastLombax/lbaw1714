@@ -1,6 +1,8 @@
 <?php
 
-$query = \App\Http\Controllers\EventController::memberTopEvents(4,0);
+	use Illuminate\Support\Facades\Storage;
+
+	$query = \App\Http\Controllers\EventController::memberTopEvents(4,0);
 
 $eventsLink = route('events');
 $i = 0;
@@ -13,7 +15,7 @@ foreach ($query as $event){
     echo '<h5 class="card-title" style="font-size: 1.2em;"><h2><a href="' . $link . '" style="color: #000">' . $event->name . '</a></h2></h5>';
     echo '<h6 class="card-subtitle text-muted">' . $event->startday . '</h6>';
     echo '</div>';
-    echo '<img style="width: 100%; height: 200px; object-fit: cover;" src="' . $event->imagepath . '" alt="Card image">';
+    echo '<img style="width: 100%; height: 200px; object-fit: cover;" src="' . Storage::url($event->imagepath) . '" alt="Card image">';
     echo '<div class="card-body">';
     echo '<p class="card-text">' . $event->description . '</p>';
     echo'</div>';

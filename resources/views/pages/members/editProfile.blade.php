@@ -103,12 +103,7 @@
                                     <input class="form-control" placeholder="Confirm New Password" id="form_confirm" maxlength="25" type="password">
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="col-form-label" for="eventImg">
-                                        <b>Image input</b>
-                                    </label>
-                                    <input class="form-control-file" id="eventImg" aria-describedby="fileHelp" type="file">
-                                </div>
+                                @include('partials.uploadImage')
 
                             </fieldset>
                             <button type="submit" class="btn btn-primary ">Save changes</button>
