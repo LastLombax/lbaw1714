@@ -20,7 +20,7 @@
 
             <div class="col-lg-4" style="padding-top: 0;">
                 <div class="bs-ccomponent">
-                    <img style="width: 100%; height: 200px; object-fit: cover;" src="{{$event->imagepath}}"
+                    <img style="width: 100%; height: 200px; object-fit: cover;" src="{{Storage::url($event->imagepath)}}"
                          alt="Card image">
                     <br>
                     <br>
@@ -166,15 +166,7 @@
                     <div class="tab-pane fade" id="participants">
                         <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                             <div class="bs-ccomponent">
-                                <div class="list-group">
-                                    <a href="#"
-                                       class="list-group-item list-group-item-action flex-column align-items-start">
-
-                                        <img src="img/god.jpg"
-                                             style="width: 20%; height: 100px; object-fit: cover; float:left;">
-                                        <h5>God</h5>
-                                    </a>
-                                </div>
+                                @each('pages.events.partials.participant', $event->attendants()->get(), 'member')
                             </div>
                         </div>
                         <div style="margin-top: 1rem; margin-left: 0;">
