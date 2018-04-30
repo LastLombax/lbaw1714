@@ -53,8 +53,8 @@ class MemberController extends Controller
     {
         
         if (Gate::allows('edit-profile', $member)) {
-
-            dd($this->validator($request->all())->validate());
+            
+            $this->editValidator($request->all())->validate(); //problema com o validate()
             $member->name = $request->name;
             $member->birthdate = $request->birthdate;
 
@@ -69,9 +69,8 @@ class MemberController extends Controller
                $member->password = $request->password;
          
             $member->save();
-
-
          }
+
          return view('pages.members.profile')->with('member', $member);
     }
 
@@ -96,7 +95,7 @@ class MemberController extends Controller
             'password' => 'required|string|max:50|confirmed',          
             
             'birthdate'=> 'date', //verificar
-            'address'=> 'string|max:',
+            'address'=> 'string|max:50|nullable',
             'about' => 'string|max:256',
             'email'=> 'required|string|max:50',
             'password' => 'nullable|string|max:50|confirmed',

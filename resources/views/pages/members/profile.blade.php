@@ -7,7 +7,7 @@
             <i class="fas fa-user"></i>
             <span style="margin-left: .5rem;">
 
-            {{dd($member->username)}}    <b> {{$member->username}}'s</b> profile
+          <b> {{$member->username}}'s</b> profile
             </span>
         </legend>
 
