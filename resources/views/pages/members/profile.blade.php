@@ -4,7 +4,7 @@
 
     <div class="container">
         <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0; padding-bottom: 0;">
-            <svg class="svg-inline--fa fa-user fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 0c88.366 0 160 71.634 160 160s-71.634 160-160 160S96 248.366 96 160 167.634 0 256 0zm183.283 333.821l-71.313-17.828c-74.923 53.89-165.738 41.864-223.94 0l-71.313 17.828C29.981 344.505 0 382.903 0 426.955V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48v-37.045c0-44.052-29.981-82.45-72.717-93.134z"></path></svg><!-- <i class="fas fa-user"></i> -->
+            <i class="fas fa-user"></i>
             <span style="margin-left: .5rem;">
 
             {{dd($member->username)}}    <b> {{$member->username}}'s</b> profile
@@ -17,7 +17,9 @@
 
                 <div class="col-lg-4" style="padding-top: 23px;">
                     <div class="bs-ccomponent">
-                        <img src="{{$member->profilepicture}}" style="width: 100%; height: 200px; object-fit: cover;">
+
+                        <img src="{{Storage::url($member->profile)}}" style="width: 100%; height: 200px; object-fit: cover;">
+
                         <br>
                         <br>
 

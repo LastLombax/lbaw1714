@@ -40,11 +40,17 @@
 			$event->address = $request->address;
 			$event->city = $request->city;
 			$event->ispublic = $request->visibility;
-			$event->imagepath = $request->imagePath;
-
 
 			$event->save();
 
+			$imgType = $request->file('eventImage')->getMimeType();
+			$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
+
+			$event->imagepath = 'img/event/' . $event->idevent . $imgType;
+
+			$event->save();
+
+			$request->file('eventImage')->storeAs('public/img/event', $event->idevent . $imgType);
 
 			DB::table('event_member')->insert(
 				[	'idevent' => $event->idevent,
