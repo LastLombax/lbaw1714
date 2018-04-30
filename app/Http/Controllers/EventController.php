@@ -26,7 +26,7 @@
 
 		public function create(Request $request){
 			$this->validator($request->all())->validate();
-			dd($request);
+			
 			$event = new Event();
 
 			$event->name = $request->name;
