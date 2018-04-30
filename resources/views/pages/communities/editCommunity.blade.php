@@ -106,23 +106,7 @@
                     </label>
                     <input type="text" class="form-control" placeholder="Venue information" id="inputDefault" maxlength="100">
                   </div>
-                  <div class="form-group" id="imgField">
-                    <label class="col-form-label" for="eventImg">
-                      <b>Image input</b>
-                    </label>
-                    <input type="file" class="form-control-file" id="eventImg" aria-describedby="fileHelp">
-                    <script>
-                      
-                      let fileName = document.querySelector('#eventImg').value;
-                      
-                      let imgTag = document.createElement('img');
-                      imgTag.className += "src=\"" + fileName + "\"";
-                      
-                      let imgField = document.querySelector('#imgField');
-                      imgField.appendChild(imgTag);
-                    </script>
-                    <small id="fileHelp" class="form-text text-muted">Choose a event representative picture, such as a banner or photo of the venue</small>
-                  </div>
+                  @include('partials.uploadImage')
                   <br>
                 </fieldset>
 

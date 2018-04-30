@@ -30,7 +30,7 @@
             echo '</div>';
             echo '<div class="body">';
                echo ' <p>' . $event->description . '</p>';
-                echo '<img style="width: 100%; height: 200px; object-fit: cover;" src="' . $event->imagepath . '" alt="Graphic">';
+                echo '<img style="width: 100%; height: 200px; object-fit: cover;" src="' . Storage::url($event->imagepath) . '" alt="Graphic">';
                 echo '<table style="padding: 5px; width:100%;"><tr><td style="text-align: right; padding: 10px; width:100%; font-size:14px;"><a href="' . $link . '"> More</a></td></tr></table>';
             echo '</div>';
         echo '</div>';

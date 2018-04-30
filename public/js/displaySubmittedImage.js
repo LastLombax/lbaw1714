@@ -1,10 +1,23 @@
-let fileName = document.querySelector('#imagePath').value;
+let imgPath = document.querySelector('#imagePath');
+let imgTag = document.querySelector('#imgField img');
+console.log(imgPath);
 
-fileName.addEventListener('submit', function () {
-    let imgTag = document.createElement('img');
-    imgTag.className += "src=\"" + fileName.value + "\"";
 
-    console.log("DEBUG: " + "\"src=\\\"\" + fileName.value + \"\\\"\"");
-    let imgField = document.querySelector('#imgField');
-    imgField.appendChild(imgTag);
+imgPath.addEventListener('change', function () {
+    console.log("Entrou");
+    console.log("DEBUG: " + "\"src=\"" + imgPath.value + "\"");
+
+        if (typeof (FileReader) != "undefined") {
+            $("#dvPreview").show();
+            $("#dvPreview").append("<img />");
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imgTag.setAttribute("src", e.target.result);
+                // $("#dvPreview img").attr("src", e.target.result);
+            }
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else {
+            alert("This browser does not support FileReader.");
+        }
+
 });

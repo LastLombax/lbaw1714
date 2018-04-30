@@ -43,14 +43,16 @@
 
 			$event->save();
 
-			$imgType = $request->file('eventImage')->getMimeType();
-			$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
+			if($request->hasFile('eventImage')) {
+				$imgType = $request->file('eventImage')->getMimeType();
+				$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
 
-			$event->imagepath = 'img/event/' . $event->idevent . $imgType;
+				$event->imagepath = 'img/event/' . $event->idevent . $imgType;
 
-			$event->save();
+				$event->save();
 
-			$request->file('eventImage')->storeAs('public/img/event', $event->idevent . $imgType);
+				$request->file('eventImage')->storeAs('public/img/event', $event->idevent . $imgType);
+			}
 
 			DB::table('event_member')->insert(
 				[	'idevent' => $event->idevent,

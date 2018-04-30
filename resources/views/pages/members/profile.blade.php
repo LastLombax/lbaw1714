@@ -6,8 +6,7 @@
         <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0; padding-bottom: 0;">
             <i class="fas fa-user"></i>
             <span style="margin-left: .5rem;">
-
-            {{dd($member->username)}}    <b> {{$member->username}}'s</b> profile
+                <b> {{$member->username}}'s</b> profile
             </span>
         </legend>
 

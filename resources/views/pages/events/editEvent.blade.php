@@ -124,13 +124,7 @@
                     </label>
                     <input id="venue" name="venue"type="text" class="form-control" placeholder="Venue information" maxlength="100">
                   </div>
-                  <div class="form-group" id="imgField">
-                    <label class="col-form-label" for="image">
-                      <b>Image input</b>
-                    </label>
-                    <input id="image" name="image" type="file" class="form-control-file" aria-describedby="fileHelp">
-                    <small id="fileHelp" class="form-text text-muted">Choose an event representative picture, such as a banner or photo of the venue</small>
-                  </div>
+                  @include('partials.uploadImage')
                   <br>
                 </fieldset>
 

@@ -1,8 +1,17 @@
 @extends('layout')
 
+@section('titleIcon')
+<i class="fas fa-calendar-check"></i>
+@endsection
+
+@section('pageTitle')
+Creating an Event
+@endsection
+
 
 @section('content')
     <div class="container">
+
         <form method="POST" action="{{ route('createEvent') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row align-items-center">
