@@ -1,9 +1,11 @@
 <?php
  
-$query = \App\Http\Controllers\MemberController::profileFeed($member->idmember);
+/*$query = \App\Http\Controllers\MemberController::profileFeed($member->idmember);
 
 
 foreach ($query as $notification){
+
+	if ($notification->event->event)
 
 	  echo '
 		  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -12,6 +14,6 @@ foreach ($query as $notification){
 	    </a>
 	';
 }
-
+*/
 
 ?>

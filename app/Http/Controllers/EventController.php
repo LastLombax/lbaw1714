@@ -65,7 +65,7 @@
 		}
 
 		public function edit(Request $request, Event $event){
-			if (Gate::allows('update-delete-event', $event)) {
+			if (Gate::allows('event-admin', $event)) {
 				$this->validator($request->all())->validate();
 
 				$event->name = $request->name;

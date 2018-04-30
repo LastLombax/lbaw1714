@@ -6,6 +6,8 @@ use Auth;
 use App\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Gate;
 
 class MemberController extends Controller
 {
@@ -21,6 +23,13 @@ class MemberController extends Controller
         $member = Member::where("username", '=', $username)->first();
         return view('pages.members.profile')->with('member', $member);
     }
+
+     public function authProfile()
+    {
+        $member = Auth::user();
+        return view('pages.members.profile')->with('member', $member);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -42,8 +51,59 @@ class MemberController extends Controller
      */
     public function edit(Request $request, Member $member)
     {
-        //
+        
+        if (Gate::allows('edit-profile', $member)) {
+
+            dd($this->validator($request->all())->validate());
+            $member->name = $request->name;
+            $member->birthdate = $request->birthdate;
+
+            if(isset($request->profilepicture))
+                $member->profilepicture = $request->profilepicture;
+
+            $member->address = $request->address;
+            $member->country = $request->country;
+            $member->about = $request->about;
+            $member->email = $request->email;
+            if(isset($request->password)) 
+               $member->password = $request->password;
+         
+            $member->save();
+
+
+         }
+         return view('pages.members.profile')->with('member', $member);
     }
+
+    protected function createValidator(array $data) {
+
+        return $validate = Validator::make($data, [
+            'username' => 'required|string|min:3|max:16|unique:member',      
+            'name' => 'required|string|min:3|max:50',            
+            'country' => 'required|string',   //exists:country,name
+            'email'=> 'required|email|max:50|unique:member',
+            'password' => 'required|string|max:50|confirmed',            
+        ]);
+    }
+
+
+    protected function editValidator(array $data) {
+
+        return $validate = Validator::make($data, [
+            'name' => 'required|string|min:3|max:50',            
+            'country' => 'required|string',   //exists:country,name
+            'email'=> 'required|email|max:50|unique:member',
+            'password' => 'required|string|max:50|confirmed',          
+            
+            'birthdate'=> 'date', //verificar
+            'address'=> 'string|max:',
+            'about' => 'string|max:256',
+            'email'=> 'required|string|max:50',
+            'password' => 'nullable|string|max:50|confirmed',
+            
+        ]);
+    }
+
 
         /**
      * Show the form for editing the specified resource.
@@ -70,9 +130,8 @@ class MemberController extends Controller
 
     public static function profileFeed($member)
     {
-        return DB::select('SELECT timestamp, community, recipient, comment, comment, event
-                           FROM "notification"
-                           WHERE "notification".recipient = '.$member.'
+        return DB::select('SELECT *
+                           FROM "notification
                            ORDER BY "notification".timestamp');
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset

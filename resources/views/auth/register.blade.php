@@ -50,7 +50,7 @@
                     <label for="email">Email address</label>
 
                         @if (!$errors->has('email'))
-                            <input  id="email" name="email" type="email" value="{{ old('email') }}" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" required>
+                            <input id="email" name="email" type="email" value="{{ old('email') }}" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" required>
                         @else
                             <input  id="email" name="email" type="email" value="{{ old('email') }}" class="form-control is-invalid"  aria-describedby="emailHelp" placeholder="Enter email" required>
                             <div class="alert alert-dismissible alert-danger">

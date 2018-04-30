@@ -34,9 +34,10 @@ Route::get('time', function () {
 
 
 // Member
-Route::get('members/edit', 'MemberController@editForm')->name('editForm');
+Route::get('profile', 'MemberController@authProfile')->name('authProfile');
+Route::get('profile/edit', 'MemberController@editForm')->name('editForm');
+Route::patch('profile/edit', 'MemberController@edit')->name('editForm');
 Route::get('members/{username}', 'MemberController@show')->name('profile')->where('username', '\w{3,}');
-Route::patch('members/edit', 'MemberController@edit')->name('editForm');
 Route::get('/password/reset', 'MemberController@passResetForm')->name('passReset');
 Route::patch('/password/reset', 'MemberController@passReset')->name('passReset');
 

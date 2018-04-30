@@ -1,12 +1,12 @@
 <?php
 
 	namespace App\Policies;
-
+	use Auth;
 	use App\Member;
 	use App\Event;
 	use Illuminate\Auth\Access\HandlesAuthorization;
 
-	class EventPolicy
+	class MemberPolicy
 	{
 		use HandlesAuthorization;
 
@@ -32,13 +32,13 @@
 		}
 
 		/**
-		 * Determine whether the user is an admin of the event
+		 * Determine whether the user is an admin
 		 *
 		 * @param  \App\Member $user
 		 * @param  \App\Event $event
 		 * @return mixed
 		 */
-		public function isAdmin(Member $user, Event $event) {
+		public function isAdmin(Member $user) {
 
 			$tuple = $user->eventTuples()->find($event->idevent);
 			if ($tuple == null)
@@ -48,33 +48,15 @@
 		}
 
 		/**
-		 * Determine whether the user can update the event.
+		 * Determine whether the user is an admin
 		 *
 		 * @param  \App\Member $user
 		 * @param  \App\Event $event
 		 * @return mixed
 		 */
-		public function update(Member $user, Event $event) {
-
-			$tuple = $user->eventTuples()->find($event->idevent);
-			if ($tuple == null)
-				return false;
-			return $tuple->pivot->isadmin;
+		public function edit(Member $user) {
+			return $user == Auth::user();
 
 		}
 
-		/**
-		 * Determine whether the user can delete the event.
-		 *
-		 * @param  \App\Member $user
-		 * @param  \App\Event $event
-		 * @return mixed
-		 */
-		public function delete(Member $user, Event $event) {
-
-			$tuple = $user->eventTuples()->find($event->idevent);
-			if ($tuple == null)
-				return false;
-			return $tuple->pivot->isadmin;
-		}
 	}
