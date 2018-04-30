@@ -26,7 +26,7 @@
 
 		public function create(Request $request){
 			$this->validator($request->all())->validate();
-			dd($request);
+			//dd($request);
 			$event = new Event();
 
 			$event->name = $request->name;
@@ -44,6 +44,7 @@
 			$event->save();
 
 			if($request->hasFile('eventImage')) {
+			    dd("ola");
 				$imgType = $request->file('eventImage')->getMimeType();
 				$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
 
