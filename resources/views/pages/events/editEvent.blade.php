@@ -65,7 +65,18 @@
                   <label class="col-form-label" for="country" style="width:100%;">
                     <b>Country</b>
                     <div class="form-inline form-group mb-2" style="width:100%;">
-                      @include('layouts.countrySelector')
+                      <div class="form-group">
+                        <select id="country" name="country" class="form-control" required>
+                          {{--<option value="">Choose</option>--}}
+                            @foreach(App\Country::all() as $country)
+                                {{--@if($event->$country == $country->idcountry)--}}
+                                    {{'<option value="' . $country->name .'" selected>' . $country->name . '"</option>"'}}
+                               {{-- @else
+                                    {{'<option value="' . $country->name .'">' . $country->name . '"</option>"'}}
+                                @endif--}}
+                            @endforeach
+                        </select>
+                      </div>
                     </div>
                   </label>
 
