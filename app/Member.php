@@ -54,7 +54,12 @@
 			'password', 'remember_token',
 		];
 
-
+		public function imagePath(){
+			if($this->profilepicture == null)
+				return 'LINK para imagem null';
+			else
+				return Storage::url($this->profilepicture);
+		}
 
 //		public static function create($array) {
 //			dd($array);
