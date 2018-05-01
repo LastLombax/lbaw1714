@@ -29,6 +29,8 @@
 
     @yield('afterNav')
 
+    @yield('searchBody')
+
     <div class="container">
         <legend style="color: #333; padding: 1rem; margin-left: 0.5rem; padding-left: 0; padding-bottom: 0;">
             @yield('titleIcon')

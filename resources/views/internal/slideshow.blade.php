@@ -22,7 +22,7 @@ echo '<body>';
 
                 foreach ($query as $event){
                     $i++;
-                    echo '<div class="app__bgimg-image app__bgimg-image--' . $i .'" style="background-image: url(\'' . $event->imagepath . '\');">';
+                    echo '<div class="app__bgimg-image app__bgimg-image--' . $i .'" style="background-image: url(\'' . Storage::url($event->imagepath) . '\');">';
                     echo '</div>';
                 }
 

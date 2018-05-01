@@ -99,4 +99,4 @@
     </div>
     @include('layouts.footer')
 </body>
-</html>
+</html>c
