@@ -157,7 +157,11 @@
 
 		}
 
-		//Queries
+        public static function nearbyMemberEvents(){
+
+        }
+
+            //Queries
 		public static function upcomingPublicEvents(){
             return Event::where(
                     [

@@ -1,28 +1,8 @@
 <form action="" method="get">
     <ul class="searchNav">
         <li id="options">
-            <a href="#">Filter</a>
+            <a style="cursor: pointer" href="{{route('events')}}">Filter</a>
             <ul class="subSearchNav">
-                <li>
-                    <a>
-                        <table>
-                            <tr>
-                                <td>
-                                    Price
-                                </td>
-                                <td>
-                                    <input type="number" min="0" >
-                                </td>
-                                <td>
-                                    to
-                                </td>
-                                <td>
-                                    <input type="number" min="1" >
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
-                </li>
             </ul>
         </li>
         <li id="search">

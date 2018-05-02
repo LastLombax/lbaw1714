@@ -14,6 +14,11 @@
     $i = 0;
 
     foreach ($query as $event){
+        $date = date_create_from_format('Y-m-d', $event->startday);
+        $month = date_format($date,"F");
+        $day = date_format($date,"d");
+        $year = date_format($date,"Y");
+
         $i++;
         $eventsLink = route('events');
         $link = $eventsLink . '/' . $event->idevent;
@@ -21,12 +26,12 @@
         echo ' <div class="demo-card demo-card--step' . $i . '">';
             echo '<div class="head">';
                 echo '<div class="number-box">';
-                    echo '<span>0' . $i . '</span>';
+                    echo '<span>' . $day . '</span>';
                 echo '</div>';
                 if(strlen($event->name) > 20)
-                    echo '<h2><span class="small">' . $event->startday . '</span>' . substr($event->name,0,20) . '...</h2>';
+                    echo '<h2><span class="small">' . $month . ', ' . $year . '</span>' . substr($event->name,0,20) . '...</h2>';
                 else
-                    echo '<h2><span class="small">' . $event->startday . '</span>' . $event->name . '</h2>';
+                    echo '<h2><span class="small">' . $month . ', ' . $year . '</span>' . $event->name . '</h2>';
             echo '</div>';
             echo '<div class="body">';
                echo ' <p>' . $event->description . '</p>';
