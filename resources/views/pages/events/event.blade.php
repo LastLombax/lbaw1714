@@ -137,9 +137,17 @@
                                                 <a href="{{route('profile', $comment->authorTuple->username)}}">
                                                     <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
                                                 </a>
-                                                <small>{{$comment->printDate()}}</small>
+
+                                                <div style="font-size: 18px; text-align: right; color: #999">
+                                                    <i class="fas fa-pencil-alt" onmouseleave='this.style.color="#999"' onmouseout='this.style.color="#666"' style="cursor: pointer;"></i>
+                                                    <i class="fas fa-trash-alt" onmouseleave='this.style.color="#999"' onmouseout='this.style.color="#666"' style="cursor: pointer;"></i>
+                                                </div>
+
                                             </div>
                                             <p class="mb-1">{{$comment->text}}</p>
+                                            <small>
+                                                {{$comment->printDate()}}
+                                            </small>
                                         </div>
                                     @endforeach
                                 </div>
