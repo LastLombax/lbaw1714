@@ -1,11 +1,11 @@
 @extends('layout')
 
 @section('titleIcon')
-<i class="fas fa-calendar-check"></i>
+    <i class="fas fa-calendar-check"></i>
 @endsection
 
 @section('pageTitle')
-Creating an Event
+    Creating an Event
 @endsection
 
 
@@ -16,8 +16,7 @@ Creating an Event
             {{ csrf_field() }}
             <div class="row align-items-center">
 
-                <div class="col-md align-self-start"
-                     style="padding-left: 0; padding-right:0; margin:10px; min-width: 300px">
+                <div class="col-xl-5 align-self-start" style="padding-top: 25px;">
                     <div class="bs-ccomponent">
 
                         <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
@@ -87,8 +86,7 @@ Creating an Event
                 </div>
 
 
-                <div class="col-md align-self-start"
-                     style="padding-left: 0; padding-right:0; margin:10px; min-width: 300px">
+                <div class="col-xl-4 align-self-start" style="padding-top: 25px;">
                     <div class="bs-ccomponent">
 
                         <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
@@ -132,17 +130,11 @@ Creating an Event
                 @include('partials.uploadImage')
                 <br>
                 </fieldset>
-                <button type="submit" style="box-shadow: 1px 1px 30px #ddd;"
-                        class="btn btn-primary d-block ml-auto mt-3">Create
-                </button>
-
             </div>
-    </div>
-    </div>
-    </div>
-
-
-    </form>
+            <button type="submit" style="box-shadow: 1px 1px 30px #ddd;"
+                    class="btn btn-primary d-block ml-auto mt-3">Create
+            </button>
+        </form>
     </div>
 
 @endsection
