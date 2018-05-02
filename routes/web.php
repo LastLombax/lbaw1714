@@ -33,24 +33,41 @@ Route::get('time', function () {
 })->name('time');
 
 
-// Member
-Route::get('profile', 'MemberController@authProfile')->name('authProfile');
-Route::get('profile/edit', 'MemberController@editForm')->name('editForm');
-Route::patch('profile/edit', 'MemberController@edit')->name('editForm');
+
+// Member Access
+Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function()
+{
+
+    Route::get('profile', 'MemberController@authProfile')->name('authProfile');
+    Route::get('profile/edit', 'MemberController@editForm')->name('editForm');
+    Route::patch('profile/edit', 'MemberController@edit')->name('editForm');
+    Route::get('/password/reset', 'MemberController@passResetForm')->name('passReset');
+    Route::patch('/password/reset', 'MemberController@passReset')->name('passReset');
+
+    // Events
+    Route::get('events/create', 'EventController@createForm')->name('createEvent');
+    Route::post('events/create', 'EventController@create')->name('createEvent');
+    Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
+
+    //Communities
+    Route::get('communities/create', 'CommunityController@createForm')->name('createCommunity');
+    Route::post('communities/create', 'CommunityController@create')->name('createCommunity');    
+    Route::get('communities/manageCommunities', 'CommunityController@manageCommunities')->name('manageCommunities');
+
+});
+
+// Members
 Route::get('members/{username}', 'MemberController@show')->name('profile')->where('username', '\w{3,}');
-Route::get('/password/reset', 'MemberController@passResetForm')->name('passReset');
-Route::patch('/password/reset', 'MemberController@passReset')->name('passReset');
+
 
 // Events
 Route::get('events', 'EventController@index')->name('events');
 Route::get('events/{event}', 'EventController@show')->name('event')->where('event', '[0-9]+');
-Route::get('events/{event}/edit', 'EventController@editForm')->name('editEvent')->where('event', '[0-9]+');
 
+//Event Admin
+Route::get('events/{event}/edit', 'EventController@editForm')->name('editEvent')->where('event', '[0-9]+');
 Route::patch('events/{event}', 'EventController@edit')->name('editEvent');
-Route::get('events/create', 'EventController@createForm')->name('createEvent');
-Route::post('events/create', 'EventController@create')->name('createEvent');
 Route::delete('events/{event}', 'EventController@delete')->name('deleteEvent');
-Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
 Route::post('ajax/events/inviteMember', 'EventController@inviteMember')->name('inviteEvent');
 
 
@@ -58,22 +75,26 @@ Route::post('ajax/events/inviteMember', 'EventController@inviteMember')->name('i
 // Communities
 Route::get('communities', 'CommunityController@index')->name('communities');
 Route::get('communities/{community}', 'CommunityController@show')->name('community')->where('community', '[0-9]+');
+
+//Community Admin
 Route::get('communities/{community}/edit', 'CommunityController@editForm')->name('editCommunity')->where('community', '[0-9]+');
 Route::patch('communities/{community}/edit', 'CommunityController@edit')->name('editCommunity');
-Route::get('communities/create', 'CommunityController@createForm')->name('createCommunity');
-Route::post('communities/create', 'CommunityController@create')->name('createCommunity');
 Route::delete('communities/{community}', 'CommunityController@delete')->name('deleteCommunity');
-Route::get('communities/manageCommunities', 'CommunityController@manageCommunities')->name('manageCommunities');
 
 
 // API
 
 // Authentication
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+Route::group(['middleware' => 'App\Http\Middleware\GuestMiddleware'], function()
+{
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Auth\LoginController@login');
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register');
+
+});
+
 
 
 //Static Pages
