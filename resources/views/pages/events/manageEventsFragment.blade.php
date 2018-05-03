@@ -24,7 +24,7 @@ foreach ($query as $event){
 		       
 	          	echo ' </h6>
 	         </div>
-             <img style="width: 100%; height: 200px; object-fit: cover;" src="'.$event->imagepath.'" alt="Card image" title="">
+             <img style="width: 100%; height: 200px; object-fit: cover;" src="'. Storage::url($event->imagepath) .'" alt="Card image" title="">
               <div class="card-body">
                 <p class="card-text">'.$event->description.'</p>
               </div>

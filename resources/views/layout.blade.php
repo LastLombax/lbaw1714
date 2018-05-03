@@ -39,8 +39,6 @@
             </span>
         </legend>
 
-        <div class="bs-docs-section" style="margin-left: .5rem; margin-right: .5rem; padding-top: 1rem; "{{--style="padding-bottom: -1em;"--}}>
-
             <section id="content">
                 @yield('content')
             </section>

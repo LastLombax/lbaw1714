@@ -4025,6 +4025,18 @@ tbody.collapse.show {
     text-decoration: none
 }
 
+@media screen and (max-width: 991px) {
+    #profileIcon {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 991px) {
+    #profileText {
+        display: none;
+    }
+}
+
 .navbar-toggler:not(:disabled):not(.disabled) {
     cursor: pointer
 }
