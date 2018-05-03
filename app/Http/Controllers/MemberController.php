@@ -78,8 +78,8 @@ class MemberController extends Controller
 
         return $validate = Validator::make($data, [
             'username' => 'required|string|min:3|max:16|unique:member',      
-            'name' => 'required|string|min:3|max:50',            
-            'country' => 'required|string',   //exists:country,name
+            'name' => 'required|string|min:3|max:50',
+						'country' => 'required|string|exists:country',
             'email'=> 'required|email|max:50|unique:member',
             'password' => 'required|string|max:50|confirmed',            
         ]);

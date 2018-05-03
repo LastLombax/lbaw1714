@@ -13,6 +13,9 @@
 @endsection
 
 @section('content')
+
+
+    {{--{{dd($event->country)}}--}}
 <div class="container">
     <br>
     <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0; padding-bottom: 10px;">
@@ -70,7 +73,7 @@
                         <select id="country" name="country" class="form-control" required>
                           <option value="">Choose</option>
                             @foreach(App\Country::all() as $country)
-                                @if($event->$country == $country->idcountry)
+                                @if($event->country->idcountry == $country->idcountry)
                                     <option value="{{$country->name}}" selected>{{$country->name}}</option>
                                 @else
                               <option value="{{$country->name}}">{{$country->name}}</option>

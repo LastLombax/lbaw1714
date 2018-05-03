@@ -150,6 +150,7 @@
 				'startTime' => '',
 				'endDay' => '',
 				'endTime' => '',
+				'country' => 'required|string|exists:country',
 				'ispublic'=> 'boolean',
 				'address' => '',
 				'lodgingLink' => '',
@@ -183,6 +184,8 @@
 						->get();
 		}
 
+
+		//TODO Fazer com o eloquent
 		public static function topEvents($limit){ //Mostrar top events, eventos com mais membros que vão
 			return DB::select('SELECT count(event_member.idmember) as attendants, event.*
 							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent

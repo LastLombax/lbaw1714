@@ -54,6 +54,14 @@
 			'password', 'remember_token',
 		];
 
+		//-----------RELATIONS--------------
+		public function country(){
+			return $this->hasOne('App\Country', 'idcountry');
+		}
+		//-----------------------------------
+
+
+
 		public function imagePath(){
 			if($this->profilepicture == null)
 				return 'LINK para imagem null';
