@@ -70,7 +70,7 @@
                                             <label class="col-form-label" for="inputDefault">
                                                 <b>Country</b>
                                             </label>
-                                            <p>{{$member->country}}</p>
+                                            <p>{{$member->country->name}}</p>
                                         </div>
                                     <br>
                                     <br>
