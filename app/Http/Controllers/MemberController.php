@@ -50,12 +50,15 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Member $member)
-    {   
-                dd($member);
-        if (Gate::allows('edit-profile', $member)) {
+    public function edit(Request $request)
+    {
+				//$member = Member::find($request->query->get('member'));
+        $member = Auth::user();
+
+
+				if (Gate::allows('edit-profile', $member)) {
             
-            $this->editValidator($request->all())->validate();
+            //$this->editValidator($request->all())->validate(); TODO Validatior has an unknown error
             $member->name = $request->name;
             $member->birthdate = $request->birthdate;
 
@@ -69,7 +72,7 @@ class MemberController extends Controller
             if(isset($request->password)) 
                $member->password = $request->password;
              
-            $member->update();
+            $member->save();
          }
 
          return view('pages.members.profile')->with('member', $member);
@@ -80,7 +83,7 @@ class MemberController extends Controller
         return $validate = Validator::make($data, [
             'username' => 'required|string|min:3|max:16|unique:member',      
             'name' => 'required|string|min:3|max:50',
-			'country' => 'required|string|exists:country',
+						'country' => 'required|string|exists:country',
             'email'=> 'required|email|max:50|unique:member',
             'password' => 'required|string|max:50|confirmed',            
         ]);
@@ -94,12 +97,10 @@ class MemberController extends Controller
             'name' => 'required|string|min:3|max:50',            
             'country' => 'required|string|exists:country,name',
             'email'=> 'required|email|max:50|unique:member',
-            'password' => 'required|string|max:50|confirmed',          
             
             'birthdate'=> 'date_format:"Y-m-d"', //verificar
-            'address'=> 'string|max:50|nullable',
+            'address'=> 'nullable|string|max:50',
             'about' => 'nullable|string|max:256',
-            'email'=> 'required|string|max:50',
             'password' => 'nullable|string|max:50|confirmed',
             
         ]);

@@ -73,7 +73,7 @@
                                         <select id="country" name="country" class="form-control" required>
                                             <option value="">Choose</option>
                                             @foreach(App\Country::all() as $country)
-                                                @if($event->$country->idcountry == $country->idcountry)
+                                                @if($event->country->idcountry == $country->idcountry)
                                                     <option value="{{$country->idcountry}}" selected>{{$country->name}}</option>
                                                 @else
                                                     <option value="{{$country->idcountry}}"> {{$country->name}}</option>

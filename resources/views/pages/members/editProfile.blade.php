@@ -15,9 +15,9 @@
 @section('content')
 <div class="container">
     <div class="bs-docs-section">
-     <form action="{{ route('editForm', $member)}}" method="POST">
-               {{ method_field('PATCH') }}
-               {{ csrf_field() }}
+     <form action="{{ route('editForm', ['member' => $member])}}" method="POST">
+       {{ method_field('PATCH') }}
+       {{ csrf_field() }}
 
         <div class="row">
           
