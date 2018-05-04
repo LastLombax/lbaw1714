@@ -46,7 +46,7 @@ echo '<body>';
                         echo '<div class="app__text-line app__text-line--4" style="font-size: 2.5em;"><l onclick="window.open(\''. $link . '\')">' . substr($event->name,0,12) . ' ... </l></div>';
                     else
                         echo '<div class="app__text-line app__text-line--4" style="font-size: 2.5em;">' . $event->name . '</div>';
-                echo '<div class="app__text-line app__text-line--3" style="font-size: 1.5em;">' . $event->country . '</div>';
+                echo '<div class="app__text-line app__text-line--3" style="font-size: 1.5em;">' . $event->country->name . '</div>';
                     echo '<div class="app__text-line app__text-line--2">' . $event->startday . '</div>';
                     echo '<div class="app__text-line app__text-line--1"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/537051/opus-attachment.png" alt="" /></div>';
                 echo '</div>';
