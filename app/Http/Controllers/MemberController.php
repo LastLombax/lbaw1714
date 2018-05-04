@@ -58,7 +58,7 @@ class MemberController extends Controller
 
 				if (Gate::allows('edit-profile', $member)) {
             
-            //$this->editValidator($request->all())->validate(); TODO Validatior has an unknown error
+            $this->editValidator($request->all())->validate(); //TODO Validatior has an unknown error
             $member->name = $request->name;
             $member->birthdate = $request->birthdate;
 
@@ -135,9 +135,9 @@ class MemberController extends Controller
 
     public static function profileFeed($member)
     {
-        return DB::select('SELECT *
-                           FROM "notification
-                           ORDER BY "notification".timestamp');
+//        return DB::select('SELECT *
+//                           FROM "notification
+//                           ORDER BY "notification".timestamp');
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset
     }

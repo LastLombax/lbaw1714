@@ -1,7 +1,7 @@
 <?php
+namespace App;
 
-$query = \App\Http\Controllers\EventController::topEvents(2,0);
-
+use App\Http\Controllers\EventController;
 
 echo '<!DOCTYPE html>';
 echo '<html >';
@@ -11,6 +11,8 @@ echo '<title>Clean Slider With Curved Background</title>';
 echo '<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">';
 echo '<link rel="stylesheet" href="' . asset('slideshow/css/style.css') . '">';
 echo '</head>';
+
+$query = EventController::topEvents(2);
 
 echo '<body>';
     echo '<div class="cont">';
@@ -22,7 +24,7 @@ echo '<body>';
 
                 foreach ($query as $event){
                     $i++;
-                    echo '<div class="app__bgimg-image app__bgimg-image--' . $i .'" style="background-image: url(\'' . Storage::url($event->imagepath) . '\');">';
+                    echo '<div class="app__bgimg-image app__bgimg-image--' . $i .'" style="background-image: url(\'' . $event->imagePath() . '\');">';
                     echo '</div>';
                 }
 
