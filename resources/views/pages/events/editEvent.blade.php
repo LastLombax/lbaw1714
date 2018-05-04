@@ -9,7 +9,7 @@
 @endsection
 
 @section('pageTitle')
-    {{$event->name}}
+    Edit - {{$event->name}}
 @endsection
 
 @section('content')
@@ -103,10 +103,8 @@
                             </label>
                         </fieldset>
                     </div>
-
                 </div>
             </div>
-
 
             <div class="col-xl-4 align-self-start" style="padding-top: 25px;">
                 <div class="bs-ccomponent">

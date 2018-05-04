@@ -89,12 +89,12 @@ Route::group(['middleware' => 'App\Http\Middleware\GuestMiddleware'], function()
 {
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
-    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('register', 'Auth\RegisterController@register');
-
 });
 
+
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 //Static Pages
@@ -109,7 +109,3 @@ Route::get('contact', function () {
 Route::get('faq', function () {
     return view('pages.static.faq');
 })->name('faq');
-
-Route::get('404', function () {
-    return view('pages.static.404');
-})->name('404');

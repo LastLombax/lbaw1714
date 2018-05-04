@@ -20,22 +20,27 @@ class Event extends Model
 		return $this->belongsToMany('App\Member','event_member', 'idevent', 'idmember')->withPivot('isadmin');
 	}
 
-    public function printDate(){
-        $start = strtotime($this->startday);
-        $end = strtotime($this->endday);
-        $startT = strtotime($this->starttime);
-        $endT = strtotime($this->endtime);
-        if ($start == $end) 
-            echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('H:i', $endT);
-        else 
-            echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('F d, Y', $end) . ", " . date('H:i', $endT);
-        
-    }
+	public function country(){
+		return $this->hasOne('App\Country', 'idcountry');
+	}
 
-    public function imagePath(){
-			if($this->imagepath == null)
-				return 'LINK para imagem null';
+
+	public function printDate(){
+			$start = strtotime($this->startday);
+			$end = strtotime($this->endday);
+			$startT = strtotime($this->starttime);
+			$endT = strtotime($this->endtime);
+			if ($start == $end)
+					echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('H:i', $endT);
 			else
-				return Storage::url($this->imagepath);
-		}
+					echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('F d, Y', $end) . ", " . date('H:i', $endT);
+
+	}
+
+	public function imagePath(){
+		if($this->imagepath == null)
+			return 'LINK para imagem null';
+		else
+			return Storage::url($this->imagepath);
+	}
 }
