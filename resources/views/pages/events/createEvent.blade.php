@@ -127,8 +127,6 @@
                 </div>
             </div>
             @include('partials.uploadImage')
-            <br>
-            </fieldset>
         </div>
         <button type="submit" style="box-shadow: 1px 1px 30px #ddd;"
                 class="btn btn-primary d-block ml-auto mt-3">Create
