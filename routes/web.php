@@ -24,6 +24,11 @@ Route::get('search', function () {
     return view('internal.search');
 })->name('search');
 
+//Advanced Search
+Route::get('advancedSearch', function () {
+    return view('internal.advancedSearch');
+})->name('advancedSearch');
+
 Route::get('slide', function () {
     return view('internal.slideshow');
 })->name('slide');
