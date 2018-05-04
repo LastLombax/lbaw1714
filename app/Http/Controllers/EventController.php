@@ -122,7 +122,7 @@
 		protected function inviteMember(Request $request, Event $event){
 				$username = $request->usernameField;
 				$idEvent = $event->idevent;
-				$user = Member::where('username', '=', $username)->get()[0]->idmember;
+				$user = Member::where('username', '=', $username)->first()->idmember;
 				if($user != null){
 				return DB::insert('INSERT INTO notification VALUES
 					('. now() . ' , event, null, ' . idMember . ', "You were invited to" , null, ' . $idEvent . ')'
@@ -187,10 +187,16 @@
 
 		//TODO Fazer com o eloquent
 		public static function topEvents($limit){ //Mostrar top events, eventos com mais membros que vão
-			return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+			return Event::with('attendants')->get()->sortBy(function($event)
+			{
+				return $event->attendants->count();
+			}, null, true)->take($limit); //Using null to skip arguments at function call
+
+
+				/* return DB::select('SELECT count(event_member.idmember) as attendants, event.*
 							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
 							GROUP BY(event.idevent)
-							ORDER BY attendants DESC LIMIT ' . $limit);
+							ORDER BY attendants DESC LIMIT ' . $limit);*/
 		}
 
         public static function memberTopEvents($limit, $offset){ //Mostrar top events, eventos com mais membros que vão

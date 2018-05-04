@@ -15,9 +15,9 @@
 @section('content')
 <div class="container">
     <div class="bs-docs-section">
-     <form action="{{ route('editForm', $member)}}" method="POST">
-               {{ method_field('PATCH') }}
-               {{ csrf_field() }}
+     <form action="{{ route('editForm', ['member' => $member])}}" method="POST">
+       {{ method_field('PATCH') }}
+       {{ csrf_field() }}
 
         <div class="row">
           
@@ -52,25 +52,18 @@
                                 </div>
 
                                 <div class="form-group">
-
-                             <!--   <label class="col-form-label" for="country">
-                                    <b>Country</b>
-                                    <div class="form-inline form-group mb-2" style="width:100%;">
-                                      <div class="form-group">
-                                        <select id="country" name="country" class="form-control" required>
-                                          {{--<option value="">Choose</option>--}}
-                                            @foreach(App\Country::all() as $country)
-                                                {{--@if($member->$country == $country->idcountry)--}}
-                                                    {{'<option value="' . $country->name .'" selected>' . $country->name . '"</option>"'}}
-                                               {{-- @else
-                                                    {{'<option value="' . $country->name .'">' . $country->name . '"</option>"'}}
-                                                @endif--}}
-                                            @endforeach
-                                        </select>
-                                      </div>
-                                    </div>
-                                </label>-->
+                                    <select id="country" name="country" class="form-control" required>
+                                        <option value="">Choose</option>
+                                        @foreach(App\Country::all() as $country)
+                                            @if($member->idcountry == $country->idcountry)
+                                                <option value="{{$country->name}}" selected>{{$country->name}}</option>
+                                            @else
+                                                <option value="{{$country->name}}">{{$country->name}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
                                 </div>
+                                  
                                 <br>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
                             </fieldset>

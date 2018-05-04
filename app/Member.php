@@ -56,7 +56,7 @@
 
 		//-----------RELATIONS--------------
 		public function country(){
-			return $this->hasOne('App\Country', 'idcountry');
+			return $this->hasOne('App\Country', 'idcountry','idcountry');
 		}
 		//-----------------------------------
 
