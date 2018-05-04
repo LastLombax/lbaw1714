@@ -56,6 +56,8 @@ function searchEventsReceived(){
 
         let link = siteRoot + '/events/' + data.idevent;
 
+        let image = '/storage/' + data.imagepath;
+
         div3.innerHTML +=
             '            <div class="col-lg-4 align-self-start">\n' +
             '              <div class="bs-ccomponent">\n' +
@@ -64,7 +66,7 @@ function searchEventsReceived(){
             '                  <h3 class="card-title" style="background-color: #fff;"><a style="color: #000;" href="{{asset(\\\'events/\' + data.idevent +\'\\\')}}">' + data.name + '</a></h3>\n' +
             '                    <h6 class="card-subtitle text-muted">' + data.startday + '</h6>\n' +
             '                  </div>\n' +
-            '                  <img style="width: 100%; height: 200px; object-fit: cover;" src="'+ data.imagepath +'" alt="Card image">\n' +
+            '                  <img style="width: 100%; height: 200px; object-fit: cover;" src="' + image + '" alt="Card image">\n' +
             '                  <div class="card-body">\n' +
             '                    <p class="card-text">'+ data.description +'</p>\n' +
             '                  </div>\n' +

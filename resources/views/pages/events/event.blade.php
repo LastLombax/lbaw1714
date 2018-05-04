@@ -62,7 +62,7 @@
                                         <b>Country</b>
                                     </label>
                                     <p id="country">
-                                        {{$event->country->name}}
+                                        {{$event->country}}
                                     </p>
                                 </div>
                                 <br>
