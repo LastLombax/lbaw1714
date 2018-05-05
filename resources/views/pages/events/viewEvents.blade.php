@@ -31,7 +31,7 @@
                                     <span class="input-group-text">$</span>
                                 </div>
                                 <input id="minPrice" type="text" placeholder="Min Price" class="form-control"
-                                       aria-label="Amount (to the nearest dollar)" value="10">
+                                       aria-label="Amount (to the nearest dollar)" >
                                 <div class="input-group-append">
                                     <span class="input-group-text">.00</span>
                                 </div>
@@ -41,7 +41,7 @@
                                     <span class="input-group-text">$</span>
                                 </div>
                                 <input id="maxPrice" type="text" placeholder="Max Price" class="form-control"
-                                       aria-label="Amount (to the nearest dollar)" value="20">
+                                       aria-label="Amount (to the nearest dollar)">
                                 <div class="input-group-append">
                                     <span class="input-group-text">.00</span>
                                 </div>

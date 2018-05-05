@@ -4,7 +4,13 @@ let container = document.querySelector('.searchContainer');
 let selectedRange = document.querySelector('#selectedRange');
 let selectedCountry = document.querySelector('#selectedCountry');
 let minPrice = document.querySelector('#minPrice');
-let maxPrice = document.querySelector('#minPrice');
+let maxPrice = document.querySelector('#maxPrice');
+
+let newSelectedRange;
+let newSelectedCountry;
+let newMinPrice;
+let newMaxPrice;
+let newSelectedOrder;
 
 console.log(selectedRange);
 console.log(selectedCountry);
@@ -18,7 +24,25 @@ searchFormInput.addEventListener('keyup', searchEvent);
 
 function searchEvent(event) {
     let request = new XMLHttpRequest();
-    request.open('get', siteRoot + '/search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
+
+    newSelectedRange = document.querySelector('#selectedRange [selected=""]').getAttribute('value');
+    newSelectedCountry = document.querySelector('#selectedCountry [selected=""]').innerHTML;
+    newMinPrice = document.querySelector('#minPrice').value;
+    newMaxPrice = document.querySelector('#maxPrice').value;
+    newSelectedOrder = document.querySelector('#selectedOrder [checked=""]').getAttribute('value');
+
+    console.log(newSelectedRange, newSelectedCountry, newMinPrice, newMaxPrice, newSelectedOrder);
+
+    if(newSelectedCountry != 'Select Country' && newMinPrice != '' && newMaxPrice != '')
+        request.open('get', siteRoot + '/advancedSearch?' + encodeForAjax({'searchField': searchFormInput.value, 'selectedRange': newSelectedRange, 'selectedCountry': newSelectedCountry, 'minPrice': newMinPrice, 'maxPrice': newMaxPrice, 'selectedOrder': newSelectedOrder}), true);
+    else if(newSelectedCountry != 'Select Country' && newMinPrice == '' && newMaxPrice == '')
+        request.open('get', siteRoot + '/advancedSearch?' + encodeForAjax({'searchField': searchFormInput.value, 'selectedRange': newSelectedRange, 'selectedCountry': newSelectedCountry, 'selectedOrder': newSelectedOrder}), true);
+    else if(newSelectedCountry == 'Select Country' && newMinPrice != '' && newMaxPrice != '')
+        request.open('get', siteRoot + '/advancedSearch?' + encodeForAjax({'searchField': searchFormInput.value, 'selectedRange': newSelectedRange, 'minPrice': newMinPrice, 'maxPrice': newMaxPrice, 'selectedOrder': newSelectedOrder}), true);
+    else
+        request.open('get', siteRoot + '/advancedSearch?' + encodeForAjax({'searchField': searchFormInput.value, 'selectedRange': newSelectedRange, 'selectedOrder': newSelectedOrder}), true);
+
+
     request.addEventListener('load', searchEventsReceived);
     request.send();
 
@@ -29,61 +53,42 @@ window.addEventListener("load", function() {
 
     console.log('JANELAAAAAA');
 
-    let request = new XMLHttpRequest();
-    request.open('get', siteRoot + '/search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
-    request.addEventListener('load', searchEventsReceived);
-    request.send();
+    searchEvent();
 
     event.preventDefault();
 });
 
 selectedRange.addEventListener("change", function() {
-    let newSelectedRange = document.querySelector('#selectedRange [selected=""]');
 
     console.log('ENTRA SELECTED RANGE');
 
-    let request = new XMLHttpRequest();
-    request.open('get', siteRoot + '/search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
-    request.addEventListener('load', searchEventsReceived);
-    //request.send();
+    searchEvent();
 
     event.preventDefault();
 });
 
 selectedCountry.addEventListener("change", function() {
-    let newSelectedCountry = document.querySelector('#selectedCountry [selected=""]');
 
     console.log('ENTRA SELECTED COUNTRY');
 
-    let request = new XMLHttpRequest();
-    request.open('get', siteRoot + '/search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
-    request.addEventListener('load', searchEventsReceived);
-    //request.send();
+    searchEvent();
 
     event.preventDefault();
 });
 
 minPrice.addEventListener("change", function() {
-    let newMinPrice = document.querySelector('#minPrice');
 
     console.log('ENTRA MIN PRICE');
 
-    let request = new XMLHttpRequest();
-    request.open('get', siteRoot + '/search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
-    request.addEventListener('load', searchEventsReceived);
-    //request.send();
+    searchEvent();
 
 });
 
 maxPrice.addEventListener("change", function() {
-    let newMaxPrice = document.querySelector('#minPrice');
 
     console.log('ENTRA MAX PRICE');
 
-    let request = new XMLHttpRequest();
-    request.open('get', siteRoot + '/search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
-    request.addEventListener('load', searchEventsReceived);
-    //request.send();
+    searchEvent();
 
 });
 
@@ -96,10 +101,7 @@ for(var i = 0; i < selectedOrders.length; i++) {
 
         console.log('ENTRA SELECTED ORDER BY');
 
-        let request = new XMLHttpRequest();
-        request.open('get', siteRoot + '/search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
-        request.addEventListener('load', searchEventsReceived);
-        //request.send();
+        searchEvent();
 
     };
 }
