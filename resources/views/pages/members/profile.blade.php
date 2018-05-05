@@ -17,7 +17,7 @@
                 <div class="col-lg-4" style="padding-top: 23px;">
                     <div class="bs-ccomponent">
 
-                        <img src="{{Storage::url($member->profile)}}" style="width: 100%; height: 200px; object-fit: cover;">
+                        <img src="{{$member->imagePath()}}" style="width: 100%; height: 200px; object-fit: cover;">
 
                         <br>
                         <br>

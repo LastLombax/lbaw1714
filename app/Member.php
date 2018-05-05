@@ -4,6 +4,7 @@
 
 	use Illuminate\Notifications\Notifiable;
 	use Illuminate\Foundation\Auth\User as Authenticatable;
+	use Illuminate\Support\Facades\Storage;
 
 	class Member extends Authenticatable
 	{

@@ -79,8 +79,16 @@
 				$event->name = $request->name;
 				$event->description = $request->description;
 
-				if(isset($request->imagepath))
-					$event->imagepath = $request->imagepath;
+				if($request->hasFile('eventImage')) {
+					$imgType = $request->file('eventImage')->getMimeType();
+					$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
+
+					$event->imagepath = 'img/event/' . $event->idevent . $imgType;
+
+					$event->save();
+
+					$request->file('eventImage')->storeAs('public/img/event', $event->idevent . $imgType);
+				}
 
 				$event->startday = $request->startDate;
 				$event->endday = $request->endDate;

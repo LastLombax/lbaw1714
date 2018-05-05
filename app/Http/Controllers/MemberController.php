@@ -52,18 +52,26 @@ class MemberController extends Controller
      */
     public function edit(Request $request)
     {
+//    		dd($request);
 				//$member = Member::find($request->query->get('member'));
         $member = Auth::user();
 
 
 				if (Gate::allows('edit-profile', $member)) {
             
-            $this->editValidator($request->all())->validate(); //TODO Validatior has an unknown error
+            //$this->editValidator($request->all())->validate(); //TODO Validatior has an unknown error
             $member->name = $request->name;
             $member->birthdate = $request->birthdate;
 
-            if(isset($request->profilepicture))
-                $member->profilepicture = $request->profilepicture;
+					if($request->hasFile('eventImage')) {
+						$imgType = $request->file('eventImage')->getMimeType();
+						$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
+
+						$member->profilepicture = 'img/event/' . $member->username . $imgType;
+
+
+						$request->file('eventImage')->storeAs('public/img/member', $member->username . $imgType);
+					}
 
             $member->address = $request->address;
             $member->idcountry = Country::where('name', '=', $request->country)->first()->idcountry;

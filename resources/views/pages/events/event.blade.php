@@ -1,5 +1,13 @@
 @extends('layout')
 
+@section('extraScript')
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr1_x1qNGarZz3rVGBTmTk2yDOAA-jkOI&callback=initMap">
+    </script>
+    <script src="{{ asset('js/commentScripts.js') }}" defer></script>
+
+@endsection
+
+
 @section('titleIcon')
     <i class="fas fa-calendar-check"></i>
 @endsection
@@ -12,7 +20,7 @@
 
     <script type="text/javascript" defer>
         function confirmDeletion(form) {
-            if (confirm("Are you sure you want to delete the event? \n WARNING: You cannot go back"))
+            if (confirm("Are you sure you want to delete this event? \n WARNING: You cannot go back"))
                 form.submit();
         }
     </script>
@@ -62,7 +70,7 @@
                                         <b>Country</b>
                                     </label>
                                     <p id="country">
-                                        {{$event->country}}
+                                        {{$event->country->name}}
                                     </p>
                                 </div>
                                 <br>
@@ -140,10 +148,11 @@
                                                 <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
                                             </a>
 
-                                            <div style="font-size: 18px; text-align: right; color: #999">
-                                                <i class="fas fa-pencil-alt" onmouseleave='this.style.color="#999"'
+                                            <div class="commentActions" style="font-size: 18px; text-align: right; color: #999">
+                                                <span class="comment-id" style="display: none">{{$comment->idcomment}}</span>
+                                                <i class="editComment fas fa-pencil-alt" onmouseleave='this.style.color="#999"'
                                                    onmouseout='this.style.color="#666"' style="cursor: pointer;"></i>
-                                                <i class="fas fa-trash-alt" onmouseleave='this.style.color="#999"'
+                                                <i class="deleteComment fas fa-trash-alt" onmouseleave='this.style.color="#999"'
                                                    onmouseout='this.style.color="#666"' style="cursor: pointer;"></i>
                                             </div>
 
@@ -216,9 +225,6 @@
         </div>
     </div>
 
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr1_x1qNGarZz3rVGBTmTk2yDOAA-jkOI&callback=initMap">
-    </script>
 
     <div class="modal fade" id="modalInvite" tabindex="-1" role="dialog" aria-labelledby="modalInviteTitle"
          aria-hidden="true">
