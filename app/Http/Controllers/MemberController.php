@@ -67,7 +67,7 @@ class MemberController extends Controller
 						$imgType = $request->file('eventImage')->getMimeType();
 						$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
 
-						$member->profilepicture = 'img/event/' . $member->username . $imgType;
+						$member->profilepicture = 'img/member/' . $member->username . $imgType;
 
 
 						$request->file('eventImage')->storeAs('public/img/member', $member->username . $imgType);
