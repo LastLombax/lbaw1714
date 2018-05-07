@@ -59,7 +59,7 @@
 				'username' => 'required|string|unique:member|min:3|max:255',
 				'email' => 'required|string|email|max:255|unique:member',
 				'password' => 'required|string|min:6|confirmed',
-				'idcountry' => 'required|string|exists:country,name',
+				'country' => 'required|string|exists:country,name',
 			],
 				$messages);
 		}
@@ -71,14 +71,15 @@
 		 * @return \App\Member
 		 */
 		protected function create(array $data) {
-			
+			$countryID = Country::where('name', '=', $data['country'])->first()->idcountry;
+			//dd($countryID);
 			return Member::create([
 				'username' => $data['username'],
 				'email' => $data['email'],
-				'idcountry' => Country::where('name', '=', $data['country'])->first()->idcountry,
+				'idcountry' => $countryID,
 				'password' => bcrypt($data['password']),
 				'name' => $data['name'],
-				'profilepicture' => 'img/defaultMember',
+				'profilepicture' => NULL,
 				'registrationdate' => now()->toDateString(),
 				'verifiedemail' => false,
 				'iswebsiteadmin' => false,

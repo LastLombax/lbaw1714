@@ -37,7 +37,7 @@
 		protected $fillable = [
 			'username',
 			'email',
-			'country',
+			'idcountry',
 			'password',
 			'name',
 			'registrationdate',
@@ -65,7 +65,7 @@
 
 		public function imagePath(){
 			if($this->profilepicture == null)
-				return 'LINK para imagem null';
+				return Storage::url('img/member/defaultMember.png');
 			else
 				return Storage::url($this->profilepicture);
 		}
