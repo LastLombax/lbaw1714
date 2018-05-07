@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use Auth;
-
 use App\Member;
 use App\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Gate;
@@ -57,28 +57,34 @@ class MemberController extends Controller
         $member = Auth::user();
 
 
-				if (Gate::allows('edit-profile', $member)) {
+		if (Gate::allows('edit-profile', $member)) {
             
             //$this->editValidator($request->all())->validate(); //TODO Validatior has an unknown error
             $member->name = $request->name;
             $member->birthdate = $request->birthdate;
 
-					if($request->hasFile('eventImage')) {
-						$imgType = $request->file('eventImage')->getMimeType();
-						$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
+			if($request->hasFile('eventImage')) {
+				$imgType = $request->file('eventImage')->getMimeType();
+				$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
 
-						$member->profilepicture = 'img/member/' . $member->username . $imgType;
+				$member->profilepicture = 'img/member/' . $member->username . $imgType;
 
 
-						$request->file('eventImage')->storeAs('public/img/member', $member->username . $imgType);
-					}
+				$request->file('eventImage')->storeAs('public/img/member', $member->username . $imgType);
+			}
 
             $member->address = $request->address;
             $member->idcountry = Country::where('name', '=', $request->country)->first()->idcountry;
             $member->about = $request->about;
+
             $member->email = $request->email;
-            if(isset($request->password)) 
-               $member->password = $request->password;
+            if(isset($request->password)){
+                if($request->password == $request->password_confirmation)
+                    $member->password = Hash::make($request->password);
+                else
+                    return "Passwords need to be the same";
+            }
+
              
             $member->save();
          }

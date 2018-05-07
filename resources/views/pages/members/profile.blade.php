@@ -38,7 +38,7 @@
                                             <label class="col-form-label" for="inputDefault">
                                                 <b>About</b>
                                             </label>
-                                            <p>{{$member->description}}</p>
+                                            <p>{{$member->about}}</p>
                                         </div>
                                         @endif
                                           @if($member->birthdate != null )
@@ -76,6 +76,13 @@
                                     <br>
                                     <br>
                                     <br>
+                                      <div style="float:; left;">
+                                       <a class="dropdown-item" href=" {{route('editForm', $member)}}">  
+                                             <i class="far fa-edit" style=" color: #333; "></i>Edit
+                                       </a>
+                                              
+                                    </div>
+                                       
                                     <div style="text-align: right;">
                                         <span class="badge badge-dark">Administrator</span>
                                     </div>

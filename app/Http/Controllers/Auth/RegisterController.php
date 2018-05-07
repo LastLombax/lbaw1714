@@ -4,6 +4,7 @@
 
 	use App\Member;
 	use App\User;
+	use App\Country;
 	use App\Http\Controllers\Controller;
 	use Illuminate\Support\Facades\Validator;
 	use Illuminate\Foundation\Auth\RegistersUsers;
@@ -58,6 +59,7 @@
 				'username' => 'required|string|unique:member|min:3|max:255',
 				'email' => 'required|string|email|max:255|unique:member',
 				'password' => 'required|string|min:6|confirmed',
+				'idcountry' => 'required|string|exists:country,name',
 			],
 				$messages);
 		}
@@ -69,12 +71,14 @@
 		 * @return \App\Member
 		 */
 		protected function create(array $data) {
+			
 			return Member::create([
 				'username' => $data['username'],
 				'email' => $data['email'],
-				'country' => $data['country'],
+				'idcountry' => Country::where('name', '=', $data['country'])->first()->idcountry,
 				'password' => bcrypt($data['password']),
 				'name' => $data['name'],
+				'profilepicture' => 'img/defaultMember',
 				'registrationdate' => now()->toDateString(),
 				'verifiedemail' => false,
 				'iswebsiteadmin' => false,

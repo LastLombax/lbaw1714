@@ -87,6 +87,7 @@
                                     <label class="col-form-label" for="about">
                                         <b>About</b>
                                     </label>
+                                    
                                 <textarea id="about" name="about" class="form-control-file">{{$member->about}}</textarea>
                                 </div>
 

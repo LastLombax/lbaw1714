@@ -75,7 +75,7 @@
                     <div class="dropdown-menu" x-placement="bottom-start"
                          style="position: flex; transform: translate3d(-85px, 42px, 0px); top: 0px; left: 0px; will-change: transform;">
 
-                        <a class="dropdown-item" href="/members/{{Auth::user()->username}}"><i class="fas fa-user"></i> My
+                        <a class="dropdown-item" href="/profile"><i class="fas fa-user"></i> My
                             Profile</a>
                         <a class="dropdown-item" href="myFriends.html"><i class="fas fa-users"></i> My Friends</a>
                         <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
