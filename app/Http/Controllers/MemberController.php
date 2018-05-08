@@ -186,4 +186,19 @@ class MemberController extends Controller
         //    LIMIT $selectedLimit OFFSET $selectedOffset
     }
 
+    public static function searchMemberByName($selectedName){
+            $selected = "%" . $selectedName . "%";
+
+            return Member::where('name','LIKE', $selected)
+                         ->where('username', 'LIKE', $selected)
+                         ->orderBy('startday', 'ASC')->limit(9)->get();
+    }
+
+    public static function sendBuddyRequest($member){
+        $now = now();
+        return DB::insert('
+                        INSERT INTO "notification"
+                        VALUES '. $now . 'invite, null,' .$member .', null, null');
+    }
+
 }
