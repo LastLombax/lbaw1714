@@ -166,6 +166,127 @@
 
 		}
 
+        public static function searchEventType1($searchField, $selectedRange, $selectedCountry, $minPrice, $maxPrice, $selectedOrder){
+
+        }
+        public static function searchEventType2($searchField, $selectedRange, $selectedCountry, $selectedOrder){
+
+        }
+        public static function searchEventType3($searchField, $selectedRange, $minPrice, $maxPrice, $selectedOrder){
+
+        }
+        public static function searchEventType4($searchField, $selectedRange, $selectedOrder){
+		    if($searchField == "")
+		    {
+                if($selectedOrder == "chrono")
+                {
+                    if($selectedRange == "all")
+                    {
+                        return Event::where(
+                            'startday','>=', now()->toDateString()
+                        )
+                            ->orderBy('startday', 'ASC')
+                            ->limit(9)
+                            ->get();
+		            }
+                    else
+                    {
+                        return Event::where(
+                            'startday','>=', now()->toDateString()
+                        )
+                            ->orderBy('startday', 'ASC')
+                            ->limit(9)
+                            ->get();
+		            }
+		        }
+                else
+                {
+                    if($selectedRange == "all")
+                    {
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.idevent = event_member.idevent 
+                                AND event_member.idmember = ' . $user . ' 
+                                AND event_member.isadmin = true
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+		        }
+		    }
+            else
+            {
+                $selected = "%" . $searchField . "%";
+
+                if($selectedOrder == "chrono")
+                {
+                    if($selectedRange == "all")
+                    {
+                        return Event::where(
+                            [
+                                ['name','LIKE', $selected],
+                                ['startday','>=', now()->toDateString()],
+                            ]
+                        )
+                            ->orderBy('startday', 'ASC')
+                            ->limit(9)
+                            ->get();
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return Event::join([
+                            ['event_member', 'event_member.idevent', '=', 'idevent'],
+                            ['event_member', 'event_member.idmember', '=', $user],
+                            ['event_member', 'event_member.isadmin', '=', 'true']
+                        ])->where(
+                            [
+                                ['name','LIKE', $selected],
+                                ['startday','>=', now()->toDateString()],
+                            ]
+                        )
+                            ->orderBy('startday', 'ASC')
+                            ->limit(9)
+                            ->get();
+                    }
+                }
+                else
+                {
+                    if($selectedRange == "all")
+                    {
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.name LIKE \''. $selected .'\'
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.name LIKE \''. $selected .'\'
+                                AND event.idevent = event_member.idevent 
+                                AND event_member.idmember = ' . $user . ' 
+                                AND event_member.isadmin = true
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                }
+            }
+
+        }
+
         public static function nearbyMemberEvents(){
 
         }

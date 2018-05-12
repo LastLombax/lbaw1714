@@ -12,7 +12,7 @@
                         <div class="form-group">
                             <select id="selectedRange" class="custom-select">
                                 <option selected="" value="all">All Events</option>
-                                <option value="2">My events</option>
+                                <option value="my">My events</option>
                             </select>
                         </div>
                         <label class="control-label">Search by Country</label>

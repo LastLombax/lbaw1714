@@ -25,13 +25,21 @@ searchFormInput.addEventListener('keyup', searchEvent);
 function searchEvent(event) {
     let request = new XMLHttpRequest();
 
-    newSelectedRange = document.querySelector('#selectedRange [selected=""]').getAttribute('value');
-    newSelectedCountry = document.querySelector('#selectedCountry [selected=""]').innerHTML;
+    if(document.querySelector('#selectedRange [value="all"]').selected)
+        newSelectedRange = "all";
+    else if(document.querySelector('#selectedRange [value="my"]').selected)
+        newSelectedRange = "my";
+
+    newSelectedCountry = document.querySelector('#selectedCountry option').innerHTML;
     newMinPrice = document.querySelector('#minPrice').value;
     newMaxPrice = document.querySelector('#maxPrice').value;
-    newSelectedOrder = document.querySelector('#selectedOrder [checked=""]').getAttribute('value');
+    if(document.querySelector('#selectedOrder [value="top"]').checked) {
+        newSelectedOrder = "top";
+    }else if(document.querySelector('#selectedOrder [value="chrono"]').checked) {
+        newSelectedOrder = "chrono";
+    }
 
-    console.log(newSelectedRange, newSelectedCountry, newMinPrice, newMaxPrice, newSelectedOrder);
+    console.log("-----> aqui: ", searchFormInput.value, newSelectedRange, newSelectedCountry, newMinPrice, newMaxPrice, newSelectedOrder);
 
     if(newSelectedCountry != 'Select Country' && newMinPrice != '' && newMaxPrice != '')
         request.open('get', siteRoot + '/advancedSearch?' + encodeForAjax({'searchField': searchFormInput.value, 'selectedRange': newSelectedRange, 'selectedCountry': newSelectedCountry, 'minPrice': newMinPrice, 'maxPrice': newMaxPrice, 'selectedOrder': newSelectedOrder}), true);
