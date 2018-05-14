@@ -149,9 +149,9 @@ class MemberController extends Controller
 
     public static function profileFeed($member)
     {
-//        return DB::select('SELECT *
-//                           FROM "notification
-//                           ORDER BY "notification".timestamp');
+       return DB::select('SELECT *
+                          FROM "notification"
+                          ORDER BY "notification".timestamp');
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset
     }

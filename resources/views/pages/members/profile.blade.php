@@ -46,7 +46,7 @@
                                             <label class="col-form-label" for="inputDefault">
                                                 <b>Birthdate</b>
                                             </label>
-                                            <p>{{$member->birthdate}}</p>
+                                            <p>{{$member->printDate()}}</p>
                                         </div>                                       
                                         @endif
                                         <div class="form-group">
@@ -54,17 +54,23 @@
                                                 <b>Email address</b>
                                             </label>
                                             <p>
-                                                <a href="#">{{$member->email}}</a>
+                                                <a href="mailto:{{$member->email}}">{{$member->email}}</a>
                                             </p>
                                         </div>
+                                         @if($member->address != null )
                                         <div class="form-group">
                                             <label class="col-form-label" for="inputDefault">
                                                 <b>Address</b>
                                             </label>
                                             <p>
+                                             @if($member->city != null )
                                                 <a href="#">{{$member->address}}, {{$member->city}}</a>
+                                             @else
+                                              <a href="#">{{$member->address}}
+                                             @endif
                                             </p>
                                         </div>
+                                        @endif
 
                                         <div class="form-group">
                                             <label class="col-form-label" for="inputDefault">
@@ -73,19 +79,17 @@
                                             <p>{{$member->country->name}}</p>
                                         </div>
                                     <br>
-                                    <br>
-                                    <br>
-                                    <br>
                                       <div style="float:; left;">
                                        <a class="dropdown-item" href=" {{route('editForm', $member)}}">  
                                              <i class="far fa-edit" style=" color: #333; "></i>Edit
                                        </a>
                                               
                                     </div>
-                                       
+                                    @if($member->isadmin())
                                     <div style="text-align: right;">
                                         <span class="badge badge-dark">Administrator</span>
                                     </div>
+                                    @endif
                                 </fieldset></div>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>

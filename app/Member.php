@@ -24,6 +24,16 @@
 			return $this->belongsToMany('App\Event','event_member', 'idmember', 'idevent')->withPivot('isadmin');
 		}
 
+		public function isadmin(){
+			return $this->iswebsiteadmin;
+		}	
+
+		public function printDate(){
+			$birthdate = strtotime($this->birthdate);
+		    echo date('F d, Y', $birthdate);
+	
+
+	}
 
 		use Notifiable;
 
