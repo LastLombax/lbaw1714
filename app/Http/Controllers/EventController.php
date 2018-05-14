@@ -2,7 +2,8 @@
 
 	namespace App\Http\Controllers;
 
-	use App\Event;
+	use App\Country;
+    use App\Event;
 	use App\Http\Controllers\Controller;
 	use App\Member;
 	use Auth;
@@ -25,8 +26,7 @@
 		}
 
 		public function create(Request $request){
-			$this->validator($request->all())->validate();
-			
+		    $this->validator($request->all())->validate();
 			$event = new Event();
 
 			$event->name = $request->name;
@@ -36,7 +36,7 @@
 			$event->endday = $request->endDate;
 			$event->starttime = $request->startTime;
 			$event->endtime = $request->endTime;
-			$event->country = $request->country;
+			$event->idcountry = Country::where('name', '=',  $request->country)->first()->idcountry;
 			$event->address = $request->address;
 			$event->city = $request->city;
 			$event->ispublic = $request->visibility;
@@ -158,7 +158,7 @@
 				'startTime' => '',
 				'endDay' => '',
 				'endTime' => '',
-				'country' => 'required|string|exists:country',
+				'country' => 'required|string|exists:country,name',
 				'ispublic'=> 'boolean',
 				'address' => '',
 				'lodgingLink' => '',
