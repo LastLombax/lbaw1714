@@ -30,7 +30,7 @@ function getSelectedOption(sel) {
             break;
         }
     }
-    return opt.innerHTML;
+    return opt.getAttribute('value');
 }
 
 function searchEvent(event) {
@@ -52,11 +52,11 @@ function searchEvent(event) {
 
     console.log("-----> aqui: ", searchFormInput.value, newSelectedRange, newSelectedCountry, newMinPrice, newMaxPrice, newSelectedOrder);
 
-    if(newSelectedCountry != 'Select Country' && newMinPrice != '' && newMaxPrice != '')
+    if(newSelectedCountry != 'Select Country' && newSelectedCountry != '' && newMinPrice != '' && newMaxPrice != '')
         request.open('get', siteRoot + '/advancedSearch?' + encodeForAjax({'searchField': searchFormInput.value, 'selectedRange': newSelectedRange, 'selectedCountry': newSelectedCountry, 'minPrice': newMinPrice, 'maxPrice': newMaxPrice, 'selectedOrder': newSelectedOrder}), true);
-    else if(newSelectedCountry != 'Select Country' && newMinPrice == '' && newMaxPrice == '')
+    else if(newSelectedCountry != 'Select Country' && newSelectedCountry != '' && newMinPrice == '' && newMaxPrice == '')
         request.open('get', siteRoot + '/advancedSearch?' + encodeForAjax({'searchField': searchFormInput.value, 'selectedRange': newSelectedRange, 'selectedCountry': newSelectedCountry, 'selectedOrder': newSelectedOrder}), true);
-    else if(newSelectedCountry == 'Select Country' && newMinPrice != '' && newMaxPrice != '')
+    else if(newSelectedCountry == 'Select Country' || newSelectedCountry != '' && newMinPrice != '' && newMaxPrice != '')
         request.open('get', siteRoot + '/advancedSearch?' + encodeForAjax({'searchField': searchFormInput.value, 'selectedRange': newSelectedRange, 'minPrice': newMinPrice, 'maxPrice': newMaxPrice, 'selectedOrder': newSelectedOrder}), true);
     else
         request.open('get', siteRoot + '/advancedSearch?' + encodeForAjax({'searchField': searchFormInput.value, 'selectedRange': newSelectedRange, 'selectedOrder': newSelectedOrder}), true);
