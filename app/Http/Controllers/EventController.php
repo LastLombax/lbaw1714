@@ -191,12 +191,15 @@
 		            }
                     else
                     {
-                        return Event::where(
-                            'startday','>=', now()->toDateString()
-                        )
-                            ->orderBy('startday', 'ASC')
-                            ->limit(9)
-                            ->get();
+                        $user = Auth::id();
+
+                        return DB::select('SELECT *
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event_member.idevent = event.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                AND event.startday >= \''. now()->toDateString() .'\'
+                                ORDER BY event.startday ASC LIMIT 9');
 		            }
 		        }
                 else
@@ -244,19 +247,15 @@
                     {
                         $user = Auth::id();
 
-                        return Event::join([
-                            ['event_member', 'event_member.idevent', '=', 'idevent'],
-                            ['event_member', 'event_member.idmember', '=', $user],
-                            ['event_member', 'event_member.isadmin', '=', 'true']
-                        ])->where(
-                            [
-                                ['name','LIKE', $selected],
-                                ['startday','>=', now()->toDateString()],
-                            ]
-                        )
-                            ->orderBy('startday', 'ASC')
-                            ->limit(9)
-                            ->get();
+                        return DB::select('SELECT event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.name LIKE \''. $selected .'\'
+                                AND event_member.idevent = event.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                AND event.startday >= '. now()->toDateString() .'
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
                     }
                 }
                 else
