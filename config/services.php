@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => 'lbaw1714.fe.up.pt',
+        'secret' => 'key-447262da83ed564bf856654a22b64fe3',
     ],
 
     'ses' => [

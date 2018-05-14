@@ -35,6 +35,8 @@ DROP TABLE IF EXISTS event_eventcategory CASCADE;
 
 DROP TABLE IF EXISTS event_member CASCADE;
 
+DROP TABLE IF EXISTS password_resets CASCADE;
+
 DROP TYPE IF EXISTS notificationType;
 
 DROP TYPE IF EXISTS reporttype;
@@ -305,6 +307,15 @@ CREATE TABLE tickettype (
     CONSTRAINT tickettype_initialquantity_check CHECK ((initialquantity > 0)),
     CONSTRAINT tickettype_price_check CHECK ((price > (0)::double precision))
 );
+
+CREATE TABLE password_resets(
+    idpasswordreset SERIAL NOT NULL,
+    email character varying(50) NOT NULL,
+    token text NOT NULL,
+    created_at timestamp NOT NULL
+
+);
+
 
 
 CREATE INDEX event_search ON event USING gist(fts_vector);

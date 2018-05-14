@@ -22,6 +22,17 @@ let searchFormInput = document.querySelector('input[id=search_text]');
 
 searchFormInput.addEventListener('keyup', searchEvent);
 
+function getSelectedOption(sel) {
+    var opt;
+    for ( var i = 0, len = sel.options.length; i < len; i++ ) {
+        opt = sel.options[i];
+        if ( opt.selected === true ) {
+            break;
+        }
+    }
+    return opt.innerHTML;
+}
+
 function searchEvent(event) {
     let request = new XMLHttpRequest();
 
@@ -30,7 +41,7 @@ function searchEvent(event) {
     else if(document.querySelector('#selectedRange [value="my"]').selected)
         newSelectedRange = "my";
 
-    newSelectedCountry = document.querySelector('#selectedCountry option').innerHTML;
+    newSelectedCountry = getSelectedOption(document.getElementById('selectedCountry'));
     newMinPrice = document.querySelector('#minPrice').value;
     newMaxPrice = document.querySelector('#maxPrice').value;
     if(document.querySelector('#selectedOrder [value="top"]').checked) {
