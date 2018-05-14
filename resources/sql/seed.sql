@@ -141,7 +141,8 @@ CREATE TABLE event (
     address character varying(100) NOT NULL,
     publiclink text,
     ispublic boolean NOT NULL,
-    community integer
+    community integer,
+    fts_vector tsvector
 );
 
 
@@ -305,6 +306,8 @@ CREATE TABLE tickettype (
     CONSTRAINT tickettype_price_check CHECK ((price > (0)::double precision))
 );
 
+
+CREATE INDEX event_search ON event USING gist(fts_vector);
 
 
 --
@@ -1937,7 +1940,6 @@ INSERT INTO country(name) VALUES('Zambia');
 INSERT INTO country(name) VALUES('Zimbabwe');
 
 
-
 --
 -- Name: comment_pkey; Type: CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714; Tablespace:
 --
@@ -2300,6 +2302,12 @@ ALTER TABLE ONLY report
 
 ALTER TABLE ONLY ticket
     ADD CONSTRAINT ticket_idinvoice_fkey FOREIGN KEY (idinvoice) REFERENCES invoice(idinvoice) ON DELETE CASCADE;
+
+
+--Updates Full text search column
+UPDATE event SET fts_vector =
+     to_tsvector('english', name || ' ' || description);
+
 
 
 --Triggers

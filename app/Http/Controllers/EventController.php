@@ -314,7 +314,6 @@
 		}
 
 
-		//TODO Fazer com o eloquent
 		public static function topEvents($limit){ //Mostrar top events, eventos com mais membros que vão
 			return Event::with('attendants')->get()->sortBy(function($event)
 			{
@@ -322,10 +321,6 @@
 			}, null, true)->take($limit); //Using null to skip arguments at function call
 
 
-				/* return DB::select('SELECT count(event_member.idmember) as attendants, event.*
-							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-							GROUP BY(event.idevent)
-							ORDER BY attendants DESC LIMIT ' . $limit);*/
 		}
 
         public static function memberTopEvents($limit, $offset){ //Mostrar top events, eventos com mais membros que vão
@@ -351,9 +346,9 @@
 
         }
 
-        public static function searchEventByName($selectedName){
-            $selected = "%" . $selectedName . "%";
+        public static function searchEventByName($searchInput){
 
-            return Event::where('name','LIKE', $selected)->orderBy('startday', 'ASC')->limit(9)->get();
-        }
+					return Event::whereRaw('fts_vector @@ to_tsquery(\'?\')', array($searchInput))->orderBy('startday', 'ASC')->limit(9)->get();
+
+				}
 	}
