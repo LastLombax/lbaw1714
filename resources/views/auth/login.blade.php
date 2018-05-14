@@ -55,6 +55,14 @@
 
                     <button type="submit" onclick="event.preventDefault(); location.href = '/';" class="btn btn-success" style="border-radius: 0px; width: 75px; padding: 12px; background-color: #898888"><b>Back</b></button>
                 </fieldset>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-4">
+
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            Forgot Your Password?
+                        </a>
+                    </div>
+                </div>
             </form>
         @include('layouts.footer')
         </div>
