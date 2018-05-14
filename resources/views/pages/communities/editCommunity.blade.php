@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('title')
-    {{--@dd($events);--}}
-    {{$event->name}} | ReEvent
+    {{--@dd($community);--}}
+    {{$community->name}} | ReEvent
 @endsection
 
 @section('titleIcon')
@@ -10,7 +10,7 @@
 @endsection
 
 @section('pageTitle')
-    {{$event->name}}
+    {{$community->name}}
 @endsection
 
 @section('content')
@@ -18,10 +18,10 @@
     <br>
     <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0; padding-bottom: 10px;">
       <i class="fas fa-calendar-check"></i>
-       Edit Event
+       Edit community
     </legend>
 
-      <form action="{{ route('createEvent') }}" method="POST">
+      <form action="{{ route('createCommunity') }}" method="POST">
        <input type="hidden" name="_method" value="PUT">
       {{ csrf_field() }}
 
@@ -34,9 +34,9 @@
                 <fieldset>
                   <div class="form-group">
                     <label class="col-form-label" for="inputDefault">
-                      <b>Event Name</b>
+                      <b>Community Name</b>
                     </label>
-                    <input type="text" style="width:100%;" class="form-control col-xs-3" placeholder="Enter event name" id="eventName" maxlength="80">
+                    <input type="text" style="width:100%;" class="form-control col-xs-3" placeholder="Enter community name" id="communityName" maxlength="80">
                   </div>
 
                   <label class="col-form-label" for="inputDefault"  style="width:100%;">
@@ -65,7 +65,7 @@
 
                   <br>
                   <label class="col-form-label" for="inputDefault">
-                    <b>Event visibility</b>
+                    <b>Community visibility</b>
                     <br>
                     <div class="form-group">
                       <select name="visibility" class="form-control" id="inputDefault">
@@ -117,7 +117,7 @@
         </div>
 
       </div>
-       <button type="submit" onclick="event.preventDefault();" href="{{ route('createEvent') }}" class="btn btn-primary d-block ml-auto mt-3">Edit</button>
+       <button type="submit" onclick="event.preventDefault();" href="{{ route('createCommunity') }}" class="btn btn-primary d-block ml-auto mt-3">Edit</button>
       </form>
     </div>
 @endsection

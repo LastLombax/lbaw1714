@@ -5,7 +5,9 @@
 	use Illuminate\Notifications\Notifiable;
 	use Illuminate\Foundation\Auth\User as Authenticatable;
 	use Illuminate\Support\Facades\Storage;
-
+	use Illuminate\Contracts\Auth\CanResetPassword;
+	use  Illuminate\Auth\Passwords\CanResetPassword as resetPass;
+	
 	class Member extends Authenticatable
 	{
 
