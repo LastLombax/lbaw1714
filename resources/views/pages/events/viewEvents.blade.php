@@ -18,7 +18,7 @@
                         <label class="control-label">Search by Country</label>
                         <div class="form-group">
                             <select id="selectedCountry" class="custom-select">
-                                <option selected="" value="Select Country">Select Country</option>
+                                <option selected="" value="Select Country">All Countries</option>
                                 @foreach(App\Country::all() as $country)
                                     <option value="{{$country->idcountry}}">{{$country->name}}</option>
                                 @endforeach

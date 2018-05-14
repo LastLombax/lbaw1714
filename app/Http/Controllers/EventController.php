@@ -167,7 +167,122 @@
 		}
 
         public static function searchEventType1($searchField, $selectedRange, $selectedCountry, $minPrice, $maxPrice, $selectedOrder){
+            if($searchField == "")
+            {
+                if($selectedOrder == "chrono")
+                {
+                    if($selectedRange == "all")
+                    {
+                        return Event::where([
+                            ['startday','>=', now()->toDateString()],
+                            ['idcountry','=', $selectedCountry]
 
+                        ])
+                            ->orderBy('startday', 'ASC')
+                            ->limit(9)
+                            ->get();
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT *
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event_member.idevent = event.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                AND event.startday >= \''. now()->toDateString() .'\'
+                                AND event.idcountry = '. $selectedCountry .'
+                                ORDER BY event.startday ASC LIMIT 9');
+                    }
+                }
+                else
+                {
+                    if($selectedRange == "all")
+                    {
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.idcountry = '. $selectedCountry .'
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.idevent = event_member.idevent 
+                                AND event_member.idmember = ' . $user . ' 
+                                AND event_member.isadmin = true
+                                AND event.idcountry = '. $selectedCountry .'
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                }
+            }
+            else
+            {
+                $selected = "%" . $searchField . "%";
+
+                if($selectedOrder == "chrono")
+                {
+                    if($selectedRange == "all")
+                    {
+                        return Event::where(
+                            [
+                                ['name','LIKE', $selected],
+                                ['startday','>=', now()->toDateString()],
+                                ['idcountry','=', $selectedCountry]
+                            ]
+                        )
+                            ->orderBy('startday', 'ASC')
+                            ->limit(9)
+                            ->get();
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.name LIKE \''. $selected .'\'
+                                AND event_member.idevent = event.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                AND event.startday >= \''. now()->toDateString() .'\'
+                                AND event.idcountry = '. $selectedCountry .'
+                                GROUP BY(event.idevent)
+                                ORDER BY event.startday DESC LIMIT 9');
+                    }
+                }
+                else
+                {
+                    if($selectedRange == "all")
+                    {
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.name LIKE \''. $selected .'\'
+                                AND event.idcountry = '. $selectedCountry .'
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.name LIKE \''. $selected .'\'
+                                AND event.idevent = event_member.idevent 
+                                AND event_member.idmember = ' . $user . ' 
+                                AND event_member.isadmin = true
+                                AND event.idcountry = '. $selectedCountry .'
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                }
+            }
         }
         public static function searchEventType2($searchField, $selectedRange, $selectedCountry, $selectedOrder){
             if($searchField == "")
@@ -253,10 +368,10 @@
                                 AND event_member.idevent = event.idevent
                                 AND event_member.idmember =' . $user . '
                                 AND event_member.isadmin = true
-                                AND event.startday >= '. now()->toDateString() .'
+                                AND event.startday >= \''. now()->toDateString() .'\'
                                 AND event.idcountry = '. $selectedCountry .'
                                 GROUP BY(event.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY event.startday DESC LIMIT 9');
                     }
                 }
                 else
@@ -368,9 +483,9 @@
                                 AND event_member.idevent = event.idevent
                                 AND event_member.idmember =' . $user . '
                                 AND event_member.isadmin = true
-                                AND event.startday >= '. now()->toDateString() .'
+                                AND event.startday >= \''. now()->toDateString() .'\'
                                 GROUP BY(event.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY event.startday DESC LIMIT 9');
                     }
                 }
                 else
