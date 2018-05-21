@@ -20,6 +20,13 @@ console.log(selectedOrder);
 
 let searchFormInput = document.querySelector('input[id=search_text]');
 
+// let forms = document.querySelectorAll('form');
+//
+// //Prevents Enter submition
+// forms.forEach(function(form) {
+//     form.preventDefault();
+// });
+
 searchFormInput.addEventListener('keyup', searchEvent);
 
 function getSelectedOption(sel) {
@@ -34,6 +41,12 @@ function getSelectedOption(sel) {
 }
 
 function searchEvent(event) {
+    let keyCode = event.keyCode || event.which;
+    if (keyCode === 13) {
+        event.preventDefault();
+        return false;
+    }
+
     let request = new XMLHttpRequest();
 
     if(document.querySelector('#selectedRange [value="all"]').selected)
@@ -50,7 +63,6 @@ function searchEvent(event) {
         newSelectedOrder = "chrono";
     }
 
-    console.log("-----> aqui: ", searchFormInput.value, newSelectedRange, newSelectedCountry, newMinPrice, newMaxPrice, newSelectedOrder);
 
     if(newSelectedCountry != 'Select Country' && newMinPrice != '' && newMaxPrice != '')
         request.open('get', siteRoot + '/advancedSearch?' + encodeForAjax({'searchField': searchFormInput.value, 'selectedRange': newSelectedRange, 'selectedCountry': newSelectedCountry, 'minPrice': newMinPrice, 'maxPrice': newMaxPrice, 'selectedOrder': newSelectedOrder}), true);
@@ -65,21 +77,19 @@ function searchEvent(event) {
     request.addEventListener('load', searchEventsReceived);
     request.send();
 
-    event.preventDefault();
+    //event.preventDefault();
 }
 
-window.addEventListener("load", function() {
 
-    console.log('JANELAAAAAA');
 
-    searchEvent();
-
-    event.preventDefault();
-});
+// window.addEventListener("load", function() {
+//
+//     searchEvent();
+//
+//     event.preventDefault();
+// });
 
 selectedRange.addEventListener("change", function() {
-
-    console.log('ENTRA SELECTED RANGE');
 
     searchEvent();
 
@@ -88,8 +98,6 @@ selectedRange.addEventListener("change", function() {
 
 selectedCountry.addEventListener("change", function() {
 
-    console.log('ENTRA SELECTED COUNTRY');
-
     searchEvent();
 
     event.preventDefault();
@@ -97,15 +105,11 @@ selectedCountry.addEventListener("change", function() {
 
 minPrice.addEventListener("change", function() {
 
-    console.log('ENTRA MIN PRICE');
-
     searchEvent();
 
 });
 
 maxPrice.addEventListener("change", function() {
-
-    console.log('ENTRA MAX PRICE');
 
     searchEvent();
 
@@ -115,10 +119,6 @@ let selectedOrders = document.querySelectorAll('#selectedOrder [name="customRadi
 var prev = null;
 for(var i = 0; i < selectedOrders.length; i++) {
     selectedOrders[i].onclick = function() {
-
-        //console.log(this.value)
-
-        console.log('ENTRA SELECTED ORDER BY');
 
         searchEvent();
 
@@ -148,7 +148,6 @@ function searchEventsReceived(){
 
 
     lines.forEach(function(data){
-        console.log(data);
 
         let link = siteRoot + '/events/' + data.idevent;
 
@@ -174,9 +173,6 @@ function searchEventsReceived(){
             '            </div>';
     });
 
-    console.log(div3);
-    console.log(div2);
-    console.log(div1);
 
     div1.append(div2);
     div2.append(div3);

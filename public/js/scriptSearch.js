@@ -15,6 +15,11 @@ let searchFormInput = document.querySelector('input[id=search_text]');
 
 searchFormInput.addEventListener('keyup', searchEvent);
 
+searchFormInput.addEventListener('submit', function (event) {
+    console.log("DEU Enter");
+    event.preventDefault();
+})
+
 function searchEvent(event) {
     let request = new XMLHttpRequest();
     request.open('get', siteRoot + '/search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
@@ -52,7 +57,6 @@ function searchEventsReceived(){
 
 
     lines.forEach(function(data){
-        console.log(data);
 
         let link = siteRoot + '/events/' + data.idevent;
 
@@ -78,9 +82,6 @@ function searchEventsReceived(){
             '            </div>';
     });
 
-    console.log(div3);
-    console.log(div2);
-    console.log(div1);
 
     div1.append(div2);
     div2.append(div3);

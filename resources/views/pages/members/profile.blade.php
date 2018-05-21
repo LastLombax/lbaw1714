@@ -47,7 +47,7 @@
                                                 <b>Birthdate</b>
                                             </label>
                                             <p>{{$member->printDate()}}</p>
-                                        </div>                                       
+                                        </div>
                                         @endif
                                         <div class="form-group">
                                             <label class="col-form-label" for="inputDefault">
@@ -80,7 +80,7 @@
                                         </div>
                                     <br>
                                       <div style="float:; left;">
-                                       <a class="dropdown-item" href=" {{route('editForm', $member)}}">  
+                                       <a class="dropdown-item" href=" {{route('editForm', $member)}}">
                                              <i class="far fa-edit" style=" color: #333; "></i>Edit
                                        </a> 
                                      </div>
@@ -93,6 +93,9 @@
                                          </form>
                                      </div>
                                      @endif
+                                       </a>
+
+                                    </div>
                                     @if($member->isadmin())
                                     <div style="text-align: right;">
                                         <span class="badge badge-dark">Administrator</span>
@@ -113,30 +116,41 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#feed">Notifications</a>
                         </li>
-                        @endif
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#upcoming">Upcoming Events</a>
                         </li>
+                        @else
+                        <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#upcoming">Upcoming Events</a>
+                            </li>
+                        @endif
+
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#history">Event History</a>
                         </li>
                     </ul>
 
-                      @if (Auth::id() == $member->idmember)
+
                     <div id="myTabContent" class="tab-content">
+                        @if (Auth::id() == $member->idmember)
                         <div class="tab-pane fade show active" id="feed">
                             <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                                 <div class="bs-ccomponent">
                                     <div class="list-group">
-                                    
+
                                         @include('pages.members.profileFeed', ['$member' => $member->id])
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                         @endif
+                        @endif
+                        @if (Auth::id() == $member->idmember)
                         <div class="tab-pane fade" id="upcoming">
+                            @else
+                            <div class="tab-pane fade show active" id="upcoming">
+
+                            @endif
                             <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                                 <div class="bs-ccomponent">
                                     <div class="list-group">
@@ -180,7 +194,7 @@
             </div>
         </div>
 
-       
+
 </div>
 @endsection
 

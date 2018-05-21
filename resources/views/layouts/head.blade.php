@@ -34,7 +34,7 @@
 
 <link href="{{asset('timeline/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('css/searchNavBar.css')}}" rel="stylesheet">
-<link href="{{asset('timeline/css/style.scss')}}" rel="stylesheet">
+{{--<link href="{{asset('timeline/scss/style.scss')}}" rel="stylesheet">--}}
 
 @yield('extraScript')
 
