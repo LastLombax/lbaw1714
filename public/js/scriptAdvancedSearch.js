@@ -20,6 +20,13 @@ console.log(selectedOrder);
 
 let searchFormInput = document.querySelector('input[id=search_text]');
 
+// let forms = document.querySelectorAll('form');
+//
+// //Prevents Enter submition
+// forms.forEach(function(form) {
+//     form.preventDefault();
+// });
+
 searchFormInput.addEventListener('keyup', searchEvent);
 
 function getSelectedOption(sel) {
@@ -34,6 +41,12 @@ function getSelectedOption(sel) {
 }
 
 function searchEvent(event) {
+    let keyCode = event.keyCode || event.which;
+    if (keyCode === 13) {
+        event.preventDefault();
+        return false;
+    }
+
     let request = new XMLHttpRequest();
 
     if(document.querySelector('#selectedRange [value="all"]').selected)
@@ -64,15 +77,17 @@ function searchEvent(event) {
     request.addEventListener('load', searchEventsReceived);
     request.send();
 
-    event.preventDefault();
+    //event.preventDefault();
 }
 
-window.addEventListener("load", function() {
 
-    searchEvent();
 
-    event.preventDefault();
-});
+// window.addEventListener("load", function() {
+//
+//     searchEvent();
+//
+//     event.preventDefault();
+// });
 
 selectedRange.addEventListener("change", function() {
 

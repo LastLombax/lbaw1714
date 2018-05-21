@@ -51,7 +51,7 @@
                 <a class="nav-link" href="administration.html">Administration</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <div class="form-inline my-2 my-lg-0">
         <!--<table style="font-size: 12px; color: white; text-align: right; margin-right: 15px;">
                 <tr style="font-size: 9.5px">
                     <td>
@@ -82,6 +82,6 @@
                     </div>
                 </div>
             @endif
-        </form>
+        </div>
     </div>
 </nav>
