@@ -144,7 +144,7 @@
                                 @foreach($event->commentTuples as $comment)
                                     <div class="list-group-item list-group-item-action flex-column align-items-start">
                                         <div class="d-flex w-100 justify-content-between">
-                                            <a href="{{route('profile', $comment->authorTuple->username)}}">
+                                            <a href="{{route('members', $comment->authorTuple->username)}}">
                                                 <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
                                             </a>
 

@@ -61,7 +61,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
 });
 
 // Members
-Route::get('members/{username}', 'MemberController@show')->name('profile')->where('username', '\w{3,}');
+Route::get('members', 'MemberController@index')->name('members');
+Route::get('members/{username}', 'MemberController@show')->name('member')->where('username', '\w{3,}');
 
 
 // Events

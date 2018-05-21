@@ -101,9 +101,11 @@
 
                 <div class="col-lg-8" style="padding-top:23px">
                     <ul class="nav nav-tabs">
+                        @if (Auth::id() == $member->idmember)
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#feed">Notifications</a>
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#upcoming">Upcoming Events</a>
                         </li>
@@ -112,6 +114,7 @@
                         </li>
                     </ul>
 
+                      @if (Auth::id() == $member->idmember)
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade show active" id="feed">
                             <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
@@ -124,6 +127,7 @@
                                 </div>
                             </div>
                         </div>
+                         @endif
                         <div class="tab-pane fade" id="upcoming">
                             <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                                 <div class="bs-ccomponent">

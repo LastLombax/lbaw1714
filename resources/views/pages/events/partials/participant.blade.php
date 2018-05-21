@@ -3,7 +3,7 @@
             <table>
                 <tr>
                     <td>
-                        <a href="{{route('profile', $member->username)}}">
+                        <a href="{{route('members', $member->username)}}">
                             <img src="{{$member->imagePath()}}" style="width: 20%; height: 100px; object-fit: cover; float:left;">
                         </a>
                     </td>

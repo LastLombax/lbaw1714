@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Member;
 use App\Country;
+use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +13,12 @@ use Illuminate\Support\Facades\Gate;
 
 class MemberController extends Controller
 {
+
+
+    public function index(){
+      /*  $members = Member::all();
+        return view('pages.events.viewEvents')->with('events', $events);*/
+    }
 
     /**
      * Display the specified resource.
@@ -122,36 +129,12 @@ class MemberController extends Controller
 
         return $validate;
     }
-
-
-        /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Member  $member
-     * @return \Illuminate\Http\Response
-     */
-    public function passResetForm(Member $member)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Member  $member
-     * @return \Illuminate\Http\Response
-     */
-    public function passReset(Request $request, Member $member)
-    {
-        //
-    }
+    
 
     public static function profileFeed($member)
     {
-       return DB::select('SELECT *
-                          FROM "notification"
-                          ORDER BY "notification".timestamp');
+
+       return Notification::where('recipient', '=', $member)->orderBy('timestamp','DESC')->get();
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset
     }
