@@ -59,44 +59,40 @@ class MemberController extends Controller
      */
     public function edit(Request $request)
     {
-//    		dd($request);
-				//$member = Member::find($request->query->get('member'));
-        $member = Auth::user();
+				
+       $member = Auth::user();
+  		if (Gate::allows('edit-profile', $member)) {
 
+          $this->editValidator($request->all())->validate(); //TODO Validatior has an unknown error
+          
+          $member->name = $request->name;
+          $member->birthdate = $request->birthdate;
 
-		if (Gate::allows('edit-profile', $member)) {
-            
-            //$this->editValidator($request->all())->validate(); //TODO Validatior has an unknown error
-            $member->name = $request->name;
-            $member->birthdate = $request->birthdate;
+    			if($request->hasFile('eventImage')) {
+      			$imgType = $request->file('eventImage')->getMimeType();
+      			$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
 
-			if($request->hasFile('eventImage')) {
-				$imgType = $request->file('eventImage')->getMimeType();
-				$imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
+      			$member->profilepicture = 'img/member/' . $member->username . $imgType;
 
-				$member->profilepicture = 'img/member/' . $member->username . $imgType;
+      			$request->file('eventImage')->storeAs('public/img/member', $member->username . $imgType);
+    			}
 
+          $member->address = $request->address;
+          $member->idcountry = Country::where('name', '=', $request->country)->first()->idcountry;
+          $member->about = $request->about;
 
-				$request->file('eventImage')->storeAs('public/img/member', $member->username . $imgType);
-			}
-
-            $member->address = $request->address;
-            $member->idcountry = Country::where('name', '=', $request->country)->first()->idcountry;
-            $member->about = $request->about;
-
-            $member->email = $request->email;
-            if(isset($request->password)){
-                if($request->password == $request->password_confirmation)
-                    $member->password = Hash::make($request->password);
-                else
-                    return "Passwords need to be the same";
-            }
-
-             
-            $member->save();
+          $member->email = $request->email;
+          if(isset($request->password)){
+              if($request->password == $request->password_confirmation)
+                  $member->password = Hash::make($request->password);
+              else
+                  return "Passwords need to be the same";
+          }
+               
+          $member->save();
          }
 
-         return view('pages.members.profile')->with('member', $member);
+      return redirect()->route('authProfile');
     }
 
     protected function createValidator(array $data) {
@@ -113,20 +109,16 @@ class MemberController extends Controller
 
     protected function editValidator(array $data) {
 
-
         $validate = Validator::make($data, [
             'name' => 'required|string|min:3|max:50',            
             'country' => 'required|string|exists:country,name',
-            'email'=> 'required|email|max:50|unique:member',
-            
-            'birthdate'=> 'date_format:"Y-m-d"', //verificar
+            'email'=> 'required|email|max:50',
+            'birthdate'=> 'nullable|date_format:"Y-m-d"',
             'address'=> 'nullable|string|max:50',
             'about' => 'nullable|string|max:256',
             'password' => 'nullable|string|max:50|confirmed',
             
         ]);
-
-
         return $validate;
     }
     
