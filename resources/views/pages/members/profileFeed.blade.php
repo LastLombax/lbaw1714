@@ -1,5 +1,5 @@
 <?php
- 
+
 use App\Comment;
 use App\Community;
 use App\Event;
@@ -15,15 +15,18 @@ foreach ($query as $notification){
    			$membersLink = route('members');
    			$link = $membersLink . '/' . $buddyName;
    			 echo '
-				  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-			        <h5 class="mb-1"> 
-			        	<a href=" '.$link.'">'.$buddyName . '</a> wants to be your buddy!</h5>
-			        <small>
-			        	<button onclick="acceptRequest($notification->buddy)"> Accept </button>
-			        	<button onclick="ignoreRequest($notification->buddy)"> Ignore </button>
-			        </small>
+				  <div class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+			        <h5 class="mb-1">
+						<a href=" '.$link.'">'.$buddyName . '</a> wants to be your buddy!
+					</h5>
+			        <div>
+			        	<button class="btn btn-info" onclick="acceptRequest($notification->buddy)"> Accept </button>
+			        	<button class="btn btn-secondary" onclick="ignoreRequest($notification->buddy)"> Ignore </button>
+					</div>
+					</div>
 			        <small>' . $notification->getTime() .' day(s) ago</small>
-			    </a>
+			    </div>
 			';
 			break;
 		case 'comment':
@@ -32,13 +35,13 @@ foreach ($query as $notification){
    			$link = $eventsLink . '/' . $notification->event;
    			$commentText = Comment::find($notification->comment)->text;
    			echo '
-			   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+			   <div class="list-group-item list-group-item-action flex-column align-items-start">
 		        <h5 class="mb-1"> There\'s a new comment in <a href=" '.$link.'">'.$eventName . '</a> </h5>
-		        <small>
+		        <p class="mb-1">
 		        	'. $commentText .'
-			    </small>
+			    </p>
 		        <small>' . $notification->getTime() .' day(s) ago</small>
-		    </a>
+		    </div>
 			';
 			break;
 		case 'event':
@@ -46,10 +49,10 @@ foreach ($query as $notification){
    			$eventsLink = route('events');
    			$link = $eventsLink . '/' . $notification->event;
    			echo '
-			   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+			   <div class="list-group-item list-group-item-action flex-column align-items-start">
 		        <h5 class="mb-1"> You have been invited to the Event<a href=" '.$link.'">'.$eventName . '</a> </h5>
 		       <small>' . $notification->getTime() .' day(s) ago</small>
-		    </a>
+		    </div>
 			';
 			break;
 		case 'community':
@@ -57,10 +60,10 @@ foreach ($query as $notification){
    			$communitiesLink = route('communities');
    			$link = $communitiesLink . '/' . $notification->community;
    			echo '
-			   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+			   <div class="list-group-item list-group-item-action flex-column align-items-start">
 		        <h5 class="mb-1"> You have been invited to the Community <a href=" '.$link.'">'.$communityName . '</a> </h5>
 		       <small>' . $notification->getTime() .' day(s) ago</small>
-		    </a>
+		    </div>
 			';
 			break;
 
