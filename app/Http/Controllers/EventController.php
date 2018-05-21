@@ -900,9 +900,8 @@
 
         }
 
-        public static function searchEventByName($searchInput){
-
-					return Event::whereRaw('fts_vector @@ to_tsquery(\'?\')', array($searchInput))->orderBy('startday', 'ASC')->limit(9)->get();
-
+        public static function searchEventByNameAndDesc($searchInput){
+		    //DEBUG >>> App\Event::whereRaw('fts_vector @@ to_tsquery(\'initialize\')')->orderBy('startday', 'ASC')->limit(9)->get();
+					return Event::whereRaw('fts_vector @@ to_tsquery(?)', [$searchInput])->orderBy('startday', 'ASC')->limit(9)->get();
 				}
 	}

@@ -11,4 +11,3 @@
         </li>
     </ul>
 </form>
-<script src="prefixfree-1.0.7.js" type="text/javascript"></script>
