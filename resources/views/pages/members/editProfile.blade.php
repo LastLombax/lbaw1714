@@ -43,7 +43,6 @@
                                      @else
                                         <input id="name" name="name" class="form-control" placeholder="Name" maxlength="100" type="text" value="{{$member->name}}">
                                      @endif
-                                    </label>
                                 </div>
 
                                  <div class="form-group">

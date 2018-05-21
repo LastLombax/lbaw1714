@@ -63,7 +63,7 @@ class MemberController extends Controller
        $member = Auth::user();
   		if (Gate::allows('edit-profile', $member)) {
 
-          $this->editValidator($request->all())->validate(); //TODO Validatior has an unknown error
+          $this->editValidator($request->all())->validate();
           
           $member->name = $request->name;
           $member->birthdate = $request->birthdate;
@@ -171,9 +171,19 @@ class MemberController extends Controller
 
     public static function sendBuddyRequest($member){
         $now = now();
+        dd($now);
+        return DB::insert('
+                        INSERT INTO "notification"
+                        VALUES '. $now . 'buddy, null,' .$Auth::id() .', null, null,' . $member);
+    }
+
+    public function removeBuddy($member){
+        $now = now();
         return DB::insert('
                         INSERT INTO "notification"
                         VALUES '. $now . 'invite, null,' .$member .', null, null');
     }
+
+//INSERT INTO notification (timestamp, type, community, recipient, comment, event, buddy) VALUES ('2017-12-17 12:26:03', 'buddy', null, 102, null, null, 101);
 
 }

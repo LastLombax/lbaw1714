@@ -31,8 +31,12 @@
 		public function printDate(){
 			$birthdate = strtotime($this->birthdate);
 		    echo date('F d, Y', $birthdate);
-	
 
+/*		public function friend($member){
+			//return $
+		}
+	
+*/
 	}
 
 		use Notifiable;

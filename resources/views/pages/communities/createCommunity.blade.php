@@ -13,14 +13,30 @@
                             <label class="col-form-label" for="communityName">
                                 <b>Community name</b>
                             </label>
-                            <input id="communityName" name="communityName" type="text" class="form-control" placeholder="Community name"  maxlength="100" required>
+                            @if ($errors->has('communityName'))
+                            <input id="communityName" name="communityName" type="text" class="form-control is-invalid" placeholder="Community name"  maxlength="100" required>
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Error: </strong>{{$errors->first('communityName')}}
+                            </div>
+                            @else
+                             <input id="communityName" name="communityName" type="text" class="form-control " placeholder="Community name"  maxlength="100" required>
+                             @endif
                         </div>
 
                         <div class="form-group">
                             <label class="col-form-label" for="communityDescription">
                                 <b>Description</b>
                             </label>
+                             @if ($errors->has('communityDescription'))
+                            <textarea id="communityDescription" name="communityDescription" class="form-control is-invalid" placeholder="Description" maxlength="255" required></textarea>
+                             <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Error: </strong>{{$errors->first('communityDescription')}}
+                            </div>
+                            @else
                             <textarea id="communityDescription" name="communityDescription" class="form-control" placeholder="Description" maxlength="255" required></textarea>
+                            @endif
                         </div>
 
                         <div class="form-group">
@@ -44,9 +60,21 @@
                             <label class="col-form-label" for="communityImage">
                                 <b>Community photo</b>
                             </label>
+
+                            @if (errors->has('communityImage'))
+                            <input id="communityImage" name="communityImage" type="file" class="form-control-file is-invalid" aria-describedby="fileHelp">
+                            <small id="fileHelp" class="form-text text-muted">Choose an image that represents your Community, such as a logo or a photo of your group.
+                            </small>
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Error: </strong>{{$errors->first('communityImage')}}
+                            </div>
+                            @else
                             <input id="communityImage" name="communityImage" type="file" class="form-control-file" aria-describedby="fileHelp">
                             <small id="fileHelp" class="form-text text-muted">Choose an image that represents your Community, such as a logo or a photo of your group.
                             </small>
+                            @endif
+
                         </div>
                         
                     </fieldset>

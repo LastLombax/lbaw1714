@@ -58,6 +58,12 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::post('communities/create', 'CommunityController@create')->name('createCommunity');    
     Route::get('communities/manageCommunities', 'CommunityController@manageCommunities')->name('manageCommunities');
 
+    //Members
+    Route::post('buddies/add/{member}', 'MemberController@sendBuddyRequest')->name('sendBuddyRequest')->where('member', '[0-9]+}');
+
+    Route::post('buddies/remove/{member}', 'MemberController@removeBuddy')->name('removeBuddy')->where('member', '[0-9]+}');
+
+
 });
 
 // Members

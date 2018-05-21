@@ -33,10 +33,18 @@
               <div style="background-color: #eee; padding: 20px; padding-top: 10px; height: 500px;">
                 <fieldset>
                   <div class="form-group">
-                    <label class="col-form-label" for="inputDefault">
-                      <b>Community Name</b>
-                    </label>
-                    <input type="text" style="width:100%;" class="form-control col-xs-3" placeholder="Enter community name" id="communityName" maxlength="80">
+                      <label class="col-form-label" for="inputDefault">
+                        <b>Community Name</b>
+                      </label>
+                      if($errors->has('name'))
+                      <input type="text" style="width:100%;" class="form-control col-xs-3 is-invalid" placeholder="Enter community name" id="communityName" maxlength="80" name="name">
+                       <div class="alert alert-dismissible alert-danger">
+                           <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Error: </strong>{{$errors->first('communityName')}}
+                       </div>
+                       @else
+                        <input type="text" style="width:100%;" class="form-control col-xs-3" placeholder="Enter community name" id="communityName" maxlength="80" name="name">
+                        @endif
                   </div>
 
                   <label class="col-form-label" for="inputDefault"  style="width:100%;">

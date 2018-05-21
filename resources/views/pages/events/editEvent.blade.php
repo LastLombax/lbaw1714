@@ -32,6 +32,7 @@
                                 <input id="name" name="name" type="text" style="width:100%;"
                                        class="form-control col-xs-3" value="{{$event->name}}"
                                        placeholder="Enter event name" maxlength="80">
+                                </input>
                             </div>
 
                             <label class="col-form-label" for="description" style="width:100%;">

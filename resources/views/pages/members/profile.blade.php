@@ -82,9 +82,17 @@
                                       <div style="float:; left;">
                                        <a class="dropdown-item" href=" {{route('editForm', $member)}}">  
                                              <i class="far fa-edit" style=" color: #333; "></i>Edit
-                                       </a>
-                                              
-                                    </div>
+                                       </a> 
+                                     </div>
+                                        @if (Auth::id() != $member->idmember)
+                                      <div style="float:; left;">
+                                        <form action="{{ route('sendBuddyRequest', $member->idmember)}}" method="POST" enctype="multipart/form-data">
+                                          {{ csrf_field() }}
+                                         <button type="submit"> <i class="far fa-edit" style=" color: #333; "></i>Befriend this Member
+                                       </button> 
+                                         </form>
+                                     </div>
+                                     @endif
                                     @if($member->isadmin())
                                     <div style="text-align: right;">
                                         <span class="badge badge-dark">Administrator</span>
