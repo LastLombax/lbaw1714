@@ -143,7 +143,8 @@ CREATE TABLE event (
     address character varying(100) NOT NULL,
     publiclink text,
     ispublic boolean NOT NULL,
-    community integer
+    community integer,
+    fts_vector tsvector
 );
 
 
@@ -317,6 +318,8 @@ CREATE TABLE password_resets(
 );
 
 
+
+CREATE INDEX event_search ON event USING gist(fts_vector);
 
 
 --
@@ -1596,106 +1599,57 @@ INSERT INTO ticket (type, buyer, idinvoice) VALUES (31, 23, 64);
 -- Data for Name: tickettype; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
 --
 
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 87.6899999999999977, 5205, 4039, 'Diabetes due to underlying condition w oth diabetic arthrop', 43);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 62.8100000000000023, 3404, 1967, 'Congenital absence of hand and finger', 8);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 90.4699999999999989, 4647, 4606, 'Dvrtclos of intest, part unsp, w/o perf or abscess w bleed', 41);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 76.4099999999999966, 1946, 9640, 'Displ commnt fx shaft of l femr, 7thQ', 40);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 70.6599999999999966, 7136, 8990, 'Nondisp spiral fx shaft of ulna, r arm, 7thJ', 23);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 41.5399999999999991, 6010, 3279, 'Lens-induced iridocyclitis, right eye', 30);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 38.8200000000000003, 2769, 9662, 'Unsp mtrcy rider injured in collision w 2/3-whl mv in traf', 5);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 42.7800000000000011, 581, 110, 'Microscopic polyangiitis', 6);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 28.2899999999999991, 719, 6264, 'Nondisp fx of nk of 4th MC bone, l hand, 7thP', 4);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 48.6799999999999997, 4378, 5045, 'Displ spiral fx shaft of ulna, l arm, 7thM', 19);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 20.9200000000000017, 8605, 965, 'Unsp fx upr end r tibia, subs for opn fx type I/2 w nonunion', 50);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 32.1400000000000006, 4461, 4011, 'Tinnitus, bilateral', 29);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 63.9399999999999977, 925, 9562, 'Legal intervention involving injury by dynamite', 46);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 78.6299999999999955, 605, 5208, 'Benign neoplasm of pituitary gland', 39);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 84.519999999999996, 1552, 7307, 'Atrophic nonflaccid tympanic membrane, unspecified ear', 40);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 1.34000000000000008, 3396, 1872, 'Epidural hemorrhage w LOC of 1-5 hrs 59 min, init', 26);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 10.8800000000000008, 8285, 2471, 'Nondisplaced fracture of greater tuberosity of right humerus', 26);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 52.8500000000000014, 1894, 1356, 'Nondisp fx of r tibial tuberosity, 7thC', 10);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 1.44999999999999996, 7613, 8249, 'Unsp inj blood vessels at ank/ft level, right leg, sequela', 17);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 75.7399999999999949, 9859, 8221, 'Adverse effect of other drugs acting on muscles, init encntr', 46);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 58.7700000000000031, 6476, 2147, 'Displ seg fx shaft of r fibula, 7thR', 12);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 2.16999999999999993, 9201, 1768, 'Posterior subluxation of unsp ulnohumeral joint, sequela', 43);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 79.8900000000000006, 5031, 5475, 'Displaced unsp fracture of left great toe, init for opn fx', 16);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 26.4600000000000009, 3705, 3911, 'Gen skin eruption due to drugs and meds taken internally', 41);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 48.6499999999999986, 2672, 2218, 'Unspecified anomaly of jaw size', 10);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 94.7800000000000011, 1019, 4047, 'Enteropathic arthropathies, unspecified elbow', 7);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 17.8200000000000003, 4313, 9629, 'Oth private fix-wing arcrft explosn inj occupant, sequela', 45);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 91.4599999999999937, 9534, 5792, 'Corrosion of first degree of toe(s) (nail)', 44);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 25.0700000000000003, 6185, 6174, 'Contusion of left upper arm', 36);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 31.3599999999999994, 3525, 3020, 'Laceration with foreign body of unsp upper arm, subs encntr', 9);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 65.0499999999999972, 9410, 2374, 'Unsp pedl cyclst injured in nonclsn trnsp acc in traf, init', 46);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 7.51999999999999957, 6981, 593, 'Pnctr w fb of abd wall, epigst rgn w penet perit cav, init', 30);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 85.9300000000000068, 7760, 1876, 'High risk sexual behavior', 26);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 77.8900000000000006, 5046, 6224, 'Other osteonecrosis, unspecified toe(s)', 49);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 27.9899999999999984, 8360, 4504, 'Blister (nonthermal) of unspecified wrist, initial encounter', 21);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 63.9399999999999977, 9226, 8192, 'Squamous blepharitis left lower eyelid', 49);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 96.5100000000000051, 8626, 4451, 'Nondisp fx of triquetrum bone, right wrist, init for clos fx', 25);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 88.1800000000000068, 6602, 453, 'Poisn by unsp sys anti-infect and antiparastc, undet, sqla', 40);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 67.3400000000000034, 2166, 7285, 'Unspecified subluxation of other finger, initial encounter', 18);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 73.9500000000000028, 8014, 2222, 'Diverticulitis of large intestine w perforation and abscess', 30);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 59.0700000000000003, 4244, 8343, 'Elev erythro sedim and abnormality of plasma viscosity', 3);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 53.2999999999999972, 5805, 980, 'Fall from non-moving nonmotorized scooter, sequela', 30);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 96.1800000000000068, 5785, 5043, 'Other and unspecified nontraumatic intracranial hemorrhage', 20);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 70.2199999999999989, 7527, 148, 'Thrombotic microangiopathy', 13);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 31.3399999999999999, 9455, 5616, 'Inj muscle, fascia and tendon of unsp hip, init encntr', 27);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 57.7700000000000031, 4803, 2854, 'Laceration with foreign body, unspecified ankle, sequela', 5);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 64.2099999999999937, 4778, 219, 'Perf due to fb acc left in body following endo exam, init', 36);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 59.9699999999999989, 2201, 3013, 'Unspecified dacryocystitis of right lacrimal passage', 5);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 76.3499999999999943, 1504, 4349, 'Fat embolism (traumatic), sequela', 14);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 34.42, 7056, 3373, 'Complete traumatic amputation at unsp shoulder joint, init', 1);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 86.78, 9021, 7991, 'Oth fx low end l femr, subs for opn fx type I/2 w routn heal', 2);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 97.81, 7717, 7507, 'Viral hepatitis complicating pregnancy, second trimester', 3);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 83.16, 5026, 8703, 'Nondisp seg fx shaft of ulna, unsp arm, 7thD', 4);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 46.28, 6853, 5166, 'Laceration w fb of left thumb w damage to nail, sequela', 5);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 46.56, 630, 4592, 'Other synovitis and tenosynovitis, right upper arm', 6);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 98.14, 2249, 4562, 'Kaschin-Beck disease, right elbow', 7);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 66.44, 3411, 5875, 'Pain in left shoulder', 8);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 99.51, 2546, 42, 'Contusion of bronchus, bilateral', 9);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 70.43, 3443, 7552, 'Fracture of one rib, unsp side, subs for fx w routn heal', 10);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 15.29, 1142, 1287, 'Occupant of streetcar injured by fall in streetcar, subs', 11);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 90.06, 787, 1514, 'Foreign body in nasal sinus, subsequent encounter', 12);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 64.85, 1088, 7540, 'Injury of optic nerve, right eye, sequela', 13);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 92.89, 5078, 8044, 'Strain of musc/tend anterior grp at low leg level, left leg', 14);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 19.33, 9122, 8683, 'Burn of second degree of right hand, unsp site, sequela', 15);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 93.4, 4302, 6100, 'Sprain of lateral collateral ligament of right knee, sequela', 16);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 96.6, 4683, 9492, 'Poisoning by opium, intentional self-harm, subs encntr', 17);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 45.66, 7574, 6001, 'Varicose veins of r low extrem w ulcer oth part of foot', 18);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 64.5, 8102, 1504, 'Varicos vn of l low extrem w ulc of thigh and inflammation', 19);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 73.58, 5853, 2242, 'Trigger finger, little finger', 20);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 50.45, 6462, 3046, 'Keratoconus, stable', 21);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 49.21, 6204, 1669, 'Disp fx of medial wall of left acetabulum, sequela', 22);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 55.4, 1663, 1425, 'Milt op involving oth conventl warfare, civilian, sequela', 23);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 16.71, 8412, 8725, 'Unsp fx shaft of unsp fibula, 7thR', 24);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 98.76, 6055, 2505, 'Fusion of spine, thoracolumbar region', 25);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 12.47, 8053, 1287, 'Crushing injury of right little finger, subsequent encounter', 26);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 96.31, 8083, 7227, 'Chronic postrheumatic arthropathy [Jaccoud], right wrist', 27);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 82.84, 4086, 3839, 'Other superficial bite of right elbow', 28);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 75.72, 8129, 8264, 'Corrosion of first degree of unspecified elbow, sequela', 29);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 11.96, 3885, 6224, 'Blister (nonthermal) of right hand, initial encounter', 30);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 91.08, 3308, 9034, 'Unspecified cystostomy status', 31);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 99.17, 4879, 7991, 'Congenital ichthyosis', 32);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 94.9, 3525, 6408, 'Unsp physl fx low end rad, left arm, subs for fx w malunion', 33);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 44.43, 8610, 9725, 'Contusion of left back wall of thorax', 34);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 74.2, 7689, 3365, 'Assault by hot tap water', 35);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 76.35, 6497, 9905, 'Poisoning by antidotes and chelating agents, undet, sequela', 36);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 99.4, 3320, 1493, 'Struck by football', 37);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 91.34, 1988, 4931, 'Complete traumatic amp at knee level, unsp low leg, sequela', 38);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 20.31, 9210, 6639, 'Toxic effect of venom of ants, intentional self-harm, subs', 39);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 58.9, 5232, 1891, 'Unsp foreign body in pharynx causing oth injury, init encntr', 40);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 91.95, 6490, 462, 'Age-rel osteopor w current path fracture, vertebra(e), init', 41);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 97.86, 6596, 3124, 'Disp fx of lateral condyle of unsp femr, 7thJ', 42);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 13.03, 8275, 4204, 'Open bite, right elbow, subsequent encounter', 43);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 50.6, 4574, 921, 'Unspecified physeal fracture of right metatarsal, init', 44);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 98.71, 1051, 9914, 'Calcifcn and ossifictn of musc assoc w burns, right ank/ft', 45);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 34.44, 6500, 9042, 'Partial traumatic MCP amputation of thmb, init', 46);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 80.44, 9242, 6374, 'Lateral subluxation of right ulnohumeral joint, sequela', 47);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 41.23, 5026, 8701, 'Ultralt/microlt/pwr-glider crash injuring occupant, sequela', 48);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 80.74, 4932, 950, 'Oth diabetes mellitus with other diabetic arthropathy', 49);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 43.51, 6386, 652, 'Pnctr w/o fb of abd wall, l upr q w penet perit cav, sequela', 50);
 
-
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 87.6899999999999977, 5205, 4039, 'Diabetes due to underlying condition w oth diabetic arthrop', 43);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 62.8100000000000023, 3404, 1967, 'Congenital absence of hand and finger', 8);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 90.4699999999999989, 4647, 4606, 'Dvrtclos of intest, part unsp, w/o perf or abscess w bleed', 41);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 76.4099999999999966, 1946, 9640, 'Displ commnt fx shaft of l femr, 7thQ', 40);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 70.6599999999999966, 7136, 8990, 'Nondisp spiral fx shaft of ulna, r arm, 7thJ', 23);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 41.5399999999999991, 6010, 3279, 'Lens-induced iridocyclitis, right eye', 30);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 38.8200000000000003, 2769, 9662, 'Unsp mtrcy rider injured in collision w 2/3-whl mv in traf', 5);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 42.7800000000000011, 581, 110, 'Microscopic polyangiitis', 6);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 28.2899999999999991, 719, 6264, 'Nondisp fx of nk of 4th MC bone, l hand, 7thP', 4);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 48.6799999999999997, 4378, 5045, 'Displ spiral fx shaft of ulna, l arm, 7thM', 19);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 20.9200000000000017, 8605, 965, 'Unsp fx upr end r tibia, subs for opn fx type I/2 w nonunion', 50);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 32.1400000000000006, 4461, 4011, 'Tinnitus, bilateral', 29);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 63.9399999999999977, 925, 9562, 'Legal intervention involving injury by dynamite', 46);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 78.6299999999999955, 605, 5208, 'Benign neoplasm of pituitary gland', 39);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 84.519999999999996, 1552, 7307, 'Atrophic nonflaccid tympanic membrane, unspecified ear', 40);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 1.34000000000000008, 3396, 1872, 'Epidural hemorrhage w LOC of 1-5 hrs 59 min, init', 26);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 10.8800000000000008, 8285, 2471, 'Nondisplaced fracture of greater tuberosity of right humerus', 26);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 52.8500000000000014, 1894, 1356, 'Nondisp fx of r tibial tuberosity, 7thC', 10);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 1.44999999999999996, 7613, 8249, 'Unsp inj blood vessels at ank/ft level, right leg, sequela', 17);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 75.7399999999999949, 9859, 8221, 'Adverse effect of other drugs acting on muscles, init encntr', 46);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 58.7700000000000031, 6476, 2147, 'Displ seg fx shaft of r fibula, 7thR', 12);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 2.16999999999999993, 9201, 1768, 'Posterior subluxation of unsp ulnohumeral joint, sequela', 43);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 79.8900000000000006, 5031, 5475, 'Displaced unsp fracture of left great toe, init for opn fx', 16);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 26.4600000000000009, 3705, 3911, 'Gen skin eruption due to drugs and meds taken internally', 41);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 48.6499999999999986, 2672, 2218, 'Unspecified anomaly of jaw size', 10);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 94.7800000000000011, 1019, 4047, 'Enteropathic arthropathies, unspecified elbow', 7);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 17.8200000000000003, 4313, 9629, 'Oth private fix-wing arcrft explosn inj occupant, sequela', 45);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 91.4599999999999937, 9534, 5792, 'Corrosion of first degree of toe(s) (nail)', 44);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 25.0700000000000003, 6185, 6174, 'Contusion of left upper arm', 36);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 31.3599999999999994, 3525, 3020, 'Laceration with foreign body of unsp upper arm, subs encntr', 9);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 65.0499999999999972, 9410, 2374, 'Unsp pedl cyclst injured in nonclsn trnsp acc in traf, init', 46);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 7.51999999999999957, 6981, 593, 'Pnctr w fb of abd wall, epigst rgn w penet perit cav, init', 30);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 85.9300000000000068, 7760, 1876, 'High risk sexual behavior', 26);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 77.8900000000000006, 5046, 6224, 'Other osteonecrosis, unspecified toe(s)', 49);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 27.9899999999999984, 8360, 4504, 'Blister (nonthermal) of unspecified wrist, initial encounter', 21);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 63.9399999999999977, 9226, 8192, 'Squamous blepharitis left lower eyelid', 49);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 96.5100000000000051, 8626, 4451, 'Nondisp fx of triquetrum bone, right wrist, init for clos fx', 25);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 88.1800000000000068, 6602, 453, 'Poisn by unsp sys anti-infect and antiparastc, undet, sqla', 40);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 67.3400000000000034, 2166, 7285, 'Unspecified subluxation of other finger, initial encounter', 18);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 73.9500000000000028, 8014, 2222, 'Diverticulitis of large intestine w perforation and abscess', 30);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 59.0700000000000003, 4244, 8343, 'Elev erythro sedim and abnormality of plasma viscosity', 3);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 53.2999999999999972, 5805, 980, 'Fall from non-moving nonmotorized scooter, sequela', 30);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 96.1800000000000068, 5785, 5043, 'Other and unspecified nontraumatic intracranial hemorrhage', 20);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (2, 70.2199999999999989, 7527, 148, 'Thrombotic microangiopathy', 13);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 31.3399999999999999, 9455, 5616, 'Inj muscle, fascia and tendon of unsp hip, init encntr', 27);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 57.7700000000000031, 4803, 2854, 'Laceration with foreign body, unspecified ankle, sequela', 5);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 64.2099999999999937, 4778, 219, 'Perf due to fb acc left in body following endo exam, init', 36);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (3, 59.9699999999999989, 2201, 3013, 'Unspecified dacryocystitis of right lacrimal passage', 5);
-INSERT INTO tickettype (type, price, initialquantity, availableQuantity, description, event) VALUES (1, 76.3499999999999943, 1504, 4349, 'Fat embolism (traumatic), sequela', 14);
 
 
 INSERT INTO country(name) VALUES('Afghanistan');
@@ -1947,7 +1901,6 @@ INSERT INTO country(name) VALUES('Western Sahara');
 INSERT INTO country(name) VALUES('Yemen');
 INSERT INTO country(name) VALUES('Zambia');
 INSERT INTO country(name) VALUES('Zimbabwe');
-
 
 
 --
@@ -2312,6 +2265,12 @@ ALTER TABLE ONLY report
 
 ALTER TABLE ONLY ticket
     ADD CONSTRAINT ticket_idinvoice_fkey FOREIGN KEY (idinvoice) REFERENCES invoice(idinvoice) ON DELETE CASCADE;
+
+
+--Updates Full text search column
+UPDATE event SET fts_vector =
+     to_tsvector('english', name || ' ' || description);
+
 
 
 --Triggers

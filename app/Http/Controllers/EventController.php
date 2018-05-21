@@ -2,7 +2,8 @@
 
 	namespace App\Http\Controllers;
 
-	use App\Event;
+	use App\Country;
+    use App\Event;
 	use App\Http\Controllers\Controller;
 	use App\Member;
 	use Auth;
@@ -25,8 +26,7 @@
 		}
 
 		public function create(Request $request){
-			$this->validator($request->all())->validate();
-			
+		    $this->validator($request->all())->validate();
 			$event = new Event();
 
 			$event->name = $request->name;
@@ -36,7 +36,7 @@
 			$event->endday = $request->endDate;
 			$event->starttime = $request->startTime;
 			$event->endtime = $request->endTime;
-			$event->country = $request->country;
+			$event->idcountry = Country::where('name', '=',  $request->country)->first()->idcountry;
 			$event->address = $request->address;
 			$event->city = $request->city;
 			$event->ispublic = $request->visibility;
@@ -158,7 +158,7 @@
 				'startTime' => '',
 				'endDay' => '',
 				'endTime' => '',
-				'country' => 'required|string|exists:country',
+				'country' => 'required|string|exists:country,name',
 				'ispublic'=> 'boolean',
 				'address' => '',
 				'lodgingLink' => '',
@@ -167,13 +167,568 @@
 		}
 
         public static function searchEventType1($searchField, $selectedRange, $selectedCountry, $minPrice, $maxPrice, $selectedOrder){
+            if($searchField == "")
+            {
+                if($selectedOrder == "chrono")
+                {
+                    if($selectedRange == "all")
+                    {
+                        return DB::select('SELECT e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.startday >= \''. now()->toDateString() .'\'
+                                AND e1.idcountry = '. $selectedCountry .'
+                                GROUP BY(e1.idevent)
+                                ORDER BY e1.startday DESC LIMIT 9');
+                    }
+                    else
+                    {
+                        $user = Auth::id();
 
+                        return DB::select('SELECT e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.startday >= \''. now()->toDateString() .'\'
+                                AND e1.idcountry = '. $selectedCountry .'
+                                AND event_member.idevent = e1.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                GROUP BY(e1.idevent)
+                                ORDER BY e1.startday DESC LIMIT 9');
+                    }
+                }
+                else
+                {
+                    if($selectedRange == "all") //done
+                    {
+                        return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.idcountry = '. $selectedCountry .'
+                                GROUP BY(e1.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                    else //done
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.idcountry = '. $selectedCountry .'
+                                AND event_member.idevent = e1.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                GROUP BY(e1.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                }
+            }
+            else
+            {
+                $selected = "%" . $searchField . "%";
+
+                if($selectedOrder == "chrono")
+                {
+                    if($selectedRange == "all") //done
+                    {
+                        return DB::select('SELECT e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.name LIKE \''. $selected .'\'
+                                AND e1.startday >= \''. now()->toDateString() .'\'
+                                AND e1.idcountry = '. $selectedCountry .'
+                                GROUP BY(e1.idevent)
+                                ORDER BY e1.startday DESC LIMIT 9');
+                    }
+                    else //done
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.name LIKE \''. $selected .'\'
+                                AND e1.startday >= \''. now()->toDateString() .'\'
+                                AND e1.idcountry = '. $selectedCountry .'
+                                AND event_member.idevent = e1.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                GROUP BY(e1.idevent)
+                                ORDER BY e1.startday DESC LIMIT 9');
+
+                    }
+                }
+                else //done
+                {
+                    if($selectedRange == "all")
+                    {
+                        return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type AS ticketType
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.name LIKE \''. $selected .'\'
+                                AND e1.idcountry = '. $selectedCountry .'
+                                GROUP BY(e1.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                    else //done
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.name LIKE \''. $selected .'\'
+                                AND e1.idcountry = '. $selectedCountry .'
+                                AND event_member.idevent = e1.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                GROUP BY(e1.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                }
+            }
         }
         public static function searchEventType2($searchField, $selectedRange, $selectedCountry, $selectedOrder){
+            if($searchField == "")
+            {
+                if($selectedOrder == "chrono")
+                {
+                    if($selectedRange == "all")
+                    {
+                        return Event::where([
+                            ['startday','>=', now()->toDateString()],
+                            ['idcountry','=', $selectedCountry]
 
+                        ])
+                            ->orderBy('startday', 'ASC')
+                            ->limit(9)
+                            ->get();
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT *
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event_member.idevent = event.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                AND event.startday >= \''. now()->toDateString() .'\'
+                                AND event.idcountry = '. $selectedCountry .'
+                                ORDER BY event.startday ASC LIMIT 9');
+                    }
+                }
+                else
+                {
+                    if($selectedRange == "all")
+                    {
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.idcountry = '. $selectedCountry .'
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.idevent = event_member.idevent 
+                                AND event_member.idmember = ' . $user . ' 
+                                AND event_member.isadmin = true
+                                AND event.idcountry = '. $selectedCountry .'
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                }
+            }
+            else
+            {
+                $selected = "%" . $searchField . "%";
+
+                if($selectedOrder == "chrono")
+                {
+                    if($selectedRange == "all")
+                    {
+                        return Event::where(
+                            [
+                                ['name','LIKE', $selected],
+                                ['startday','>=', now()->toDateString()],
+                                ['idcountry','=', $selectedCountry]
+                            ]
+                        )
+                            ->orderBy('startday', 'ASC')
+                            ->limit(9)
+                            ->get();
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.name LIKE \''. $selected .'\'
+                                AND event_member.idevent = event.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                AND event.startday >= \''. now()->toDateString() .'\'
+                                AND event.idcountry = '. $selectedCountry .'
+                                GROUP BY(event.idevent)
+                                ORDER BY event.startday DESC LIMIT 9');
+                    }
+                }
+                else
+                {
+                    if($selectedRange == "all")
+                    {
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.name LIKE \''. $selected .'\'
+                                AND event.idcountry = '. $selectedCountry .'
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                    else
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.name LIKE \''. $selected .'\'
+                                AND event.idevent = event_member.idevent 
+                                AND event_member.idmember = ' . $user . ' 
+                                AND event_member.isadmin = true
+                                AND event.idcountry = '. $selectedCountry .'
+                                GROUP BY(event.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                }
+            }
         }
         public static function searchEventType3($searchField, $selectedRange, $minPrice, $maxPrice, $selectedOrder){
+            if($searchField == "")
+            {
+                if($selectedOrder == "chrono")
+                {
+                    if($selectedRange == "all")
+                    {
+                        return DB::select('SELECT e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.startday >= \''. now()->toDateString() .'\'
+                                GROUP BY(e1.idevent)
+                                ORDER BY e1.startday DESC LIMIT 9');
+                    }
+                    else
+                    {
+                        $user = Auth::id();
 
+                        return DB::select('SELECT e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.startday >= \''. now()->toDateString() .'\'
+                                AND event_member.idevent = e1.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                GROUP BY(e1.idevent)
+                                ORDER BY e1.startday DESC LIMIT 9');
+                    }
+                }
+                else
+                {
+                    if($selectedRange == "all") //done
+                    {
+                        return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                GROUP BY(e1.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                    else //done
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE event_member.idevent = e1.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                GROUP BY(e1.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                }
+            }
+            else
+            {
+                $selected = "%" . $searchField . "%";
+
+                if($selectedOrder == "chrono")
+                {
+                    if($selectedRange == "all") //done
+                    {
+                        return DB::select('SELECT e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.name LIKE \''. $selected .'\'
+                                AND e1.startday >= \''. now()->toDateString() .'\'
+                                GROUP BY(e1.idevent)
+                                ORDER BY e1.startday DESC LIMIT 9');
+                    }
+                    else //done
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.name LIKE \''. $selected .'\'
+                                AND e1.startday >= \''. now()->toDateString() .'\'
+                                AND event_member.idevent = e1.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                GROUP BY(e1.idevent)
+                                ORDER BY e1.startday DESC LIMIT 9');
+
+                    }
+                }
+                else //done
+                {
+                    if($selectedRange == "all")
+                    {
+                        return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type AS ticketType
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.name LIKE \''. $selected .'\'
+                                GROUP BY(e1.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                    else //done
+                    {
+                        $user = Auth::id();
+
+                        return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
+	                            FROM event_member, event e1 
+                                INNER JOIN LATERAL(
+                                    SELECT tickettype.type
+                                    FROM tickettype
+                                    WHERE e1.idevent = tickettype.event
+                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                ) c2 ON true 
+                                
+                                INNER JOIN LATERAL(
+                                    SELECT *
+                                    FROM event_member em
+                                    WHERE
+                                    em.idevent = e1.idevent
+                                ) c3 ON true
+                                
+                                WHERE e1.name LIKE \''. $selected .'\'
+                                AND event_member.idevent = e1.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                GROUP BY(e1.idevent)
+                                ORDER BY attendants DESC LIMIT 9');
+                    }
+                }
+            }
         }
         public static function searchEventType4($searchField, $selectedRange, $selectedOrder){
 		    if($searchField == "")
@@ -191,12 +746,15 @@
 		            }
                     else
                     {
-                        return Event::where(
-                            'startday','>=', now()->toDateString()
-                        )
-                            ->orderBy('startday', 'ASC')
-                            ->limit(9)
-                            ->get();
+                        $user = Auth::id();
+
+                        return DB::select('SELECT *
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event_member.idevent = event.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                AND event.startday >= \''. now()->toDateString() .'\'
+                                ORDER BY event.startday ASC LIMIT 9');
 		            }
 		        }
                 else
@@ -244,19 +802,15 @@
                     {
                         $user = Auth::id();
 
-                        return Event::join([
-                            ['event_member', 'event_member.idevent', '=', 'idevent'],
-                            ['event_member', 'event_member.idmember', '=', $user],
-                            ['event_member', 'event_member.isadmin', '=', 'true']
-                        ])->where(
-                            [
-                                ['name','LIKE', $selected],
-                                ['startday','>=', now()->toDateString()],
-                            ]
-                        )
-                            ->orderBy('startday', 'ASC')
-                            ->limit(9)
-                            ->get();
+                        return DB::select('SELECT event.*
+                                FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                WHERE event.name LIKE \''. $selected .'\'
+                                AND event_member.idevent = event.idevent
+                                AND event_member.idmember =' . $user . '
+                                AND event_member.isadmin = true
+                                AND event.startday >= \''. now()->toDateString() .'\'
+                                GROUP BY(event.idevent)
+                                ORDER BY event.startday DESC LIMIT 9');
                     }
                 }
                 else
@@ -314,7 +868,6 @@
 		}
 
 
-		//TODO Fazer com o eloquent
 		public static function topEvents($limit){ //Mostrar top events, eventos com mais membros que vão
 			return Event::with('attendants')->get()->sortBy(function($event)
 			{
@@ -322,10 +875,6 @@
 			}, null, true)->take($limit); //Using null to skip arguments at function call
 
 
-				/* return DB::select('SELECT count(event_member.idmember) as attendants, event.*
-							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-							GROUP BY(event.idevent)
-							ORDER BY attendants DESC LIMIT ' . $limit);*/
 		}
 
         public static function memberTopEvents($limit, $offset){ //Mostrar top events, eventos com mais membros que vão
@@ -351,9 +900,9 @@
 
         }
 
-        public static function searchEventByName($selectedName){
-            $selected = "%" . $selectedName . "%";
+        public static function searchEventByName($searchInput){
 
-            return Event::where('name','LIKE', $selected)->orderBy('startday', 'ASC')->limit(9)->get();
-        }
+					return Event::whereRaw('fts_vector @@ to_tsquery(\'?\')', array($searchInput))->orderBy('startday', 'ASC')->limit(9)->get();
+
+				}
 	}
