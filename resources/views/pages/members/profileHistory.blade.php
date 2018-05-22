@@ -28,12 +28,15 @@ else {
         echo '
                         <small>'.$days .' days ago</small>
                     </div>
-                    <p class="mb-1">'. $event->description .'</p>
+                    <p class="mb-1">'. $event->description .'</p>';
+         if (Auth::id() == $member->idmember){
+            echo '
                 <a href="">
                     <small> Click here to see your ticket</small>
                 </a>
-            </div>
-        ';
+            ';
+             }
+        echo '</div>';
     }
 }
 

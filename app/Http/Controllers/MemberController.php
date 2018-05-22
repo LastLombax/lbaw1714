@@ -169,7 +169,7 @@ class MemberController extends Controller
                          ->orderBy('startday', 'ASC')->limit(9)->get();
     }
 
-    public static function sendBuddyRequest($member){
+    public function sendBuddyRequest(){
         $now = now();
         dd($now);
         return DB::insert('

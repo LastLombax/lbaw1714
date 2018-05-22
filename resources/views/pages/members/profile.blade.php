@@ -13,7 +13,6 @@
         <div class="bs-docs-section">
             <div class="row">
 
-
                 <div class="col-lg-4" style="padding-top: 23px;">
                     <div class="bs-ccomponent">
 
@@ -66,7 +65,7 @@
                                              @if($member->city != null )
                                                 <a href="#">{{$member->address}}, {{$member->city}}</a>
                                              @else
-                                              <a href="#">{{$member->address}}
+                                              <a href="#">{{$member->address}} </a>
                                              @endif
                                             </p>
                                         </div>
@@ -79,17 +78,19 @@
                                             <p>{{$member->country->name}}</p>
                                         </div>
                                     <br>
+                                          @if (Auth::id() == $member->idmember)
                                       <div style="float:; left;">
                                        <a class="dropdown-item" href=" {{route('editForm', $member)}}">
                                              <i class="far fa-edit" style=" color: #333; "></i>Edit
                                        </a> 
                                      </div>
+                                     @endif
                                         @if (Auth::id() != $member->idmember)
                                       <div style="float:; left;">
-                                        <form action="{{ route('sendBuddyRequest', $member->idmember)}}" method="POST" enctype="multipart/form-data">
-                                          {{ csrf_field() }}
-                                         <button type="submit"> <i class="far fa-edit" style=" color: #333; "></i>Befriend this Member
-                                       </button> 
+                                      <form action="{{ route('sendBuddyRequest', $member->idmember)}}"" method="POST" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                             <button type="submit"> <i class="fas fa-user-plus" style=" color: #333;"></i> Befriend this Member
+                                           </button> 
                                          </form>
                                      </div>
                                      @endif
@@ -101,14 +102,14 @@
                                         <span class="badge badge-dark">Administrator</span>
                                     </div>
                                     @endif
-                                </fieldset></div>
+                                </fieldset>
+                            </div>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <div class="col-lg-8" style="padding-top:23px">
                     <ul class="nav nav-tabs">

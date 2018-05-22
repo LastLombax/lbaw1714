@@ -27,11 +27,15 @@ foreach ($query as $event){
                 <small>In '.$days.' day(s)</small>
             </div>
             <p class="mb-1">'.$event->description.'</p>
-        <a href="">
-            <small> Click here to see your ticket</small>
-        </a>
-     </div>
-';
+      ';
+      if (Auth::id() == $member->idmember){
+            echo '
+                <a href="">
+                    <small> Click here to see your ticket</small>
+                </a>
+            ';
+             }
+        echo '</div>';
 }
 
 
