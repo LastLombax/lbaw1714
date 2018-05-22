@@ -17,7 +17,6 @@
 @endsection
 
 @section('content')
-
     <script type="text/javascript" defer>
         function confirmDeletion(form) {
             if (confirm("Are you sure you want to delete this event? \n WARNING: You cannot go back"))
@@ -149,11 +148,15 @@
                                             </a>
 
                                             <div class="commentActions" style="font-size: 18px; text-align: right; color: #999">
-                                                <span class="comment-id" style="display: none">{{$comment->idcomment}}</span>
+
                                                 <i class="editComment fas fa-pencil-alt" onmouseleave='this.style.color="#999"'
-                                                   onmouseout='this.style.color="#666"' style="cursor: pointer;"></i>
+                                                   onmouseout='this.style.color="#666"' style="cursor: pointer;">
+                                                    <span class="comment-id" style="display: none">{{$comment->idcomment}}</span>
+                                                </i>
                                                 <i class="deleteComment fas fa-trash-alt" onmouseleave='this.style.color="#999"'
-                                                   onmouseout='this.style.color="#666"' style="cursor: pointer;"></i>
+                                                   onmouseout='this.style.color="#666"' style="cursor: pointer;">
+                                                    <span class="comment-id" style="display: none">{{$comment->idcomment}}</span>
+                                                </i>
                                             </div>
 
                                         </div>

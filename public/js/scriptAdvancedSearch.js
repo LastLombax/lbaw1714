@@ -40,14 +40,9 @@ function getSelectedOption(sel) {
     return opt.getAttribute('value');
 }
 
-function searchEvent(event) {
-    let keyCode = event.keyCode || event.which;
-    if (keyCode === 13) {
-        event.preventDefault();
-        return false;
-    }
+function searchEvent() {
 
-    let request = new XMLHttpRequest();
+     let request = new XMLHttpRequest();
 
     if(document.querySelector('#selectedRange [value="all"]').selected)
         newSelectedRange = "all";
@@ -82,12 +77,12 @@ function searchEvent(event) {
 
 
 
-// window.addEventListener("load", function() {
-//
-//     searchEvent();
-//
-//     event.preventDefault();
-// });
+window.addEventListener("load", function() {
+
+    searchEvent();
+
+    event.preventDefault();
+});
 
 selectedRange.addEventListener("change", function() {
 
