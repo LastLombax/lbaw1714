@@ -120,15 +120,17 @@
         </div>
 
         <div class="col-lg-8" style="padding-top:0;">
+
+            <div id="map" style="margin-bottom: 30px;">
+                @include('pages.events.geolocation')
+            </div>
+
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#comments">Comments</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#participants">Participants</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#map">Location Map</a>
                 </li>
             </ul>
 
@@ -206,15 +208,6 @@
                                 <a class="page-link " href="# ">&raquo;</a>
                             </li>
                         </ul>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="map">
-                    <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
-                        <div class="bs-ccomponent">
-                            <div class="list-group">
-                                @include('pages.events.geolocation')
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

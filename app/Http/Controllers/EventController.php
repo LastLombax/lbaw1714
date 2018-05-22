@@ -904,4 +904,8 @@
 		    //DEBUG >>> App\Event::whereRaw('fts_vector @@ to_tsquery(\'initialize\')')->orderBy('startday', 'ASC')->limit(9)->get();
 					return Event::whereRaw('fts_vector @@ to_tsquery(?)', [$searchInput])->orderBy('startday', 'ASC')->limit(9)->get();
 				}
+
+        public static function getTicketInfo($eventId){
+            return TicketType::where('event', '=', $eventId)->get();
+        }
 	}

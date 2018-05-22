@@ -24,6 +24,9 @@ class Event extends Model
 		return $this->hasOne('App\Country', 'idcountry', 'idcountry');
 	}
 
+	public function ticketTypes(){
+        return $this->hasMany('App\TicketType', 'event');
+    }
 
 	public function printDate(){
 			$start = strtotime($this->startday);
