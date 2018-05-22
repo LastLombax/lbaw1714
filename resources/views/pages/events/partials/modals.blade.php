@@ -34,13 +34,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                @foreach($event->ticketTypes as $ticket)
-
-                @endforeach
+                @each('pages.events.partials.buyTickets', $event->ticketTypes, 'ticketType') {{--TODO ADD partial if collection is empty--}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Send invite</button>
             </div>
 
         </div>
