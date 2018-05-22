@@ -27,7 +27,7 @@
 
     <div class="row">
 
-        <div class="col-lg-4" style="padding-top: 0;">
+        <div class="col-lg-4" style="padding-top: 0; padding-bottom: 50px;">
             <div class="bs-ccomponent">
                 <img style="width: 100%; height: 200px; object-fit: cover;" src="{{$event->imagePath()}}"
                      alt="Card image">
@@ -89,13 +89,9 @@
                                 @endif
                                 <div>
                                     @if(!\Illuminate\Support\Facades\Auth::guest())
-                                        <button type="button" onclick="event.preventDefault();" location.href='' ;
-                                        "
-                                        class="btn btn-info">Buy Tickets
-                                        </button>
-                                        <button type="button" onclick="event.preventDefault();" location.href='' ;
-                                        "
-                                        class="btn btn-info">Message the admins
+                                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                                data-target="#modalBuyTicket">
+                                            Buy Tickets
                                         </button>
 
                                         @can('update-delete-event', $event)
@@ -225,28 +221,6 @@
         </div>
     </div>
 
-
-    <div class="modal fade" id="modalInvite" tabindex="-1" role="dialog" aria-labelledby="modalInviteTitle"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form method="POST" action="{{route('inviteEvent', $event)}}" class="modal-content">
-                {{ csrf_field()}}
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalInviteTitle">Invite people</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="text" name="usernameField" id="usernameField" placeholder="Input username..."/>
-                    <!--<input type="button" name="search_button" id="search_button">-->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send invite</button>
-                </div>
-            </form>
-        </div>
-    </div>
+    @include('pages.events.partials.modals')
 @endsection
 

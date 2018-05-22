@@ -40,12 +40,7 @@ function getSelectedOption(sel) {
     return opt.getAttribute('value');
 }
 
-function searchEvent(event) {
-    let keyCode = event.keyCode || event.which;
-    if (keyCode === 13) {
-        event.preventDefault();
-        return false;
-    }
+function searchEvent() {
 
     let request = new XMLHttpRequest();
 
@@ -76,18 +71,16 @@ function searchEvent(event) {
 
     request.addEventListener('load', searchEventsReceived);
     request.send();
-
-    //event.preventDefault();
 }
 
 
 
-// window.addEventListener("load", function() {
-//
-//     searchEvent();
-//
-//     event.preventDefault();
-// });
+ window.addEventListener("load", function() {
+
+     searchEvent();
+
+     event.preventDefault();
+ });
 
 selectedRange.addEventListener("change", function() {
 
