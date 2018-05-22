@@ -53,6 +53,10 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::post('events/create', 'EventController@create')->name('createEvent');
     Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
 
+    //Comments
+    Route::delete('ajax/events/comment', 'EventController@inviteMember');
+
+
     //Communities
     Route::get('communities/create', 'CommunityController@createForm')->name('createCommunity');
     Route::post('communities/create', 'CommunityController@create')->name('createCommunity');    

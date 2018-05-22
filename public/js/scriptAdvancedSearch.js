@@ -75,12 +75,14 @@ function searchEvent() {
 
 
 
- window.addEventListener("load", function() {
 
-     searchEvent();
 
-     event.preventDefault();
- });
+window.addEventListener("load", function() {
+
+    searchEvent();
+
+    event.preventDefault();
+});
 
 selectedRange.addEventListener("change", function() {
 
