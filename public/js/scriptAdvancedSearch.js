@@ -42,7 +42,7 @@ function getSelectedOption(sel) {
 
 function searchEvent() {
 
-     let request = new XMLHttpRequest();
+    let request = new XMLHttpRequest();
 
     if(document.querySelector('#selectedRange [value="all"]').selected)
         newSelectedRange = "all";
@@ -71,9 +71,9 @@ function searchEvent() {
 
     request.addEventListener('load', searchEventsReceived);
     request.send();
-
-    //event.preventDefault();
 }
+
+
 
 
 
