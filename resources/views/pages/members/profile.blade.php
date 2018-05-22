@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('extraScript')
+    <script src="{{ asset('js/memberProfile.js') }}" defer></script>
+@endsection
+
 @section('content')
 
     <div class="container">
@@ -33,20 +37,20 @@
                                             <p>{{$member->name}}</p>
                                         </div>
                                         @if($member->about != null)
-                                        <div class="form-group">
-                                            <label class="col-form-label" for="inputDefault">
-                                                <b>About</b>
-                                            </label>
-                                            <p>{{$member->about}}</p>
-                                        </div>
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="inputDefault">
+                                                    <b>About</b>
+                                                </label>
+                                                <p>{{$member->about}}</p>
+                                            </div>
                                         @endif
-                                          @if($member->birthdate != null )
-                                        <div class="form-group">
-                                            <label class="col-form-label" for="inputDefault">
-                                                <b>Birthdate</b>
-                                            </label>
-                                            <p>{{$member->printDate()}}</p>
-                                        </div>
+                                        @if($member->birthdate != null )
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="inputDefault">
+                                                    <b>Birthdate</b>
+                                                </label>
+                                                <p>{{$member->printDate()}}</p>
+                                            </div>
                                         @endif
                                         <div class="form-group">
                                             <label class="col-form-label" for="inputDefault">
@@ -56,19 +60,19 @@
                                                 <a href="mailto:{{$member->email}}">{{$member->email}}</a>
                                             </p>
                                         </div>
-                                         @if($member->address != null )
-                                        <div class="form-group">
-                                            <label class="col-form-label" for="inputDefault">
-                                                <b>Address</b>
-                                            </label>
-                                            <p>
-                                             @if($member->city != null )
-                                                <a href="#">{{$member->address}}, {{$member->city}}</a>
-                                             @else
-                                              <a href="#">{{$member->address}} </a>
-                                             @endif
-                                            </p>
-                                        </div>
+                                        @if($member->address != null )
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="inputDefault">
+                                                    <b>Address</b>
+                                                </label>
+                                                <p>
+                                                    @if($member->city != null )
+                                                        <a href="#">{{$member->address}}, {{$member->city}}</a>
+                                                    @else
+                                                        <a href="#">{{$member->address}} </a>
+                                                    @endif
+                                                </p>
+                                            </div>
                                         @endif
 
                                         <div class="form-group">
@@ -77,51 +81,52 @@
                                             </label>
                                             <p>{{$member->country->name}}</p>
                                         </div>
-                                    <br>
-                                          @if (Auth::id() == $member->idmember)
-                                      <div style="float:; left;">
-                                       <a class="dropdown-item" href=" {{route('editForm', $member)}}">
-                                             <i class="far fa-edit" style=" color: #333; "></i>Edit
-                                       </a> 
-                                     </div>
-                                     @endif
+                                        <br>
+                                        @if (Auth::id() == $member->idmember)
+                                            <div style="float: left;">
+                                                <a class="dropdown-item" href=" {{route('editForm', $member)}}">
+                                                    <i class="far fa-edit" style=" color: #333; "></i>Edit
+                                                </a>
+                                            </div>
+                                        @endif
                                         @if (Auth::id() != $member->idmember)
-                                      <div style="float:; left;">
-                                      <form action="{{ route('sendBuddyRequest', $member->idmember)}}"" method="POST" enctype="multipart/form-data">
-                                            {{ csrf_field() }}
-                                             <button type="submit"> <i class="fas fa-user-plus" style=" color: #333;"></i> Befriend this Member
-                                           </button> 
-                                         </form>
-                                     </div>
-                                     @endif
-                                       </a>
-
-                                    </div>
-                                    @if($member->isadmin())
+                                            <div style="float: left;">
+                                                <form action="{{ route('sendBuddyRequest', $member->idmember)}}"
+                                                      method="POST" enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
+                                                    <button id="befriendBtn"><i class="fas fa-user-plus"
+                                                                             style=" color: #333;"></i> Befriend this
+                                                        Member</button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    </fieldset>
+                                </div>
+                                @if($member->isadmin())
                                     <div style="text-align: right;">
                                         <span class="badge badge-dark">Administrator</span>
                                     </div>
-                                    @endif
-                                </fieldset>
+                                @endif
                             </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                                     aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
+                </div>
 
                 <div class="col-lg-8" style="padding-top:23px">
                     <ul class="nav nav-tabs">
                         @if (Auth::id() == $member->idmember)
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#feed">Notifications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#upcoming">Upcoming Events</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#feed">Notifications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#upcoming">Upcoming Events</a>
+                            </li>
                         @else
-                        <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#upcoming">Upcoming Events</a>
                             </li>
                         @endif
@@ -134,68 +139,70 @@
 
                     <div id="myTabContent" class="tab-content">
                         @if (Auth::id() == $member->idmember)
-                        <div class="tab-pane fade show active" id="feed">
-                            <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
-                                <div class="bs-ccomponent">
-                                    <div class="list-group">
+                            <div class="tab-pane fade show active" id="feed">
+                                <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
+                                    <div class="bs-ccomponent">
+                                        <div class="list-group">
 
-                                        @include('pages.members.profileFeed', ['$member' => $member->id])
+                                            @include('pages.members.profileFeed', ['$member' => $member->id])
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endif
                         @if (Auth::id() == $member->idmember)
-                        <div class="tab-pane fade" id="upcoming">
-                            @else
-                            <div class="tab-pane fade show active" id="upcoming">
+                            <div class="tab-pane fade" id="upcoming">
 
-                            @endif
-                            <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
-                                <div class="bs-ccomponent">
-                                    <div class="list-group">
+                                @else
+                                    <div class="tab-pane fade show active" id="upcoming">
 
-                                       @include('pages.members.profileUpcoming', ['$member' => $member->id])
+                                        @endif
+                                        <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
+                                            <div class="bs-ccomponent">
+                                                <div class="list-group">
+
+                                                    @include('pages.members.profileUpcoming', ['$member' => $member->id])
+
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="history">
-                            <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
-                                <div class="bs-ccomponent">
-                                    <div class="list-group">
+                                    <div class="tab-pane fade" id="history">
+                                        <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
+                                            <div class="bs-ccomponent">
+                                                <div class="list-group">
 
-                                      @include('pages.members.profileHistory', ['$member' => $member->id])
-                                </div>
+                                                    @include('pages.members.profileHistory', ['$member' => $member->id])
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
-                        </div>
+                            <div style="margin-top: 1rem; margin-left: 0;">
+                                <ul class="pagination" style="">
+                                    <li class="page-item disabled ">
+                                        <a class="page-link " href="# ">«</a>
+                                    </li>
+                                    <li class="page-item active ">
+                                        <a class="page-link " href="# ">1</a>
+                                    </li>
+                                    <li class="page-item ">
+                                        <a class="page-link " href="# ">2</a>
+                                    </li>
+                                    <li class="page-item ">
+                                        <a class="page-link " href="# ">3</a>
+                                    </li>
+                                    <li class="page-item ">
+                                        <a class="page-link " href="# ">»</a>
+                                    </li>
+                                </ul>
+                            </div>
                     </div>
-                </div>
-                <div style="margin-top: 1rem; margin-left: 0;">
-                    <ul class="pagination" style="">
-                        <li class="page-item disabled ">
-                            <a class="page-link " href="# ">«</a>
-                        </li>
-                        <li class="page-item active ">
-                            <a class="page-link " href="# ">1</a>
-                        </li>
-                        <li class="page-item ">
-                            <a class="page-link " href="# ">2</a>
-                        </li>
-                        <li class="page-item ">
-                            <a class="page-link " href="# ">3</a>
-                        </li>
-                        <li class="page-item ">
-                            <a class="page-link " href="# ">»</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
-
-
-</div>
+    </div>
 @endsection
 

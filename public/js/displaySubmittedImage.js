@@ -4,8 +4,6 @@ console.log(imgPath);
 
 
 imgPath.addEventListener('change', function () {
-    console.log("Entrou");
-    console.log("DEBUG: " + "\"src=\"" + imgPath.value + "\"");
 
         if (typeof (FileReader) != "undefined") {
             $("#dvPreview").show();

@@ -7,10 +7,8 @@
 
     @if(\Illuminate\Support\Facades\Auth::guest())
             @include('layouts.visitorHead')
-            @include('layouts.head')
-    @else
-            @include('layouts.head')
     @endif
+            @include('layouts.head')
 
     <style>
         #map {
@@ -42,11 +40,8 @@
             <section id="content">
                 @yield('content')
             </section>
-        </div>
-
-
-
-        @include('layouts.footer')
     </div>
+
+    @include('layouts.footer')
 </body>
 </html>
