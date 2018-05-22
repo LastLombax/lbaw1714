@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label" for="password">Password</label>
-                        @if ($errors->has('username'))
+                        @if ($errors->has('password'))
                             <input id="password" name="password" type="password" class="form-control is-invalid"  placeholder="Password" style="border-radius: 7px; padding: 12px;" required>
                             <div class="alert alert-dismissible alert-danger">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
