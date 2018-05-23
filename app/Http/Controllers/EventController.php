@@ -908,4 +908,8 @@
         public static function getTicketInfo($eventId){
             return TicketType::where('event', '=', $eventId)->get();
         }
+
+        public static function buytTicket($eventId){
+            return null;
+        }
 	}

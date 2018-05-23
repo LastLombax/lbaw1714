@@ -1649,6 +1649,7 @@ insert into tickettype (type, price, initialquantity, availableQuantity, descrip
 insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 41.23, 5026, 8701, 'Ultralt/microlt/pwr-glider crash injuring occupant, sequela', 48);
 insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 80.74, 4932, 950, 'Oth diabetes mellitus with other diabetic arthropathy', 49);
 insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 43.51, 6386, 652, 'Pnctr w/o fb of abd wall, l upr q w penet perit cav, sequela', 50);
+insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 40.51, 6386, 652, 'Pnctr w/o fb of abd wall, l upr q w penet perit cav, sequela', 23);
 
 
 

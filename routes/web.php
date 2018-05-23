@@ -37,6 +37,10 @@ Route::get('time', function () {
     return view('internal.timeline');
 })->name('time');
 
+Route::get('buyTicket', function () {
+    return view('internal.buyTicket');
+})->name('buyTicket');
+
 
 // Member Access
 Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function()

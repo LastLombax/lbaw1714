@@ -4,6 +4,7 @@
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr1_x1qNGarZz3rVGBTmTk2yDOAA-jkOI&callback=initMap">
     </script>
     <script src="{{ asset('js/commentScripts.js') }}" defer></script>
+    <script src="{{ asset('js/buyTicketsScript.js') }}" defer></script>
 
 @endsection
 
