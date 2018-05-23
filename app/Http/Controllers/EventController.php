@@ -6,7 +6,8 @@
     use App\Event;
 	use App\Http\Controllers\Controller;
 	use App\Member;
-	use Auth;
+    use App\TicketType;
+    use Auth;
 	use Illuminate\Http\Request;
 	use Illuminate\Support\Facades\DB;
 	use Illuminate\Support\Facades\Validator;
@@ -909,7 +910,21 @@
             return TicketType::where('event', '=', $eventId)->get();
         }
 
-        public static function buytTicket($eventId){
-            return null;
+        public static function buyTicket($ticketId, $nrOfTickets){
+            $user = Auth::id();
+
+		    $ticketType = TicketType::where('idtickettype', '=', $ticketId)->get();
+		    $availableTickets = $ticketType[0]->availablequantity;
+		    if($availableTickets < $nrOfTickets)
+                return false;
+		    else{
+		        for($i=0; $i < $nrOfTickets; $i++)
+		            DB::Insert('INSERT INTO ticket (type, buyer, idinvoice) VALUES('.$ticketId.', '.$user.', 94)');
+		        //this doesn't work dunno why
+                //TicketType::where('idtickettype', '=', $ticketId)->update(['availablequantity' => $availableTickets-$nrOfTickets]);
+                return true;
+		    }
+
+		    return false;
         }
 	}

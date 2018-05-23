@@ -18,9 +18,6 @@ foreach($event->ticketTypes as $ticketType){
                                     <td>
                                         <h6>'. $ticketType->price.'€</h6>
                                     </td>
-                                    <td>
-
-                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -40,9 +37,6 @@ foreach($event->ticketTypes as $ticketType){
                                     </td>
                                     <td>
                                         <h6>'. $ticketType->price.'€</h6>
-                                    </td>
-                                    <td>
-
                                     </td>
                                 </tr>
                             </table>
