@@ -12,6 +12,8 @@
 */
 
 //Homepage
+use App\Invoice;
+
 Route::get('/', function () {
     if(Auth::guest())
         return view('pages/visitorHomePage');
@@ -37,9 +39,7 @@ Route::get('time', function () {
     return view('internal.timeline');
 })->name('time');
 
-Route::get('buyTicket', function () {
-    return view('internal.buyTicket');
-})->name('buyTicket');
+
 
 
 // Member Access
@@ -71,6 +71,13 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
 
     Route::post('buddies/remove/{member}', 'MemberController@removeBuddy')->name('removeBuddy')->where('member', '[0-9]+}');
 
+    //Tickets
+    Route::post('buyTicket', 'EventController@buyTicket');
+
+    Route::get('invoice/{id}', function($id){
+        $invoice = Invoice::find($id);
+        return view('pages.events.invoice')->with('invoice', $invoice);
+    })->where('id', '[0-9]+');
 
 });
 

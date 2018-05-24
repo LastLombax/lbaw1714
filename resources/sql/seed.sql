@@ -211,8 +211,9 @@ CREATE TABLE invoice (
     name character varying(50),
     address text,
     quantity integer NOT NULL,
-    amount integer NOT NULL,
+    amount float NOT NULL,
     date date NOT NULL,
+    idmember integer NOT NULL,
     CONSTRAINT invoice_amount_check CHECK ((amount > 0)),
     CONSTRAINT invoice_quantity_check CHECK ((quantity > 0))
 );
@@ -285,8 +286,7 @@ CREATE TABLE report (
 
 CREATE TABLE ticket (
     idticket SERIAL NOT NULL,
-    type integer,
-    buyer integer NOT NULL,
+    idtickettype integer NOT NULL,
     idinvoice integer NOT NULL,
     used boolean DEFAULT false NOT NULL
 );
@@ -299,7 +299,6 @@ CREATE TABLE ticket (
 
 CREATE TABLE tickettype (
     idtickettype SERIAL NOT NULL,
-    type integer NOT NULL,
     price double precision NOT NULL,
     initialquantity integer NOT NULL,
     availablequantity integer,
@@ -1072,108 +1071,7 @@ INSERT INTO friend VALUES (14, 61, true);
 -- Data for Name: invoice; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
 --
 
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (390993165, 'Pepillo Poulgreen', '8114 Corscot Way', 22, 50, '2017-12-10');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (154498197, 'Caesar Lindgren', '44 Stuart Center', 71, 8, '2018-02-16');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (838104206, 'Melisenda Chavez', '73 Manley Hill', 86, 76, '2017-09-23');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (300871463, 'Elane Pollie', '797 Farwell Circle', 25, 54, '2017-09-11');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (106546414, 'Eadmund Gulk', '79096 Kropf Pass', 81, 35, '2018-01-02');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (253909640, 'Lorrayne Titchen', '658 Jenifer Place', 65, 38, '2017-09-23');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (504546841, 'Augustine Mathevon', '0 Northview Pass', 1, 70, '2017-11-16');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (692027672, 'Fleurette Jentges', '6357 Claremont Lane', 44, 97, '2017-06-24');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (177207424, 'Sharia Sommers', '4014 Lakeland Lane', 53, 20, '2017-08-28');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (107945574, 'Pammi Carmont', '23 Washington Court', 27, 83, '2017-08-31');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (140660896, 'Amaleta Petrelli', '4 Thackeray Avenue', 41, 96, '2018-03-13');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (776730732, 'Lurleen Swinglehurst', '2682 Prairie Rose Point', 95, 73, '2017-06-14');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (415830194, 'Dorisa Bernocchi', '71 Packers Plaza', 93, 39, '2017-10-04');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (241800347, 'Vergil Gammet', '7759 Cody Park', 17, 58, '2018-01-15');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (385974995, 'Norris Andriolli', '5 Lakewood Gardens Street', 48, 23, '2017-12-31');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (580766701, 'Krissy Barthelemy', '96 Nevada Drive', 76, 32, '2017-04-01');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (634619738, 'Vinni Mcmanaman', '8 Glendale Hill', 36, 44, '2017-08-15');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (703780590, 'Skelly Aylward', '16 Talmadge Center', 46, 37, '2017-12-26');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (267207308, 'Eugenie Bidwell', '0 Florence Circle', 27, 12, '2017-03-30');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (968705070, 'Atalanta Treece', '90 Starling Hill', 7, 39, '2017-04-08');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (619803979, 'Ingelbert Brooksbank', '202 Bunker Hill Court', 14, 64, '2017-12-29');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (412129924, 'Modesty Bamblett', '224 Boyd Place', 77, 94, '2018-01-09');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (374221892, 'Imogen Okroy', '432 Gina Terrace', 69, 33, '2017-04-13');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (110684619, 'Danila Cowie', '3 Ronald Regan Street', 88, 2, '2017-09-17');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (712833507, 'Riannon Dutteridge', '41 Larry Hill', 2, 5, '2018-02-25');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (418434690, 'Norby Coleyshaw', '7 Red Cloud Center', 20, 1, '2017-09-26');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (343101692, 'Terrie Larway', '8 Monument Trail', 18, 32, '2017-05-17');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (861344177, 'Florette Kliesl', '30 Alpine Hill', 81, 89, '2017-05-05');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (433615381, 'Karyn Beumant', '58132 Waxwing Park', 44, 99, '2017-07-15');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (193787519, 'Aharon Grishenkov', '64 Ludington Terrace', 1, 49, '2017-12-21');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (951894666, 'Etti Wakes', '79 Ohio Way', 92, 69, '2017-07-19');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (372757092, 'Zondra Bretelle', '1963 Haas Junction', 8, 24, '2017-04-17');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (646613427, 'Bernhard Mangion', '30 Victoria Center', 61, 93, '2017-05-24');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (616697366, 'Bettye Bubbings', '939 Knutson Hill', 35, 66, '2017-10-18');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (599792408, 'Sig Bigglestone', '75 Thierer Lane', 39, 68, '2017-10-19');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (225593120, 'Zaria Dooney', '97 Iowa Drive', 84, 42, '2017-05-03');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (738609737, 'Gilberta Trembath', '29 Porter Park', 24, 54, '2017-08-17');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (329434335, 'Magdaia Espinos', '13 Shoshone Point', 93, 98, '2017-07-05');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (642374313, 'Abel Tyndall', '334 Truax Street', 19, 26, '2017-12-07');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (905443854, 'Benedick Speirs', '1 Kedzie Pass', 9, 90, '2018-03-01');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (559898796, 'Bartolemo Cud', '5 Cherokee Street', 36, 53, '2017-08-12');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (145505148, 'Morton Boneham', '86770 Monica Pass', 68, 74, '2018-03-04');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (113623580, 'Oliver Ciobotaru', '9924 Macpherson Place', 59, 5, '2017-05-20');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (896412866, 'Dierdre Stutter', '52 Buena Vista Court', 1, 85, '2017-07-20');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (249787576, 'Devlen Coddington', '6 Northview Hill', 68, 6, '2017-10-22');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (380025839, 'Demetra Gonet', '4119 Hagan Way', 15, 43, '2018-01-29');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (997094639, 'Rory Poltone', '4 Mayfield Pass', 60, 20, '2017-11-22');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (786265510, 'Arvin Cobbin', '6 Coleman Street', 88, 64, '2017-10-08');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (840210925, 'Pen Letham', '39 Ilene Point', 27, 98, '2017-12-23');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (922091712, 'Wash Treffrey', '02476 Vahlen Parkway', 79, 21, '2018-03-26');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (650385498, 'Henrietta Aiskrigg', '49 Michigan Street', 10, 82, '2017-06-10');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (387721356, 'Saloma Duckham', '77942 Old Shore Road', 95, 85, '2018-01-19');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (823235806, 'Veronike Moston', '91688 Burning Wood Drive', 67, 53, '2017-05-22');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (867873812, 'Ring Angliss', '50347 Raven Alley', 27, 38, '2017-08-18');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (275587345, 'Jerrie Threadgill', '28462 Reindahl Hill', 78, 65, '2017-10-06');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (747970913, 'Jemmie Ruthen', '5 Carey Parkway', 50, 1, '2018-01-28');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (265201475, 'Fredelia Segrott', '2780 Carpenter Road', 52, 75, '2017-09-08');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (958049673, 'Pearl MacElholm', '3732 Southridge Alley', 46, 44, '2017-10-01');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (652254506, 'Leonard Fayer', '2680 Dorton Lane', 8, 43, '2017-05-15');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (462948103, 'Gardy O''Connel', '50320 Orin Lane', 25, 36, '2017-11-23');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (359579286, 'Katha Woodburn', '42720 Sherman Way', 2, 75, '2018-02-10');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (159649629, 'Dominik Robshaw', '51 Ryan Hill', 24, 80, '2017-11-09');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (301312318, 'Ellyn Wildber', '78786 Basil Court', 63, 62, '2017-10-24');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (727289249, 'Lacie Fossey', '89 Tony Avenue', 84, 6, '2017-10-27');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (447709009, 'Lyndsie Crampin', '8 Pearson Hill', 3, 19, '2017-09-05');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (702999020, 'Ulrika Petrosian', '73884 Corscot Point', 43, 87, '2017-05-24');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (643344993, 'Osmond Aguirrezabal', '14611 Jana Lane', 54, 34, '2017-10-07');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (186350653, 'Kristyn Sill', '369 Clemons Road', 65, 29, '2017-08-10');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (698448318, 'Kalli Noller', '8 Maple Court', 13, 95, '2017-12-04');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (718897364, 'Davita Piet', '8885 Roxbury Street', 38, 64, '2017-09-25');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (935131861, 'Amitie Collard', '335 Starling Crossing', 58, 47, '2017-05-19');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (877297336, 'Ulric McGrudder', '316 Dexter Terrace', 4, 7, '2017-12-01');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (176302257, 'Sammie Nield', '54037 Eggendart Place', 75, 91, '2017-05-28');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (490807483, 'Elberta Hynam', '6 Grayhawk Drive', 5, 4, '2017-05-30');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (515985325, 'Quintina Prosch', '663 Eastwood Terrace', 49, 100, '2017-11-08');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (635013318, 'Ardath Esposito', '80488 Mesta Avenue', 7, 59, '2018-01-28');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (313631026, 'Petronia O''Suaird', '9 Tomscot Junction', 14, 1, '2017-10-14');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (282392246, 'Inge Hodgon', '27 Paget Center', 42, 63, '2017-12-17');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (219085399, 'Randell Sirman', '9 Summerview Junction', 24, 60, '2017-08-18');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (482390872, 'Ban Santo', '05 Saint Paul Drive', 61, 57, '2018-03-02');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (623265805, 'Leonie Harridge', '84 Pierstorff Center', 32, 34, '2017-09-01');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (757873444, 'Kent Tallboy', '48 Bultman Crossing', 72, 77, '2017-11-07');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (422082912, 'Garold Balaison', '3 Spenser Trail', 99, 65, '2017-12-17');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (703647733, 'Jennie Batch', '555 Judy Alley', 9, 87, '2017-05-15');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (110004228, 'Renee Twell', '427 Leroy Crossing', 3, 74, '2018-02-02');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (652301889, 'Belinda Horry', '6388 Pleasure Hill', 93, 86, '2017-04-15');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (302832660, 'Deeann Phayre', '132 Old Shore Crossing', 26, 1, '2017-10-26');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (841281831, 'Kala Peasee', '5575 Boyd Drive', 73, 90, '2017-08-12');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (922884510, 'Dale Mulcock', '76 Mesta Crossing', 1, 96, '2017-05-20');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (333683125, 'Maryellen Gelling', '0 Clove Way', 70, 24, '2017-09-30');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (688471128, 'Rancell Cinavas', '30 Lindbergh Crossing', 51, 100, '2017-06-10');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (607225970, 'Jereme Tabart', '20 Butterfield Crossing', 36, 100, '2017-04-02');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (874473696, 'Deb Wooles', '57840 David Alley', 79, 8, '2017-11-08');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (741961195, 'Elbertina Tratton', '1 Oriole Center', 20, 79, '2018-02-16');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (915176890, 'Harvey Yannikov', '4167 Muir Alley', 20, 67, '2017-06-09');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (672223121, 'Brandise Monson', '46458 Clove Crossing', 21, 72, '2018-01-13');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (911871184, 'Cornelius Scamerden', '1 Scott Street', 47, 70, '2017-12-23');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (895686372, 'Dulcea Singleton', '14 Jay Avenue', 95, 62, '2017-05-09');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (969162988, 'Shelden Jeffcoate', '3730 Vahlen Hill', 26, 89, '2017-06-27');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (349542765, 'Stephan Paynes', '43844 Kingsford Lane', 13, 80, '2018-03-18');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (978765929, 'Godwin Rijkeseis', '38 Schiller Pass', 49, 24, '2018-01-19');
-INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date) VALUES (5, '123456789', 'Rua, n 123', 1, 70, '2018-04-04');
+INSERT INTO invoice (taxpayernumber, name, address, quantity, amount, date, idmember) VALUES (390993165, 'Pepillo Poulgreen', '8114 Corscot Way', 22, 50, '2017-12-10', 101);
 
 
 --
@@ -1498,159 +1396,113 @@ INSERT INTO report (timestamp, context, community, reporter, comment, event, sol
 -- Data for Name: ticket; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
 --
 
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (1, 5, 101);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (32, 76, 96);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (40, 38, 68);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (5, 67, 12);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (45, 86, 53);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (23, 69, 7);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (47, 25, 83);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (26, 20, 60);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (3, 52, 29);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (5, 88, 36);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (19, 95, 35);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (14, 16, 6);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (34, 60, 31);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (25, 18, 58);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (44, 26, 3);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (3, 9, 39);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (16, 95, 55);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (40, 67, 39);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (19, 2, 20);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (36, 20, 43);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (24, 73, 53);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (3, 18, 50);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (32, 27, 37);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (19, 12, 72);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (44, 14, 65);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (36, 23, 22);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (12, 27, 65);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (23, 100, 63);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (35, 15, 73);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (24, 76, 52);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (47, 90, 5);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (29, 79, 50);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (49, 30, 34);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (49, 18, 11);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (44, 42, 22);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (42, 1, 81);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (6, 64, 40);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (48, 53, 15);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (25, 86, 54);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (43, 68, 76);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (5, 49, 35);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (14, 68, 28);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (27, 33, 11);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (28, 84, 46);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (39, 33, 46);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (28, 71, 75);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (23, 33, 38);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (12, 96, 1);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (8, 84, 80);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (27, 14, 52);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (31, 91, 60);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (21, 54, 67);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (1, 60, 29);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (41, 84, 96);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (6, 67, 94);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (30, 73, 20);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (38, 16, 86);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (45, 14, 20);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (21, 65, 41);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (31, 2, 79);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (43, 95, 80);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (2, 50, 28);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (44, 52, 18);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (28, 76, 95);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (40, 62, 20);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (23, 27, 22);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (12, 73, 37);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (37, 52, 93);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (4, 78, 43);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (45, 94, 59);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (29, 18, 99);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (48, 62, 77);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (12, 3, 5);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (31, 9, 77);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (14, 50, 38);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (38, 17, 26);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (22, 82, 3);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (45, 41, 28);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (23, 45, 60);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (47, 9, 94);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (27, 55, 71);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (45, 57, 66);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (49, 40, 14);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (1, 48, 60);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (41, 43, 75);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (13, 81, 91);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (3, 68, 66);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (30, 60, 67);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (47, 41, 75);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (36, 70, 94);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (40, 26, 6);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (49, 63, 80);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (25, 58, 49);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (6, 22, 91);
-INSERT INTO ticket (type, buyer, idinvoice) VALUES (31, 23, 64);
+INSERT INTO ticket (idtickettype, idinvoice) VALUES (1, 1);
 
 
 --
 -- Data for Name: tickettype; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
 --
 
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 34.42, 7056, 3373, 'Complete traumatic amputation at unsp shoulder joint, init', 1);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 86.78, 9021, 7991, 'Oth fx low end l femr, subs for opn fx type I/2 w routn heal', 2);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 97.81, 7717, 7507, 'Viral hepatitis complicating pregnancy, second trimester', 3);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 83.16, 5026, 8703, 'Nondisp seg fx shaft of ulna, unsp arm, 7thD', 4);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 46.28, 6853, 5166, 'Laceration w fb of left thumb w damage to nail, sequela', 5);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 46.56, 630, 4592, 'Other synovitis and tenosynovitis, right upper arm', 6);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 98.14, 2249, 4562, 'Kaschin-Beck disease, right elbow', 7);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 66.44, 3411, 5875, 'Pain in left shoulder', 8);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 99.51, 2546, 42, 'Contusion of bronchus, bilateral', 9);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 70.43, 3443, 7552, 'Fracture of one rib, unsp side, subs for fx w routn heal', 10);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 15.29, 1142, 1287, 'Occupant of streetcar injured by fall in streetcar, subs', 11);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 90.06, 787, 1514, 'Foreign body in nasal sinus, subsequent encounter', 12);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 64.85, 1088, 7540, 'Injury of optic nerve, right eye, sequela', 13);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 92.89, 5078, 8044, 'Strain of musc/tend anterior grp at low leg level, left leg', 14);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 19.33, 9122, 8683, 'Burn of second degree of right hand, unsp site, sequela', 15);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 93.4, 4302, 6100, 'Sprain of lateral collateral ligament of right knee, sequela', 16);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 96.6, 4683, 9492, 'Poisoning by opium, intentional self-harm, subs encntr', 17);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 45.66, 7574, 6001, 'Varicose veins of r low extrem w ulcer oth part of foot', 18);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 64.5, 8102, 1504, 'Varicos vn of l low extrem w ulc of thigh and inflammation', 19);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 73.58, 5853, 2242, 'Trigger finger, little finger', 20);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 50.45, 6462, 3046, 'Keratoconus, stable', 21);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 49.21, 6204, 1669, 'Disp fx of medial wall of left acetabulum, sequela', 22);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 55.4, 1663, 1425, 'Milt op involving oth conventl warfare, civilian, sequela', 23);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 16.71, 8412, 8725, 'Unsp fx shaft of unsp fibula, 7thR', 24);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 98.76, 6055, 2505, 'Fusion of spine, thoracolumbar region', 25);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 12.47, 8053, 1287, 'Crushing injury of right little finger, subsequent encounter', 26);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 96.31, 8083, 7227, 'Chronic postrheumatic arthropathy [Jaccoud], right wrist', 27);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 82.84, 4086, 3839, 'Other superficial bite of right elbow', 28);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 75.72, 8129, 8264, 'Corrosion of first degree of unspecified elbow, sequela', 29);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 11.96, 3885, 6224, 'Blister (nonthermal) of right hand, initial encounter', 30);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 91.08, 3308, 9034, 'Unspecified cystostomy status', 31);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 99.17, 4879, 7991, 'Congenital ichthyosis', 32);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 94.9, 3525, 6408, 'Unsp physl fx low end rad, left arm, subs for fx w malunion', 33);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 44.43, 8610, 9725, 'Contusion of left back wall of thorax', 34);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 74.2, 7689, 3365, 'Assault by hot tap water', 35);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 76.35, 6497, 9905, 'Poisoning by antidotes and chelating agents, undet, sequela', 36);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 99.4, 3320, 1493, 'Struck by football', 37);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 91.34, 1988, 4931, 'Complete traumatic amp at knee level, unsp low leg, sequela', 38);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 20.31, 9210, 6639, 'Toxic effect of venom of ants, intentional self-harm, subs', 39);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 58.9, 5232, 1891, 'Unsp foreign body in pharynx causing oth injury, init encntr', 40);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 91.95, 6490, 462, 'Age-rel osteopor w current path fracture, vertebra(e), init', 41);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 97.86, 6596, 3124, 'Disp fx of lateral condyle of unsp femr, 7thJ', 42);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 13.03, 8275, 4204, 'Open bite, right elbow, subsequent encounter', 43);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 50.6, 4574, 921, 'Unspecified physeal fracture of right metatarsal, init', 44);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 98.71, 1051, 9914, 'Calcifcn and ossifictn of musc assoc w burns, right ank/ft', 45);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 34.44, 6500, 9042, 'Partial traumatic MCP amputation of thmb, init', 46);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 80.44, 9242, 6374, 'Lateral subluxation of right ulnohumeral joint, sequela', 47);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (2, 41.23, 5026, 8701, 'Ultralt/microlt/pwr-glider crash injuring occupant, sequela', 48);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 80.74, 4932, 950, 'Oth diabetes mellitus with other diabetic arthropathy', 49);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (3, 43.51, 6386, 652, 'Pnctr w/o fb of abd wall, l upr q w penet perit cav, sequela', 50);
-insert into tickettype (type, price, initialquantity, availableQuantity, description, event) values (1, 40.51, 6386, 652, 'Pnctr w/o fb of abd wall, l upr q w penet perit cav, sequela', 23);
-
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (9.73, 200, 200, 'Regular Ticket', 1);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (35.39, 200, 200, 'Regular Ticket', 2);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (2.59, 200, 200, 'Regular Ticket', 3);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (48.31, 200, 200, 'Regular Ticket', 4);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (32.66, 200, 200, 'Regular Ticket', 5);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (37.01, 200, 200, 'Regular Ticket', 6);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (27.44, 200, 200, 'Regular Ticket', 7);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (12.52, 200, 200, 'Regular Ticket', 8);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (20.6, 200, 200, 'Regular Ticket', 9);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (7.95, 200, 200, 'Regular Ticket', 10);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (27.92, 200, 200, 'Regular Ticket', 11);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (5.56, 200, 200, 'Regular Ticket', 12);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (28.52, 200, 200, 'Regular Ticket', 13);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (48.05, 200, 200, 'Regular Ticket', 14);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (40.31, 200, 200, 'Regular Ticket', 15);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (49.36, 200, 200, 'Regular Ticket', 16);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (20.05, 200, 200, 'Regular Ticket', 17);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (45.5, 200, 200, 'Regular Ticket', 18);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (6.34, 200, 200, 'Regular Ticket', 19);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (22.44, 200, 200, 'Regular Ticket', 20);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (45.7, 200, 200, 'Regular Ticket', 21);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (36.6, 200, 200, 'Regular Ticket', 22);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (24.81, 200, 200, 'Regular Ticket', 23);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (36.66, 200, 200, 'Regular Ticket', 24);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (30.03, 200, 200, 'Regular Ticket', 25);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (7.5, 200, 200, 'Regular Ticket', 26);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (20.5, 200, 200, 'Regular Ticket', 27);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (16.59, 200, 200, 'Regular Ticket', 28);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (3.3, 200, 200, 'Regular Ticket', 29);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (49.46, 200, 200, 'Regular Ticket', 30);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (25.46, 200, 200, 'Regular Ticket', 31);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (45.5, 200, 200, 'Regular Ticket', 32);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (19.3, 200, 200, 'Regular Ticket', 33);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (9.14, 200, 200, 'Regular Ticket', 34);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (42.04, 200, 200, 'Regular Ticket', 35);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (19.94, 200, 200, 'Regular Ticket', 36);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (18.91, 200, 200, 'Regular Ticket', 37);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (4.49, 200, 200, 'Regular Ticket', 38);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (34.82, 200, 200, 'Regular Ticket', 39);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (21.03, 200, 200, 'Regular Ticket', 40);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (19.27, 200, 200, 'Regular Ticket', 41);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (11.85, 200, 200, 'Regular Ticket', 42);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (43.02, 200, 200, 'Regular Ticket', 43);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (41.56, 200, 200, 'Regular Ticket', 44);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (32.62, 200, 200, 'Regular Ticket', 45);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (28.53, 200, 200, 'Regular Ticket', 46);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (6.93, 200, 200, 'Regular Ticket', 47);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (12.35, 200, 200, 'Regular Ticket', 48);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (30.17, 200, 200, 'Regular Ticket', 49);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (8.46, 200, 200, 'Regular Ticket', 50);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (5.74, 200, 200, 'VIP Ticket', 1);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (41.11, 200, 200, 'General Pass', 2);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (9.38, 200, 200, 'General Pass', 3);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (44.86, 200, 200, 'VIP Ticket', 4);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (48.97, 200, 200, 'General Pass', 5);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (33.36, 200, 200, 'General Pass', 6);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (40.76, 200, 200, 'General Pass', 7);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (3.03, 200, 200, 'General Pass', 8);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (18.62, 200, 200, 'General Pass', 9);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (2.86, 200, 200, 'General Pass', 10);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (45.75, 200, 200, 'General Pass', 11);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (15.02, 200, 200, 'VIP Ticket', 12);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (22.6, 200, 200, 'General Pass', 13);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (20.76, 200, 200, 'General Pass', 14);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (32.59, 200, 200, 'General Pass', 15);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (36.64, 200, 200, 'VIP Ticket', 16);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (32.0, 200, 200, 'General Pass', 17);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (44.27, 200, 200, 'General Pass', 18);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (9.43, 200, 200, 'VIP Ticket', 19);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (5.68, 200, 200, 'VIP Ticket', 20);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (21.83, 200, 200, 'General Pass', 21);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (28.42, 200, 200, 'General Pass', 22);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (2.09, 200, 200, 'General Pass', 23);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (15.39, 200, 200, 'VIP Ticket', 24);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (27.13, 200, 200, 'General Pass', 25);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (24.33, 200, 200, 'VIP Ticket', 26);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (46.37, 200, 200, 'VIP Ticket', 27);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (43.35, 200, 200, 'VIP Ticket', 28);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (32.52, 200, 200, 'VIP Ticket', 29);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (42.8, 200, 200, 'VIP Ticket', 30);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (30.85, 200, 200, 'General Pass', 31);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (5.67, 200, 200, 'VIP Ticket', 32);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (47.67, 200, 200, 'General Pass', 33);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (8.67, 200, 200, 'General Pass', 34);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (18.36, 200, 200, 'General Pass', 35);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (5.06, 200, 200, 'General Pass', 36);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (33.96, 200, 200, 'General Pass', 37);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (12.13, 200, 200, 'General Pass', 38);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (16.54, 200, 200, 'General Pass', 39);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (41.15, 200, 200, 'General Pass', 40);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (16.99, 200, 200, 'General Pass', 41);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (5.19, 200, 200, 'General Pass', 42);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (21.57, 200, 200, 'VIP Ticket', 43);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (40.06, 200, 200, 'General Pass', 44);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (3.98, 200, 200, 'General Pass', 45);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (10.81, 200, 200, 'VIP Ticket', 46);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (3.46, 200, 200, 'General Pass', 47);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (43.4, 200, 200, 'General Pass', 48);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (9.31, 200, 200, 'General Pass', 49);
+insert into tickettype (price, initialquantity, availablequantity, description, event) values (2.8, 200, 200, 'General Pass', 50);
 
 
 INSERT INTO country(name) VALUES('Afghanistan');
@@ -2216,8 +2068,8 @@ ALTER TABLE ONLY comment
 -- Name: fk_member; Type: FK CONSTRAINT; Schema: lbaw1714; Owner: lbaw1714
 --
 
-ALTER TABLE ONLY ticket
-    ADD CONSTRAINT fk_member FOREIGN KEY (buyer) REFERENCES member(idmember) ON DELETE CASCADE;
+ALTER TABLE ONLY invoice
+    ADD CONSTRAINT fk_member FOREIGN KEY (idmember) REFERENCES member(idmember) ON DELETE CASCADE;
 
 
 --
@@ -2249,7 +2101,7 @@ ALTER TABLE ONLY friend
 --
 
 ALTER TABLE ONLY ticket
-    ADD CONSTRAINT fk_tickettype FOREIGN KEY (type) REFERENCES tickettype(idtickettype) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_tickettype FOREIGN KEY (idtickettype) REFERENCES tickettype(idtickettype) ON DELETE CASCADE;
 
 
 --

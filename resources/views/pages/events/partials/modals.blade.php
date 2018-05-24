@@ -36,6 +36,7 @@
             <div class="modal-body" style="cursor: pointer;" >
                 @include('pages.events.partials.buyTickets')
                 <div class="form-group">
+                    <br>
                     <select class="custom-select" id="ticketQuantity" style="width: 100%;">
                         <option selected="" value="none">Select Quantity</option>
                         <option value="1">1</option>
@@ -49,6 +50,16 @@
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select>
+                    <br><br>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name/Company" id="invoiceName">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your/Company Address" id="invoiceAddress">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Invoice Tax Number" id="taxNumber">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

@@ -32,12 +32,17 @@
 			$birthdate = strtotime($this->birthdate);
 		    echo date('F d, Y', $birthdate);
 
-/*		public function friend($member){
-			//return $
-		}
-	
-*/
+
 	}
+        public function invoices(){
+            return $this->hasMany('App\Invoice', 'idmember');
+        }
+
+        /*		public function friend($member){
+                //return $
+            }
+
+    */
 
 		use Notifiable;
 

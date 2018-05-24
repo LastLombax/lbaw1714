@@ -1,4 +1,3 @@
-let siteRoot2 = document.location.origin; //"http://localhost:8000/"
 let ticketTypes = document.querySelectorAll('#notSelectedTicketType');
 let selectedTicket = document.querySelector('#selectedTicketType');
 let buyTicketBt = document.querySelector('#buyTicket');
@@ -27,18 +26,29 @@ function ticketAnalyse() {
     }
 }
 
-buyTicketBt.onclick = function(){
+buyTicketBt.onclick = function(event){
     let ticketId = document.querySelector('#selectedTicketType .ticketType').getAttribute('id');
     let ticketQuantity = getSelectedOption(document.getElementById('ticketQuantity'));
+    let taxNumber = document.querySelector('#taxNumber').value;
+    let invoiceName = document.querySelector('#invoiceName').value;
+    let invoiceAddress = document.querySelector('#invoiceAddress').value;
+    event.preventDefault();
+
 
     if(ticketQuantity != "none"){
         let request = new XMLHttpRequest();
-        request.open('get', siteRoot2 + '/buyTicket?' + encodeForAjax({'id': ticketId, 'quantity': ticketQuantity}), true);
+
+        request.open('POST', siteRoot + '/buyTicket', true);
+
+        request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+        request.setRequestHeader("Content-type", "application/json");
+
         request.addEventListener('load', recievedTickets);
-        request.send();
+
+        let data = {'ticketTypeId': ticketId, 'nrOfTickets': ticketQuantity, 'taxNumber': taxNumber, 'invoiceName':invoiceName, 'invoiceAddress': invoiceAddress};
+        request.send(JSON.stringify(data));
     }
 
-    event.preventDefault();
 };
 
 function recievedTickets(){

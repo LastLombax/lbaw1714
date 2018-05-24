@@ -910,21 +910,38 @@
             return TicketType::where('event', '=', $eventId)->get();
         }
 
-        public static function buyTicket($ticketId, $nrOfTickets){
-            $user = Auth::id();
+        public static function buyTicket(Request $request){
 
-		    $ticketType = TicketType::where('idtickettype', '=', $ticketId)->get();
+            //$_GET['id'], $_GET['quantity'], $_GET['taxNumber'], $_GET['invoiceName'], $_GET['invoiceAddress'])
+
+
+            $user = Auth::id();
+            //$reqObj = json_decode($request->)
+
+		    $ticketType = TicketType::find($request->ticketTypeId)->get();
 		    $availableTickets = $ticketType[0]->availablequantity;
-		    if($availableTickets < $nrOfTickets)
+            $totalAmount = $ticketType[0]->price * $request->nrOfTickets;
+
+		    if($availableTickets < $request->nrOfTickets)
                 return false;
 		    else{
-		        for($i=0; $i < $nrOfTickets; $i++)
-		            DB::Insert('INSERT INTO ticket (type, buyer, idinvoice) VALUES('.$ticketId.', '.$user.', 94)');
+                $invoiceID = DB::table('invoice')->insertGetId([
+                    'taxpayernumber' => $request->taxNumber,
+                    'name' => $request->invoiceName,
+                    'address' => $request->invoiceAddress,
+                    'quantity' => $request->nrOfTickets,
+                    'amount' => $totalAmount,
+                    'date' => now()->toDateString(),
+                    'idmember' => $user
+                ], 'idinvoice');
+
+                for($i=0; $i < $request->nrOfTickets; $i++)
+		            DB::Insert('INSERT INTO ticket (idtickettype, idinvoice) VALUES('.$request->ticketTypeId.','.$invoiceID.')');
 		        //this doesn't work dunno why
-                //TicketType::where('idtickettype', '=', $ticketId)->update(['availablequantity' => $availableTickets-$nrOfTickets]);
-                return true;
+                TicketType::where('idtickettype', '=', $request->ticketTypeId)->update(['availablequantity' => $availableTickets-$request->nrOfTickets]);
+                return response("true",200);
 		    }
 
-		    return false;
+            return response("false",200);
         }
 	}

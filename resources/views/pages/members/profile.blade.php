@@ -134,6 +134,9 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#history">Event History</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#invoices">My Invoices</a>
+                        </li>
                     </ul>
 
 
@@ -175,6 +178,15 @@
                                                 <div class="list-group">
 
                                                     @include('pages.members.profileHistory', ['$member' => $member->id])
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="invoices">
+                                        <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
+                                            <div class="bs-ccomponent">
+                                                <div class="list-group">
+                                                    @include('pages.members.invoices', ['$member' => $member->id])
                                                 </div>
                                             </div>
                                         </div>
