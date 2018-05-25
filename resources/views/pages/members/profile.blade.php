@@ -55,7 +55,7 @@
                         <a href="mailto:{{$member->email}}">{{$member->email}}</a>
                     </p>
                 </div>
-                @if (Auth::id() != $member->idmember)
+                @if (Auth::id() == $member->idmember)
 
                     @if($member->address != null )
                         <div class="form-group">
@@ -72,24 +72,23 @@
                         </div>
                     @endif
 
-                @endif
-
-                @if (Auth::id() != $member->idmember)
-
+                
                     <div class="form-group">
                         <label class="col-form-label" for="inputDefault">
                             <b>Country</b>
                         </label>
                         <p>{{$member->country->name}}</p>
                     </div>
-                        <div style="float: right;">
-                            <a class="dropdown-item" href=" {{route('editForm', $member)}}">
-                                <i class="far fa-edit" style=" color: #333; "></i> Edit
-                            </a>
-                        </div>
+                    <div style="float: right;">
+                        <a class="dropdown-item" href=" {{route('editForm', $member)}}">
+                            <i class="far fa-edit" style=" color: #333; "></i> Edit
+                        </a>
+                    </div>
 
                 @endif
-                @if (Auth::id() != $member->idmember)
+
+
+            @if (Auth::id() != $member->idmember)
                     <div style="float: left;">
                         <form action="{{ route('sendBuddyRequest', $member->idmember)}}"
                               method="POST" enctype="multipart/form-data">
@@ -129,6 +128,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#history">Event History</a>
             </li>
+
             @if (Auth::id() == $member->idmember)
 
                 <li class="nav-item">
@@ -159,6 +159,7 @@
                         <div class="tab-pane fade show active" id="upcoming">
 
                             @endif
+
                             <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                                 <div class="bs-ccomponent">
                                     <div class="list-group">
@@ -180,6 +181,7 @@
                                 </div>
                             </div>
                         </div>
+
                         @if (Auth::id() == $member->idmember)
                             <div class="tab-pane fade" id="invoices">
                                 <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
@@ -191,6 +193,7 @@
                                 </div>
                             </div>
                         @endif
+
                 </div>
                 <div style="margin-top: 1rem; margin-left: 0;">
                     <ul class="pagination" style="">
