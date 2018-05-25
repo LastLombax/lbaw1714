@@ -44,7 +44,7 @@
         <tbody>
         <tr>
             <td class="no">01</td>
-            <td class="desc"><h3>Website Design</h3>Event ticket purchase.</td>
+            <td class="desc"><h3>{{$query->name}}</h3>{{$query->description}}</td>
             <td class="unit">{{round((($invoice->amount / $invoice->quantity)*0.75), 2)}}</td>
             <td class="qty">{{$invoice->quantity}}</td>
             <td class="total">{{round($invoice->amount * 0.75,2)}}</td>

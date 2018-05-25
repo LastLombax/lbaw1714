@@ -12,6 +12,7 @@
 */
 
 //Homepage
+use App\Http\Controllers\MemberController;
 use App\Invoice;
 
 Route::get('/', function () {
@@ -76,7 +77,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
 
     Route::get('invoice/{id}', function($id){
         $invoice = Invoice::find($id);
-        return view('pages.events.invoice')->with('invoice', $invoice);
+        $query = MemberController::getinvoices($id);
+        return view('pages.events.invoice', ['invoice' => $invoice, 'query' => $query[0]]);
     })->where('id', '[0-9]+');
 
 });

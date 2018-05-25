@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
+
 use App\Member;
 use App\Country;
 use App\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -154,7 +155,7 @@ class MemberController extends Controller
                         SELECT "event".idevent, name, description, imagePath, startday, endday, starttime, endtime
                         FROM "event"
                         INNER JOIN event_member
-                        ON "event".idevent= "event_member".idevent AND "event_member".idmember = '.$member . '
+                        ON "event".idevent= "event_member".idevent AND "event_member".idmember = '.$member .'
                         WHERE "event".startday <= \'' . $todayDate . ' \'
                         Order BY "event".startday DESC');
 
@@ -169,19 +170,56 @@ class MemberController extends Controller
                          ->orderBy('startday', 'ASC')->limit(9)->get();
     }
 
-    public function sendBuddyRequest(){
+    /*public function sendBuddyRequest(){
         $now = now();
         dd($now);
         return DB::insert('
                         INSERT INTO "notification"
                         VALUES '. $now . 'buddy, null,' .$Auth::id() .', null, null,' . $member);
-    }
+    }*/
 
     public function removeBuddy($member){
         $now = now();
         return DB::insert('
                         INSERT INTO "notification"
                         VALUES '. $now . 'invite, null,' .$member .', null, null');
+    }
+
+    public static function invoices(){
+        $user = Auth::id();
+
+        return DB::select('SELECT DISTINCT e1.name as name,
+                            e1.imagepath as image,
+                             tt1.description as description,
+                              i1.idinvoice as id,
+                               i1.quantity as quantity,
+                                i1.amount as amount
+                                FROM event e1, member m1, tickettype tt1, ticket t1, invoice i1
+                                WHERE
+                                i1.idinvoice = t1.idinvoice
+                                AND tt1.idtickettype = t1.idtickettype
+                                AND tt1.event = e1.idevent
+                                AND i1.idmember = m1.idmember
+                                AND m1.idmember = ' . $user);
+    }
+
+    public static function getinvoices($id){
+        $user = Auth::id();
+
+        return DB::select('SELECT DISTINCT e1.name as name,
+                            e1.imagepath as image,
+                             tt1.description as description,
+                              i1.idinvoice as id,
+                               i1.quantity as quantity,
+                                i1.amount as amount
+                                FROM event e1, member m1, tickettype tt1, ticket t1, invoice i1
+                                WHERE
+                                i1.idinvoice = t1.idinvoice
+                                AND tt1.idtickettype = t1.idtickettype
+                                AND tt1.event = e1.idevent
+                                AND i1.idmember = m1.idmember
+                                AND m1.idmember = ' . $user .'
+                                AND i1.idinvoice = '.$id);
     }
 
 //INSERT INTO notification (timestamp, type, community, recipient, comment, event, buddy) VALUES ('2017-12-17 12:26:03', 'buddy', null, 102, null, null, 101);

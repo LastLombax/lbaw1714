@@ -34,9 +34,6 @@
 
 
 	}
-        public function invoices(){
-            return $this->hasMany('App\Invoice', 'idmember');
-        }
 
         /*		public function friend($member){
                 //return $
