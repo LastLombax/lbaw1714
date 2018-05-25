@@ -55,33 +55,39 @@
                         <a href="mailto:{{$member->email}}">{{$member->email}}</a>
                     </p>
                 </div>
-                @if($member->address != null )
-                    <div class="form-group">
-                        <label class="col-form-label" for="inputDefault">
-                            <b>Address</b>
-                        </label>
-                        <p>
-                            @if($member->city != null )
-                                <a href="#">{{$member->address}}, {{$member->city}}</a>
-                            @else
-                                <a href="#">{{$member->address}} </a>
-                            @endif
-                        </p>
-                    </div>
+                @if (Auth::id() != $member->idmember)
+
+                    @if($member->address != null )
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">
+                                <b>Address</b>
+                            </label>
+                            <p>
+                                @if($member->city != null )
+                                    <a href="#">{{$member->address}}, {{$member->city}}</a>
+                                @else
+                                    <a href="#">{{$member->address}} </a>
+                                @endif
+                            </p>
+                        </div>
+                    @endif
+
                 @endif
 
-                <div class="form-group">
-                    <label class="col-form-label" for="inputDefault">
-                        <b>Country</b>
-                    </label>
-                    <p>{{$member->country->name}}</p>
-                </div>
-                @if (Auth::id() == $member->idmember)
-                    <div style="float: right;">
-                        <a class="dropdown-item" href=" {{route('editForm', $member)}}">
-                            <i class="far fa-edit" style=" color: #333; "></i> Edit
-                        </a>
+                @if (Auth::id() != $member->idmember)
+
+                    <div class="form-group">
+                        <label class="col-form-label" for="inputDefault">
+                            <b>Country</b>
+                        </label>
+                        <p>{{$member->country->name}}</p>
                     </div>
+                        <div style="float: right;">
+                            <a class="dropdown-item" href=" {{route('editForm', $member)}}">
+                                <i class="far fa-edit" style=" color: #333; "></i> Edit
+                            </a>
+                        </div>
+
                 @endif
                 @if (Auth::id() != $member->idmember)
                     <div style="float: left;">
@@ -96,12 +102,12 @@
                     </div>
                 @endif
             </fieldset>
+            @if($member->isadmin())
+                <div style="text-align: right;">
+                    <span class="badge badge-dark">Administrator</span>
+                </div>
+            @endif
         </div>
-        @if($member->isadmin())
-            <div style="text-align: right;">
-                <span class="badge badge-dark">Administrator</span>
-            </div>
-        @endif
     </div>
 
 
