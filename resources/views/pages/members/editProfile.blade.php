@@ -13,17 +13,14 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="bs-docs-section">
      <form action="{{ route('editForm', ['member' => $member])}}" method="POST" enctype="multipart/form-data">
        {{ method_field('PATCH') }}
        {{ csrf_field() }}
 
-        <div class="row">
-          
-            <div class="col-lg-6" style="padding-top: 23px;">
+        <div class="row align-items-center">
 
-                <div class="col-lg-12" style="padding-left: 0; padding-right:0;">
+
+            <div class="col-xl-5 align-self-start" style="padding-top: 25px;">
                     <div class="bs-ccomponent">
 
                         <div style="background-color: #eee; padding: 20px; padding-top: 10px;">
@@ -113,7 +110,6 @@
                                 </div>
                                   
                                 <br>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </fieldset>
                         </div>
                         <div class="progress">
@@ -121,11 +117,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-6" style="padding-top: 23px;">
+            <div class="col-xl-4 align-self-start" style="padding-top: 25px;">
 
-                <div class="col-lg-12" style="padding-left: 0; padding-right:0;">
                     <div class="bs-ccomponent">
 
                         <div style="background-color: #eee; padding: 20px; padding-top: 10px;">
@@ -192,22 +186,21 @@
                                     @endif
                                 </div>
 
-                                @include('partials.uploadImage')
 
                             </fieldset>
-                            <button type="submit" class="btn btn-primary ">Save changes</button>
 
                         </div>
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
-                </div>
               </div>
 
-            </div>
-           </form>
-        <br>
-    </div>
-</div>
+            @include('partials.uploadImage')
+
+
+        </div>
+         <button type="submit" style="box-shadow: 1px 1px 30px #ddd;"
+                 class="btn btn-primary d-block ml-auto mt-3">Edit
+         </button>     </form>
 @endsection
