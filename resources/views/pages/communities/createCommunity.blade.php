@@ -13,7 +13,7 @@
         {{ csrf_field() }}
         <div class="row align-items-center">
 
-            <div class="col-md-6 align-self-start" style="padding-top: 25px;">
+            <div class="col-md-4 align-self-start" style="padding-top: 25px;">
                 <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
                     <div class="form-group">
                         <label class="col-form-label" for="communityImage">
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 align-self-start" style="padding-top: 25px;">
+            <div class="col-md-8 align-self-start" style="padding-top: 25px;">
                 <div class="bs-ccomponent">
 
                     <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
