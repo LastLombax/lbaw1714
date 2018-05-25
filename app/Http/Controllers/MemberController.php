@@ -133,6 +133,12 @@ class MemberController extends Controller
         //    LIMIT $selectedLimit OFFSET $selectedOffset
     }
 
+    public static function getFriendAcceptance($idFriend){
+        $user = Auth::id();
+
+        return DB::table('friend')->where([['idf2', '=', $user],['idf1', '=', $idFriend]])->get()[0];
+    }
+
     public static function profileUpcoming($member)
     {
         $todayDate = date('Y-m-d');
@@ -238,6 +244,17 @@ class MemberController extends Controller
 
         return response("true",200);
     }
+
+    public static function acceptFriend(Request $request)
+    {
+        $user = Auth::id();
+
+        DB::table('friend')->where([['idf2', '=', $user],['idf1', '=', $request->idFriend]])->update(['accepted' => true]);
+
+        return response("true",200);
+
+    }
+
 
 //INSERT INTO notification (timestamp, type, community, recipient, comment, event, buddy) VALUES ('2017-12-17 12:26:03', 'buddy', null, 102, null, null, 101);
 
