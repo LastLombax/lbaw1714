@@ -12,8 +12,8 @@ foreach ($query as $notification){
 	switch($notification->type){
 		case 'buddy':
 			$buddyName = Member::find($notification->buddy)->username;
-   			$membersLink = route('members');
-   			$link = $membersLink . '/' . $buddyName;
+
+   			$link = '/member/' . $buddyName;
    			 echo '
 				  <div class="list-group-item list-group-item-action flex-column align-items-start">
 					<div class="d-flex w-100 justify-content-between">

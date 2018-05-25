@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Member;
 use App\Country;
 use App\Notification;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -220,6 +221,22 @@ class MemberController extends Controller
                                 AND i1.idmember = m1.idmember
                                 AND m1.idmember = ' . $user .'
                                 AND i1.idinvoice = '.$id);
+    }
+
+    public static function sendFriendNotification(Request $request)
+    {
+        $user = Auth::id();
+
+        try {
+            DB::Insert('INSERT INTO friend VALUES ('.$user.', '.$request->idfriend.', false)');
+        }
+        catch (QueryException $e) {
+            return response("false",200);
+        }
+
+        DB::Insert('INSERT INTO notification (timestamp, type, community, recipient, comment, event, buddy) VALUES (\''.now()->toDateString().'\', \'buddy\', null, '.$request->idfriend.', null, null, '.$user.')');
+
+        return response("true",200);
     }
 
 //INSERT INTO notification (timestamp, type, community, recipient, comment, event, buddy) VALUES ('2017-12-17 12:26:03', 'buddy', null, 102, null, null, 101);

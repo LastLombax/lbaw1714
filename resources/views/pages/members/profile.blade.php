@@ -72,7 +72,7 @@
                         </div>
                     @endif
 
-                
+
                     <div class="form-group">
                         <label class="col-form-label" for="inputDefault">
                             <b>Country</b>
@@ -90,12 +90,10 @@
 
             @if (Auth::id() != $member->idmember)
                     <div style="float: left;">
-                        <form action="{{ route('sendBuddyRequest', $member->idmember)}}"
-                              method="POST" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            <button id="befriendBtn"><i class="fas fa-user-plus"
-                                                        style=" color: #333;"></i> Befriend this
-                                Member
+                        <form>
+                            <button class="befriendBtn" id="{{$member->idmember}}" type="submit">
+                                <i class="fas fa-user-plus" style=" color: #333;"></i>
+                                Befriend this Member
                             </button>
                         </form>
                     </div>

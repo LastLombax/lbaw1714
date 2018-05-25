@@ -1,23 +1,35 @@
-let befriendBtn = document.querySelector("#befriendBtn");
+let befriendBtn = document.querySelector(".befriendBtn");
 
 befriendBtn.addEventListener('click', function (event) {
+    event.preventDefault();
+
     let siteRoot = document.location.origin; //"http://localhost:8000/"
-    let friendUsername = "teste";
+    let friendId = document.querySelector(".befriendBtn").getAttribute('id');
+
+    console.log(friendId);
 
     let request = new XMLHttpRequest();
-    request.open('post', siteRoot + '/buddies/add/' + encodeForAjax({'friend': friendUsername}), true);
 
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.open('POST', siteRoot + '/sendFriendNotification', true);
 
-    request.addEventListener('load', function () {
-        let answer = JSON.parse(this.responseText);
-        console.log(answer);
+    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+    request.setRequestHeader("Content-type", "application/json");
 
-        request.classList.add("display: none");
-    });
+    request.addEventListener('load', friendResponse);
 
-    request.send();
+    let data = {'idfriend': friendId};
 
-    event.preventDefault();
+    request.send(JSON.stringify(data));
 });
+
+function friendResponse(){
+    let lines = JSON.parse(this.responseText);
+
+    if(lines){
+        befriendBtn.innerHTML = '' +
+            '<i class="fas fa-check"></i>' +
+            'Friend Request Sent';
+    }
+
+}
 
