@@ -23,7 +23,7 @@
             <div class="col-xl-5 align-self-start" style="padding-top: 25px;">
                 <div class="bs-ccomponent">
 
-                    <div style="background-color: #eee; padding: 20px; padding-top: 10px;">
+                    <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
                         <fieldset>
                             <h3>Personal details</h3>
 
@@ -122,10 +122,6 @@
                             <br>
                         </fieldset>
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                             aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
                 </div>
             </div>
 
@@ -133,7 +129,7 @@
 
                 <div class="bs-ccomponent">
 
-                    <div style="background-color: #eee; padding: 20px; padding-top: 10px;">
+                    <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
                         <h3>Account details</h3>
                         <fieldset style=" margin-bottom:1.140em;">
                             <div class="form-group">
@@ -215,10 +211,7 @@
                         </fieldset>
 
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                             aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+
                 </div>
             </div>
 
