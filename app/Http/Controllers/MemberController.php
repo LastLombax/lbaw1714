@@ -125,7 +125,7 @@ class MemberController extends Controller
 
     public static function profileFeed($member)
     {
- 
+
        return Notification::where('recipient', '=', $member)->orderBy('timestamp','DESC')->get();
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset

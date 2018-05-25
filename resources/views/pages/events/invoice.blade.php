@@ -9,7 +9,7 @@
 <body>
 <header class="clearfix">
     <div id="logo">
-        <img style="width: 150px; height: 150px;" src="{{ asset('icon/favicon.png') }}">
+        <img style="width: 70px; height: 70px;" src="{{ asset('icon/favicon.png') }}">
     </div>
     <div id="company">
         <h2 class="name">RE:Event, SA</h2>
