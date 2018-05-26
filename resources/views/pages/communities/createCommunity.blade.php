@@ -53,37 +53,37 @@
                     <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
                         <fieldset>
                             <div class="form-group">
-                                <label class="col-form-label" for="communityName">
+                                <label class="col-form-label" for="name">
                                     <b>Community name</b>
                                 </label>
-                                @if ($errors->has('communityName'))
-                                    <input id="communityName" name="communityName" type="text"
+                                @if ($errors->has('name'))
+                                    <input id="name" name="name" type="text"
                                            class="form-control is-invalid" placeholder="Community name" maxlength="100"
                                            required>
                                     <div class="alert alert-dismissible alert-danger">
                                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                        <strong>Error: </strong>{{$errors->first('communityName')}}
+                                        <strong>Error: </strong>{{$errors->first('name')}}
                                     </div>
                                 @else
-                                    <input id="communityName" name="communityName" type="text" class="form-control "
+                                    <input id="name" name="name" type="text" class="form-control "
                                            placeholder="Community name" maxlength="100" required>
                                 @endif
                             </div>
 
                             <div class="form-group">
-                                <label class="col-form-label" for="communityDescription">
+                                <label class="col-form-label" for="description">
                                     <b>Description</b>
                                 </label>
-                                @if ($errors->has('communityDescription'))
-                                    <textarea id="communityDescription" name="communityDescription"
+                                @if ($errors->has('description'))
+                                    <textarea id="description" name="description"
                                               class="form-control is-invalid" placeholder="Description" maxlength="255"
                                               required></textarea>
                                     <div class="alert alert-dismissible alert-danger">
                                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                        <strong>Error: </strong>{{$errors->first('communityDescription')}}
+                                        <strong>Error: </strong>{{$errors->first('description')}}
                                     </div>
                                 @else
-                                    <textarea id="communityDescription" name="communityDescription" class="form-control"
+                                    <textarea id="description" name="description" class="form-control"
                                               placeholder="Description" maxlength="255" required></textarea>
                                 @endif
                             </div>

@@ -23,7 +23,7 @@
                                     <fieldset>
                                         <div class="form-group">
                                             <label class="col-form-label" for="inputDefault">
-                                                <b>About</b>
+                                                <b>Description</b>
                                             </label>
                                             <p>{{$community->description}}
                                             </p>
