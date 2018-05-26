@@ -9,12 +9,11 @@ $query = \App\Http\Controllers\MemberController::profileFeed($member->idmember);
 
 foreach ($query as $notification){
 
-    $friendAccepted = \App\Http\Controllers\MemberController::getFriendAcceptance($notification->buddy);
-
 	switch($notification->type){
 		case 'buddy':
+            $friendAccepted = \App\Http\Controllers\MemberController::getFriendAcceptance($notification->buddy);
 
-		    if(!$friendAccepted->accepted){
+            if(!$friendAccepted->accepted){
                 $buddyName = Member::find($notification->buddy)->username;
 
                 $link = '/member/' . $buddyName;
