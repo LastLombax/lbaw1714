@@ -62,7 +62,7 @@ class MemberController extends Controller
     public function edit(Request $request)
     {
 				
-       $member = Auth::user();
+      $member = Auth::user();
   		if (Gate::allows('edit-profile', $member)) {
 
           $this->editValidator($request->all())->validate();
@@ -147,7 +147,7 @@ class MemberController extends Controller
                         SELECT "event".idevent, name, description, imagePath, startday, starttime, endtime
                         FROM "event", "event_member"
                         WHERE "event".idevent = "event_member".idevent AND "event_member".idmember ='.$member.'  
-                         AND "event".startday >= \'' . $todayDate . ' \'                  
+                         AND "event".startday > \'' . $todayDate . ' \'                  
                         Order BY "event".startday DESC');
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset

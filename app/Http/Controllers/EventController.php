@@ -75,6 +75,7 @@
 
 		public function edit(Request $request, Event $event){
 			if (Gate::allows('event-admin', $event)) {
+
 				$this->validator($request->all())->validate();
 
 				$event->name = $request->name;
@@ -95,7 +96,7 @@
 				$event->endday = $request->endDate;
 				$event->starttime = $request->startTime;
 				$event->endtime = $request->endTime;
-				$event->country = $request->country;
+				$event->idcountry = Country::where('name', '=', $request->country)->first()->idcountry;
 				$event->city = $request->city;
 				$event->address = $request->address;
 
@@ -151,21 +152,23 @@
 //
 //			];
 
-
-			return $validate = Validator::make($data, [
+			$validate = Validator::make($data, [
 				'name' => 'required|string|max:64',
 				'description' => 'required|string|max:516',
-				'startDate'=> '',
+				'startDate'=> 'date_format:"Y-m-d',
 				'startTime' => '',
-				'endDay' => '',
+				'endDate' => 'date_format:"Y-m-d|after_or_equal:startDate',
 				'endTime' => '',
 				'country' => 'required|string|exists:country,name',
 				'ispublic'=> 'boolean',
-				'address' => '',
-				'lodgingLink' => '',
+				'address'=> 'nullable|string|max:50',
+				'lodgingLink' => 'nullable',
 			]);
 
+            return $validate;
+
 		}
+
 
         public static function searchEventType1($searchField, $selectedRange, $selectedCountry, $minPrice, $maxPrice, $selectedOrder){
             if($searchField == "")

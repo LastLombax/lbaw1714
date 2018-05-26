@@ -138,23 +138,38 @@
                             <div class="form-group">
                                <label class="col-form-label" for="country" style="width:100%;">
                                 <b>Country</b>
-                                <div class="form-inline form-group mb-2" style="width:100%;">
-                                    <div class="form-group">
-                                        <select id="country" name="country" class="form-control" required>
-                                            <option value="">Choose</option>
-                                            @foreach(App\Country::all() as $country)
-                                                @if($event->country->idcountry == $country->idcountry)
-                                                    <option value="{{$country->idcountry}}" selected>{{$country->name}}</option>
-                                                @else
-                                                    <option value="{{$country->idcountry}}"> {{$country->name}}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
+                                </label>
+                              @if ($errors->has('country'))
+                                    <select id="country" name="country" class="form-control is-invalid" required>
+                                        <option value="">Choose</option>
+                                        @foreach(App\Country::all() as $country)
+                                            @if($event->idcountry == $country->idcountry)
+                                                <option value="{{$country->name}}" selected>{{$country->name}}</option>
+                                            @else
+                                                <option value="{{$country->name}}">{{$country->name}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <div class="alert alert-dismissible alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <strong>Error: </strong>{{$errors->first('country')}}
                                     </div>
-                                </div>
-                            </label>
-
+                                @else
+                                    <select id="country" name="country" class="form-control" required>
+                                        <option value="">Choose</option>
+                                        @foreach(App\Country::all() as $country)
+                                            @if($event->idcountry == $country->idcountry)
+                                                <option value="{{$country->name}}" selected>{{$country->name}}</option>
+                                            @else
+                                                <option value="{{$country->name}}">{{$country->name}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                @endif                   
                            </div>
+
+
+
                             <div class="form-group">
                            <label class="col-form-label" for="visibility">
                                 <b>Event visibility</b>
@@ -226,7 +241,7 @@
                                     <b>Lodging link</b>
                                 </label>
                                 <input id="lodging" name="lodging" type="text" class="form-control"
-                                       placeholder="Enter lodging link" required>
+                                       placeholder="Enter lodging link">
                             </div>
 
                           
