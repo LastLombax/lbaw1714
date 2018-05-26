@@ -136,8 +136,9 @@ class MemberController extends Controller
     public static function getFriendAcceptance($idFriend){
         $user = Auth::id();
 
-        return DB::table('friend')->where([['idf2', '=', $user],['idf1', '=', $idFriend]])->get()[0];
+        return DB::table('friend')->Where([['idf2', '=', $user],['idf1', '=', $idFriend]])->orWhere([['idf1', '=', $user],['idf2', '=', $idFriend]])->get();
     }
+
 
     public static function profileUpcoming($member)
     {
@@ -250,6 +251,19 @@ class MemberController extends Controller
         $user = Auth::id();
 
         DB::table('friend')->where([['idf2', '=', $user],['idf1', '=', $request->idFriend]])->update(['accepted' => true]);
+
+        return response("true",200);
+
+    }
+
+    public static function blockFriend(Request $request)
+    {
+        try {
+            Notification::find($request->idNotification)->delete();
+        }
+        catch (QueryException $e) {
+            return response("false",200);
+        }
 
         return response("true",200);
 

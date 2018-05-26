@@ -66,7 +66,22 @@ function friendAcceptance(){
 
 }
 
-function ignoreRequest(buddy){
+function blockRequest(buddy){
     event.preventDefault();
+
+    let request = new XMLHttpRequest();
+
+    friend = buddy;
+
+    request.open('POST', siteRoot + '/blockFriend', true);
+
+    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+    request.setRequestHeader("Content-type", "application/json");
+
+    request.addEventListener('load', friendAcceptance);
+
+    let data = {'idNotification': buddy};
+
+    request.send(JSON.stringify(data));
 }
 

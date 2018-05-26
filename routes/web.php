@@ -72,6 +72,9 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
 
     Route::post('acceptFriend', 'MemberController@acceptFriend');
 
+    Route::post('blockFriend', 'MemberController@blockFriend');
+
+
 
     Route::post('buddies/remove/{member}', 'MemberController@removeBuddy')->name('removeBuddy')->where('member', '[0-9]+}');
 

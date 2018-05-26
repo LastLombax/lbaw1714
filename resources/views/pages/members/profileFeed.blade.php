@@ -11,7 +11,7 @@ foreach ($query as $notification){
 
 	switch($notification->type){
 		case 'buddy':
-            $friendAccepted = \App\Http\Controllers\MemberController::getFriendAcceptance($notification->buddy);
+            $friendAccepted = \App\Http\Controllers\MemberController::getFriendAcceptance($notification->buddy)[0];
 
             if(!$friendAccepted->accepted){
                 $buddyName = Member::find($notification->buddy)->username;
@@ -25,7 +25,7 @@ foreach ($query as $notification){
                         </h5>
                         <div>
                             <button class="btn btn-info" onclick="acceptRequest('.$notification->buddy.')"> Accept </button>
-                            <button class="btn btn-secondary" onclick="ignoreRequest('.$notification->buddy.')"> Ignore </button>
+                            <button class="btn btn-secondary" onclick="blockRequest('.$notification->idnotification.')"> Block </button>
                         </div>
                         </div>
                         <small>' . $notification->getTime() .' day(s) ago</small>

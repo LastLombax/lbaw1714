@@ -88,16 +88,47 @@
                 @endif
 
 
-            @if (Auth::id() != $member->idmember)
-                    <div style="float: left;">
-                        <form>
-                            <button class="befriendBtn" id="{{$member->idmember}}" type="submit">
-                                <i class="fas fa-user-plus" style=" color: #333;"></i>
-                                Befriend this Member
-                            </button>
-                        </form>
-                    </div>
-                @endif
+                <?php
+
+                //dd($friendAccepted);
+                if (Auth::id() != $member->idmember){
+                    $friendAccepted = \App\Http\Controllers\MemberController::getFriendAcceptance($member->idmember);
+
+                    if(sizeof($friendAccepted) != 0){
+                        if(!$friendAccepted[0]->accepted){
+                            echo'<div style="float: left;">
+                                    <form>
+                                        <button type="submit">
+                                            <i class="fas fa-check"></i>
+                                            Friend Request Sent
+                                        </button>
+                                    </form>
+                                </div>';
+                        }
+                        else{
+                            echo'<div style="float: left;">
+                                    <form>
+                                        <button type="submit">
+                                            <i class="fas fa-user"></i>
+                                            Friends
+                                        </button>
+                                    </form>
+                                </div>';
+                        }
+                    }
+                    else{
+                        echo'<div style="float: left;">
+                                    <form>
+                                        <button class="befriendBtn" id="'.$member->idmember.'" type="submit">
+                                            <i class="fas fa-user-plus" style=" color: #333;"></i>
+                                            Befriend this Member
+                                        </button>
+                                    </form>
+                                </div>';
+                    }
+                }
+
+                ?>
             </fieldset>
             @if($member->isadmin())
                 <div style="text-align: right;">
