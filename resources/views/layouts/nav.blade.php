@@ -47,9 +47,6 @@
                     <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="administration.html">Administration</a>
-            </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
         <!--<table style="font-size: 12px; color: white; text-align: right; margin-right: 15px;">

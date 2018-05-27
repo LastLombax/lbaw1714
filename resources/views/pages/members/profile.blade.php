@@ -87,10 +87,9 @@
 
                 @endif
 
+                @if(!\Illuminate\Support\Facades\Auth::guest())
 
                 <?php
-
-                //dd($friendAccepted);
                 if (Auth::id() != $member->idmember){
                     $friendAccepted = \App\Http\Controllers\MemberController::getFriendAcceptance($member->idmember);
 
@@ -129,6 +128,7 @@
                 }
 
                 ?>
+                @endif
             </fieldset>
             @if($member->isadmin())
                 <div style="text-align: right;">
