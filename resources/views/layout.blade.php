@@ -18,12 +18,16 @@
     </style>
 </head>
 <body>
+
+    @yield('myFriends')
+
     @if(Auth::guest())
         @include('layouts.visitorNav')
     @else
         @include('layouts.nav')
         @include('layouts.searchNavBar')
     @endif
+
 
     @yield('afterNav')
 

@@ -16,8 +16,10 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-@if (\Request::is('events'))
+@if (Request::is('events'))
     <script src="{{ asset('js/scriptAdvancedSearch.js') }}" defer></script>
+@elseif(Request::is('friends'))
+    <script src="{{ asset('js/searchFriends.js') }}" defer></script>
 @else
     <script src="{{ asset('js/scriptSearch.js') }}" defer></script>
 @endif

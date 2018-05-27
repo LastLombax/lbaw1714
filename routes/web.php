@@ -27,6 +27,11 @@ Route::get('search', function () {
     return view('internal.search');
 })->name('search');
 
+//search
+Route::get('searchFriend', function () {
+    return view('internal.searchFriends');
+})->name('searchFriend');
+
 //Advanced Search
 Route::get('advancedSearch', function () {
     return view('internal.advancedSearch');
@@ -75,6 +80,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::post('blockFriend', 'MemberController@blockFriend');
     Route::post('searchFriends', 'MemberController@searchFriends');
     Route::post('inviteToEvent', 'EventController@inviteToEvent');
+    Route::get('friends', 'MemberController@friends')->name('friends');
+
 
 
 
