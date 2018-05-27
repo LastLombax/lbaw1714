@@ -2,6 +2,7 @@ let befriendBtn = document.querySelector(".befriendBtn");
 
 if(befriendBtn != null)
     befriendBtn.addEventListener('click', function (event) {
+
         event.preventDefault();
 
         let siteRoot = document.location.origin; //"http://localhost:8000/"
@@ -37,7 +38,6 @@ function friendResponse(){
 var friend;
 
 function acceptRequest(buddy){
-    event.preventDefault();
 
     let request = new XMLHttpRequest();
 
@@ -67,7 +67,6 @@ function friendAcceptance(){
 }
 
 function blockRequest(buddy){
-    event.preventDefault();
 
     let request = new XMLHttpRequest();
 

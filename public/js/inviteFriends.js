@@ -3,8 +3,9 @@ let usernameField = document.querySelector('#usernameField');
 usernameField.addEventListener('keyup', searchFriend);
 
 
-function searchFriend(){
-    event.preventDefault();
+function searchFriend(event){
+   // if (typeof event != "undefined")
+        event.preventDefault();
 
     let friendUsername = document.querySelector('#usernameField').value;
 
@@ -56,7 +57,7 @@ function friendList() {
                             '</td> ' +
                             '<td style="width:33.33%;"> ' +
                                 '<h6 id="inviteBt">' +
-                                    '<button type="button" class="btn btn-info" onclick="sendEventInvite();" id="'+ data.idmember +'">' +
+                                    '<button type="button" name="sendInviteBt" class="btn btn-info" onclick="sendEventInvite();" id="'+ data.idmember +'">' +
                                         'Invite' +
                                     '</button>' +
                                 '</h6> ' +
@@ -69,7 +70,8 @@ function friendList() {
 }
 
 function sendEventInvite(){
-    event.preventDefault();
+
+    let sendInviteBt = document.querySelector('button[name=sendInviteBt]').getAttribute('id');
 
     let request = new XMLHttpRequest();
 
@@ -82,7 +84,7 @@ function sendEventInvite(){
 
     let eventId = document.querySelector('.friendsBody').getAttribute('id');
 
-    let data = {'friendId': event.target.attributes.id.value, 'eventid': eventId};
+    let data = {'friendId': sendInviteBt, 'eventId': eventId};
 
     request.send(JSON.stringify(data));
 }
@@ -101,8 +103,10 @@ function eventInviteRequest(){
 
 }
 
-function addMeToEvent() {
-    event.preventDefault();
+function addMeToEvent(event) {
+
+    //if (typeof event != "undefined")
+        //event.preventDefault();
 
     let request = new XMLHttpRequest();
 

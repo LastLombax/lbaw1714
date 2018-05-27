@@ -34,7 +34,7 @@ foreach ($query as $notification){
 		    }
 			break;
 		case 'comment':
-			$eventName = Event::find($notification->event)->name;
+			$eventName = Event::find($notification->idevent)->name;
    			$eventsLink = route('events');
    			$link = $eventsLink . '/' . $notification->event;
    			$commentText = Comment::find($notification->comment)->text;
@@ -54,7 +54,7 @@ foreach ($query as $notification){
    			$link = $eventsLink . '/' . $notification->event;
    			echo '
 			   <div class="list-group-item list-group-item-action flex-column align-items-start">
-		        <h5 class="mb-1"> You have been invited to the Event<a href=" '.$link.'">'.$eventName . '</a> </h5>
+		        <h5 class="mb-1"> You have been invited to the Event <a href=" '.$link.'">'.$eventName . '</a> </h5>
 		       <small>' . $notification->getTime() .' day(s) ago</small>
 		    </div>
 			';

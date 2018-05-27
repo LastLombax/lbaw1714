@@ -77,21 +77,21 @@ function searchEvent() {
 
 
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function(event) {
 
     searchEvent();
 
     event.preventDefault();
 });
 
-selectedRange.addEventListener("change", function() {
+selectedRange.addEventListener("change", function(event) {
 
     searchEvent();
 
     event.preventDefault();
 });
 
-selectedCountry.addEventListener("change", function() {
+selectedCountry.addEventListener("change", function(event) {
 
     searchEvent();
 

@@ -224,25 +224,6 @@
                         @endif
 
                 </div>
-                <div style="margin-top: 1rem; margin-left: 0;">
-                    <ul class="pagination" style="">
-                        <li class="page-item disabled ">
-                            <a class="page-link " href="# ">«</a>
-                        </li>
-                        <li class="page-item active ">
-                            <a class="page-link " href="# ">1</a>
-                        </li>
-                        <li class="page-item ">
-                            <a class="page-link " href="# ">2</a>
-                        </li>
-                        <li class="page-item ">
-                            <a class="page-link " href="# ">3</a>
-                        </li>
-                        <li class="page-item ">
-                            <a class="page-link " href="# ">»</a>
-                        </li>
-                    </ul>
-                </div>
         </div>
     </div>
 </div>
