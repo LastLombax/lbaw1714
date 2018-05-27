@@ -1,9 +1,5 @@
 @extends('layout')
 
-@section('myFriends')
-    @include('pages.members.partials.myFriends')
-@endsection
-
 @section('searchBody')
     <div class="row justify-content-center align-items-center">
 

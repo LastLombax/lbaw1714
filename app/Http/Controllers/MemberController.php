@@ -309,7 +309,7 @@ class MemberController extends Controller
         $user = Auth::id();
 
         $friends = DB::table('friend')
-            ->join('member', function ($join) use ($user, $request) {
+            ->join('member', function ($join) use ($user) {
                 $join
                     ->on('friend.idf1', '=', 'member.idmember')
                     ->where([['member.idmember', '<>', $user]])
@@ -319,6 +319,7 @@ class MemberController extends Controller
             ->where([['idf2', '=', $user], ['accepted', '=', true]])
             ->orWhere([['idf1', '=', $user], ['accepted', '=', true]])
             ->limit(5)
+            ->select('member.*')
             ->get();
 
         return $friends;
@@ -328,7 +329,9 @@ class MemberController extends Controller
     public static function searchMembers($word){
         $user = Auth::id();
 
-        return Member::where([['username', 'LIKE', '%'.$word.'%'], ['idmember', '<>', $user]])->limit(9)->get();
+        return Member::where([['username', 'LIKE', '%'.$word.'%'], ['idmember', '<>', $user]])
+            ->limit(9)
+            ->get();
     }
 
 
