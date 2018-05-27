@@ -61,15 +61,9 @@ function recievedTickets(){
             "<div class=\"card text-white bg-success mb-3\" style=\"width: 100%; margin:0px !important;\">\n" +
             "  <div class=\"card-body\">\n" +
             "    <h4 class=\"card-title\">Ticket Purchase</h4>\n" +
-            "    <p class=\"card-text\">Your ticket was successfully purchased! Thank you!</p>\n" +
+            "    <p class=\"card-text\">Your ticket was successfully purchased! Thank you! You can get you invoice at your profile page.</p>\n" +
             "  </div>" +
-            "</div>" +
-            "<div style='height: 100%; width: 100%; background-color: #fff;''>" +
-            "<div class='container' style='padding: 50px; text-align: center;'>" +
-            "gvsdasvvhahsvssdajksvddjvdjlkjsdavjkdsvjkadsvjldsvdsvvasadjsvlk" +
-            "</div>" +
             "</div>";
-        disableScroll();
     }
 
 }
@@ -83,35 +77,4 @@ function getSelectedOption(sel) {
         }
     }
     return opt.getAttribute('value');
-}
-
-var keys = {37: 1, 38: 1, 39: 1, 40: 1};
-
-function preventDefault(e) {
-    e = e || window.event;
-    if (e.preventDefault)
-        e.preventDefault();
-    e.returnValue = false;
-}
-
-function preventDefaultForScrollKeys(e) {
-    if (keys[e.keyCode]) {
-        preventDefault(e);
-        return false;
-    }
-}
-
-function disableScroll() {
-    if (window.addEventListener) // older FF
-        window.addEventListener('DOMMouseScroll', preventDefault, false);
-    window.onwheel = preventDefault; // modern standard
-    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-    window.ontouchmove  = preventDefault; // mobile
-    document.onkeydown  = preventDefaultForScrollKeys;
-}
-
-function encodeForAjax(data) {
-    return Object.keys(data).map(function(k){
-        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-    }).join('&');
 }

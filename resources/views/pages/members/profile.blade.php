@@ -95,7 +95,8 @@
 
                     if(sizeof($friendAccepted) != 0){
                         if(!$friendAccepted[0]->accepted){
-                            echo'<div style="float: left;">
+                            echo'
+                                <div style="float: left;">
                                     <form>
                                         <button type="submit" onclick="event.preventDefault();">
                                             <i class="fas fa-check"></i>
@@ -105,7 +106,8 @@
                                 </div>';
                         }
                         else{
-                            echo'<div style="float: left;">
+                            echo'
+                                <div style="float: left;">
                                     <form>
                                         <button type="submit" onclick="event.preventDefault();">
                                             <i class="fas fa-user"></i>
@@ -116,14 +118,15 @@
                         }
                     }
                     else{
-                        echo'<div style="float: left;">
-                                    <form>
-                                        <button class="befriendBtn" id="'.$member->idmember.'" type="submit">
-                                            <i class="fas fa-user-plus" style=" color: #333;"></i>
-                                            Befriend this Member
-                                        </button>
-                                    </form>
-                                </div>';
+                        echo'
+                            <div style="float: left;">
+                                <form>
+                                    <button class="befriendBtn" id="'.$member->idmember.'" type="submit">
+                                        <i class="fas fa-user-plus" style=" color: #333;"></i>
+                                        Befriend this Member
+                                    </button>
+                                </form>
+                            </div>';
                     }
                 }
 
