@@ -270,6 +270,36 @@ class MemberController extends Controller
     }
 
 
+    public static function searchFriends(Request $request)
+    {
+        $user = Auth::id();
+
+        //INSERT INTO event_member(idevent, idmember, isadmin) VALUES (1,101,true);
+
+        $friends = DB::table('friend')
+            ->join('member', function ($join) use ($user, $request) {
+                $join
+                ->on('friend.idf1', '=', 'member.idmember')
+                    ->where([['member.idmember', '<>', $user], ['member.username', 'LIKE', '%'.$request->friendUsername.'%']])
+                ->orOn('friend.idf2', '=', 'member.idmember')
+                    ->where([['member.idmember', '<>', $user], ['member.username', 'LIKE', '%'.$request->friendUsername.'%']]);
+            })
+            // esta linha servia para evitar que utilizadores do mesmo evento aparecessem na pesquisa, mas nao consigo por a funcionar
+            /*->join('event_member', function ($join) use ($user, $request) {
+                $join
+                    ->on('member.idmember', '=', 'event_member.idmember')
+                        ->where([['event_member.idevent', '<>', $request->eventId]]);
+            })*/
+            ->where([['idf2', '=', $user], ['accepted', '=', true]])
+            ->orWhere([['idf1', '=', $user], ['accepted', '=', true]])
+            ->limit(5)
+            ->get();
+
+        return response(json_encode($friends),200);
+
+    }
+
+
 //INSERT INTO notification (timestamp, type, community, recipient, comment, event, buddy) VALUES ('2017-12-17 12:26:03', 'buddy', null, 102, null, null, 101);
 
 }

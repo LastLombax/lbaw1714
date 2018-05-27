@@ -1066,6 +1066,11 @@ INSERT INTO friend VALUES (9, 64, false);
 INSERT INTO friend VALUES (54, 73, false);
 INSERT INTO friend VALUES (14, 61, true);
 
+INSERT INTO friend VALUES (101, 41, true);
+INSERT INTO friend VALUES (101, 64, true);
+INSERT INTO friend VALUES (101, 73, true);
+INSERT INTO friend VALUES (101, 62, true);
+
 
 --
 -- Data for Name: invoice; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714

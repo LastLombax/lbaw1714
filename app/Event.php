@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class Event extends Model
@@ -46,4 +48,17 @@ class Event extends Model
 		else
 			return Storage::url($this->imagepath);
 	}
+
+	public function isMemberAdded(){
+        $user = Auth::id();
+
+        $eventGuy = DB::table('event_member')->where(
+            [
+                ['idevent', '=', $this->idevent],
+                ['idmember', '=', $user],
+            ])->get();
+
+        if(sizeof($eventGuy) > 0)
+            return true;
+    }
 }

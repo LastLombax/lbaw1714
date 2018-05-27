@@ -98,7 +98,7 @@
                         if(!$friendAccepted[0]->accepted){
                             echo'<div style="float: left;">
                                     <form>
-                                        <button type="submit">
+                                        <button type="submit" onclick="event.preventDefault();">
                                             <i class="fas fa-check"></i>
                                             Friend Request Sent
                                         </button>
@@ -108,7 +108,7 @@
                         else{
                             echo'<div style="float: left;">
                                     <form>
-                                        <button type="submit">
+                                        <button type="submit" onclick="event.preventDefault();">
                                             <i class="fas fa-user"></i>
                                             Friends
                                         </button>

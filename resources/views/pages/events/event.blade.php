@@ -5,6 +5,7 @@
     </script>
     <script src="{{ asset('js/commentScripts.js') }}" defer></script>
     <script src="{{ asset('js/buyTicketsScript.js') }}" defer></script>
+    <script src="{{ asset('js/inviteFriends.js') }}" defer></script>
 
 @endsection
 
@@ -75,17 +76,21 @@
                                 </div>
                                 <br>
                                 @if(!\Illuminate\Support\Facades\Auth::guest())
-                                    <div>
-                                        <button type="button"
-                                                onclick="event.preventDefault(); location.href = 'register2.html';"
-                                                class="btn btn-info">Add me
-                                        </button>
-                                        <button type="button" class="btn btn-info" data-toggle="modal"
-                                                data-target="#modalInvite">
-                                            Invite people
-                                        </button>
-                                    </div>
-                                    <br>
+                                        <div>
+                                            @if(!$event->isMemberAdded())
+                                            <div id="addMeBt">
+                                                <button type="button"
+                                                        onclick="addMeToEvent();"
+                                                        class="btn btn-info">Add me
+                                                </button>
+                                            </div>
+                                            @endif
+                                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                                    data-target="#modalInvite">
+                                                Invite Friends
+                                            </button>
+                                        </div>
+                                        <br>
                                 @endif
                                 <div>
                                     @if(!\Illuminate\Support\Facades\Auth::guest())

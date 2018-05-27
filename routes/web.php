@@ -57,6 +57,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::get('events/create', 'EventController@createForm')->name('createEvent');
     Route::post('events/create', 'EventController@create')->name('createEvent');
     Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
+    Route::post('addMeToEvent', 'EventController@addMeToEvent');
+
 
     //Comments
     Route::delete('ajax/events/comment', 'EventController@inviteMember');
@@ -67,12 +69,13 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::post('communities/create', 'CommunityController@create')->name('createCommunity');    
     Route::get('communities/manageCommunities', 'CommunityController@manageCommunities')->name('manageCommunities');
 
-    //Members
+    //Friends
     Route::post('sendFriendNotification', 'MemberController@sendFriendNotification');
-
     Route::post('acceptFriend', 'MemberController@acceptFriend');
-
     Route::post('blockFriend', 'MemberController@blockFriend');
+    Route::post('searchFriends', 'MemberController@searchFriends');
+    Route::post('inviteToEvent', 'EventController@inviteToEvent');
+
 
 
 
