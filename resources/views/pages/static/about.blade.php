@@ -17,37 +17,29 @@
 @section('content')
             <div>
                 <h2>Who we are</h2>
-                <p>Nullam quis risus eget
-                    <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                    mus. Nullam id dolor id nibh ultricies vehicula.
+                <p>
+                    We are a group of students from <a href="https://www.fe.up.pt">FEUP</a>, working on the subject of Database and Web Applications Laboratory.
                 </p>
-                <p> Proin sed sem cursus, accumsan erat sit amet, ultricies augue. Nulla lobortis urna facilisis, egestas ante sit
-                    amet, lacinia orci. Pellentesque pulvinar sodales nunc. Morbi nec lorem suscipit, vulputate felis in, vulputate
-                    neque. Sed at ultricies ex. Donec aliquam metus sed tellus ultrices, ac vehicula velit ultricies. Suspendisse
-                    potenti.
+                <p>  
+                <ul>
+                    <li> Daniel Ribeiro de Pinho - <a href="mailto:up201505302@fe.up.pt">up201505302@fe.up.pt</a></li>
+                    <li> Francisco José Sousa Silva - <a href="mailto:up201502860@fe.up.pt">up201502860@fe.up.pt</a></li>
+                    <li> Rui André Rebolo Fernandes Leixo - <a href="mailto:up201504818@fe.up.pt">up201504818@fe.up.pt</a></li>
+                    <li> Vitor Emanuel Fernandes Magalhães - <a href="mailto:up201503447@fe.up.pt">up201505302@fe.up.pt</a></li>
+                </ul>
                 </p>
 
                 <h2>How we started</h2>
-                <p>Nullam quis risus eget
-                    <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                    mus. Nullam id dolor id nibh ultricies vehicula.
+                <p>
+                   In order to deliver an amazing experience on a website, we grouped up to create the best way to share and create events.
                 </p>
-                <p> Proin sed sem cursus, accumsan erat sit amet, ultricies augue. Nulla lobortis urna facilisis, egestas ante sit
-                    amet, lacinia orci. Pellentesque pulvinar sodales nunc. Morbi nec lorem suscipit, vulputate felis in, vulputate
-                    neque. Sed at ultricies ex. Donec aliquam metus sed tellus ultrices, ac vehicula velit ultricies. Suspendisse
-                    potenti.
-                </p>
-                <p>Nulla vulputate ipsum quis lorem ullamcorper, at suscipit felis rutrum. Mauris egestas quam non lobortis tincidunt.
-                    Donec efficitur ullamcorper dolor, rhoncus dapibus dolor fringilla in. Etiam ut elementum lorem, vitae gravida
-                    nulla. Pellentesque sed consequat odio, a sodales ante. Nulla feugiat nisi massa, et posuere tellus faucibus
-                    eget. Nunc venenatis tristique magna, non luctus ipsum molestie in.
+                <p>
+
                 </p>
 
                 <h2>Our goal</h2>
-                <p>Nulla vulputate ipsum quis lorem ullamcorper, at suscipit felis rutrum. Mauris egestas quam non lobortis tincidunt.
-                    Donec efficitur ullamcorper dolor, rhoncus dapibus dolor fringilla in. Etiam ut elementum lorem, vitae gravida
-                    nulla. Pellentesque sed consequat odio, a sodales ante. Nulla feugiat nisi massa, et posuere tellus faucibus
-                    eget. Nunc venenatis tristique magna, non luctus ipsum molestie in.
+                <p>
+                    What drives us to keep going is our desire to learn more about Web Development and the best ways to deliver an engaging user experience to our website visitors.  
                 </p>
 
             </div>

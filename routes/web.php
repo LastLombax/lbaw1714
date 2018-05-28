@@ -103,6 +103,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
 //Route::get('members', 'MemberController@index')->name('members');
 Route::get('members/{username}', 'MemberController@show')->name('member')->where('username', '\w{3,}');
 
+Route::get('mail', 'HomeController@mail')->name('mail');
+
 
 // Events
 Route::get('events', 'EventController@index')->name('events');

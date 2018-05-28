@@ -1,5 +1,10 @@
 @extends('layout')
 
+@section('extraScript')
+    <script src="{{ asset('js/inviteFriends.js') }}" defer></script>
+
+@endsection
+
 @section('content')
    <div class="container">
         <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0; padding-bottom: 0;">
@@ -61,8 +66,7 @@
                                      class="btn btn-info">Message the admins</button>
                                      <button type="submit" style="border-color: #f5956f" onclick="event.preventDefault(); location.href = 'register2.html';"
                                      class="btn btn-danger">Report</button>
-                                     <button type="submit" style="background-color: #f3a933dc; border-color: #f5956f; margin-top:5px;" onclick="event.preventDefault(); location.href = 'register2.html';"
-                                        class="btn btn-info">Add Members</button>
+                                     <button type="submit" style="background-color: #f3a933dc; border-color: #f5956f; margin-top:5px;" class="btn btn-info" data-toggle="modal" data-target="#modalInvite">Invite Friends</button>
 
                                     <br>
                                     <br>

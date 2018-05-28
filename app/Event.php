@@ -22,6 +22,10 @@ class Event extends Model
 		return $this->belongsToMany('App\Member','event_member', 'idevent', 'idmember')->withPivot('isadmin');
 	}
 
+	public function numMembers(){
+        return count($this->attendants);
+    }
+
 	public function country(){
 		return $this->hasOne('App\Country', 'idcountry', 'idcountry');
 	}

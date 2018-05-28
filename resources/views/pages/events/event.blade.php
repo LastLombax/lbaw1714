@@ -135,7 +135,13 @@
                     <a class="nav-link active" data-toggle="tab" href="#comments">Comments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#participants">Participants</a>
+                    <a class="nav-link" data-toggle="tab" href="#participants">Participants
+                        @if ($event->numMembers() >= 100)
+                            (100+) 
+                        @else 
+                            ({{$event->numMembers()}}) 
+                        @endif
+            </a>
                 </li>
             </ul>
 
