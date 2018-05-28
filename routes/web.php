@@ -59,7 +59,7 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
 
     //Comments
-    Route::delete('ajax/events/comment', 'EventController@inviteMember');
+    Route::delete('ajax/events/comment', 'CommentController@destroy');
 
 
     //Communities

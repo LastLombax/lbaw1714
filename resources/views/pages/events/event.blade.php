@@ -148,14 +148,18 @@
 
                                             <div class="commentActions" style="font-size: 18px; text-align: right; color: #999">
 
-                                                <i class="editComment fas fa-pencil-alt" onmouseleave='this.style.color="#999"'
-                                                   onmouseout='this.style.color="#666"' style="cursor: pointer;">
+                                                <button class="editComment" onmouseleave='this.style.color="#999"'
+                                                        onmouseout='this.style.color="#666"' style="cursor: pointer;">
+                                                    <i class="fas fa-pencil-alt"></i>
                                                     <span class="comment-id" style="display: none">{{$comment->idcomment}}</span>
-                                                </i>
-                                                <i class="deleteComment fas fa-trash-alt" onmouseleave='this.style.color="#999"'
-                                                   onmouseout='this.style.color="#666"' style="cursor: pointer;">
+                                                </button>
+
+                                                <button class="deleteComment" onmouseleave='this.style.color="#999"'
+                                                        onmouseout='this.style.color="#666"' style="cursor: pointer;">
+                                                    <i class="fas fa-trash-alt"></i>
                                                     <span class="comment-id" style="display: none">{{$comment->idcomment}}</span>
-                                                </i>
+                                                </button>
+
                                             </div>
 
                                         </div>
