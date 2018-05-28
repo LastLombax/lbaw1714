@@ -33,7 +33,8 @@
             $community->description = $request->description;
             $community->creationdate = date('Y-m-d');            
             $community->ispublic = $request->visibility;
-            dd($community);
+            $community->publiclink = null;
+            
             $community->save();
 
             if($request->hasFile('communityImage')) {
@@ -69,9 +70,30 @@
             return view('pages.communities.editCommunity')->with('community', $community);
         }
 
-        public function edit(Event $event){
+        public function edit(Request $request, Community $community){
 
-            return view('pages.events.event')->with('community', $community);
+            $this->validator($request->all())->validate();
+
+            $community->name = $request->name;
+            $community->description = $request->description;  
+            $community->ispublic = $request->visibility;
+            $community->publiclink = null;
+            
+            $community->save();
+
+            if($request->hasFile('communityImage')) {
+                $imgType = $request->file('communityImage')->getMimeType();
+                $imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
+
+                $community->imagepath = 'img/community/' . $community->idcommunity . $imgType;
+
+                $community->save();
+
+                $request->file('communityImage')->storeAs('public/img/community', $community->idcommunity . $imgType);
+            }
+
+
+            return redirect()->route('community', $community->idcommunity);
         }
 
         public function delete(Community $community){

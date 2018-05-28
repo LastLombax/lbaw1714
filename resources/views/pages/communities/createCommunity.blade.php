@@ -89,18 +89,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-form-label" for="communityVisibility">
+                                <label class="col-form-label" for="visibility">
                                     <b>Visibility</b>
                                 </label>
                                 <br>
                                 <div class="btn-group" data-toggle="buttons">
                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
-                                            <input id="public" name="communityVisibility" type="radio"
+                                            <input id="public" name="visibility" type="radio"
                                                    autocomplete="off" checked> Public
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input id="private" name="communityVisibility" type="radio"
+                                            <input id="private" name="visibility" type="radio"
                                                    autocomplete="off"> Private
                                         </label>
                                     </div>

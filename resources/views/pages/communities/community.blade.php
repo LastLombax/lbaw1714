@@ -33,9 +33,10 @@
                                                 <b>Membership details</b>
                                             </label>
                                             <p>
-                                                <a href="#" style="color: #f3a933dc">{{$community->numMembers()}} members</a>, including
-                                                <a href="#" style="color: #f36833">God</a> and
-                                                <a href="#" style="color: #f36833">Rui Leixo</a>
+                                                <a href="#" style="color: #f3a933dc"> {{$community->numMembers()}}
+                                                    @if($community->numMembers() == 1) member
+                                                    @else members
+                                                    @endif</a>
                                             </p>
                                         </div>
                                         <div class="form-group">
