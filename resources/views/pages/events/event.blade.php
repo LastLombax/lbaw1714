@@ -5,6 +5,7 @@
     </script>
     <script src="{{ asset('js/commentScripts.js') }}" defer></script>
     <script src="{{ asset('js/buyTicketsScript.js') }}" defer></script>
+    <script src="{{ asset('js/inviteFriends.js') }}" defer></script>
 
 @endsection
 
@@ -30,7 +31,7 @@
         <div class="col-lg-4" style="padding-top: 0; padding-bottom: 50px;">
             <div class="bs-ccomponent">
                 <img style="width: 100%; height: 200px; object-fit: cover;" src="{{$event->imagePath()}}"
-                     alt="Card image">
+                     alt="Event image">
                 <br>
                 <br>
 
@@ -75,17 +76,21 @@
                                 </div>
                                 <br>
                                 @if(!\Illuminate\Support\Facades\Auth::guest())
-                                    <div>
-                                        <button type="button"
-                                                onclick="event.preventDefault(); location.href = 'register2.html';"
-                                                class="btn btn-info">Add me
-                                        </button>
-                                        <button type="button" class="btn btn-info" data-toggle="modal"
-                                                data-target="#modalInvite">
-                                            Invite people
-                                        </button>
-                                    </div>
-                                    <br>
+                                        <div>
+                                            @if(!$event->isMemberAdded())
+                                            <div id="addMeBt">
+                                                <button type="button"
+                                                        onclick="addMeToEvent();"
+                                                        class="btn btn-info">Add me
+                                                </button>
+                                            </div>
+                                            @endif
+                                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                                    data-target="#modalInvite">
+                                                Invite Friends
+                                            </button>
+                                        </div>
+                                        <br>
                                 @endif
                                 <div>
                                     @if(!\Illuminate\Support\Facades\Auth::guest())
@@ -130,7 +135,13 @@
                     <a class="nav-link active" data-toggle="tab" href="#comments">Comments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#participants">Participants</a>
+                    <a class="nav-link" data-toggle="tab" href="#participants">Participants
+                        @if ($event->numMembers() >= 100)
+                            (100+) 
+                        @else 
+                            ({{$event->numMembers()}}) 
+                        @endif
+            </a>
                 </li>
             </ul>
 

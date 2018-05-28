@@ -15,28 +15,25 @@
 
 @section('content')
         <div>
-            <h2>Question?</h2>
-            <p>Nullam quis risus eget
-                <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+            <h3>What is a Member?</h3>
+            <p>
+                A member is a registered user. By registering, a member can create events and communities, as well as being able to interact with other members.
             </p>
 
-            <h2>Question?</h2>
-            <p>Nullam quis risus eget
-                <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+            <h3>How do I create an event?</h3>
+            <p>
+                To create an event, all you need is go <a href="http://localhost:8000/events/create">here</a> and fill the form.
             </p>
 
-            <h2>Question?</h2>
-            <p>Nullam quis risus eget
-                <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+            <h3>What is the answer to life, the universe and everything?</h3>
+            <p>
+                Did you mean: <strong>How much is seven times six?</strong>
             </p>
 
-            <h2>Question?</h2>
-            <p>Nullam quis risus eget
-                <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+            <h3>What can communities do?</h3
+>            <p>
+                A community is a group of members that can create events and easily add all members within the community.  
             </p>
         </div>
 @endsection
+

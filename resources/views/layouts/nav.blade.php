@@ -43,12 +43,9 @@
                    aria-expanded="false"> My Account</a>
                 <div class="dropdown-menu" x-placement="bottom-start">
                     <a class="dropdown-item" href="/members/{{Auth::user()->username}}"><i class="fas fa-user"></i> My Profile</a>
-                    <a class="dropdown-item" href="myFriends.html"><i class="fas fa-users"></i> My Friends</a>
+                    <a class="dropdown-item" href="{{route('friends')}}"><i class="fas fa-users"></i> My Friends</a>
                     <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="administration.html">Administration</a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
@@ -77,7 +74,7 @@
 
                         <a class="dropdown-item" href="/profile"><i class="fas fa-user"></i> My
                             Profile</a>
-                        <a class="dropdown-item" href="myFriends.html"><i class="fas fa-users"></i> My Friends</a>
+                        <a class="dropdown-item" href="{{route('friends')}}"><i class="fas fa-users"></i> My Friends</a>
                         <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 </div>

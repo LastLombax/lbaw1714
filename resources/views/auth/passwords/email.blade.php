@@ -18,7 +18,7 @@
                 {{ csrf_field() }}
                 <fieldset>
                     <h3>Reset Password</h3>
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" style="width:150%">
                         <label for="email" class="col-form-label">E-Mail Address</label>
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>

@@ -4,8 +4,11 @@
     use Auth;
     use App\Community;
     use App\Http\Controllers\Controller;
-    use Illuminate\Foundation\Request;
     use Illuminate\Support\Facades\DB;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Validator;
+    use Illuminate\Support\Facades\Gate;
+
 
     class CommunityController extends Controller
     {
@@ -22,8 +25,38 @@
 
         public function create(Request $request){
 
-            dd($request);
-            return view('pages.community.createCommunity');
+
+            $this->validator($request->all())->validate();
+            $community = new Community();
+
+            $community->name = $request->name;
+            $community->description = $request->description;
+            $community->creationdate = date('Y-m-d');            
+            $community->ispublic = $request->visibility;
+            $community->publiclink = null;
+            
+            $community->save();
+
+            if($request->hasFile('communityImage')) {
+                $imgType = $request->file('communityImage')->getMimeType();
+                $imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
+
+                $community->imagepath = 'img/community/' . $community->idcommunity . $imgType;
+
+                $community->save();
+
+                $request->file('communityImage')->storeAs('public/img/community', $community->idcommunity . $imgType);
+            }
+
+            DB::table('community_member')->insert(
+                [   'idcommunity' => $community->idcommunity,
+                    'idmember' => Auth::user()->idmember,
+                    'isadmin' => true,
+                ]
+            );
+
+            return redirect()->route('community', $community->idcommunity);
+
 
         }
 
@@ -37,9 +70,30 @@
             return view('pages.communities.editCommunity')->with('community', $community);
         }
 
-        public function edit(Event $event){
+        public function edit(Request $request, Community $community){
 
-            return view('pages.events.event')->with('community', $community);
+            $this->validator($request->all())->validate();
+
+            $community->name = $request->name;
+            $community->description = $request->description;  
+            $community->ispublic = $request->visibility;
+            $community->publiclink = null;
+            
+            $community->save();
+
+            if($request->hasFile('communityImage')) {
+                $imgType = $request->file('communityImage')->getMimeType();
+                $imgType = '.' . substr($imgType, strpos($imgType, '/') + 1);
+
+                $community->imagepath = 'img/community/' . $community->idcommunity . $imgType;
+
+                $community->save();
+
+                $request->file('communityImage')->storeAs('public/img/community', $community->idcommunity . $imgType);
+            }
+
+
+            return redirect()->route('community', $community->idcommunity);
         }
 
         public function delete(Community $community){
@@ -53,6 +107,26 @@
                             GROUP BY(community.idcommunity)
                             ORDER BY attendants DESC LIMIT ' . $limit . ' OFFSET ' . $offset);
         }
+
+
+        protected function validator(array $data) {
+//          $messages = [
+//              'unique' => 'That :attribue is already in use!',
+//              'max'    => 'The :attribute surpassed the maximum length :max!',
+//              'email.required' => 'We need to know your e-mail address!',
+//
+//          ];
+
+            $validate = Validator::make($data, [
+                'name' => 'required|string|max:64',
+                'description' => 'required|string|max:516',
+                'ispublic'=> 'boolean',
+            ]);
+
+            return $validate;
+
+        }
+
 
         public static function manageCommunities(){
             return view('pages.communities.manageCommunities');

@@ -1,23 +1,86 @@
-let befriendBtn = document.querySelector("#befriendBtn");
+let befriendBtn = document.querySelector(".befriendBtn");
 
-befriendBtn.addEventListener('click', function (event) {
-    let siteRoot = document.location.origin; //"http://localhost:8000/"
-    let friendUsername = "teste";
+if(befriendBtn != null)
+    befriendBtn.addEventListener('click', function (event) {
 
-    let request = new XMLHttpRequest();
-    request.open('post', siteRoot + '/buddies/add/' + encodeForAjax({'friend': friendUsername}), true);
+        event.preventDefault();
 
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        let siteRoot = document.location.origin; //"http://localhost:8000/"
+        let friendId = document.querySelector(".befriendBtn").getAttribute('id');
 
-    request.addEventListener('load', function () {
-        let answer = JSON.parse(this.responseText);
-        console.log(answer);
+        console.log(friendId);
 
-        request.classList.add("display: none");
+        let request = new XMLHttpRequest();
+
+        request.open('POST', siteRoot + '/sendFriendNotification', true);
+
+        request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+        request.setRequestHeader("Content-type", "application/json");
+
+        request.addEventListener('load', friendResponse);
+
+        let data = {'idfriend': friendId};
+
+        request.send(JSON.stringify(data));
     });
 
-    request.send();
+function friendResponse(){
+    let lines = JSON.parse(this.responseText);
 
-    event.preventDefault();
-});
+    if(lines){
+        befriendBtn.innerHTML = '' +
+            '<i class="fas fa-check"></i>' +
+            'Friend Request Sent';
+    }
+
+}
+
+var friend;
+
+function acceptRequest(buddy){
+
+    let request = new XMLHttpRequest();
+
+    friend = buddy;
+
+    request.open('POST', siteRoot + '/acceptFriend', true);
+
+    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+    request.setRequestHeader("Content-type", "application/json");
+
+    request.addEventListener('load', friendAcceptance);
+
+    let data = {'idFriend': buddy};
+
+    request.send(JSON.stringify(data));
+}
+
+function friendAcceptance(){
+    let lines = JSON.parse(this.responseText);
+
+    let notification = document.querySelector("#buddyRequest"+friend);
+
+    if(lines){
+        notification.innerHTML = '';
+    }
+
+}
+
+function blockRequest(buddy){
+
+    let request = new XMLHttpRequest();
+
+    friend = buddy;
+
+    request.open('POST', siteRoot + '/blockFriend', true);
+
+    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+    request.setRequestHeader("Content-type", "application/json");
+
+    request.addEventListener('load', friendAcceptance);
+
+    let data = {'idNotification': buddy};
+
+    request.send(JSON.stringify(data));
+}
 

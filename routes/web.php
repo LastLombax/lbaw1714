@@ -27,6 +27,11 @@ Route::get('search', function () {
     return view('internal.search');
 })->name('search');
 
+//search
+Route::get('searchFriend', function () {
+    return view('internal.searchFriends');
+})->name('searchFriend');
+
 //Advanced Search
 Route::get('advancedSearch', function () {
     return view('internal.advancedSearch');
@@ -57,6 +62,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::get('events/create', 'EventController@createForm')->name('createEvent');
     Route::post('events/create', 'EventController@create')->name('createEvent');
     Route::get('events/manageEvents', 'EventController@manageEvents')->name('manageEvents');
+    Route::post('addMeToEvent', 'EventController@addMeToEvent');
+
 
     //Comments
     Route::delete('ajax/events/comment', 'CommentController@destroy');
@@ -67,8 +74,17 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::post('communities/create', 'CommunityController@create')->name('createCommunity');    
     Route::get('communities/manageCommunities', 'CommunityController@manageCommunities')->name('manageCommunities');
 
-    //Members
-    Route::post('buddies/add/{member}', 'MemberController@sendBuddyRequest')->name('sendBuddyRequest')->where('member', '[0-9]+}');
+    //Friends
+    Route::post('sendFriendNotification', 'MemberController@sendFriendNotification');
+    Route::post('acceptFriend', 'MemberController@acceptFriend');
+    Route::post('blockFriend', 'MemberController@blockFriend');
+    Route::post('searchFriends', 'MemberController@searchFriends');
+    Route::post('inviteToEvent', 'EventController@inviteToEvent');
+    Route::get('friends', 'MemberController@friends')->name('friends');
+
+
+
+
 
     Route::post('buddies/remove/{member}', 'MemberController@removeBuddy')->name('removeBuddy')->where('member', '[0-9]+}');
 
@@ -86,6 +102,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
 // Members
 //Route::get('members', 'MemberController@index')->name('members');
 Route::get('members/{username}', 'MemberController@show')->name('member')->where('username', '\w{3,}');
+
+Route::get('mail', 'HomeController@mail')->name('mail');
 
 
 // Events

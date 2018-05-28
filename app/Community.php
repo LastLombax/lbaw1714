@@ -8,6 +8,7 @@ class Community extends Model
 {
     protected $primaryKey = 'idcommunity';
     protected $table = 'community';
+    public $timestamps = false;
 
     //Relations
 	
@@ -21,7 +22,7 @@ class Community extends Model
 
 
     public function printDate(){
-        $creationDate = strtotime($this->creationDate);
+        $creationDate = strtotime($this->creationdate);
         echo date('F d, Y', $creationDate);
     }
 

@@ -10,12 +10,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input type="text" name="usernameField" id="usernameField" placeholder="Input username..."/>
-                <!--<input type="button" name="search_button" id="search_button">-->
+
+                <div class="form-group" style="width: 100%;">
+                    <input class="form-control form-control-lg" id="usernameField" type="text" placeholder="Input username..." id="inputLarge">
+                </div>
+
+                <div class="friendsBody" id="{{$event->idevent}}">
+
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Send invite</button>
             </div>
         </form>
     </div>

@@ -3,13 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class Event extends Model
 {
     protected $primaryKey = 'idevent';
     protected $table = 'event';
-		public $timestamps  = false;
+	public $timestamps  = false;
 
     
 	public function commentTuples(){
@@ -19,6 +21,10 @@ class Event extends Model
 	public function attendants(){ //memberTuples
 		return $this->belongsToMany('App\Member','event_member', 'idevent', 'idmember')->withPivot('isadmin');
 	}
+
+	public function numMembers(){
+        return count($this->attendants);
+    }
 
 	public function country(){
 		return $this->hasOne('App\Country', 'idcountry', 'idcountry');
@@ -46,4 +52,17 @@ class Event extends Model
 		else
 			return Storage::url($this->imagepath);
 	}
+
+	public function isMemberAdded(){
+        $user = Auth::id();
+
+        $eventGuy = DB::table('event_member')->where(
+            [
+                ['idevent', '=', $this->idevent],
+                ['idmember', '=', $user],
+            ])->get();
+
+        if(sizeof($eventGuy) > 0)
+            return true;
+    }
 }

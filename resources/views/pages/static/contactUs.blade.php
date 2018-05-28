@@ -13,6 +13,7 @@
 @endsection
 
 @section('content')
+        <form
             <div class="row">
 
                 <div class="col-lg-2"></div>
@@ -20,7 +21,8 @@
 
                     <div class="col-lg-12" style="padding-left: 0; padding-right:0;">
                         <div class="bs-ccomponent">
-
+                         <form action="{{ route('mail')}}" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div style="background-color: #eee; padding: 20px; padding-top: 10px;">
                                 <fieldset>
                                     <div class="form-group">
@@ -44,11 +46,12 @@
                                         <textarea class="form-control" placeholder="Write your message here..." id="inputDefault"></textarea>
                                     </div>
 
-                                    <button type="submit" onclick="event.preventDefault(); location.href = 'createEvent2.html';"
+                                    <button type="submit"
                                             class="btn btn-primary">Send</button>
                                 </fieldset>
 
                             </div>
+                        </form>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0"
                                      aria-valuemax="100"></div>

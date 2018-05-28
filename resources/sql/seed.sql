@@ -1066,6 +1066,11 @@ INSERT INTO friend VALUES (9, 64, false);
 INSERT INTO friend VALUES (54, 73, false);
 INSERT INTO friend VALUES (14, 61, true);
 
+INSERT INTO friend VALUES (101, 41, true);
+INSERT INTO friend VALUES (101, 64, true);
+INSERT INTO friend VALUES (101, 73, true);
+INSERT INTO friend VALUES (101, 62, true);
+
 
 --
 -- Data for Name: invoice; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
@@ -1179,6 +1184,7 @@ insert into member (name, username, password, birthdate, email, idcountry, city,
 insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Rustin de Pinna', 'rde2q', 'LSYE8Uy0IBK', '2017-08-15 23:51:39', 'rde2q@newyorker.com', 247, 'Malasugui', '916 Granby Avenue', 574102717, 'Blindness, one eye, low vision other eye, unspecified eyes', 'img/member/5.jpg', '2017-08-04 01:46:44', false, true);
 insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Travers Brewett', 'tbrewett2r', 'D7JUCbfMcJ', '2017-04-12 14:46:00', 'tbrewett2r@cornell.edu', 240, 'Gangmei', '37213 Dennis Plaza', 907331618, 'Displ transverse fx shaft of unsp fibula, 7thB', 'img/member/6.jpg', '2017-11-21 14:36:27', true, true);
 insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Regular User',	'user',	'$2y$10$ByFGDdFUlrPF4jQ.3MK1tOtA6DK9xxhaW9Gr/azhkkFr.b.FnvbIO', null, 'user@email.com', 4, null, null, null, null, null, '2018-04-20', false, false);
+insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('VIP User',	'user2',	'$2y$10$ByFGDdFUlrPF4jQ.3MK1tOtA6DK9xxhaW9Gr/azhkkFr.b.FnvbIO', null, 'user2@email.com', 4, null, null, null, null, null, '2018-05-25', false, false);
 
 --
 -- Data for Name: notification; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Member;
 use App\Country;
 use App\Notification;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,11 @@ class MemberController extends Controller
     {
         $member = Member::where("username", '=', $username)->first();
         return view('pages.members.profile')->with('member', $member);
+    }
+
+    public function friends(){
+        $member = Auth::user();
+        return view('pages.members.friends')->with('member', $member);
     }
 
      public function authProfile()
@@ -61,7 +67,7 @@ class MemberController extends Controller
     public function edit(Request $request)
     {
 				
-       $member = Auth::user();
+      $member = Auth::user();
   		if (Gate::allows('edit-profile', $member)) {
 
           $this->editValidator($request->all())->validate();
@@ -132,6 +138,13 @@ class MemberController extends Controller
         //    LIMIT $selectedLimit OFFSET $selectedOffset
     }
 
+    public static function getFriendAcceptance($idFriend){
+        $user = Auth::id();
+
+        return DB::table('friend')->Where([['idf2', '=', $user],['idf1', '=', $idFriend]])->orWhere([['idf1', '=', $user],['idf2', '=', $idFriend]])->get();
+    }
+
+
     public static function profileUpcoming($member)
     {
         $todayDate = date('Y-m-d');
@@ -140,7 +153,7 @@ class MemberController extends Controller
                         SELECT "event".idevent, name, description, imagePath, startday, starttime, endtime
                         FROM "event", "event_member"
                         WHERE "event".idevent = "event_member".idevent AND "event_member".idmember ='.$member.'  
-                         AND "event".startday >= \'' . $todayDate . ' \'                  
+                         AND "event".startday > \'' . $todayDate . ' \'                  
                         Order BY "event".startday DESC');
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset
@@ -221,6 +234,106 @@ class MemberController extends Controller
                                 AND m1.idmember = ' . $user .'
                                 AND i1.idinvoice = '.$id);
     }
+
+    public static function sendFriendNotification(Request $request)
+    {
+        $user = Auth::id();
+
+        try {
+            DB::Insert('INSERT INTO friend VALUES ('.$user.', '.$request->idfriend.', false)');
+        }
+        catch (QueryException $e) {
+            return response("false",200);
+        }
+
+        DB::Insert('INSERT INTO notification (timestamp, type, community, recipient, comment, event, buddy) VALUES (\''.now()->toDateString().'\', \'buddy\', null, '.$request->idfriend.', null, null, '.$user.')');
+
+        return response("true",200);
+    }
+
+    public static function acceptFriend(Request $request)
+    {
+        $user = Auth::id();
+
+        DB::table('friend')->where([['idf2', '=', $user],['idf1', '=', $request->idFriend]])->update(['accepted' => true]);
+
+        return response("true",200);
+
+    }
+
+    public static function blockFriend(Request $request)
+    {
+        try {
+            Notification::find($request->idNotification)->delete();
+        }
+        catch (QueryException $e) {
+            return response("false",200);
+        }
+
+        return response("true",200);
+
+    }
+
+
+    public static function searchFriends(Request $request)
+    {
+        $user = Auth::id();
+
+        //INSERT INTO event_member(idevent, idmember, isadmin) VALUES (1,101,true);
+
+        $friends = DB::table('friend')
+            ->join('member', function ($join) use ($user, $request) {
+                $join
+                ->on('friend.idf1', '=', 'member.idmember')
+                    ->where([['member.idmember', '<>', $user], ['member.username', 'LIKE', '%'.$request->friendUsername.'%']])
+                ->orOn('friend.idf2', '=', 'member.idmember')
+                    ->where([['member.idmember', '<>', $user], ['member.username', 'LIKE', '%'.$request->friendUsername.'%']]);
+            })
+            // esta linha servia para evitar que utilizadores do mesmo evento aparecessem na pesquisa, mas nao consigo por a funcionar
+            /*->join('event_member', function ($join) use ($user, $request) {
+                $join
+                    ->on('member.idmember', '=', 'event_member.idmember')
+                        ->where([['event_member.idevent', '<>', $request->eventId]]);
+            })*/
+            ->where([['idf2', '=', $user], ['accepted', '=', true]])
+            ->orWhere([['idf1', '=', $user], ['accepted', '=', true]])
+            ->limit(5)
+            ->get();
+
+        return response(json_encode($friends),200);
+
+    }
+
+    public static function getAllFriends()
+    {
+        $user = Auth::id();
+
+        $friends = DB::table('friend')
+            ->join('member', function ($join) use ($user) {
+                $join
+                    ->on('friend.idf1', '=', 'member.idmember')
+                    ->where([['member.idmember', '<>', $user]])
+                    ->orOn('friend.idf2', '=', 'member.idmember')
+                    ->where([['member.idmember', '<>', $user]]);
+            })
+            ->where([['idf2', '=', $user], ['accepted', '=', true]])
+            ->orWhere([['idf1', '=', $user], ['accepted', '=', true]])
+            ->limit(5)
+            ->select('member.*')
+            ->get();
+
+        return $friends;
+
+    }
+
+    public static function searchMembers($word){
+        $user = Auth::id();
+
+        return Member::where([['username', 'LIKE', '%'.$word.'%'], ['idmember', '<>', $user]])
+            ->limit(9)
+            ->get();
+    }
+
 
 //INSERT INTO notification (timestamp, type, community, recipient, comment, event, buddy) VALUES ('2017-12-17 12:26:03', 'buddy', null, 102, null, null, 101);
 
