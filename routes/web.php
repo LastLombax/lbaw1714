@@ -45,9 +45,8 @@ Route::get('time', function () {
     return view('internal.timeline');
 })->name('time');
 
-Route::get('basicEventSearch','EventController@basicSearch')->name('basicSearch');
-
-
+Route::get('basicEventSearch','EventController@basicSearch')->name('basicEventsSearch');
+Route::get('basicCommunitySearch','CommunityController@basicSearch')->name('basicCommunitiesSearch');
 
 
 // Member Access
