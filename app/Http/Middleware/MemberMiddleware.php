@@ -16,7 +16,7 @@ class MemberMiddleware
     public function handle($request, Closure $next)
     {
         if (Auth::guest()){
-            dd("no u"); 
+			return redirect()->route('login');
         }
         return $next($request);
     }

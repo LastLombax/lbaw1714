@@ -57,13 +57,14 @@
                 </fieldset>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">
-
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             Forgot Your Password?
                         </a>
                     </div>
                 </div>
+                Don't have an account? Register <a href="register"> here! </a>
             </form>
+
         @include('layouts.footer')
         </div>
         <br><br><br>

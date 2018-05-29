@@ -108,6 +108,8 @@
                         </td>
                     </tr>
                 </table>
+                <br>
+              Already have an account? Login <a href="login"> here! </a>
 
             </form>
             @include('layouts.footer')
