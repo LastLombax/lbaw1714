@@ -127,6 +127,18 @@
 
         }
 
+        public static function basicSearch(Request $request){
+            if (!isset($request->search))
+                $communities = Community::where('ispublic', '=','true');            
+            else
+                 $communities = Community::whereRaw('fts_vector @@ to_tsquery(?) AND ispublic = true', $request->search);
+            
+            $communities = $communities->orderBy('name', 'ASC')->get();
+
+            return view('pages.communities.viewCommunitiesBasic')->with('communities', $communities);
+
+        }
+
 
         public static function manageCommunities(){
             return view('pages.communities.manageCommunities');

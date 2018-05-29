@@ -34,7 +34,7 @@ echo '</ul>';
 
 
 echo '<div class="card-footer text-muted">';
-echo "<a href=\"$communitiesLink\" class=\"card-link\">More commmunities</a>";
+echo "<a href=\"$communitiesLink\" class=\"card-link\">More communities</a>";
 echo '</div>';
 ?>
 
