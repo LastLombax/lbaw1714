@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Event;
-use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
+
 
 class CommentController extends Controller
 {
@@ -22,18 +22,20 @@ class CommentController extends Controller
      */
     public static function store(Request $request)
         {
-            $user = Auth::id();
             $event = Event::find($request->idEvent);
-            if(Gate::denies('view-event', $event))
-                return response("false",200);
+
+
+            if(Gate::denies('event-view', $event))
+                return response("Doesn't have access",200);
 
             try {
                 DB::Insert('INSERT INTO comment (text, timestamp, event, author) VALUES (?, ?, ?, ?)',
-                [$request->text, date('Y-m-d H:i:s'), $request->idEvent, $user]);
+                [$request->text, date('Y-m-d H:i:s'), $request->idEvent, Auth::id()]);
             }
             catch (QueryException $e) {
                 return response("false",200);
             }
+
             return response("true",200);
         }
 
