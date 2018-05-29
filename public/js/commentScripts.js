@@ -1,23 +1,48 @@
 let siteRoot = document.location.origin; //"http://localhost:8000/"
 
+let insertCommentBt = document.querySelector('#insertCommentBt');
+insertCommentBt.addEventListener('click', insertComment);
 
-function addEventListners() {
+let commentContainers;
+
+let refreshFlag = true;
+
+console.log(insertCommentBt);
+
+function addEventListeners() {
     let editBtns = document.querySelectorAll(".editComment");
 
     let deleteBtns = document.querySelectorAll(".deleteComment");
 
-    for (let i = 0; i < editBtns.length; i++) {
-        editBtns[i].addEventListener('click', function () {
-            let idComment = editBtns[i].querySelector('.comment-id').innerHTML;
-            console.log("EDITAR " + idComment);
+    commentContainers = document.querySelectorAll(".commentDiv");
 
+    for (let i = 0; i < editBtns.length; i++) {
+        editBtns[i].addEventListener('click', function(event){
+
+            refreshFlag = !refreshFlag;
+
+            if(refreshFlag) //If disabled edit mode
+                return commentsRefresh();
+
+            let idComment = deleteBtns[i].querySelector('.comment-id').innerHTML;
+
+            console.log("EDIT " + idComment);
+
+            let commentText = commentContainers[i].querySelector(".commentText");
+
+            commentText.innerHTML = '<input type="text" name="comment">';
+
+            commentText.addEventListener('keyup', sendEditComment.bind(idComment));
         });
     }
 
     for (let i = 0; i < deleteBtns.length; i++) {
         console.log(deleteBtns[i]);
-        //let commentID = deleteBtns[i].querySelector(".comment-id");
+
         deleteBtns[i].addEventListener('click', function (event) {
+
+            refreshFlag = true;
+
             let idComment = deleteBtns[i].querySelector('.comment-id').innerHTML;
             console.log("DELETE " + idComment);
 
@@ -25,7 +50,6 @@ function addEventListners() {
 
             request.open('DELETE', siteRoot + '/ajax/events/comment/', true);
 
-            //request.setRequestHeader('X-HTTP-METHOD-OVERRIDE', 'DELETE');
             request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
             request.setRequestHeader("Content-type", "application/json");
 
@@ -39,6 +63,24 @@ function addEventListners() {
     }
 }
 
+function sendEditComment(event, idComment) {
+    console.log("sendEditComent" + idComment);
+    let request = new XMLHttpRequest();
+
+    request.open('PATCH', siteRoot + '/ajax/events/comment/', true);
+
+    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+    request.setRequestHeader("Content-type", "application/json");
+
+    request.addEventListener('load', commentsRefresh);
+
+    let data = {
+        'idComment': idComment
+    };
+    request.send(JSON.stringify(data));
+
+}
+
 
 // Run refresh every 5s
 window.setInterval(commentsRefresh, 5000);
@@ -47,6 +89,10 @@ window.addEventListener('load', commentsRefresh);
 
 
 function commentsRefresh() {
+
+    if(!refreshFlag)
+        return;
+
     let idEvent = document.querySelector("#eventID").innerHTML;
 
     let request = new XMLHttpRequest();
@@ -70,10 +116,8 @@ function displayComments() {
     comments.forEach(function (comment) {
         let commentDiv = document.createElement("div");
 
-        commentDiv.class ="list-group-item list-group-item-action flex-column align-items-start";
 
-
-        let commentStr = "<div class=\"list-group-item list-group-item-action flex-column align-items-start\">" +
+        let commentStr = "<div class=\"commentDiv list-group-item list-group-item-action flex-column align-items-start\">" +
             "   <div class=\"d-flex w-100 justify-content-between\">" +
             "            <a href=\"/members/" + comment.username +"\">\n" +
             "               <h5 class=\"mb-1\">" + comment.authorName + "</h5>" +
@@ -96,7 +140,7 @@ function displayComments() {
         }
         commentStr +=
             "   </div>\n" +
-            "   <p class=\"mb-1\">" + comment.text  + "</p>\n" +
+            "   <p class=\"mb-1 commentText\">" + comment.text  + "</p>\n" +
             "   <small> " + comment.date + "</small>\n" +
             "   </div>\n";
 
@@ -105,37 +149,38 @@ function displayComments() {
 
     });
 
-    addEventListners();
+    addEventListeners();
 }
 // Get the input field
 let commentInput = document.getElementById("createComment");
 
-commentInput.addEventListener("keyup", function(event) {
+commentInput.addEventListener("keyup", insertComment);
 
-  if (event.keyCode === 13) {
-    let siteRoot = document.location.origin;
 
-    let request = new XMLHttpRequest();
 
-    request.open('POST', siteRoot + '/ajax/events/comment', true);
-
-    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
-    request.setRequestHeader("Content-type", "application/json");
-
-    request.addEventListener('load', commentsRefresh);
-
-    let idEvent = document.querySelector("#eventID").innerHTML;
-    let data = {'idEvent': idEvent,
-                'text':  commentInput.value};
-
-    commentInput.value = "";//Deletes input value
-
-    request.send(JSON.stringify(data));
-
+function insertComment(event) {
     event.preventDefault();
 
-  }
+    refreshFlag = true;
 
-});
+    if (event.keyCode === 13 || event.type === "click") {
+        let siteRoot = document.location.origin;
 
+        let request = new XMLHttpRequest();
 
+        request.open('POST', siteRoot + '/ajax/events/comment', true);
+
+        request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+        request.setRequestHeader("Content-type", "application/json");
+
+        request.addEventListener('load', commentsRefresh);
+
+        let idEvent = document.querySelector("#eventID").innerHTML;
+        let data = {'idEvent': idEvent,
+            'text':  commentInput.value};
+
+        commentInput.value = "";//Deletes input value
+
+        request.send(JSON.stringify(data));
+    }
+}

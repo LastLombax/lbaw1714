@@ -5,6 +5,22 @@ $query = \App\Http\Controllers\CommunityController::memberManageCommunities();
 ;
 
 $communitiesLink = route('communities');
+
+if (sizeof($query) == 0){
+  $communitiesLink = $communitiesLink . '/create';
+
+  echo '
+          <div class="bs-ccomponent">
+          <div class="card mb-4" style="box-shadow: 1px 1px 30px #ddd;">
+              <div class="card-body">   
+                  You do not own any community. Start by creating one'; echo "<a href=\" $communitiesLink \"> here</a>.";
+
+ echo'         </div>
+          </div>';
+
+}
+echo '<div class="row justify-content-center align-items-center">  ';
+
 foreach ($query as $community){
   $link = $communitiesLink . '/' . $community->idcommunity;
   echo '
@@ -31,6 +47,8 @@ foreach ($query as $community){
    </div>
 ';
 }
+
+echo '</div>';
 
 
 ?>
