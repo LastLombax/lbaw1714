@@ -154,8 +154,7 @@ function displayComments() {
 // Get the input field
 let commentInput = document.getElementById("createComment");
 
-commentInput.addEventListener("keyup", insertComment
-);
+commentInput.addEventListener("keyup", insertComment);
 
 
 
