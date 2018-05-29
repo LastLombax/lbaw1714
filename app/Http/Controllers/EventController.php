@@ -180,7 +180,7 @@
                         return DB::select('SELECT e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -205,7 +205,7 @@
                         return DB::select('SELECT e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -234,7 +234,7 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -258,7 +258,7 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -291,7 +291,7 @@
                         return DB::select('SELECT e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -317,7 +317,7 @@
                         return DB::select('SELECT e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -348,7 +348,7 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type AS ticketType
+                                    SELECT tickettype.event AS ticketType
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -373,7 +373,7 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -525,7 +525,7 @@
                         return DB::select('SELECT e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -549,7 +549,7 @@
                         return DB::select('SELECT e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -577,7 +577,7 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -600,7 +600,7 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -632,7 +632,7 @@
                         return DB::select('SELECT e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -657,7 +657,7 @@
                         return DB::select('SELECT e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
@@ -687,7 +687,7 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type AS ticketType
+                                    SELECT tickettype.event AS ticketType
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
@@ -711,7 +711,7 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
 	                            FROM event_member, event e1 
                                 INNER JOIN LATERAL(
-                                    SELECT tickettype.type
+                                    SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
