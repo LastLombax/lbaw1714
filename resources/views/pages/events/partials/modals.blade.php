@@ -1,8 +1,7 @@
 <div class="modal fade" id="modalInvite" tabindex="-1" role="dialog" aria-labelledby="modalInviteTitle"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form method="POST" action="{{route('inviteEvent', $event)}}" class="modal-content">
-            {{ csrf_field()}}
+        <form class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalInviteTitle">Invite people</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -12,7 +11,8 @@
             <div class="modal-body">
 
                 <div class="form-group" style="width: 100%;">
-                    <input class="form-control form-control-lg" id="usernameField" type="text" placeholder="Input username..." id="inputLarge">
+                    <input class="form-control form-control-lg" id="usernameField" type="text"
+                           placeholder="Input username..." id="inputLarge">
                 </div>
 
                 <div class="friendsBody" id="{{$event->idevent}}">
@@ -31,14 +31,13 @@
     <div class="modal-dialog" role="document" id="ticketTypeBody">
 
         <div class="modal-content">
-            {{ csrf_field()}}
             <div class="modal-header">
                 <h5 class="modal-title" id="modalInviteTitle">{{$event->name}}'s Tickets</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" style="cursor: pointer;" >
+            <div class="modal-body" style="cursor: pointer;">
                 @include('pages.events.partials.buyTickets')
                 <div class="form-group">
                     <br>

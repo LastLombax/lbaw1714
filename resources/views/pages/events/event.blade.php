@@ -7,6 +7,10 @@
     <script src="{{ asset('js/commentScripts.js') }}" defer></script>
     <script src="{{ asset('js/buyTicketsScript.js') }}" defer></script>
     <script src="{{ asset('js/inviteFriends.js') }}" defer></script>
+    <script src="{{ asset('js/inviteFriendToEvent.js') }}" defer></script>
+    <script src="{{ asset('js/addMeToEvent.js') }}" defer></script>
+
+
 
 @endsection
 
