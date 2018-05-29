@@ -5,6 +5,20 @@ $query = \App\Http\Controllers\EventController::memberManageEvents();
 
 
 $eventsLink = route('events');
+
+if (sizeof($query) == 0){
+  $eventsLink = $eventsLink . '/create';
+
+  echo '
+          <div class="bs-ccomponent">
+          <div class="card mb-4" style="box-shadow: 1px 1px 30px #ddd;">
+              <div class="card-body">   
+                  You do not own any event. Start by creating one'; echo "<a href=\" $eventsLink \"> here</a>.";
+
+ echo'         </div>
+          </div>';
+}
+
 foreach ($query as $event){
   $link = $eventsLink . '/' . $event->idevent;
   echo '

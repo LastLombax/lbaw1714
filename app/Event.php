@@ -15,7 +15,7 @@ class Event extends Model
 
     
 	public function commentTuples(){
-		return $this->hasMany('App\Comment', 'event');
+		return $this->hasMany('App\Comment', 'event')->orderBy('timestamp', 'DESC')->limit(10);
 	}
 
 	public function attendants(){ //memberTuples
@@ -43,7 +43,6 @@ class Event extends Model
 					echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('H:i', $endT);
 			else
 					echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('F d, Y', $end) . ", " . date('H:i', $endT);
-
 	}
 
 	public function imagePath(){

@@ -23,13 +23,6 @@
 
     <span id="eventID" hidden>{{$event->idevent}}</span>
 
-    <script type="text/javascript" defer>
-        function confirmDeletion(form) {
-            if (confirm("Are you sure you want to delete this event? \n WARNING: You cannot go back"))
-                form.submit();
-        }
-    </script>
-
     <div class="row">
 
         <div class="col-lg-4" style="padding-top: 0; padding-bottom: 50px;">
@@ -83,46 +76,51 @@
                                     <div>
                                         @if(!$event->isMemberAdded())
                                             <div id="addMeBt">
-                                                <button type="button"
+                                                <button style="width: 130px; margin-bottom: 2px;" type="button"
                                                         onclick="addMeToEvent();"
                                                         class="btn btn-info">Add me
                                                 </button>
                                             </div>
                                         @endif
-                                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                        <button style="width: 130px; margin-bottom: 2px;" type="button" class="btn btn-info" data-toggle="modal"
                                                 data-target="#modalInvite">
                                             Invite Friends
                                         </button>
                                     </div>
-                                    <br>
                                 @endif
                                 <div>
                                     @if(!\Illuminate\Support\Facades\Auth::guest())
-                                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                        <button style="width: 130px; margin-bottom: 2px;" type="button" class="btn btn-info" data-toggle="modal"
                                                 data-target="#modalBuyTicket">
                                             Buy Tickets
                                         </button>
 
                                         @can('event-admin', $event)
                                             <form action="{{ route('deleteEvent', $event) }}" method="post">
-                                                <br>
                                                 <input type="hidden" name="_method" value="delete"/>
                                                 {{ csrf_field() }}
 
-                                                <button type="submit" onClick="confirmDeletion(this.form);"
-                                                        class="btn btn-info">Delete this event
+                                                <button style="width: 130px; margin-bottom: 2px" type="submit" onClick="confirmDeletion(this.form);"
+                                                        class="btn btn-info">Delete event
                                                 </button>
                                             </form>
                                         @endcan
                                     @endif
 
                                     @can('event-admin', $event)
-                                        <div style="float: right;">
-                                            <a class="dropdown-item" href=" {{route('editEventForm', $event)}}">
-                                                <i class="far fa-edit" style=" color: #333; "></i> Edit
-                                            </a>
-                                        </div>
+
+                                            <button style="width: 130px; margin-bottom: 2px" type="submit" onClick="{{route('editEventForm', $event)}}"
+                                                    class="btn btn-info">Edit Event
+                                            </button>
                                     @endcan
+
+                                        <br>
+
+                                    @if($event->ispublic)
+                                        <span style="float: right" class="badge badge-success">Public</span>
+                                    @else
+                                        <span style="float: right" class="badge badge-danger">Private</span>
+                                    @endif
                                 </div>
                             </fieldset>
                         </div>
@@ -164,8 +162,22 @@
                             <div id="comments-container" class="list-group">
 
                             </div>
-                                <input type="text" style="width: 100%" id ="createComment" placeholder="Write a comment...">
-                                {{--<textarea class="form-control" id="newComment" rows="2"></textarea>--}}
+                            <div style="border: 1px solid #ddd; padding: 15px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+
+
+
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td>
+                                            <input style="border: 0; width: 100%; height: 35.7px; text-align: left; font-size: 14px" type="text" id ="createComment" placeholder="Write a comment...">
+                                        </td>
+                                        <td style="text-align: right">
+                                            <button style=" border-radius: 5px; " id="insertCommentBt" type="button" class="btn btn-outline-primary">Send</button>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div style="margin-top: 1rem; margin-left: 0;">

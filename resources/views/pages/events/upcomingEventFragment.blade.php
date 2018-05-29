@@ -1,7 +1,8 @@
 <?php
 
 	use Illuminate\Support\Facades\Storage;
-
+	use Illuminate\Support\Facades\Auth;
+	
 	$query = \App\Http\Controllers\EventController::upcomingPublicEvents();
 
 	if (count($query) == 0) {
@@ -40,6 +41,8 @@
 
 
 		echo '<div class="card-footer text-muted">';
+		if (Auth::guest())
+			$eventsLink = route('basicEventsSearch');
 		echo "<a href=\"$eventsLink\" class=\"card-link\">More Events</a>";
 		echo '</div>';
 	}

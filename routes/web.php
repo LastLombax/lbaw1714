@@ -45,8 +45,12 @@ Route::get('time', function () {
     return view('internal.timeline');
 })->name('time');
 
+Route::group(['middleware' => 'App\Http\Middleware\RedirectIfAuthenticated'], function(){
 
+    Route::get('basicEventSearch','EventController@basicSearch')->name('basicEventsSearch');
+    Route::get('basicCommunitySearch','CommunityController@basicSearch')->name('basicCommunitiesSearch');
 
+});
 
 // Member Access
 Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(){
@@ -67,12 +71,16 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     //Comments
     Route::delete('ajax/events/comment', 'CommentController@destroy');
     Route::post('ajax/events/comment', 'CommentController@store');
+    Route::patch('ajax/events/comment', 'CommentController@update');
+
 
 
     //Communities
     Route::get('communities/create', 'CommunityController@createForm')->name('createCommunity');
     Route::post('communities/create', 'CommunityController@create')->name('createCommunity');
     Route::get('communities/manageCommunities', 'CommunityController@manageCommunities')->name('manageCommunities');
+    Route::get('communities','CommunityController@basicSearch')->name('communities');
+
 
     //Friends
     Route::post('sendFriendNotification', 'MemberController@sendFriendNotification');
@@ -81,10 +89,6 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::post('searchFriends', 'MemberController@searchFriends');
     Route::post('inviteToEvent', 'EventController@inviteToEvent');
     Route::get('friends', 'MemberController@friends')->name('friends');
-
-
-
-
 
     Route::post('buddies/remove/{member}', 'MemberController@removeBuddy')->name('removeBuddy')->where('member', '[0-9]+}');
 
@@ -105,7 +109,7 @@ Route::get('ajax/events/comments', 'CommentController@showEventComments');
 //Route::get('members', 'MemberController@index')->name('members');
 Route::get('members/{username}', 'MemberController@show')->name('member')->where('username', '\w{3,}');
 
-Route::get('mail', 'HomeController@mail')->name('mail');
+Route::post('mail', 'MailController@mail')->name('mail');
 
 
 // Events
@@ -121,7 +125,6 @@ Route::post('ajax/events/inviteMember', 'EventController@inviteMember')->name('i
 
 
 // Communities
-Route::get('communities', 'CommunityController@index')->name('communities');
 Route::get('communities/{community}', 'CommunityController@show')->name('community')->where('community', '[0-9]+');
 
 //Community Admin

@@ -105,8 +105,6 @@ function eventInviteRequest(){
 
 function addMeToEvent(event) {
 
-    //if (typeof event != "undefined")
-        //event.preventDefault();
 
     let request = new XMLHttpRequest();
 
@@ -129,7 +127,7 @@ function addMeResponse(){
 
     if(lines){
         let addBt = document.querySelector('#addMeBt');
-        addBt.innerHTML = '<button type="button" class="btn btn-success disabled">Joined</button>\n';
+        addBt.innerHTML = '<button style="width: 130px; margin-bottom: 2px;" type="button" class="btn btn-success disabled">Joined</button>\n';
     }
 
 }

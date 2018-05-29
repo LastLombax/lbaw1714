@@ -5,7 +5,6 @@
 <title>@yield('title')</title>
 
 <link rel="shortcut icon" type="image/png" href="/icon/favicon.png" />
-<script defer src="js/scriptSearch.js"></script>
 
 <!-- Bootstrap -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

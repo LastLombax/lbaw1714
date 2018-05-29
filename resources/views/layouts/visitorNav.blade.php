@@ -13,18 +13,18 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href ="route('events')" >Events</a>
+                <a class="nav-link" href =" {{route('basicEventsSearch')}}" >Events</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="" {{--route('communities/top')--}} >Communities</a>
+                <a class="nav-link" href =" {{route('basicCommunitiesSearch')}}" >Communities</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+          <form action="{{ route('basicEventsSearch')}}" method="GET" class="form-inline my-2 my-lg-0" enctype="multipart/form-data">
             <div class="search">
                 <span class="fa fa-search"></span>
-                <input id="search_text" placeholder="Search..." style="border-radius: 5px; height: 35px; margin-right: 5px;">
+                <input onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name = "search" placeholder="Search for events..." style="border-radius: 5px; height: 35px; margin-right: 5px;">
             </div>
-            <button type="button" onclick="location.href='{{route('login')}}';" class="btn btn-success" style="border-radius: 5px; height: 35px;">Login</button>
         </form>
+        <button type="button" onclick="location.href='{{route('login')}}';" class="btn btn-success" style="border-radius: 5px; height: 35px;">Login</button>
     </div>
 </nav>
