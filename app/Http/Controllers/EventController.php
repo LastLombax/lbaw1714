@@ -17,7 +17,7 @@
 	class EventController extends Controller
 	{
 		public function index(){
-			$events = Event::all();
+            $events = Event::all()->where('ispublic','=', true);
 			return view('pages.events.viewEvents')->with('events', $events);
 		}
 
