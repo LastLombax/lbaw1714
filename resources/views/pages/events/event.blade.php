@@ -15,7 +15,7 @@
 @endsection
 
 @section('pageTitle')
-    {{$event->name}}
+    {{{$event->name}}}
 @endsection
 
 @section('content')
@@ -99,7 +99,7 @@
                                             Buy Tickets
                                         </button>
 
-                                        @can('update-delete-event', $event)
+                                        @can('event-admin', $event)
                                             <form action="{{ route('deleteEvent', $event) }}" method="post">
                                                 <br>
                                                 <input type="hidden" name="_method" value="delete"/>
@@ -111,6 +111,14 @@
                                             </form>
                                         @endcan
                                     @endif
+
+                                    @can('event-admin', $event)
+                                        <div style="float: right;">
+                                            <a class="dropdown-item" href=" {{route('editEventForm', $event)}}">
+                                                <i class="far fa-edit" style=" color: #333; "></i> Edit
+                                            </a>
+                                        </div>
+                                    @endcan
                                 </div>
                             </fieldset>
                         </div>

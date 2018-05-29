@@ -65,4 +65,5 @@ class Event extends Model
         if(sizeof($eventGuy) > 0)
             return true;
     }
+
 }

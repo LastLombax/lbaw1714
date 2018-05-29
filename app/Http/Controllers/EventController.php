@@ -111,13 +111,13 @@
 
 		public function delete(Event $event){
 
-			if (Gate::allows('update-delete-event', $event)) {
+			if (Gate::allows('event-admin', $event)) {
 
 				//Event::find($event->idevent)->delete();
 				try {
 					$event->delete();
 				} catch (\Exception $e) {
-					echo "<script>console.log( 'Exception deleting event: ');</script>";
+					echo "Error in delete Event";
 				}
 
 				return redirect()->route('homepage');
@@ -135,8 +135,8 @@
 				$user = Member::where('username', '=', $username)->first()->idmember;
 				if($user != null){
 				return DB::insert('INSERT INTO notification VALUES
-					('. now() . ' , event, null, ' . idMember . ', "You were invited to" , null, ' . $idEvent . ')'
-					);
+					('. now() . ' , event, null, ?, "You were invited to" , null, ?)'
+					, [idmember, $idEvent]);
 				};
 		}
 
@@ -183,7 +183,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -194,9 +194,9 @@
                                 ) c3 ON true
                                 
                                 WHERE e1.startday >= \''. now()->toDateString() .'\'
-                                AND e1.idcountry = '. $selectedCountry .'
+                                AND e1.idcountry = ?
                                 GROUP BY(e1.idevent)
-                                ORDER BY e1.startday DESC LIMIT 9');
+                                ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selectedCountry]);
                     }
                     else
                     {
@@ -208,7 +208,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -219,12 +219,12 @@
                                 ) c3 ON true
                                 
                                 WHERE e1.startday >= \''. now()->toDateString() .'\'
-                                AND e1.idcountry = '. $selectedCountry .'
+                                AND e1.idcountry = ?
                                 AND event_member.idevent = e1.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(e1.idevent)
-                                ORDER BY e1.startday DESC LIMIT 9');
+                                ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selectedCountry, $user]);
                     }
                 }
                 else
@@ -237,7 +237,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -247,9 +247,9 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
                                 
-                                WHERE e1.idcountry = '. $selectedCountry .'
+                                WHERE e1.idcountry = ?
                                 GROUP BY(e1.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selectedCountry]);
                     }
                     else //done
                     {
@@ -261,7 +261,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -271,12 +271,12 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
                                 
-                                WHERE e1.idcountry = '. $selectedCountry .'
+                                WHERE e1.idcountry = ?
                                 AND event_member.idevent = e1.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(e1.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selectedCountry, $user]);
                     }
                 }
             }
@@ -294,7 +294,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -304,11 +304,11 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
                                 
-                                WHERE e1.name LIKE \''. $selected .'\'
+                                WHERE fts_vector @@ to_tsquery(?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
-                                AND e1.idcountry = '. $selectedCountry .'
+                                AND e1.idcountry = ?
                                 GROUP BY(e1.idevent)
-                                ORDER BY e1.startday DESC LIMIT 9');
+                                ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $selectedCountry]);
                     }
                     else //done
                     {
@@ -320,7 +320,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -330,14 +330,14 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
                                 
-                                WHERE e1.name LIKE \''. $selected .'\'
+                                WHERE fts_vector @@ to_tsquery(?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
-                                AND e1.idcountry = '. $selectedCountry .'
+                                AND e1.idcountry = ?
                                 AND event_member.idevent = e1.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(e1.idevent)
-                                ORDER BY e1.startday DESC LIMIT 9');
+                                ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $selectedCountry, $user]);
 
                     }
                 }
@@ -351,7 +351,7 @@
                                     SELECT tickettype.type AS ticketType
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -361,10 +361,10 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
                                 
-                                WHERE e1.name LIKE \''. $selected .'\'
-                                AND e1.idcountry = '. $selectedCountry .'
+                                WHERE fts_vector @@ to_tsquery(?)
+                                AND e1.idcountry = ?
                                 GROUP BY(e1.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $selectedCountry]);
                     }
                     else //done
                     {
@@ -376,7 +376,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -386,13 +386,13 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
                                 
-                                WHERE e1.name LIKE \''. $selected .'\'
-                                AND e1.idcountry = '. $selectedCountry .'
+                                WHERE fts_vector @@ to_tsquery(?)
+                                AND e1.idcountry = ?
                                 AND event_member.idevent = e1.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(e1.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $selectedCountry, $user]);
                     }
                 }
             }
@@ -420,11 +420,11 @@
                         return DB::select('SELECT *
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE event_member.idevent = event.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 AND event.startday >= \''. now()->toDateString() .'\'
-                                AND event.idcountry = '. $selectedCountry .'
-                                ORDER BY event.startday ASC LIMIT 9');
+                                AND event.idcountry = ?
+                                ORDER BY event.startday ASC LIMIT 9', [$user, $selectedCountry]);
                     }
                 }
                 else
@@ -433,9 +433,9 @@
                     {
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE event.idcountry = '. $selectedCountry .'
+                                WHERE event.idcountry = ?
                                 GROUP BY(event.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$selectedCountry]);
                     }
                     else
                     {
@@ -444,11 +444,11 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE event.idevent = event_member.idevent 
-                                AND event_member.idmember = ' . $user . ' 
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
-                                AND event.idcountry = '. $selectedCountry .'
+                                AND event.idcountry = ?
                                 GROUP BY(event.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$user, $selectedCountry]);
                     }
                 }
             }
@@ -477,14 +477,14 @@
 
                         return DB::select('SELECT event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE event.name LIKE \''. $selected .'\'
+                                WHERE fts_vector @@ to_tsquery(?)
                                 AND event_member.idevent = event.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 AND event.startday >= \''. now()->toDateString() .'\'
-                                AND event.idcountry = '. $selectedCountry .'
+                                AND event.idcountry = ?
                                 GROUP BY(event.idevent)
-                                ORDER BY event.startday DESC LIMIT 9');
+                                ORDER BY event.startday DESC LIMIT 9', [$selected, $user, $selectedCountry]);
                     }
                 }
                 else
@@ -493,10 +493,10 @@
                     {
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE event.name LIKE \''. $selected .'\'
-                                AND event.idcountry = '. $selectedCountry .'
+                                WHERE fts_vector @@ to_tsquery(?)
+                                AND event.idcountry = ?
                                 GROUP BY(event.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$selected, $selectedCountry]);
                     }
                     else
                     {
@@ -504,13 +504,13 @@
 
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE event.name LIKE \''. $selected .'\'
+                                WHERE fts_vector @@ to_tsquery(?)
                                 AND event.idevent = event_member.idevent 
-                                AND event_member.idmember = ' . $user . ' 
+                                AND event_member.idmember = ? 
                                 AND event_member.isadmin = true
-                                AND event.idcountry = '. $selectedCountry .'
+                                AND event.idcountry = ?
                                 GROUP BY(event.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$selected, $user, $selectedCountry]);
                     }
                 }
             }
@@ -528,7 +528,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -540,7 +540,7 @@
                                 
                                 WHERE e1.startday >= \''. now()->toDateString() .'\'
                                 GROUP BY(e1.idevent)
-                                ORDER BY e1.startday DESC LIMIT 9');
+                                ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice]);
                     }
                     else
                     {
@@ -552,7 +552,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -564,10 +564,10 @@
                                 
                                 WHERE e1.startday >= \''. now()->toDateString() .'\'
                                 AND event_member.idevent = e1.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(e1.idevent)
-                                ORDER BY e1.startday DESC LIMIT 9');
+                                ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $user]);
                     }
                 }
                 else
@@ -580,7 +580,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -591,7 +591,7 @@
                                 ) c3 ON true
                                 
                                 GROUP BY(e1.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice]);
                     }
                     else //done
                     {
@@ -603,7 +603,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -614,10 +614,10 @@
                                 ) c3 ON true
                                 
                                 WHERE event_member.idevent = e1.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(e1.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $user]);
                     }
                 }
             }
@@ -635,7 +635,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -645,10 +645,10 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
                                 
-                                WHERE e1.name LIKE \''. $selected .'\'
+                                WHERE fts_vector @@ to_tsquery(?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 GROUP BY(e1.idevent)
-                                ORDER BY e1.startday DESC LIMIT 9');
+                                ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selected]);
                     }
                     else //done
                     {
@@ -660,7 +660,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -670,13 +670,13 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
                                 
-                                WHERE e1.name LIKE \''. $selected .'\'
+                                WHERE fts_vector @@ to_tsquery(?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 AND event_member.idevent = e1.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(e1.idevent)
-                                ORDER BY e1.startday DESC LIMIT 9');
+                                ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $user]);
 
                     }
                 }
@@ -700,9 +700,9 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
                                 
-                                WHERE e1.name LIKE \''. $selected .'\'
+                                WHERE fts_vector @@ to_tsquery(?)
                                 GROUP BY(e1.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected]);
                     }
                     else //done
                     {
@@ -714,7 +714,7 @@
                                     SELECT tickettype.type
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
-                                    AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
+                                    AND tickettype.price BETWEEN ? AND ?
                                 ) c2 ON true 
                                 
                                 INNER JOIN LATERAL(
@@ -724,12 +724,12 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
                                 
-                                WHERE e1.name LIKE \''. $selected .'\'
+                                WHERE e1.name LIKE ?
                                 AND event_member.idevent = e1.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(e1.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $user]);
                     }
                 }
             }
@@ -755,10 +755,10 @@
                         return DB::select('SELECT *
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE event_member.idevent = event.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 AND event.startday >= \''. now()->toDateString() .'\'
-                                ORDER BY event.startday ASC LIMIT 9');
+                                ORDER BY event.startday ASC LIMIT 9', [$user]);
 		            }
 		        }
                 else
@@ -777,10 +777,10 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE event.idevent = event_member.idevent 
-                                AND event_member.idmember = ' . $user . ' 
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(event.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$user]);
                     }
 		        }
 		    }
@@ -808,13 +808,13 @@
 
                         return DB::select('SELECT event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE event.name LIKE \''. $selected .'\'
+                                WHERE fts_vector @@ to_tsquery(?)
                                 AND event_member.idevent = event.idevent
-                                AND event_member.idmember =' . $user . '
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 AND event.startday >= \''. now()->toDateString() .'\'
                                 GROUP BY(event.idevent)
-                                ORDER BY event.startday DESC LIMIT 9');
+                                ORDER BY event.startday DESC LIMIT 9', [$selected, $user]);
                     }
                 }
                 else
@@ -823,9 +823,9 @@
                     {
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE event.name LIKE \''. $selected .'\'
+                                WHERE fts_vector @@ to_tsquery(?)
                                 GROUP BY(event.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$selected]);
                     }
                     else
                     {
@@ -833,12 +833,12 @@
 
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE event.name LIKE \''. $selected .'\'
+                                WHERE fts_vector @@ to_tsquery(?)
                                 AND event.idevent = event_member.idevent 
-                                AND event_member.idmember = ' . $user . ' 
+                                AND event_member.idmember = ? 
                                 AND event_member.isadmin = true
                                 GROUP BY(event.idevent)
-                                ORDER BY attendants DESC LIMIT 9');
+                                ORDER BY attendants DESC LIMIT 9', [$selected, $user]);
                     }
                 }
             }
@@ -885,7 +885,7 @@
             return DB::select('SELECT count(event_member.idmember) as attendants, event.*
 							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
 							GROUP BY(event.idevent)
-							ORDER BY attendants DESC LIMIT ' . $limit . ' OFFSET ' . $offset);
+							ORDER BY attendants DESC LIMIT ? OFFSET ?', [$limit, $offset]);
 		}
 
 
@@ -895,8 +895,8 @@
 
 			return DB::select('SELECT event.idevent, event.name, description, imagePath, startday, endday
 				FROM event, event_member, member
-				WHERE event.idevent = event_member.idevent AND event_member.idmember = ' . $user . ' AND event_member.isadmin = true
-				GROUP BY(event.idevent)');
+				WHERE event.idevent = event_member.idevent AND event_member.idmember = ? AND event_member.isadmin = true
+				GROUP BY(event.idevent)', [$user]);
 		}
 
 		public static function manageEvents(){

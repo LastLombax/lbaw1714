@@ -111,7 +111,7 @@ Route::get('events', 'EventController@index')->name('events');
 Route::get('events/{event}', 'EventController@show')->name('event')->where('event', '[0-9]+');
 
 //Event Admin
-Route::get('events/{event}/edit', 'EventController@editForm')->name('editEvent')->where('event', '[0-9]+');
+Route::get('events/{event}/edit', 'EventController@editForm')->name('editEventForm')->where('event', '[0-9]+');
 Route::patch('events/{event}', 'EventController@edit')->name('editEvent');
 Route::delete('events/{event}', 'EventController@delete')->name('deleteEvent');
 Route::post('ajax/events/inviteMember', 'EventController@inviteMember')->name('inviteEvent');
