@@ -1,7 +1,8 @@
 @extends('layout')
 
 @section('extraScript')
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr1_x1qNGarZz3rVGBTmTk2yDOAA-jkOI&callback=initMap">
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr1_x1qNGarZz3rVGBTmTk2yDOAA-jkOI&callback=initMap">
     </script>
     <script src="{{ asset('js/commentScripts.js') }}" defer></script>
     <script src="{{ asset('js/buyTicketsScript.js') }}" defer></script>
@@ -19,6 +20,9 @@
 @endsection
 
 @section('content')
+
+    <span id="eventID" hidden>{{$event->idevent}}</span>
+
     <script type="text/javascript" defer>
         function confirmDeletion(form) {
             if (confirm("Are you sure you want to delete this event? \n WARNING: You cannot go back"))
@@ -76,21 +80,21 @@
                                 </div>
                                 <br>
                                 @if(!\Illuminate\Support\Facades\Auth::guest())
-                                        <div>
-                                            @if(!$event->isMemberAdded())
+                                    <div>
+                                        @if(!$event->isMemberAdded())
                                             <div id="addMeBt">
                                                 <button type="button"
                                                         onclick="addMeToEvent();"
                                                         class="btn btn-info">Add me
                                                 </button>
                                             </div>
-                                            @endif
-                                            <button type="button" class="btn btn-info" data-toggle="modal"
-                                                    data-target="#modalInvite">
-                                                Invite Friends
-                                            </button>
-                                        </div>
-                                        <br>
+                                        @endif
+                                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                                data-target="#modalInvite">
+                                            Invite Friends
+                                        </button>
+                                    </div>
+                                    <br>
                                 @endif
                                 <div>
                                     @if(!\Illuminate\Support\Facades\Auth::guest())
@@ -137,11 +141,11 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#participants">Participants
                         @if ($event->numMembers() >= 100)
-                            (100+) 
+                            (100+)
                         @else 
-                            ({{$event->numMembers()}}) 
+                            ({{$event->numMembers()}})
                         @endif
-            </a>
+                    </a>
                 </li>
             </ul>
 
@@ -149,26 +153,28 @@
                 <div class="tab-pane fade show active" id="comments">
                     <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                         <div class="bs-ccomponent">
-                            <div class="list-group">
+                            <div id="comments-container" class="list-group">
                                 @foreach($event->commentTuples as $comment)
                                     <div class="list-group-item list-group-item-action flex-column align-items-start">
                                         <div class="d-flex w-100 justify-content-between">
-                                            <a href="{{'/members/' . $comment->authorTuple->username}}">
-                                                <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
+jax                                                <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
                                             </a>
 
-                                            <div class="commentActions" style="font-size: 18px; text-align: right; color: #999">
+                                            <div class="commentActions"
+                                                 style="font-size: 18px; text-align: right; color: #999">
 
                                                 <button class="editComment" onmouseleave='this.style.color="#999"'
                                                         onmouseout='this.style.color="#666"' style="cursor: pointer;">
                                                     <i class="fas fa-pencil-alt"></i>
-                                                    <span class="comment-id" style="display: none">{{$comment->idcomment}}</span>
+                                                    <span class="comment-id"
+                                                          style="display: none">{{$comment->idcomment}}</span>
                                                 </button>
 
                                                 <button class="deleteComment" onmouseleave='this.style.color="#999"'
                                                         onmouseout='this.style.color="#666"' style="cursor: pointer;">
                                                     <i class="fas fa-trash-alt"></i>
-                                                    <span class="comment-id" style="display: none">{{$comment->idcomment}}</span>
+                                                    <span class="comment-id"
+                                                          style="display: none">{{$comment->idcomment}}</span>
                                                 </button>
 
                                             </div>
@@ -180,7 +186,9 @@
                                         </small>
                                     </div>
                                 @endforeach
+
                             </div>
+                            <textarea class="form-control" id="newComment" rows="2"></textarea>
                         </div>
                     </div>
                     <div style="margin-top: 1rem; margin-left: 0;">

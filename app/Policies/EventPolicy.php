@@ -5,8 +5,9 @@
 	use App\Member;
 	use App\Event;
 	use Illuminate\Auth\Access\HandlesAuthorization;
+    use Illuminate\Support\Facades\DB;
 
-	class EventPolicy
+    class EventPolicy
 	{
 		use HandlesAuthorization;
 
@@ -18,7 +19,15 @@
 		 * @return mixed
 		 */
 		public function view(Member $user, Event $event) {
-			return true;
+		    if($event->ispublic)
+			    return true;
+
+		    if(sizeof(DB::table('event_member')->
+                where([ ['idevent', '=', $event->idevent],
+                        ['idmember', '=', $user->idmember]])->get()) > 0)
+		        return true;
+
+		    return false;
 		}
 
 		/**

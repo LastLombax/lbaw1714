@@ -8,7 +8,8 @@
 	use App\Member;
     use App\TicketType;
     use Auth;
-	use Illuminate\Http\Request;
+    use http\Env\Response;
+    use Illuminate\Http\Request;
 	use Illuminate\Support\Facades\DB;
 	use Illuminate\Support\Facades\Validator;
 	use Illuminate\Support\Facades\Gate;
@@ -138,6 +139,8 @@
 					('. now() . ' , event, null, ' . idMember . ', "You were invited to" , null, ' . $idEvent . ')'
 					);
 				};
+
+				return Response(404);
 		}
 
 		/**Asserts the validity of the event's data

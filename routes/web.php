@@ -66,6 +66,7 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
 
 
     //Comments
+    Route::get('ajax/events/comments', 'CommentController@showEventComments');
     Route::delete('ajax/events/comment', 'CommentController@destroy');
 
 

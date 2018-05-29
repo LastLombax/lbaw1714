@@ -3,29 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Event;
+use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -44,21 +30,16 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function showEventComments(Request $request)
     {
-        //
+        $event = Event::find($request->idEvent);
+        if(Gate::denies('event-view', $event))
+            return Response([], 403);
+
+        return $event->commentTuples;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -78,8 +59,14 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Request $request)
     {
-        //
+         $comment = Comment::find($request->idComment);
+
+
+        if ($comment->author == Auth::id())
+            $comment->delete();
+
+        return Request(200);
     }
 }
