@@ -150,7 +150,7 @@
                     <a class="nav-link" data-toggle="tab" href="#participants">Participants
                         @if ($event->numMembers() >= 100)
                             (100+)
-                        @else 
+                        @else
                             ({{$event->numMembers()}})
                         @endif
                     </a>
@@ -162,9 +162,10 @@
                     <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                         <div class="bs-ccomponent">
                             <div id="comments-container" class="list-group">
-                                
+
                             </div>
-                            <textarea class="form-control" id="newComment" rows="2"></textarea>
+                                <input type="text" style="width: 100%" id ="createComment" placeholder="Write a comment...">
+                                {{--<textarea class="form-control" id="newComment" rows="2"></textarea>--}}
                         </div>
                     </div>
                     <div style="margin-top: 1rem; margin-left: 0;">

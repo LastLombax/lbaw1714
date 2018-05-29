@@ -8,6 +8,7 @@ class Comment extends Model
 {
 	protected $primaryKey = 'idcomment';
 	protected $table = 'comment';
+    public $timestamps = false;
 
 	public function printDate(){
 		$date = strtotime($this->timestamp);

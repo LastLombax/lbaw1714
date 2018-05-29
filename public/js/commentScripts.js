@@ -39,7 +39,7 @@ function addEventListners() {
 
 
 // Run refresh every 5s
-window.setInterval(commentsRefresh, 5000);
+//window.setInterval(commentsRefresh, 5000);
 
 window.addEventListener('load', commentsRefresh);
 
@@ -80,14 +80,12 @@ function displayComments() {
         if(comment.isAuthor) {
             commentStr +=
                 "        <div class=\"commentActions\" style=\"font-size: 18px; text-align: right; color: #999\">\n" +
-                "            <button class=\"editComment\" onmouseleave='this.style.color=\"#999\"'\n" +
-                "        onmouseout='this.style.color=\"#666\"' style=\"cursor: pointer;\">\n" +
+                "            <button class=\"editComment\" onmouseenter=\"this.style.color='#222'\" onmouseleave=\"this.style.color='#444'\" style=\"cursor: pointer; color:#444;\">\n" +
                 "               <i class=\"fas fa-pencil-alt\"></i>\n" +
                 "               <span class=\"comment-id\"\n" +
                 "               style=\"display: none\">" + comment.idcomment + "</span>\n" +
                 "           </button>\n" +
-                "           <button class=\"deleteComment\" onmouseleave='this.style.color=\"#999\"'\n" +
-                "        onmouseout='this.style.color=\"#666\"' style=\"cursor: pointer;\">\n" +
+                "           <button class=\"deleteComment\" onmouseenter=\"this.style.color='#222'\" onmouseleave=\"this.style.color='#444'\" style=\"cursor: pointer; color:#444;\"\">\n" +
                 "            <i class=\"fas fa-trash-alt\"></i>\n" +
                 "            <span class=\"comment-id\"\n" +
                 "               style=\"display: none\">" + comment.idcomment + "</span>\n" +
@@ -107,4 +105,35 @@ function displayComments() {
 
     addEventListners();
 }
+// Get the input field
+let commentInput = document.getElementById("createComment");
+
+commentInput.addEventListener("keyup", function(event) {
+
+  if (event.keyCode === 13) {
+    let siteRoot = document.location.origin;
+
+    let request = new XMLHttpRequest();
+
+    request.open('POST', siteRoot + '/ajax/events/comment', true);
+
+    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+    request.setRequestHeader("Content-type", "application/json");
+
+    request.addEventListener('load', commentsRefresh);
+
+    let idEvent = document.querySelector("#eventID").innerHTML;
+    let data = {'idEvent': idEvent,
+                'text':  commentInput.value};
+
+    commentInput.value = "";//Deletes input value
+
+    request.send(JSON.stringify(data));
+
+    event.preventDefault();
+
+  }
+
+});
+
 
