@@ -959,7 +959,16 @@
                     ['event', '=', $request->eventId]])
                 ->get();
 
-		    if(sizeof($notificationAlreadySent) > 0)
+		    $frienAlreadyAtEvent =
+                DB::table('event')
+                    ->join('event_member', function ($join) use ($user, $request) {
+                        $join
+                            ->on('event_member.idevent', '=', 'event.idevent')
+                            ->where([['event_member.idevent', '=', $request->eventId], ['event_member.idmember', '=', $request->friendId]]);
+                    })->get();
+
+
+		    if(sizeof($notificationAlreadySent) > 0 || sizeof($frienAlreadyAtEvent))
                 return response("false",200);
 
 
