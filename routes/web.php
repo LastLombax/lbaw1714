@@ -74,7 +74,6 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::patch('ajax/events/comment', 'CommentController@update');
 
 
-
     //Communities
     Route::get('communities/create', 'CommunityController@createForm')->name('createCommunity');
     Route::post('communities/create', 'CommunityController@create')->name('createCommunity');
@@ -101,6 +100,21 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
         return view('pages.events.invoice', ['invoice' => $invoice, 'query' => $query[0]]);
     })->where('id', '[0-9]+');
 
+    Route::post('ajax/events/inviteMember', 'EventController@inviteMember')->name('inviteEvent');
+   
+    //Event Admin
+    Route::group(['middleware' => 'App\Http\Middleware\EventAdminMiddleware'], function(){
+        Route::get('events/{event}/edit', 'EventController@editForm')->name('editEventForm')->where('event', '[0-9]+');
+        Route::patch('events/{event}', 'EventController@edit')->name('editEvent');
+        Route::delete('events/{event}', 'EventController@delete')->name('deleteEvent');
+    });
+
+    //Community Admin
+    Route::group(['middleware' => 'App\Http\Middleware\CommunityAdminMiddleware'], function(){
+        Route::get('communities/{community}/edit', 'CommunityController@editForm')->name('editCommunity')->where('community', '[0-9]+');
+        Route::patch('communities/{community}/edit', 'CommunityController@edit')->name('editCommunity');
+        Route::delete('communities/{community}', 'CommunityController@delete')->name('deleteCommunity');
+  });
 });
 
 Route::get('ajax/events/comments', 'CommentController@showEventComments');
@@ -114,29 +128,21 @@ Route::post('mail', 'MailController@mail')->name('mail');
 
 // Events
 Route::get('events', 'EventController@index')->name('events');
-Route::get('events/{event}', 'EventController@show')->name('event')->where('event', '[0-9]+');
-
-//Event Admin
-Route::get('events/{event}/edit', 'EventController@editForm')->name('editEventForm')->where('event', '[0-9]+');
-Route::patch('events/{event}', 'EventController@edit')->name('editEvent');
-Route::delete('events/{event}', 'EventController@delete')->name('deleteEvent');
-Route::post('ajax/events/inviteMember', 'EventController@inviteMember')->name('inviteEvent');
+Route::get('events/{event}', 'EventController@show')->name('event')->where('event', '[0-9]+')->middleware('App\Http\Middleware\EventMiddleware');
 
 
 
 // Communities
-Route::get('communities/{community}', 'CommunityController@show')->name('community')->where('community', '[0-9]+');
+Route::get('communities/{community}', 'CommunityController@show')->name('community')->where('community', '[0-9]+')->middleware('App\Http\Middleware\CommunityMiddleware');
 
-//Community Admin
-Route::get('communities/{community}/edit', 'CommunityController@editForm')->name('editCommunity')->where('community', '[0-9]+');
-Route::patch('communities/{community}/edit', 'CommunityController@edit')->name('editCommunity');
-Route::delete('communities/{community}', 'CommunityController@delete')->name('deleteCommunity');
+
 
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -144,11 +150,6 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.change');
-
-
-
-
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 //Static Pages
