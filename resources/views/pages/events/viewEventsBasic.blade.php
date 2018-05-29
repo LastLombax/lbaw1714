@@ -18,7 +18,7 @@ echo '
         <div class="bs-ccomponent">
         <div class="card mb-4" style="box-shadow: 1px 1px 30px #ddd;">
             <div class="card-body">   
-                There is no event!
+                There is no event that matches your search!
         </div>
         </div>';
 

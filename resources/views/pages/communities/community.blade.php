@@ -62,7 +62,7 @@
                                         <p>{{$community->printDate()}}</p>
                                     </div>
                                 </fieldset>
-
+                                @if(!Auth::guest())
                                 <button type="submit" style="background-color: #f3a933dc; border-color: #f5956f"
                                         onclick="event.preventDefault(); location.href = 'register2.html';"
                                         class="btn btn-info">Message the admins
@@ -76,16 +76,8 @@
                                         class="btn btn-info" data-toggle="modal" data-target="#modalInvite">Invite
                                     Friends
                                 </button>
-
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <div style="text-align: right;">
-                                    <span class="badge badge-danger">Private</span>
-                                    <span class="badge badge-info">Academic</span>
-                                    <span class="badge badge-dark">Just for fun</span>
-                                </div>
+                                @endif
+                             
                             </div>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar"

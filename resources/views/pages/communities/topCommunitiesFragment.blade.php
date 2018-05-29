@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
+
 $query = \App\Http\Controllers\CommunityController::topCommunities(4,0);
 
 $first = $query[0];
@@ -34,6 +37,8 @@ echo '</ul>';
 
 
 echo '<div class="card-footer text-muted">';
+if (Auth::guest())
+			$communitiesLink = route('basicCommunitiesSearch');
 echo "<a href=\"$communitiesLink\" class=\"card-link\">More communities</a>";
 echo '</div>';
 ?>
