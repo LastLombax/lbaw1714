@@ -105,7 +105,7 @@
             return DB::select('SELECT count(community_member.idmember) as attendants, community.*
                             FROM community_member INNER JOIN community ON community_member.idcommunity = community.idcommunity
                             GROUP BY(community.idcommunity)
-                            ORDER BY attendants DESC LIMIT ' . $limit . ' OFFSET ' . $offset);
+                            ORDER BY attendants DESC LIMIT ? OFFSET ?', [$limit, $offset]);
         }
 
 
@@ -139,16 +139,16 @@
 
             return DB::select('SELECT community.idcommunity, community.name, description, imagePath
                 FROM community, community_member, member
-                WHERE community.idcommunity = community_member.idcommunity AND community_member.idmember = ' . $user . ' AND community_member.isadmin = true
-                GROUP BY(community.idcommunity)');
+                WHERE community.idcommunity = community_member.idcommunity AND community_member.idmember = ? AND community_member.isadmin = true
+                GROUP BY(community.idcommunity)', [$user]);
         }
 
         public static function communityFeed($community)
         {
             return DB::select('SELECT timestamp, community, recipient, comment, comment, event
                                FROM "notification"
-                               WHERE "notification".community = '.$community.'
-                               ORDER BY "notification".timestamp');
+                               WHERE "notification".community = ?
+                               ORDER BY "notification".timestamp', [$community]);
 
             //    LIMIT $selectedLimit OFFSET $selectedOffset
         }
@@ -160,9 +160,9 @@
             return DB::select('
                             SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
                             FROM "event", "community"
-                            WHERE "community".idcommunity = '. $community .'
-                             AND "event".startday >= \'' . $todayDate . ' \'                  
-                            Order BY "event".startday DESC');
+                            WHERE "community".idcommunity = ?
+                             AND "event".startday >= ?                  
+                            Order BY "event".startday DESC', [$community, $todayDate]);
 
             //    LIMIT $selectedLimit OFFSET $selectedOffset
         }
@@ -174,9 +174,9 @@
             return DB::select('
                             SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
                             FROM "event", "community"
-                            WHERE "community".idcommunity = '. $community .'
-                             AND "event".startday <= \'' . $todayDate . ' \'                  
-                            Order BY "event".startday DESC');
+                            WHERE "community".idcommunity = ?
+                             AND "event".startday <= ?                  
+                            Order BY "event".startday DESC', [$community, $todayDate]);
 
             //    LIMIT $selectedLimit OFFSET $selectedOffset
         }

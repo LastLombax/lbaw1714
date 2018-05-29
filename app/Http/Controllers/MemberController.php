@@ -152,9 +152,9 @@ class MemberController extends Controller
         return DB::select('
                         SELECT "event".idevent, name, description, imagePath, startday, starttime, endtime
                         FROM "event", "event_member"
-                        WHERE "event".idevent = "event_member".idevent AND "event_member".idmember ='.$member.'  
-                         AND "event".startday > \'' . $todayDate . ' \'                  
-                        Order BY "event".startday DESC');
+                        WHERE "event".idevent = "event_member".idevent AND "event_member".idmember = ? 
+                         AND "event".startday > ?                  
+                        Order BY "event".startday DESC', [$member, $todayDate]);
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset
     }
@@ -168,9 +168,9 @@ class MemberController extends Controller
                         SELECT "event".idevent, name, description, imagePath, startday, endday, starttime, endtime
                         FROM "event"
                         INNER JOIN event_member
-                        ON "event".idevent= "event_member".idevent AND "event_member".idmember = '.$member .'
-                        WHERE "event".startday <= \'' . $todayDate . ' \'
-                        Order BY "event".startday DESC');
+                        ON "event".idevent= "event_member".idevent AND "event_member".idmember = ?
+                        WHERE "event".startday <= ?
+                        Order BY "event".startday DESC', [$member, $todayDate]);
 
         //    LIMIT $selectedLimit OFFSET $selectedOffset
     }
@@ -183,20 +183,6 @@ class MemberController extends Controller
                          ->orderBy('startday', 'ASC')->limit(9)->get();
     }
 
-    /*public function sendBuddyRequest(){
-        $now = now();
-        dd($now);
-        return DB::insert('
-                        INSERT INTO "notification"
-                        VALUES '. $now . 'buddy, null,' .$Auth::id() .', null, null,' . $member);
-    }*/
-
-    public function removeBuddy($member){
-        $now = now();
-        return DB::insert('
-                        INSERT INTO "notification"
-                        VALUES '. $now . 'invite, null,' .$member .', null, null');
-    }
 
     public static function invoices(){
         $user = Auth::id();
@@ -213,7 +199,7 @@ class MemberController extends Controller
                                 AND tt1.idtickettype = t1.idtickettype
                                 AND tt1.event = e1.idevent
                                 AND i1.idmember = m1.idmember
-                                AND m1.idmember = ' . $user);
+                                AND m1.idmember = ?', [$user]);
     }
 
     public static function getinvoices($id){
@@ -231,8 +217,8 @@ class MemberController extends Controller
                                 AND tt1.idtickettype = t1.idtickettype
                                 AND tt1.event = e1.idevent
                                 AND i1.idmember = m1.idmember
-                                AND m1.idmember = ' . $user .'
-                                AND i1.idinvoice = '.$id);
+                                AND m1.idmember = ?
+                                AND i1.idinvoice = ?', [$user, $id]);
     }
 
     public static function sendFriendNotification(Request $request)
@@ -240,13 +226,13 @@ class MemberController extends Controller
         $user = Auth::id();
 
         try {
-            DB::Insert('INSERT INTO friend VALUES ('.$user.', '.$request->idfriend.', false)');
+            DB::Insert('INSERT INTO friend VALUES (?, ?, false)', [$user, $request->idfriend]);
         }
         catch (QueryException $e) {
             return response("false",200);
         }
 
-        DB::Insert('INSERT INTO notification (timestamp, type, community, recipient, comment, event, buddy) VALUES (\''.now()->toDateString().'\', \'buddy\', null, '.$request->idfriend.', null, null, '.$user.')');
+        DB::Insert('INSERT INTO notification (timestamp, type, community, recipient, comment, event, buddy) VALUES (\''.now()->toDateString().'\', \'buddy\', null, ?, null, null, ?)', [$request->idfriend, $user]);
 
         return response("true",200);
     }

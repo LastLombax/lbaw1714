@@ -98,7 +98,7 @@ function eventInviteRequest(){
     }
     else {
         let inviteBt = document.querySelector('#inviteBt');
-        inviteBt.innerHTML = '<button type="button" class="btn btn-danger disabled">Already Invited</button>\n';
+        inviteBt.innerHTML = '<button type="button" class="btn btn-danger disabled">Already Joined/Invited</button>\n';
     }
 
 }
