@@ -68,11 +68,12 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     //Comments
     Route::get('ajax/events/comments', 'CommentController@showEventComments');
     Route::delete('ajax/events/comment', 'CommentController@destroy');
+    Route::post('ajax/events/comment', 'CommentController@store');
 
 
     //Communities
     Route::get('communities/create', 'CommunityController@createForm')->name('createCommunity');
-    Route::post('communities/create', 'CommunityController@create')->name('createCommunity');    
+    Route::post('communities/create', 'CommunityController@create')->name('createCommunity');
     Route::get('communities/manageCommunities', 'CommunityController@manageCommunities')->name('manageCommunities');
 
     //Friends

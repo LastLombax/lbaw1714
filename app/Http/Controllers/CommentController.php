@@ -8,6 +8,7 @@ use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
 {
@@ -19,9 +20,18 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request)
     {
-        //
+        $user = Auth::id();
+
+        try {
+            DB::Insert('INSERT INTO comment (text, timestamp, event, author) VALUES (?, ?, ?, ?)',
+            [$request->content, date('Y-m-d H:i:s'), $request->idEvent, $user]);
+        }
+        catch (QueryException $e) {
+            return response("false",200);
+        }
+        return response("true",200);
     }
 
     /**

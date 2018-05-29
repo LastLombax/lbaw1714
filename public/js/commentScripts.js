@@ -37,7 +37,7 @@ for(let i = 0; i < deleteBtns.length; i++){
 }
 
 // Run refresh every 5s
-window.setInterval(commentsRefresh, 5000);
+//window.setInterval(commentsRefresh, 5000);
 
 
 function commentsRefresh() {
@@ -65,5 +65,40 @@ function displayComments() {
 
     })
 }
+// Get the input field
+var commentInput = document.getElementById("createComment");
+
+commentInput.addEventListener("keyup", function(event) {
+
+  if (event.keyCode === 13) {
+    let siteRoot = document.location.origin; //"http://localhost:8000/"
+
+    let request = new XMLHttpRequest();
+
+    request.open('POST', siteRoot + '/ajax/events/comment', true);
+
+    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+    request.setRequestHeader("Content-type", "application/json");
+
+    request.addEventListener('load', commentCreated);
+
+    let idEvent = document.querySelector("#eventID").innerHTML;
+    let data = {'idEvent': idEvent,
+                'content':  commentInput.value};
+
+    request.send(JSON.stringify(data));
+
+    event.preventDefault();
+
+  }
+
+});
+
+  function commentCreated(){
+   alert(this.responseText);
+
+
+}
+
 
 //Todo create event and show event ajax call scripts

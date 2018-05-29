@@ -45,26 +45,26 @@
         <tr>
             <td class="no">01</td>
             <td class="desc"><h3>{{$query->name}}</h3>{{$query->description}}</td>
-            <td class="unit">{{round((($invoice->amount / $invoice->quantity)*0.75), 2)}}</td>
+            <td class="unit">EUR {{money_format("%i", round((($invoice->amount / $invoice->quantity)*0.75), 2))}}</td>
             <td class="qty">{{$invoice->quantity}}</td>
-            <td class="total">{{round($invoice->amount * 0.75,2)}}</td>
+            <td class="total">EUR {{ money_format("%i",round($invoice->amount * 0.75,2))}}</td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
             <td colspan="2"></td>
             <td colspan="2">SUBTOTAL</td>
-            <td>{{round($invoice->amount * 0.75,2)}} €</td>
+            <td>EUR {{money_format("%i",round($invoice->amount * 0.75,2))}}</td>
         </tr>
         <tr>
             <td colspan="2"></td>
             <td colspan="2">TAX 25%</td>
-            <td>{{round($invoice->amount * 0.25,2)}} €</td>
+            <td>EUR {{money_format("%i",round($invoice->amount * 0.25,2))}}</td>
         </tr>
         <tr>
             <td colspan="2"></td>
             <td colspan="2">GRAND TOTAL</td>
-            <td>{{round($invoice->amount,2)}} €</td>
+            <td>EUR {{money_format("%i",round($invoice->amount,2))}}</td>
         </tr>
         </tfoot>
     </table>

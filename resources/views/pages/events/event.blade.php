@@ -150,7 +150,7 @@
                     <a class="nav-link" data-toggle="tab" href="#participants">Participants
                         @if ($event->numMembers() >= 100)
                             (100+)
-                        @else 
+                        @else
                             ({{$event->numMembers()}})
                         @endif
                     </a>
@@ -162,10 +162,17 @@
                     <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                         <div class="bs-ccomponent">
                             <div id="comments-container" class="list-group">
+                            <div class="list-group">
+                                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <input type="text" style="width: 100%" id ="createComment" placeholder="Write a comment...">
+
+                                    {{-- <textarea cols="200"></textarea> --}}
+                                </div>
+
                                 @foreach($event->commentTuples as $comment)
                                     <div class="list-group-item list-group-item-action flex-column align-items-start">
                                         <div class="d-flex w-100 justify-content-between">
-jax                                                <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
+                                           <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
                                             </a>
 
                                             <div class="commentActions"
