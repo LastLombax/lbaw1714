@@ -36,7 +36,16 @@ class CommentController extends Controller
         if(Gate::denies('event-view', $event))
             return Response([], 403);
 
-        return $event->commentTuples;
+        $comments = $event->commentTuples;
+
+        foreach ($comments as $comment){
+            $comment->isAuthor = Auth::id() == $comment->author;
+            $comment->authorName = $comment->authorTuple->name;
+            $comment->username = $comment->authorTuple->username;
+            $comment->date = $comment->printDate();
+        }
+
+        return $comments;
     }
 
 

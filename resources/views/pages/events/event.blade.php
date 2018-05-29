@@ -162,39 +162,7 @@
                     <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                         <div class="bs-ccomponent">
                             <div id="comments-container" class="list-group">
-                                @foreach($event->commentTuples as $comment)
-                                    <div class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="d-flex w-100 justify-content-between">
-jax                                                <h5 class="mb-1">{{$comment->authorTuple->name}}</h5>
-                                            </a>
-
-                                            <div class="commentActions"
-                                                 style="font-size: 18px; text-align: right; color: #999">
-
-                                                <button class="editComment" onmouseleave='this.style.color="#999"'
-                                                        onmouseout='this.style.color="#666"' style="cursor: pointer;">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                    <span class="comment-id"
-                                                          style="display: none">{{$comment->idcomment}}</span>
-                                                </button>
-
-                                                <button class="deleteComment" onmouseleave='this.style.color="#999"'
-                                                        onmouseout='this.style.color="#666"' style="cursor: pointer;">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                    <span class="comment-id"
-                                                          style="display: none">{{$comment->idcomment}}</span>
-                                                </button>
-
-                                            </div>
-
-                                        </div>
-                                        <p class="mb-1">{{$comment->text}}</p>
-                                        <small>
-                                            {{$comment->printDate()}}
-                                        </small>
-                                    </div>
-                                @endforeach
-
+                                
                             </div>
                             <textarea class="form-control" id="newComment" rows="2"></textarea>
                         </div>
