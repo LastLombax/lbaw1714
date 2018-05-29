@@ -1,3 +1,5 @@
+let siteRoot = document.location.origin; //"http://localhost:8000/"
+
 
 function addEventListners() {
     let editBtns = document.querySelectorAll(".editComment");
@@ -39,7 +41,7 @@ function addEventListners() {
 
 
 // Run refresh every 5s
-//window.setInterval(commentsRefresh, 5000);
+window.setInterval(commentsRefresh, 5000);
 
 window.addEventListener('load', commentsRefresh);
 

@@ -62,7 +62,7 @@
                         </a>
                     </div>
                 </div>
-                Don't have an account? Register <a href="register"> here! </a>
+                Don't have an account? <a href="register">Register here!</a>
             </form>
 
         @include('layouts.footer')

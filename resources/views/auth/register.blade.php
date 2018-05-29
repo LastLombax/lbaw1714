@@ -109,7 +109,7 @@
                     </tr>
                 </table>
                 <br>
-              Already have an account? Login <a href="login"> here! </a>
+              Already have an account? <a href="login">Login  here!</a>
 
             </form>
             @include('layouts.footer')
