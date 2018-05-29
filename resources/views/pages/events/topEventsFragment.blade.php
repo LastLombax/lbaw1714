@@ -1,5 +1,7 @@
 <?php
+	use Illuminate\Support\Facades\Auth;
 
+    
 $query = \App\Http\Controllers\EventController::memberTopEvents(4,0);
 
 $first = $query[0];
@@ -34,6 +36,8 @@ echo '</ul>';
 
 
 echo '<div class="card-footer text-muted">';
+if (Auth::guest())
+			$eventsLink = route('basicEventsSearch');
 echo "<a href=\"$eventsLink\" class=\"card-link\">More Events</a>";
 echo '</div>';
 ?>

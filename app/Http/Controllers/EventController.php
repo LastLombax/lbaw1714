@@ -17,7 +17,7 @@
 	class EventController extends Controller
 	{
 		public function index(){
-			$events = Event::all();
+            $events = Event::all()->where('ispublic','=', true);
 			return view('pages.events.viewEvents')->with('events', $events);
 		}
 
@@ -172,6 +172,17 @@
 
 		}
 
+        public static function basicSearch(Request $request){
+            if (!isset($request->search))
+                $events = Event::where('ispublic', '=','true');            
+            else
+                 $events = Event::whereRaw('fts_vector @@ to_tsquery(?) AND ispublic = true', $request->search);
+            
+            $events = $events->orderBy('startday', 'DESC')->get();
+
+            return view('pages.events.viewEventsBasic')->with('events', $events);
+
+        }
 
         public static function searchEventType1($searchField, $selectedRange, $selectedCountry, $minPrice, $maxPrice, $selectedOrder){
             if($searchField == "")

@@ -45,7 +45,8 @@ Route::get('time', function () {
     return view('internal.timeline');
 })->name('time');
 
-
+Route::get('basicEventSearch','EventController@basicSearch')->name('basicEventsSearch');
+Route::get('basicCommunitySearch','CommunityController@basicSearch')->name('basicCommunitiesSearch');
 
 
 // Member Access
@@ -107,7 +108,7 @@ Route::get('ajax/events/comments', 'CommentController@showEventComments');
 //Route::get('members', 'MemberController@index')->name('members');
 Route::get('members/{username}', 'MemberController@show')->name('member')->where('username', '\w{3,}');
 
-Route::get('mail', 'HomeController@mail')->name('mail');
+Route::post('mail', 'MailController@mail')->name('mail');
 
 
 // Events

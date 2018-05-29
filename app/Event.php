@@ -43,7 +43,6 @@ class Event extends Model
 					echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('H:i', $endT);
 			else
 					echo date('F d, Y', $start) . ", " . date('H:i', $startT) . ' - ' . date('F d, Y', $end) . ", " . date('H:i', $endT);
-
 	}
 
 	public function imagePath(){

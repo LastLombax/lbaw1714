@@ -23,6 +23,9 @@ class CommentController extends Controller
     public static function store(Request $request)
         {
             $user = Auth::id();
+            $event = Event::find($request->idEvent);
+            if(Gate::denies('view-event', $event))
+                return response("false",200);
 
             try {
                 DB::Insert('INSERT INTO comment (text, timestamp, event, author) VALUES (?, ?, ?, ?)',
