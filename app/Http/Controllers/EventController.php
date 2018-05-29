@@ -172,6 +172,10 @@
 
 		}
 
+        public static function basicSearch(Request $request){
+            $events = Event::whereRaw('fts_vector @@ to_tsquery(?) AND ispublic = true', $request->search)->orderBy('startday', 'ASC')->get();
+            return view('pages.events.viewEventsBasic')->with('events', $events);
+        }
 
         public static function searchEventType1($searchField, $selectedRange, $selectedCountry, $minPrice, $maxPrice, $selectedOrder){
             if($searchField == "")

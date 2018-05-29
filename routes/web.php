@@ -45,6 +45,8 @@ Route::get('time', function () {
     return view('internal.timeline');
 })->name('time');
 
+Route::get('basicEventSearch','EventController@basicSearch')->name('basicSearch');
+
 
 
 
