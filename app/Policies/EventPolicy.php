@@ -7,6 +7,7 @@
 	use Illuminate\Auth\Access\HandlesAuthorization;
     use Illuminate\Support\Facades\DB;
 
+
     class EventPolicy
 	{
 		use HandlesAuthorization;
@@ -19,7 +20,8 @@
 		 * @return mixed
 		 */
 		public function view(Member $user, Event $event) {
-		    if($event->ispublic)
+
+            if($event->ispublic)
 			    return true;
 
 		    if(sizeof(DB::table('event_member')->
