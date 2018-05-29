@@ -1185,6 +1185,8 @@ insert into member (name, username, password, birthdate, email, idcountry, city,
 insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Travers Brewett', 'tbrewett2r', 'D7JUCbfMcJ', '2017-04-12 14:46:00', 'tbrewett2r@cornell.edu', 240, 'Gangmei', '37213 Dennis Plaza', 907331618, 'Displ transverse fx shaft of unsp fibula, 7thB', 'img/member/6.jpg', '2017-11-21 14:36:27', true, true);
 insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Regular User',	'user',	'$2y$10$ByFGDdFUlrPF4jQ.3MK1tOtA6DK9xxhaW9Gr/azhkkFr.b.FnvbIO', null, 'user@email.com', 4, null, null, null, null, null, '2018-04-20', false, false);
 insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('VIP User',	'user2',	'$2y$10$ByFGDdFUlrPF4jQ.3MK1tOtA6DK9xxhaW9Gr/azhkkFr.b.FnvbIO', null, 'user2@email.com', 4, null, null, null, null, null, '2018-05-25', false, false);
+insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Rui Leixo',	'ruileixo',	'$2y$10$ByFGDdFUlrPF4jQ.3MK1tOtA6DK9xxhaW9Gr/azhkkFr.b.FnvbIO', null, 'ruileixo@hotmail.com', 4, null, null, null, null, null, '1997-03-31', false, true);
+
 
 --
 -- Data for Name: notification; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
