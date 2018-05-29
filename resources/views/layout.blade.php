@@ -7,8 +7,9 @@
 
     @if(\Illuminate\Support\Facades\Auth::guest())
             @include('layouts.visitorHead')
-    @endif
+    @else
             @include('layouts.head')
+    @endif
 
     <style>
         #map {

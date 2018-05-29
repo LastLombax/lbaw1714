@@ -22,10 +22,11 @@
             <div class="col-lg-4">
                 <div class="jumbotron" style="padding: 30px; width: 100%; height: 100%">
                     <h1 style="font-size: 3em;">Welcome, Visitor.</h1>
-                    <p class="lead" style="font-size: 1.5em;">This is a simple mockup for our website that will never ever have all the components we said it would. But we will try
-                        our best!</p>
+                    <p class="lead" style="font-size: 1.5em;"> ReEvent is the perfect website to manage events, join them
+                        and invite your friends!
+                    </p>
                     <hr class="my-4" style="font-size: 1.5em;">
-                    <p>We know you are a visitor, a new guy in our complex plataform, so, don't think twice and join us!</p>
+                    <p>You can search for events, but to join and comment them, you'll have to create an account! It will be fun!</p>
                     <p class="lead">
                         <a class="btn btn-primary btn-lg" href="register" role="button">Register</a>
                     </p>

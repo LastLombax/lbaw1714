@@ -5,6 +5,7 @@
 <title>@yield('title')</title>
 
 <link rel="shortcut icon" type="image/png" href="/icon/favicon.png" />
+<script defer src="js/scriptSearch.js"></script>
 
 <!-- Bootstrap -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -14,7 +15,6 @@
 
 <!-- FontAwesome -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-
 <!-- GoogleImports -->
 <link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
