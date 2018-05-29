@@ -43,3 +43,5 @@
         left: 10px;
     }
 </style>
+
+@yield('extraScript')
