@@ -71,6 +71,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     //Comments
     Route::delete('ajax/events/comment', 'CommentController@destroy');
     Route::post('ajax/events/comment', 'CommentController@store');
+    Route::patch('ajax/events/comment', 'CommentController@update');
+
 
 
     //Communities
