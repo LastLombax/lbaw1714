@@ -6,6 +6,8 @@
         <div class="col-md-3  align-self-start">
             <div style="padding-left: 15px; padding-top: 15px">
 
+
+            @if (!Auth::guest())
                 <fieldset>
                     <label class="control-label">Event Range</label>
                     <div class="form-group">
@@ -76,9 +78,9 @@
 
                     </div>
                 </fieldset>
+                @endif
             </div>
         </div>
-
 
         <div class="col-md-9  align-self-start" style="padding-top: 15px; padding-left: 30px;">
             <div class="searchContainer">

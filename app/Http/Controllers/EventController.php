@@ -181,21 +181,21 @@
                     if($selectedRange == "all")
                     {
                         return DB::select('SELECT e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE e1.startday >= \''. now()->toDateString() .'\'
                                 AND e1.idcountry = ?
                                 GROUP BY(e1.idevent)
@@ -206,21 +206,21 @@
                         $user = Auth::id();
 
                         return DB::select('SELECT e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE e1.startday >= \''. now()->toDateString() .'\'
                                 AND e1.idcountry = ?
                                 AND event_member.idevent = e1.idevent
@@ -235,21 +235,21 @@
                     if($selectedRange == "all") //done
                     {
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE e1.idcountry = ?
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selectedCountry]);
@@ -259,21 +259,21 @@
                         $user = Auth::id();
 
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE e1.idcountry = ?
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
@@ -292,21 +292,21 @@
                     if($selectedRange == "all") //done
                     {
                         return DB::select('SELECT e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE fts_vector @@ to_tsquery(?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 AND e1.idcountry = ?
@@ -318,21 +318,21 @@
                         $user = Auth::id();
 
                         return DB::select('SELECT e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE fts_vector @@ to_tsquery(?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 AND e1.idcountry = ?
@@ -349,21 +349,21 @@
                     if($selectedRange == "all")
                     {
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event AS ticketType
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE fts_vector @@ to_tsquery(?)
                                 AND e1.idcountry = ?
                                 GROUP BY(e1.idevent)
@@ -374,21 +374,21 @@
                         $user = Auth::id();
 
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE fts_vector @@ to_tsquery(?)
                                 AND e1.idcountry = ?
                                 AND event_member.idevent = e1.idevent
@@ -446,7 +446,7 @@
 
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE event.idevent = event_member.idevent 
+                                WHERE event.idevent = event_member.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 AND event.idcountry = ?
@@ -508,8 +508,8 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE fts_vector @@ to_tsquery(?)
-                                AND event.idevent = event_member.idevent 
-                                AND event_member.idmember = ? 
+                                AND event.idevent = event_member.idevent
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 AND event.idcountry = ?
                                 GROUP BY(event.idevent)
@@ -526,21 +526,21 @@
                     if($selectedRange == "all")
                     {
                         return DB::select('SELECT e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE e1.startday >= \''. now()->toDateString() .'\'
                                 GROUP BY(e1.idevent)
                                 ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice]);
@@ -550,21 +550,21 @@
                         $user = Auth::id();
 
                         return DB::select('SELECT e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE e1.startday >= \''. now()->toDateString() .'\'
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
@@ -578,21 +578,21 @@
                     if($selectedRange == "all") //done
                     {
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice]);
                     }
@@ -601,21 +601,21 @@
                         $user = Auth::id();
 
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
@@ -633,21 +633,21 @@
                     if($selectedRange == "all") //done
                     {
                         return DB::select('SELECT e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE fts_vector @@ to_tsquery(?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 GROUP BY(e1.idevent)
@@ -658,21 +658,21 @@
                         $user = Auth::id();
 
                         return DB::select('SELECT e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE fts_vector @@ to_tsquery(?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 AND event_member.idevent = e1.idevent
@@ -688,21 +688,21 @@
                     if($selectedRange == "all")
                     {
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event AS ticketType
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN '.$minPrice.' AND '.$maxPrice.'
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE fts_vector @@ to_tsquery(?)
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected]);
@@ -712,21 +712,21 @@
                         $user = Auth::id();
 
                         return DB::select('SELECT count(event_member.idmember) as attendants, e1.*
-	                            FROM event_member, event e1 
+	                            FROM event_member, event e1
                                 INNER JOIN LATERAL(
                                     SELECT tickettype.event
                                     FROM tickettype
                                     WHERE e1.idevent = tickettype.event
                                     AND tickettype.price BETWEEN ? AND ?
-                                ) c2 ON true 
-                                
+                                ) c2 ON true
+
                                 INNER JOIN LATERAL(
                                     SELECT *
                                     FROM event_member em
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-                                
+
                                 WHERE e1.name LIKE ?
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
@@ -779,7 +779,7 @@
 
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE event.idevent = event_member.idevent 
+                                WHERE event.idevent = event_member.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(event.idevent)
@@ -837,8 +837,8 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE fts_vector @@ to_tsquery(?)
-                                AND event.idevent = event_member.idevent 
-                                AND event_member.idmember = ? 
+                                AND event.idevent = event_member.idevent
+                                AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$selected, $user]);

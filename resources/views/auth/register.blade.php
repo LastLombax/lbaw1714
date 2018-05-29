@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+    <script src="{{ asset('js/memberProfile.js') }}" defer></script>
         @section('title')
             ReEvent
         @endsection
@@ -33,7 +34,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-form-label" for="username">Name</label>
+                        <label class="col-form-label" for="name">Name</label>
 
                         @if (!$errors->has('name'))
                             <input id="name" name="name"  type="text" value="{{ old('name') }}" class="form-control" placeholder="Enter your name" required>
@@ -65,7 +66,9 @@
                         <label for="password">Password</label>
 
                         @if (!$errors->has('password'))
-                            <input id="password" name="password" type="password" class="form-control" placeholder="Password" required>
+                            <input id="password" name="password" type="password" class="form-control" placeholder="Password" required
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            title="At least one number and a uppercase and lowercase letter and, at least, 8 characters">
                         @else
                             <input id="password" name="password" type="password" class="form-control is-invalid" placeholder="Password" required>
                             <div class="alert alert-dismissible alert-danger">
@@ -80,7 +83,7 @@
                         <label for="password_confirmation">Confirm Password</label>
 
                         @if (!$errors->has('password'))
-                            <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Confirm Password" required>
+                            <input id="password_confirmation" name="password_confirmation"  type="password" class="form-control" placeholder="Confirm Password" required>
                         @else
                             <input id="password_confirmation" name="password_confirmation" type="password" class="form-control is-invalid" placeholder="Confirm Password" required>
                             <div class="alert alert-dismissible alert-danger">
@@ -88,6 +91,7 @@
                                 <strong>Error: </strong>{{$errors->first('password')}}
                             </div>
                         @endif
+                        <span id='message'></span>
 
                     </div>
 

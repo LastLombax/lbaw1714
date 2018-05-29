@@ -182,7 +182,9 @@
                                     </div>
                                 @else
                                     <input id="password" name="password" class="form-control" placeholder="New Password"
-                                           id="form_newpassword" maxlength="25" type="password">
+                                           id="form_newpassword" maxlength="25" type="password"
+                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                           title="At least one number and a uppercase and lowercase letter and, at least, 8 characters">
                                 @endif
                             </div>
 

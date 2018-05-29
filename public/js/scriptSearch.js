@@ -1,38 +1,35 @@
 'use strict';
 
-let siteRoot = document.location.origin; //"http://localhost:8000/"
+let root = document.location.origin; //"http://localhost:8000/"
 
-let container = document.querySelector('.container');
+let searchContainer = document.querySelector('.container');
 let timeline = document.querySelector('#time');
 let timelineCopy;
 
 if(timeline != null){
     timelineCopy = timeline.innerHTML;
 }
+let containerCopy = searchContainer.innerHTML;
+let searchForm = document.querySelector('input[id=search_text]');
+searchForm.addEventListener('keyup', searchEvent);
 
-let containerCopy = container.innerHTML;
-let searchFormInput = document.querySelector('input[id=search_text]');
-
-searchFormInput.addEventListener('keyup', searchEvent);
-
-searchFormInput.addEventListener('submit', function (event) {
+searchForm.addEventListener('submit', function (event) {
     console.log("DEU Enter");
     event.preventDefault();
 })
 
 function searchEvent(event) {
     let request = new XMLHttpRequest();
-    request.open('get', siteRoot + '/search?' + encodeForAjax({'searchField': searchFormInput.value}), true);
+    request.open('get', root + '/search?' + encodeForAjax({'searchField': searchForm.value}), true);
     request.addEventListener('load', searchEventsReceived);
     request.send();
-
     event.preventDefault();
 }
 
 function searchEventsReceived(){
     let lines = JSON.parse(this.responseText);
 
-    container.innerHTML = '';
+    searchContainer.innerHTML = '';
 
     if(timeline != null)
         timeline.innerHTML = '';
@@ -58,7 +55,7 @@ function searchEventsReceived(){
 
     lines.forEach(function(data){
 
-        let link = siteRoot + '/events/' + data.idevent;
+        let link = root + '/events/' + data.idevent;
 
         let image = '/storage/' + data.imagepath;
 
@@ -86,10 +83,10 @@ function searchEventsReceived(){
     div1.append(div2);
     div2.append(div3);
 
-    container.append(div1);
+    searchContainer.append(div1);
 
-    if(searchFormInput.value == ''){
-        container.innerHTML = containerCopy;
+    if(searchForm.value == ''){
+        searchContainer.innerHTML = containerCopy;
         timeline.innerHTML = timelineCopy;
     }
 
