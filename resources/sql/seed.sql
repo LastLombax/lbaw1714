@@ -1070,6 +1070,13 @@ INSERT INTO friend VALUES (101, 41, true);
 INSERT INTO friend VALUES (101, 64, true);
 INSERT INTO friend VALUES (101, 73, true);
 INSERT INTO friend VALUES (101, 62, true);
+INSERT INTO friend VALUES (101, 103, true);
+INSERT INTO friend VALUES (8, 103, true);
+INSERT INTO friend VALUES (102, 103, true);
+INSERT INTO friend VALUES (69, 103, false);
+INSERT INTO friend VALUES (102, 88, false);
+
+
 
 
 --
@@ -1183,8 +1190,9 @@ insert into member (name, username, password, birthdate, email, idcountry, city,
 insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Hewe Rivett', 'hrivett2p', 'TLD5CIyZwq', '2017-11-05 20:15:59', 'hrivett2p@reference.com', 53, 'Moramanga', '76 Main Circle', 268189256, 'Unspecified open wound of right elbow, subsequent encounter', 'img/member/3.jpg', '2018-02-24 06:39:11', false, true);
 insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Rustin de Pinna', 'rde2q', 'LSYE8Uy0IBK', '2017-08-15 23:51:39', 'rde2q@newyorker.com', 247, 'Malasugui', '916 Granby Avenue', 574102717, 'Blindness, one eye, low vision other eye, unspecified eyes', 'img/member/5.jpg', '2017-08-04 01:46:44', false, true);
 insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Travers Brewett', 'tbrewett2r', 'D7JUCbfMcJ', '2017-04-12 14:46:00', 'tbrewett2r@cornell.edu', 240, 'Gangmei', '37213 Dennis Plaza', 907331618, 'Displ transverse fx shaft of unsp fibula, 7thB', 'img/member/6.jpg', '2017-11-21 14:36:27', true, true);
-insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Regular User',	'user',	'$2y$10$ByFGDdFUlrPF4jQ.3MK1tOtA6DK9xxhaW9Gr/azhkkFr.b.FnvbIO', null, 'user@email.com', 4, null, null, null, null, null, '2018-04-20', false, false);
-insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('VIP User',	'user2',	'$2y$10$ByFGDdFUlrPF4jQ.3MK1tOtA6DK9xxhaW9Gr/azhkkFr.b.FnvbIO', null, 'user2@email.com', 4, null, null, null, null, null, '2018-05-25', false, false);
+insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('John Doe', 'user', '$2b$10$yiOpPQuAHn02fbEcIUQ.7.RkLqclQLzz7cCKyT.QKg5iLYxb9/DWm', null, 'user@example.com', 178, 'Porto', 'Rua Dr Roberto Frias, s/n', 123456789, 'I like trains and long walks on the beach.', 'img/member/2.jpg', '2018-04-20', false, false);
+insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Jane Doe', 'user2', '$2b$10$yiOpPQuAHn02fbEcIUQ.7.RkLqclQLzz7cCKyT.QKg5iLYxb9/DWm', null, 'user2@example.com', 178, 'Lisbon', 'Debaixo das escadas da Altice Arena', 234567891, 'Woodworking is a passion of mine. Minigolf and Fortnite are also enjoyable.', 'img/member/3.jpg',, '2018-05-25', true, false);
+insert into member (name, username, password, birthdate, email, idcountry, city, address, taxpayernumber, about, profilepicture, registrationdate, verifiedemail, iswebsiteadmin) values ('Jane Doe', 'user2', '$2b$10$yiOpPQuAHn02fbEcIUQ.7.RkLqclQLzz7cCKyT.QKg5iLYxb9/DWm', null, 'admin@example.com', 178, 'Porto', 'Rua Dr Roberto Frias, s/n', 222333444, 'I have admin powers lol', 'img/member/6.jpg', '2018-05-25', true, true);
 
 --
 -- Data for Name: notification; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
