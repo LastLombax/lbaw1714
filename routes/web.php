@@ -11,10 +11,11 @@
 |
 */
 
-//Homepage
+
 use App\Http\Controllers\MemberController;
 use App\Invoice;
 
+//Homepage
 Route::get('/', function () {
     if(Auth::guest())
         return view('pages/visitorHomePage');
@@ -22,12 +23,12 @@ Route::get('/', function () {
         return view('pages/homePage');
 })->name('homepage');
 
-//search
+//Search
 Route::get('search', function () {
     return view('internal.search');
 })->name('search');
 
-//search
+//Search Friend
 Route::get('searchFriend', function () {
     return view('internal.searchFriends');
 })->name('searchFriend');
@@ -37,14 +38,17 @@ Route::get('advancedSearch', function () {
     return view('internal.advancedSearch');
 })->name('advancedSearch');
 
+//Slideshow
 Route::get('slide', function () {
     return view('internal.slideshow');
 })->name('slide');
 
+//Timeline
 Route::get('time', function () {
     return view('internal.timeline');
 })->name('time');
 
+// Guest Access
 Route::group(['middleware' => 'App\Http\Middleware\RedirectIfAuthenticated'], function(){
 
     Route::get('basicEventSearch','EventController@basicSearch')->name('basicEventsSearch');
@@ -117,7 +121,16 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
   });
 });
 
+
+// Comments
 Route::get('ajax/events/comments', 'CommentController@showEventComments');
+
+// Communities
+Route::get('communities/{community}', 'CommunityController@show')->name('community')->where('community', '[0-9]+')->middleware('App\Http\Middleware\CommunityMiddleware');
+
+// Events
+Route::get('events', 'EventController@index')->name('events');
+Route::get('events/{event}', 'EventController@show')->name('event')->where('event', '[0-9]+')->middleware('App\Http\Middleware\EventMiddleware');
 
 // Members
 //Route::get('members', 'MemberController@index')->name('members');
@@ -125,19 +138,7 @@ Route::get('members/{username}', 'MemberController@show')->name('member')->where
 
 Route::post('mail', 'MailController@mail')->name('mail');
 
-
-// Events
-Route::get('events', 'EventController@index')->name('events');
-Route::get('events/{event}', 'EventController@show')->name('event')->where('event', '[0-9]+')->middleware('App\Http\Middleware\EventMiddleware');
-
-
-
-// Communities
-Route::get('communities/{community}', 'CommunityController@show')->name('community')->where('community', '[0-9]+')->middleware('App\Http\Middleware\CommunityMiddleware');
-
-
-
-
+// Auth
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -145,9 +146,12 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 
+// Pass Reset
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 
+
+// Email Reset sent
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.change');
 

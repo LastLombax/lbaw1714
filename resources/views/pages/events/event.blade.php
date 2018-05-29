@@ -95,6 +95,16 @@
                                             Buy Tickets
                                         </button>
 
+                                        <br>
+
+                                    @can('event-admin', $event)
+
+                                    <button style="width: 130px; margin-bottom: 2px" type="submit" onclick="window.location='/events/{{$event->idevent}}/edit'"
+                                            class="btn btn-info">Edit Event
+                                    </button>
+                                    
+                                    @endcan
+
                                         @can('event-admin', $event)
                                             <form action="{{ route('deleteEvent', $event) }}" method="post">
                                                 <input type="hidden" name="_method" value="delete"/>
@@ -106,14 +116,6 @@
                                             </form>
                                         @endcan
                                     @endif
-
-                                    @can('event-admin', $event)
-
-                                            <button style="width: 130px; margin-bottom: 2px" type="submit" onClick="{{route('editEventForm', $event)}}"
-                                                    class="btn btn-info">Edit Event
-                                            </button>
-                                    @endcan
-
                                         <br>
 
                                     @if($event->ispublic)

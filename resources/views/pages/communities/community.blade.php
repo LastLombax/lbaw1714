@@ -93,12 +93,9 @@
 
             <div class="col-lg-8" style="padding-top:23px">
                 <ul class="nav nav-tabs">
+                  
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#feed" style="color: #f36833">Activity
-                            Feed</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#upcoming" style="color: #f36833">Upcoming
+                        <a class="nav-link active" data-toggle="tab" href="#upcoming" style="color: #f36833">Upcoming
                             Events</a>
                     </li>
                     <li class="nav-item">
@@ -107,38 +104,8 @@
                 </ul>
 
                 <div id="communityTab" class="tab-content">
-                    <div class="tab-pane fade show active" id="feed">
-                        <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
-                            <div class="bs-ccomponent">
-                                <div class="list-group">
-
-                                    @include('pages.communities.communityFeed', ['$community' => $community->idcommunity])
-
-                                </div>
-                            </div>
-                        </div>
-                        <div style="margin-top: 1rem; margin-left: 0;">
-                            <ul class="pagination ">
-                                <li class="page-item disabled ">
-                                    <a class="page-link " href="# ">&laquo;</a>
-                                </li>
-                                <li class="page-item active ">
-                                    <a class="page-link " href="# "
-                                       style="background-color:#f36833; border-color:#f36833;">1</a>
-                                </li>
-                                <li class="page-item ">
-                                    <a class="page-link " href="# ">2</a>
-                                </li>
-                                <li class="page-item ">
-                                    <a class="page-link " href="# ">3</a>
-                                </li>
-                                <li class="page-item ">
-                                    <a class="page-link " href="# ">&raquo;</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="upcoming">
+                    
+                    <div class="tab-pane fade show active" id="upcoming">
                         <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                             <div class="bs-ccomponent">
                                 <div class="list-group">

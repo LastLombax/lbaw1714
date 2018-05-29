@@ -67,21 +67,21 @@
                         <br>
                         <div class="btn-group" data-toggle="buttons">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
-
+                            
                               @if ($community->isPublic)
                                 <label class="btn btn-secondary active">
-                                    <input name="visibility" type="radio" name="options" id="option1" autocomplete="off" checked=""> Public
+                                    <input name="visibility" value="true" type="radio" name="options" id="option1" autocomplete="off" checked=""> Public
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input name ="visibility" type="radio" name="options" id="option2" autocomplete="off"> Private
+                                    <input name ="visibility" value="false" type="radio" name="options" id="option2" autocomplete="off"> Private
                                 </label>
 
                                 @else
                                 <label class="btn btn-secondary active">
-                                    <input name="visibility" type="radio" name="options" id="option1" autocomplete="off"> Public
+                                    <input name="visibility" value="true" type="radio" name="options" id="option1" autocomplete="off"> Public
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input checked="" name ="visibility" type="radio" name="options" id="option2" autocomplete="off"> Private
+                                    <input checked="" value="false" name ="visibility" type="radio" name="options" id="option2" autocomplete="off"> Private
                                 </label>
                                 @endif
                             </div>

@@ -104,6 +104,7 @@
         public static function topCommunities($limit, $offset){ 
             return DB::select('SELECT count(community_member.idmember) as attendants, community.*
                             FROM community_member INNER JOIN community ON community_member.idcommunity = community.idcommunity
+                            AND community.ispublic = true
                             GROUP BY(community.idcommunity)
                             ORDER BY attendants DESC LIMIT ? OFFSET ?', [$limit, $offset]);
         }
@@ -173,7 +174,7 @@
                             SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
                             FROM "event", "community"
                             WHERE "community".idcommunity = ?
-                             AND "event".startday >= ?                  
+                            AND "event".startday >= ?                  
                             Order BY "event".startday DESC', [$community, $todayDate]);
 
             //    LIMIT $selectedLimit OFFSET $selectedOffset
