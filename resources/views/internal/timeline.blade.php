@@ -1,12 +1,20 @@
-<?php $query = \App\Http\Controllers\EventController::upcomingMemberEvents(); ?>
+<?php
+
+    use Illuminate\Support\Facades\Auth;
+    $user = App\Member::find(Auth::id());
+    $query = $user->upcomingEvents;
+
+    //dd($query);
+
+?>
 
 <div id="time">
     <section id=timeline>
         @if(count($query) == 0)
-
-            It seems you don't have any upcoming events.<br>
-            You should try browsing our available events.<br>
-            [centered button]
+            <div style="text-align: center">
+                It seems you don't have any upcoming events<br>
+                You should try browsing our available <a href="/events">events</a><br>
+            </div>
         @else
             <div class="demo-card-wrapper">
 
