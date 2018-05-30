@@ -35,12 +35,12 @@
     @yield('searchBody')
 
     <div class="container">
-        <legend style="color: #333; padding: 1rem; margin-left: 0.5rem; padding-left: 0; padding-bottom: 0;">
+        <div style="color: #333; padding: 1rem; margin-left: 0.5rem; padding-left: 0; padding-bottom: 0.5rem; font-size: x-large;">
             @yield('titleIcon')
             <span style="margin-left: .5rem;">
                     @yield('pageTitle')
             </span>
-        </legend>
+        </div>
 
             <section id="content">
                 @yield('content')
