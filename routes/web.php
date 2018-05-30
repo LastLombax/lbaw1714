@@ -127,7 +127,11 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
         Route::get('communities/{community}/edit', 'CommunityController@editForm')->name('editCommunity')->where('community', '[0-9]+');
         Route::patch('communities/{community}/edit', 'CommunityController@edit')->name('editCommunity');
         Route::delete('communities/{community}', 'CommunityController@delete')->name('deleteCommunity');
-  });
+    });
+
+      //Administration
+     Route::get('administration', 'AdminController@index')->name('administration')->middleware('App\Http\Middleware\AdminMiddleware');
+    
 });
 
 

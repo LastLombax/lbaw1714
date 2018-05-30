@@ -242,6 +242,12 @@ class MemberController extends Controller
         return response("true",200);
     }
 
+    public static function getMembersForAdmin(){
+        return DB::select('SELECT idmember, name, username
+                           FROM member
+                            ');
+    }
+
     public static function acceptFriend(Request $request)
     {
         $user = Auth::id();

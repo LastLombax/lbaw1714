@@ -94,6 +94,12 @@
             return redirect()->route('community', $community->idcommunity);
         }
 
+        public static function getCommunitiesForAdmin(){
+            return DB::select('SELECT idcommunity, name
+                               FROM community
+                                ');
+        }
+
 
         public function delete(Community $community){
 
