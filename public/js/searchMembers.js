@@ -41,7 +41,7 @@ function searchFriendsReceived(){
         timeline.innerHTML = '';
 
     let div1 = document.createElement('div');
-    div1.classList.add('nearby-events');
+    div1.classList.add('members');
 
     div1.innerHTML =
         '        <br>' +

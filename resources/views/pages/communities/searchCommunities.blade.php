@@ -4,7 +4,7 @@
     <div class="row justify-content-center align-items-center">
 
         <div class="col-md-9  align-self-start" style="padding-top: 15px; padding-left: 30px;">
-            <div class="searchFriendsContainer">
+            <div class="searchCommunitiesContainer">
             </div>
 
             <br><br><br>

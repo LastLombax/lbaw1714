@@ -98,6 +98,10 @@
              return view('pages.communities.searchCommunities');
         }
 
+        
+        public static function searchCommunity($word){
+              return Community::where([['name', 'ILIKE', '%'.$word.'%']])->get();
+     }
 
         public static function getCommunitiesForAdmin(){
             return DB::select('SELECT idcommunity, name
@@ -110,7 +114,6 @@
 
 			if (Gate::allows('community-admin', $community)) {
 
-				//Event::find($event->idevent)->delete();
 				try {
 					$community->delete();
 				} catch (\Exception $e) {
