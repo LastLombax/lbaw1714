@@ -121,11 +121,12 @@ class MemberController extends Controller
 
     protected function editValidator(array $data) {
 
+        $now = date('Y-m-d');
         $validate = Validator::make($data, [
             'name' => 'required|string|min:3|max:50',            
             'country' => 'required|string|exists:country,name',
             'email'=> 'required|email|max:50',
-            'birthdate'=> 'nullable|date_format:"Y-m-d"',
+            'birthdate'=> 'date_format:"Y-m-d"|before:' . $now,
             'address'=> 'nullable|string|max:50',
             'about' => 'nullable|string|max:256',
             'password' => 'nullable|string|max:50|confirmed',

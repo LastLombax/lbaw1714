@@ -76,7 +76,7 @@
             $community->name = $request->name;
             $community->description = $request->description;
             $community->ispublic = $request->visibility;
-
+            $community->imagepath = '/storage/img/community/unknown.png';
             $community->save();
 
             if($request->hasFile('communityImage')) {
