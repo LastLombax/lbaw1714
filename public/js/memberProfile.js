@@ -9,7 +9,7 @@ if(befriendBtn != null)
 
         let friendId = document.querySelector(".befriendBtn").getAttribute('id');
 
-        console.log(friendId);
+
 
         let request = new XMLHttpRequest();
 
