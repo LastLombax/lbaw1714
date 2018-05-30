@@ -288,7 +288,8 @@ CREATE TABLE ticket (
     idticket SERIAL NOT NULL,
     idtickettype integer NOT NULL,
     idinvoice integer NOT NULL,
-    used boolean DEFAULT false NOT NULL
+    used boolean DEFAULT false NOT NULL,
+    updated_at timestamp NULL
 );
 
 
