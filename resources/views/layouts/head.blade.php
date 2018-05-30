@@ -29,7 +29,7 @@
 
 
 <!-- Bootstrap -->
-<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+<link  type="text/css" href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <!-- FontAwesome -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -37,8 +37,8 @@
 <link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<link href="{{asset('timeline/css/style.css')}}" rel="stylesheet">
-<link href="{{asset('css/searchNavBar.css')}}" rel="stylesheet">
+<link type="text/css" href="{{asset('timeline/css/style.css')}}" rel="stylesheet">
+<link type="text/css" href="{{asset('css/searchNavBar.css')}}" rel="stylesheet">
 {{--<link href="{{asset('timeline/scss/style.scss')}}" rel="stylesheet">--}}
 
 @yield('extraScript')
