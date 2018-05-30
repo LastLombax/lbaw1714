@@ -19,6 +19,9 @@
     <script src="{{ asset('js/scriptAdvancedSearch.js') }}" defer></script>
 @elseif(Request::is('friends'))
     <script src="{{ asset('js/searchFriends.js') }}" defer></script>
+@elseif(Request::is('searchMembers'))
+    <script src="{{ asset('js/searchMembers.js') }}" defer></script>
+
 @else
     <script src="{{ asset('js/scriptSearch.js') }}" defer></script>
 @endif

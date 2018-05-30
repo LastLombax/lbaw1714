@@ -7,7 +7,9 @@ use App\Member;
 
 $query = \App\Http\Controllers\MemberController::profileFeed($member->idmember);
 
+//dd($query);
 foreach ($query as $notification){
+
 
 	switch($notification->type){
 		case 'buddy':
@@ -60,7 +62,6 @@ foreach ($query as $notification){
 			';
 			break;
 		case 'community':
-		    //dd($notification->type);
 			$communityName = Community::find($notification->community)->name;
    			$communitiesLink = route('communities');
    			$link = $communitiesLink . '/' . $notification->community;

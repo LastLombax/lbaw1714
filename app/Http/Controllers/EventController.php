@@ -1007,9 +1007,25 @@
             DB::table('notification')->
             insert([
                 'timestamp' => now()->toDateString(),
-                'type' => 'event','recipient' => $user,
+                'type' => 'event',
+                'recipient' => $user,
                 'buddy' => $request->friendId,
                 'event' => $request->eventId
+            ]);
+
+            /*CREATE TABLE event_member (
+                idevent integer NOT NULL,
+                idmember integer NOT NULL,
+                isgoing boolean DEFAULT false NOT NULL,
+                isadmin boolean NOT NULL
+            );*/
+
+            DB::table('event_member')->
+            insert([
+                'idevent' => $request->eventId,
+                'idmember' => $request->friendId,
+                'isgoing' => 'false',
+                'isadmin' => 'false'
             ]);
 
             return response("true",200);

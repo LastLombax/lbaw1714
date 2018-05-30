@@ -1,3 +1,5 @@
+let siteRoot = document.location.origin; //"http://localhost:8000/"
+
 let befriendBtn = document.querySelector(".befriendBtn");
 
 if(befriendBtn != null)
@@ -5,7 +7,6 @@ if(befriendBtn != null)
 
         event.preventDefault();
 
-        let siteRoot = document.location.origin; //"http://localhost:8000/"
         let friendId = document.querySelector(".befriendBtn").getAttribute('id');
 
         console.log(friendId);
@@ -35,7 +36,7 @@ function friendResponse(){
 
 }
 
-var friend;
+let friend;
 
 function acceptRequest(buddy){
 

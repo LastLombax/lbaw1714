@@ -1,41 +1,35 @@
 'use strict';
 
-let siteRoot = document.location.origin; //"http://localhost:8000/"
+let root = document.location.origin; //"http://localhost:8000/"
 
-let container = document.querySelector('.searchFriendsContainer');
+let searchContainer = document.querySelector('.container');
 let timeline = document.querySelector('#time');
 let timelineCopy;
 
 if(timeline != null){
     timelineCopy = timeline.innerHTML;
 }
+let containerCopy = searchContainer.innerHTML;
+let searchForm = document.querySelector('input[id=search_text]');
+searchForm.addEventListener('keyup', searchEvent);
 
-
-let containerCopy = container.innerHTML;
-let searchFormInput = document.querySelector('input[id=search_text]');
-
-window.addEventListener('load', searchFriend);
-
-searchFormInput.addEventListener('keyup', searchFriend);
-
-searchFormInput.addEventListener('submit', function (event) {
+searchForm.addEventListener('submit', function (event) {
     console.log("DEU Enter");
     event.preventDefault();
 })
 
-function searchFriend(event) {
+function searchCommunity(community) {
     let request = new XMLHttpRequest();
-    request.open('get', siteRoot + '/searchFriend?' + encodeForAjax({'searchField': searchFormInput.value}), true);
-    request.addEventListener('load', searchFriendsReceived);
+    request.open('get', root + 'communitySearch?' + encodeForAjax({'searchField': searchForm.value}), true);
+    request.addEventListener('load', searchCommunitiesReceived);
     request.send();
-
     event.preventDefault();
 }
 
-function searchFriendsReceived(){
+function searchCommunitiesReceived(){
     let lines = JSON.parse(this.responseText);
 
-    container.innerHTML = '';
+    searchContainer.innerHTML = '';
 
     if(timeline != null)
         timeline.innerHTML = '';
@@ -48,7 +42,7 @@ function searchFriendsReceived(){
         '        <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0;">\n' +
         '            <i class="fas fa-calendar-check"></i>\n' +
         '            <span style="margin-left: .5rem;">\n' +
-        '             Friends Search Results\n' +
+        '            Search Results\n' +
         '          </span>\n' +
         '        </legend>\n';
 
@@ -61,28 +55,23 @@ function searchFriendsReceived(){
 
     lines.forEach(function(data){
 
-        let link = siteRoot + '/members/' + data.username;
+        let link = root + '/communities/' + data.idcommunity;
 
-        let image = '/storage/' + data.profilepicture;
+        let image = '/storage/' + data.imagepath;
 
         div3.innerHTML +=
             '            <div class="col-lg-4 align-self-start">\n' +
             '              <div class="bs-ccomponent">\n' +
             '                <div class="card mb-4" style="box-shadow: 1px 1px 30px #ddd;">\n' +
             '                  <div class="card-body">\n' +
-            '                  <h3 class="card-title" style="background-color: #fff;">' +
-            '                   <a style="color: #000;" href="'+link+'">'
-                                 + data.name +
-                                '</a>' +
-        '                      </h3>\n' +
-            '                    <h6 class="card-subtitle text-muted">' + data.username + '</h6>\n' +
+            '                  <h3 class="card-title" style="background-color: #fff;"><a style="color: #000;" href="{{asset(\\\'events/\' + data.idevent +\'\\\')}}">' + data.name + '</a></h3>\n' +
             '                  </div>\n' +
             '                  <img style="width: 100%; height: 200px; object-fit: cover;" src="' + image + '" alt="Card image">\n' +
             '                  <div class="card-body">\n' +
-            '                    <p class="card-text">'+ data.about +'</p>\n' +
+            '                    <p class="card-text">'+ data.description +'</p>\n' +
             '                  </div>\n' +
             '                  <div class="card-footer text-muted" style="background-color: #fff; text-align: right;">\n' +
-            '                    <a href="' + link + '" class="card-link">Profile</a>\n' +
+            '                    <a href="' + link + '" class="card-link">Open event</a>\n' +
             '                  </div>\n' +
             '                </div>\n' +
             '              </div>\n' +
@@ -93,7 +82,12 @@ function searchFriendsReceived(){
     div1.append(div2);
     div2.append(div3);
 
-    container.append(div1);
+    searchContainer.append(div1);
+
+    if(searchForm.value == ''){
+        searchContainer.innerHTML = containerCopy;
+        timeline.innerHTML = timelineCopy;
+    }
 
 }
 
