@@ -183,8 +183,8 @@ class MemberController extends Controller
     public static function searchMemberByName($selectedName){
             $selected = "%" . $selectedName . "%";
 
-            return Member::where('name','LIKE', $selected)
-                         ->where('username', 'LIKE', $selected)
+            return Member::where('name','ILIKE', $selected)
+                         ->where('username', 'ILIKE', $selected)
                          ->orderBy('startday', 'ASC')->limit(9)->get();
     }
 
@@ -282,9 +282,9 @@ class MemberController extends Controller
             ->join('member', function ($join) use ($user, $request) {
                 $join
                 ->on('friend.idf1', '=', 'member.idmember')
-                    ->where([['member.idmember', '<>', $user], ['member.username', 'LIKE', '%'.$request->friendUsername.'%']])
+                    ->where([['member.idmember', '<>', $user], ['member.username', 'ILIKE', '%'.$request->friendUsername.'%']])
                 ->orOn('friend.idf2', '=', 'member.idmember')
-                    ->where([['member.idmember', '<>', $user], ['member.username', 'LIKE', '%'.$request->friendUsername.'%']]);
+                    ->where([['member.idmember', '<>', $user], ['member.username', 'ILIKE', '%'.$request->friendUsername.'%']]);
             })
             // esta linha servia para evitar que utilizadores do mesmo evento aparecessem na pesquisa, mas nao consigo por a funcionar
             /*->join('event_member', function ($join) use ($user, $request) {
@@ -326,7 +326,7 @@ class MemberController extends Controller
     public static function searchMembers($word){
         $user = Auth::id();
 
-        return Member::where([['username', 'LIKE', '%'.$word.'%'], ['idmember', '<>', $user]])
+        return Member::where([['username', 'ILIKE', '%'.$word.'%'], ['idmember', '<>', $user]])
             ->limit(9)
             ->get();
     }
@@ -338,9 +338,9 @@ class MemberController extends Controller
             ->join('member', function ($join) use ($user, $word) {
                 $join
                     ->on('friend.idf1', '=', 'member.idmember')
-                    ->where([['member.idmember', '<>', $user], ['member.username', 'LIKE', '%'.$word.'%']])
+                    ->where([['member.idmember', '<>', $user], ['member.username', 'ILIKE', '%'.$word.'%']])
                     ->orOn('friend.idf2', '=', 'member.idmember')
-                    ->where([['member.idmember', '<>', $user], ['member.username', 'LIKE', '%'.$word.'%']]);
+                    ->where([['member.idmember', '<>', $user], ['member.username', 'ILIKE', '%'.$word.'%']]);
             })
             ->where([['idf2', '=', $user], ['accepted', '=', true]])
             ->orWhere([['idf1', '=', $user], ['accepted', '=', true]])

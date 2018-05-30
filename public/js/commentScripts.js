@@ -24,7 +24,7 @@ function addEventListeners() {
 
             let idComment = deleteBtns[i].querySelector('.comment-id').innerHTML;
 
-            console.log("EDIT " + idComment);
+
 
             let commentMessage = commentContainers[i].querySelector(".commentText");
 
@@ -41,7 +41,7 @@ function addEventListeners() {
             refreshFlag = true;
 
             let idComment = deleteBtns[i].querySelector('.comment-id').innerHTML;
-            console.log("DELETE " + idComment);
+
 
             let request = new XMLHttpRequest();
 

@@ -173,10 +173,10 @@
 
         public static function basicSearch(Request $request){
             if (!isset($request->search))
-                $events = Event::where('ispublic', '=','true');            
+                $events = Event::where('ispublic', '=','true');
             else
-                 $events = Event::whereRaw('fts_vector @@ to_tsquery(?) AND ispublic = true', $request->search);
-            
+                 $events = Event::whereRaw('fts_vector @@ to_tsquery(\'portuguese\', ?) AND ispublic = true', $request->search);
+
             $events = $events->orderBy('startday', 'DESC')->get();
 
             return view('pages.events.viewEventsBasic')->with('events', $events);
@@ -317,7 +317,7 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
 
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 AND e1.idcountry = ?
                                 GROUP BY(e1.idevent)
@@ -343,7 +343,7 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
 
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 AND e1.idcountry = ?
                                 AND event_member.idevent = e1.idevent
@@ -374,7 +374,7 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
 
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND e1.idcountry = ?
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $selectedCountry]);
@@ -399,7 +399,7 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
 
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND e1.idcountry = ?
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
@@ -475,7 +475,7 @@
                     {
                         return Event::where(
                             [
-                                ['name','LIKE', $selected],
+                                ['name','ILIKE', $selected],
                                 ['startday','>=', now()->toDateString()],
                                 ['idcountry','=', $selectedCountry]
                             ]
@@ -490,7 +490,7 @@
 
                         return DB::select('SELECT event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND event_member.idevent = event.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
@@ -506,7 +506,7 @@
                     {
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND event.idcountry = ?
                                 GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$selected, $selectedCountry]);
@@ -517,7 +517,7 @@
 
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND event.idevent = event_member.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
@@ -658,7 +658,7 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
 
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 GROUP BY(e1.idevent)
                                 ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selected]);
@@ -683,7 +683,7 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
 
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
@@ -713,7 +713,7 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
 
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected]);
                     }
@@ -737,7 +737,7 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
 
-                                WHERE e1.name LIKE ?
+                                WHERE fts_vector @@ to_tsquery(?)
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
@@ -807,7 +807,7 @@
                     {
                         return Event::where(
                             [
-                                ['name','LIKE', $selected],
+                                ['name','ILIKE', $selected],
                                 ['startday','>=', now()->toDateString()],
                             ]
                         )
@@ -821,7 +821,7 @@
 
                         return DB::select('SELECT event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND event_member.idevent = event.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
@@ -836,7 +836,7 @@
                     {
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$selected]);
                     }
@@ -846,7 +846,7 @@
 
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                                WHERE fts_vector @@ to_tsquery(?)
+                                WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND event.idevent = event_member.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
@@ -897,7 +897,7 @@
         public static function memberTopEvents($limit, $offset){ //Mostrar top events, eventos com mais membros que vão
             return DB::select('SELECT count(event_member.idmember) as attendants, event.*
 							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
-                            WHERE event.ispublic = true                            
+                            WHERE event.ispublic = true
 							GROUP BY(event.idevent)
 							ORDER BY attendants DESC LIMIT ? OFFSET ?', [$limit, $offset]);
 		}
@@ -920,7 +920,7 @@
 
         public static function searchEventByNameAndDesc($searchInput){
 		    //DEBUG >>> App\Event::whereRaw('fts_vector @@ to_tsquery(\'initialize\')')->orderBy('startday', 'ASC')->limit(9)->get();
-					return Event::whereRaw('fts_vector @@ to_tsquery(?)', [$searchInput])->orderBy('startday', 'ASC')->limit(9)->get();
+					return Event::whereRaw('fts_vector @@ to_tsquery(\'portuguese\', ?)', [$searchInput])->orderBy('startday', 'ASC')->limit(9)->get();
 				}
 
         public static function getTicketInfo($eventId){

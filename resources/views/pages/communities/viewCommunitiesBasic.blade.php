@@ -4,14 +4,14 @@
 
 <?php
 
-echo '  
-           
+echo '
+
        <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0;">
-       
+
            <i class="fas fa-calendar-check" ></i>
            <span style="margin-left: .5rem;">
            Search Results</span>
-      
+
                 </legend>
         ';
 
@@ -19,7 +19,7 @@ if (sizeof($communities) == 0)
 echo '
         <div class="bs-ccomponent">
         <div class="card mb-4" style="box-shadow: 1px 1px 30px #ddd;">
-            <div class="card-body">   
+            <div class="card-body">
                 There is no community that matches your search!
         </div>
         </div>';

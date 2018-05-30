@@ -10,7 +10,7 @@
         let requestURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' +
             address + ", " + country + ',+CA&key=AIzaSyAr1_x1qNGarZz3rVGBTmTk2yDOAA-jkOI';
 
-        console.log(requestURL);
+
 
         let request = new XMLHttpRequest();
         request.open('GET', requestURL);

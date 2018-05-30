@@ -38,6 +38,11 @@ Route::get('searchMember', function () {
     return view('internal.searchMembers');
 })->name('searchMember');
 
+//Search Communities
+Route::get('searchCommunity', function () {
+    return view('internal.searchCommunity');
+})->name('searchCommunity');
+
 //Advanced Search
 Route::get('advancedSearch', function () {
     return view('internal.advancedSearch');
@@ -100,6 +105,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
 
     Route::get('friends', 'MemberController@friends')->name('friends');
     Route::get('searchMembers', 'MemberController@searchMembersPage')->name('searchMembers');
+    Route::get('searchCommunities', 'MemberController@searchCommunities')->name('searchCommunities');
+    Route::get('communitySearch', 'CommunityController@communitySearch')->name('communitySearch');
 
 
     Route::post('buddies/remove/{member}', 'MemberController@removeBuddy')->name('removeBuddy')->where('member', '[0-9]+}');

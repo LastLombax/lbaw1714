@@ -14,7 +14,7 @@ let searchForm = document.querySelector('input[id=search_text]');
 searchForm.addEventListener('keyup', searchEvent);
 
 searchForm.addEventListener('submit', function (event) {
-    console.log("DEU Enter");
+
     event.preventDefault();
 })
 

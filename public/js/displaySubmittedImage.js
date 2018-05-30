@@ -1,6 +1,6 @@
 let imgPath = document.querySelector('#imagePath');
 let imgTag = document.querySelector('#imgField img');
-console.log(imgPath);
+
 
 
 imgPath.addEventListener('change', function () {

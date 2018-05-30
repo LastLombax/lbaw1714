@@ -34,7 +34,7 @@
                         Community</a>
                     <a class="dropdown-item" href="{{route('manageCommunities')}}"><i class="fas fa-edit"></i> Manage
                         your Communities</a>
-                    <a class="dropdown-item" href="{{route('communities')}}"><i class="fas fa-search"></i> Search for
+                    <a class="dropdown-item" href="{{route('communitySearch')}}"><i class="fas fa-search"></i> Search for
                         Communities</a>
                 </div>
             </li>
