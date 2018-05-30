@@ -258,7 +258,8 @@
         }
 
         public static function searchCommunity($word){
-            return Community::where([['name', 'ILIKE', '%'.$word.'%']])->get();
+            return Community::where([['name', 'ILIKE', '%'.$word.'%']
+                                    ,['ispublic','=','true']])->get();
         }
 
     }
