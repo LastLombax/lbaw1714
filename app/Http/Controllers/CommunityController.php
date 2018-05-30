@@ -23,10 +23,6 @@
 
         }
 
-        public function communitySearch(){
-            return view('pages.communities.searchCommunities');
-        }
-
         public function create(Request $request){
 
 
@@ -35,9 +31,9 @@
 
             $community->name = $request->name;
             $community->description = $request->description;
-            $community->creationdate = date('Y-m-d');            
+            $community->creationdate = date('Y-m-d');
             $community->ispublic = $request->visibility;
-            
+
             $community->save();
 
             if($request->hasFile('communityImage')) {
@@ -69,7 +65,7 @@
         }
 
         public function editForm(Community $community){
-            
+
             return view('pages.communities.editCommunity')->with('community', $community);
         }
 
@@ -78,9 +74,9 @@
             $this->validator($request->all())->validate();
 
             $community->name = $request->name;
-            $community->description = $request->description;  
+            $community->description = $request->description;
             $community->ispublic = $request->visibility;
-            $community->imageoath = '/storage/img/community/unknown.png';
+            $community->imagepath = '/storage/img/community/unknown.png';
             $community->save();
 
             if($request->hasFile('communityImage')) {
@@ -124,7 +120,7 @@
 
 		}
 
-        public static function topCommunities($limit, $offset){ 
+        public static function topCommunities($limit, $offset){
             return DB::select('SELECT count(community_member.idmember) as attendants, community.*
                             FROM community_member INNER JOIN community ON community_member.idcommunity = community.idcommunity
                             AND community.ispublic = true
@@ -147,10 +143,10 @@
 
         public static function basicSearch(Request $request){
             if (!isset($request->search))
-                $communities = Community::where('ispublic', '=','true');            
+                $communities = Community::where('ispublic', '=','true');
             else
-                 $communities = Community::whereRaw('fts_vector @@ to_tsquery(?) AND ispublic = true', $request->search);
-            
+                 $communities = Community::whereRaw('fts_vector @@ to_tsquery(\'portuguese\', ?) AND ispublic = true', $request->search);
+
             $communities = $communities->orderBy('name', 'ASC')->get();
 
             return view('pages.communities.viewCommunitiesBasic')->with('communities', $communities);
@@ -190,13 +186,12 @@
                             SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
                             FROM "event", "community"
                             WHERE "community".idcommunity = ?
-                            AND "event".startday >= ?          
-                            AND "event".community = "community".idcommunity     
-                            Order BY "event".startday ASC', [$community, $todayDate]);
+                            AND "event".startday >= ?
+                            Order BY "event".startday DESC', [$community, $todayDate]);
 
             //    LIMIT $selectedLimit OFFSET $selectedOffset
         }
-        
+
         public static function communityHistory($community)
         {
             $todayDate = date('Y-m-d');
@@ -204,8 +199,7 @@
                             SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
                             FROM "event", "community"
                             WHERE "community".idcommunity = ?
-                            AND "event".startday < ?    
-                            AND "event".community = "community".idcommunity              
+                             AND "event".startday <= ?
                             Order BY "event".startday DESC', [$community, $todayDate]);
 
             //    LIMIT $selectedLimit OFFSET $selectedOffset
@@ -259,9 +253,5 @@
             return response("true",200);
         }
 
-        public static function searchCommunity($word){
-            return Community::where([['name', 'ILIKE', '%'.$word.'%']
-                                    ,['ispublic','=','true']])->get();
-        }
 
     }
