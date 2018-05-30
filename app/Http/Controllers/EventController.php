@@ -936,11 +936,8 @@
 
         public static function buyTicket(Request $request){
 
-            //$_GET['id'], $_GET['quantity'], $_GET['taxNumber'], $_GET['invoiceName'], $_GET['invoiceAddress'])
-
 
             $user = Auth::id();
-            //$reqObj = json_decode($request->)
 
 		    $ticketType = TicketType::find($request->ticketTypeId)->get();
 		    $availableTickets = $ticketType[0]->availablequantity;
@@ -965,8 +962,6 @@
                 TicketType::where('idtickettype', '=', $request->ticketTypeId)->update(['availablequantity' => $availableTickets-$request->nrOfTickets]);
                 return response("true",200);
 		    }
-
-            return response("false",200);
         }
 
         public static function inviteToEvent(Request $request){
