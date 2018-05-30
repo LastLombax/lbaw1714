@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <head>
-    <script src="{{ asset('js/memberProfile.js') }}" defer></script>
+    <script src="{{ asset('js/passwordCheck.js') }}" defer></script>
         @section('title')
             ReEvent
         @endsection
