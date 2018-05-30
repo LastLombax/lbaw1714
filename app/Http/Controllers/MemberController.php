@@ -39,6 +39,11 @@ class MemberController extends Controller
         return view('pages.members.friends')->with('member', $member);
     }
 
+    public function searchMembersPage(){
+        $member = Auth::user();
+        return view('pages.members.searchMembers')->with('member', $member);
+    }
+
      public function authProfile()
     {
         $member = Auth::user();
@@ -318,6 +323,26 @@ class MemberController extends Controller
         return Member::where([['username', 'LIKE', '%'.$word.'%'], ['idmember', '<>', $user]])
             ->limit(9)
             ->get();
+    }
+
+    public static function searchMyFriends($word){
+        $user = Auth::id();
+
+        $friends = DB::table('friend')
+            ->join('member', function ($join) use ($user, $word) {
+                $join
+                    ->on('friend.idf1', '=', 'member.idmember')
+                    ->where([['member.idmember', '<>', $user], ['member.username', 'LIKE', '%'.$word.'%']])
+                    ->orOn('friend.idf2', '=', 'member.idmember')
+                    ->where([['member.idmember', '<>', $user], ['member.username', 'LIKE', '%'.$word.'%']]);
+            })
+            ->where([['idf2', '=', $user], ['accepted', '=', true]])
+            ->orWhere([['idf1', '=', $user], ['accepted', '=', true]])
+            ->limit(5)
+            ->select('member.*')
+            ->get();
+
+        return $friends;
     }
 
 

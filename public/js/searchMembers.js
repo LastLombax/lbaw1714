@@ -25,7 +25,7 @@ searchFormInput.addEventListener('submit', function (event) {
 
 function searchFriend(event) {
     let request = new XMLHttpRequest();
-    request.open('get', siteRoot + '/searchFriend?' + encodeForAjax({'searchField': searchFormInput.value}), true);
+    request.open('get', siteRoot + '/searchMember?' + encodeForAjax({'searchField': searchFormInput.value}), true);
     request.addEventListener('load', searchFriendsReceived);
     request.send();
 
@@ -48,7 +48,7 @@ function searchFriendsReceived(){
         '        <legend style=" color: #333; padding: 20px; margin-left: 0; padding-left: 0;">\n' +
         '            <i class="fas fa-calendar-check"></i>\n' +
         '            <span style="margin-left: .5rem;">\n' +
-        '             Friends Search Results\n' +
+        '            Member Search Results\n' +
         '          </span>\n' +
         '        </legend>\n';
 
@@ -72,9 +72,9 @@ function searchFriendsReceived(){
             '                  <div class="card-body">\n' +
             '                  <h3 class="card-title" style="background-color: #fff;">' +
             '                   <a style="color: #000;" href="'+link+'">'
-                                 + data.name +
-                                '</a>' +
-        '                      </h3>\n' +
+            + data.name +
+            '</a>' +
+            '                      </h3>\n' +
             '                    <h6 class="card-subtitle text-muted">' + data.username + '</h6>\n' +
             '                  </div>\n' +
             '                  <img style="width: 100%; height: 200px; object-fit: cover;" src="' + image + '" alt="Card image">\n' +
