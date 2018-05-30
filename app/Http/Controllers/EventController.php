@@ -6,11 +6,12 @@
     use App\Event;
 	use App\Http\Controllers\Controller;
 	use App\Member;
+    use App\Ticket;
     use App\TicketType;
     use Auth;
     use http\Env\Response;
     use Illuminate\Http\Request;
-	use Illuminate\Support\Facades\DB;
+    use Illuminate\Support\Facades\DB;
 	use Illuminate\Support\Facades\Validator;
 	use Illuminate\Support\Facades\Gate;
 
@@ -177,6 +178,21 @@
             return $validate;
 
 		}
+
+		public static function validateTicket(Request $request){
+		    if(!Auth::user()->isAdmin)
+		       return null;
+
+		    $ticket = Ticket::find($request->idTicket);
+
+		    if(!$ticket->used){
+                $ticket->used = true;
+                return view('tickets.noUsed', [$ticket]);
+            }
+            else
+                return view('tickets.used', [$ticket]);
+
+        }
 
         public static function basicSearch(Request $request){
             if (!isset($request->search))

@@ -161,22 +161,27 @@
                             <div id="comments-container" class="list-group">
 
                             </div>
-                            <div style="border: 1px solid #ddd; padding: 15px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+
+                            @if(Auth::guest())
+                                <div hidden style="border: 1px solid #ddd; padding: 15px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+                            @else
+                                <div  style="border: 1px solid #ddd; padding: 15px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+                            @endif
 
 
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td>
+                                                <input style="border: 0; width: 100%; height: 35.7px; text-align: left; font-size: 14px" type="text" id ="createComment" placeholder="Write a comment...">
+                                            </td>
+                                            <td style="text-align: right">
+                                                <button style=" border-radius: 5px; " id="insertCommentBt" type="button" class="btn btn-outline-primary">Send</button>
 
-                                <table style="width: 100%;">
-                                    <tr>
-                                        <td>
-                                            <input style="border: 0; width: 100%; height: 35.7px; text-align: left; font-size: 14px" type="text" id ="createComment" placeholder="Write a comment...">
-                                        </td>
-                                        <td style="text-align: right">
-                                            <button style=" border-radius: 5px; " id="insertCommentBt" type="button" class="btn btn-outline-primary">Send</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
 
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
                         </div>
                     </div>
                     <div style="margin-top: 1rem; margin-left: 0;">
