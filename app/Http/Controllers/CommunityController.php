@@ -261,5 +261,8 @@
             return response("true",200);
         }
 
-
+        public static function searchCommunity($word){
+            return Community::where([['name', 'ILIKE', '%'.$word.'%']
+                ,['ispublic','=','true']])->get();
+        }
     }
