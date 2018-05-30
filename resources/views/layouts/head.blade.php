@@ -21,7 +21,8 @@
     <script src="{{ asset('js/searchFriends.js') }}" defer></script>
 @elseif(Request::is('searchMembers'))
     <script src="{{ asset('js/searchMembers.js') }}" defer></script>
-
+@elseif(Request::is('communitySearch'))
+    <script src="{{ asset('js/communitySearch.js') }}" defer></script>
 @else
     <script src="{{ asset('js/scriptSearch.js') }}" defer></script>
 @endif

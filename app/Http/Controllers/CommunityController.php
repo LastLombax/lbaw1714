@@ -23,6 +23,10 @@
 
         }
 
+        public function communitySearch(){
+            return view('pages.communities.searchCommunities');
+        }
+
         public function create(Request $request){
 
 
@@ -253,5 +257,8 @@
             return response("true",200);
         }
 
+        public static function searchCommunity($word){
+            return Community::where([['name', 'ILIKE', '%'.$word.'%']])->get();
+        }
 
     }

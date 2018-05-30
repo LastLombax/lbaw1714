@@ -475,7 +475,7 @@
                     {
                         return Event::where(
                             [
-                                ['name','LIKE', $selected],
+                                ['name','ILIKE', $selected],
                                 ['startday','>=', now()->toDateString()],
                                 ['idcountry','=', $selectedCountry]
                             ]
@@ -737,7 +737,7 @@
                                     em.idevent = e1.idevent
                                 ) c3 ON true
 
-                                WHERE e1.name LIKE ?
+                                WHERE fts_vector @@ to_tsquery(?)
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
@@ -807,7 +807,7 @@
                     {
                         return Event::where(
                             [
-                                ['name','LIKE', $selected],
+                                ['name','ILIKE', $selected],
                                 ['startday','>=', now()->toDateString()],
                             ]
                         )
