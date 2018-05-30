@@ -2,7 +2,7 @@
 
 let siteRoot = document.location.origin; //"http://localhost:8000/"
 
-let container = document.querySelector('.searchFriendsContainer');
+let container = document.querySelector('.searchCommunitiesContainer');
 let timeline = document.querySelector('#time');
 let timelineCopy;
 
@@ -10,14 +10,21 @@ if(timeline != null){
     timelineCopy = timeline.innerHTML;
 }
 
+let containerCopy = container.innerHTML;
 let searchFormInput = document.querySelector('input[id=search_text]');
 
 window.addEventListener('load', searchCommunity);
 
 searchFormInput.addEventListener('keyup', searchCommunity);
 
+searchFormInput.addEventListener('submit', function (event) {
+
+    event.preventDefault();
+})
+
 function searchCommunity(event) {
     let request = new XMLHttpRequest();
+
     request.open('get', siteRoot + '/searchCommunity?' + encodeForAjax({'searchField': searchFormInput.value}), true);
     request.addEventListener('load', searchCommunitiesReceived);
     request.send();
@@ -27,15 +34,14 @@ function searchCommunity(event) {
 
 function searchCommunitiesReceived(){
     let lines = JSON.parse(this.responseText);
-
-
+    
     container.innerHTML = '';
 
     if(timeline != null)
         timeline.innerHTML = '';
 
     let div1 = document.createElement('div');
-    div1.classList.add('nearby-events');
+    div1.classList.add('communities');
 
     div1.innerHTML =
         '        <br>' +

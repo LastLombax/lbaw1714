@@ -99,6 +99,11 @@
         }
 
 
+     public static function searchCommunity($word){
+        return Community::where([['name', 'ILIKE', '%'.$word.'%']
+            ,['ispublic','=','true']])->get();
+    }
+
         public static function getCommunitiesForAdmin(){
             return DB::select('SELECT idcommunity, name
                                FROM community
@@ -110,7 +115,6 @@
 
 			if (Gate::allows('community-admin', $community)) {
 
-				//Event::find($event->idevent)->delete();
 				try {
 					$community->delete();
 				} catch (\Exception $e) {
@@ -258,8 +262,4 @@
             return response("true",200);
         }
 
-        public static function searchCommunity($word){
-            return Community::where([['name', 'ILIKE', '%'.$word.'%']
-                ,['ispublic','=','true']])->get();
-        }
     }
