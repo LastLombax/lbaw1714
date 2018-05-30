@@ -123,9 +123,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     });
 
       //Administration
-     Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function(){
-        Route::get('administration', 'AdminController@index')->name('administration');
-    });
+     Route::get('administration', 'AdminController@index')->name('administration')->middleware('App\Http\Middleware\AdminMiddleware');
+    
 });
 
 

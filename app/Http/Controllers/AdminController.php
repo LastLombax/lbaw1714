@@ -14,11 +14,10 @@
 	use Illuminate\Support\Facades\Validator;
 	use Illuminate\Support\Facades\Gate;
 
-	class EventController extends Controller
+	class AdminController extends Controller
 	{
 		public function index(){
-            $events = Event::all()->where('ispublic','=', true);
-			return view('pages.events.viewEvents')->with('events', $events);
+			return view('pages.administration.administration');
 		}
 
 		public function createForm(){
@@ -107,13 +106,7 @@
 			}
 
 			return view('pages.events.event')->with('event', $event);
-        }
-        
-        public static function getEventsForAdmin(){
-            return DB::select('SELECT idevent, name, description
-                               FROM event
-                                ');
-        }
+		}
 
 
 		public function delete(Event $event){

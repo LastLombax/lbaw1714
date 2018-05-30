@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class CommunityAdminMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,8 @@ class CommunityAdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->isadmin)
-			dd('no u');
+        if (!Auth::user()->isadmin())
+          return redirect()->route('homepage');
         
         return $next($request);
     }
