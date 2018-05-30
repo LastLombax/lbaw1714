@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-lg-4" style="padding-top: 23px;">
                 <div class="bs-ccomponent">
-                    <img src="{{$community->imagepath}}" style="width: 100%; height: 200px; object-fit: cover;">
+                    <img src="{{$community->imagepath()}}" style="width: 100%; height: 200px; object-fit: cover;">
                     <br>
                     <br>
 
@@ -45,7 +45,7 @@
                                                 @endif</a>
                                         </p>
                                     </div>
-                                   
+
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">
                                             <b>Created on</b>
@@ -107,7 +107,7 @@
 
             <div class="col-lg-8" style="padding-top:23px">
                 <ul class="nav nav-tabs">
-                  
+
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#upcoming" style="color: #f36833">Upcoming
                             Events</a>
@@ -118,7 +118,7 @@
                 </ul>
 
                 <div id="communityTab" class="tab-content">
-                    
+
                     <div class="tab-pane fade show active" id="upcoming">
                         <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                             <div class="bs-ccomponent">
