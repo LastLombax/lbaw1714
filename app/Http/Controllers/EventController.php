@@ -477,11 +477,12 @@
                 {
                     if($selectedRange == "all")
                     {
+
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE event.idcountry = ?
-                                GROUP BY(event.idevent)
                                 AND event.ispublic = true
+                                GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$selectedCountry]);
                     }
                     else
@@ -541,7 +542,7 @@
                 {
                     if($selectedRange == "all")
                     {
-                        return DB::select('SELECT count(event_member.idmember) as attendants, event.*
+                          return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND event.idcountry = ?
