@@ -12,11 +12,11 @@ let newMinPrice;
 let newMaxPrice;
 let newSelectedOrder;
 
-console.log(selectedRange);
-console.log(selectedCountry);
-console.log(minPrice);
-console.log(maxPrice);
-console.log(selectedOrder);
+
+
+
+
+
 
 let searchFormInput = document.querySelector('input[id=search_text]');
 

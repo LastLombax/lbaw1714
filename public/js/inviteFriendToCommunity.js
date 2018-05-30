@@ -19,7 +19,7 @@ function sendEventInvite(sendInviteBt){
 function eventInviteRequest(response){
     let lines = JSON.parse(response.originalTarget.responseText);
 
-    console.log('#inviteBt-' + this);
+
 
 
     if(lines){

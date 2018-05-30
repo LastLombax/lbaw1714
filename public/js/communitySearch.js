@@ -10,6 +10,10 @@ if(timeline != null){
     timelineCopy = timeline.innerHTML;
 }
 
+<<<<<<< HEAD
+searchForm.addEventListener('submit', function (event) {
+
+=======
 
 let containerCopy = container.innerHTML;
 let searchFormInput = document.querySelector('input[id=search_text]');
@@ -20,6 +24,7 @@ searchFormInput.addEventListener('keyup', searchFriend);
 
 searchFormInput.addEventListener('submit', function (event) {
     console.log("DEU Enter");
+>>>>>>> a0fd879f698e7b981899b0da7fe1f5c36eb8ae7d
     event.preventDefault();
 })
 

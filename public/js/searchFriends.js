@@ -19,7 +19,7 @@ window.addEventListener('load', searchFriend);
 searchFormInput.addEventListener('keyup', searchFriend);
 
 searchFormInput.addEventListener('submit', function (event) {
-    console.log("DEU Enter");
+
     event.preventDefault();
 })
 
