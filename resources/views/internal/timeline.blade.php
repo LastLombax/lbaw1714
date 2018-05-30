@@ -1,8 +1,7 @@
 <?php
 
     use Illuminate\Support\Facades\Auth;
-    $user = App\Member::find(Auth::id());
-    $query = $user->upcomingEvents;
+    $query = Auth::user()->upcomingEvents;
 
     //dd($query);
 

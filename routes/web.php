@@ -69,6 +69,8 @@ Route::group(['middleware' => 'App\Http\Middleware\RedirectIfAuthenticated'], fu
 // Member Access
 Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(){
 
+    Route::get('tickets/validate/{ticket}', 'EventController@validateTicket');
+
     Route::get('profile', 'MemberController@authProfile')->name('authProfile');
     Route::get('profile/edit', 'MemberController@editForm')->name('editForm');
     Route::patch('profile/edit', 'MemberController@edit')->name('editForm');

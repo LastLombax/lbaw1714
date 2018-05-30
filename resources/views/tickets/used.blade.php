@@ -1,0 +1,1 @@
+<p style="text-decoration-color: darkred;">This ticket was already used at {{$ticket->updated_at}}</p>

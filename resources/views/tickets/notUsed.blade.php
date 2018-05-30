@@ -1,0 +1,1 @@
+<p style="text-decoration-color: green;">This ticket is still valid -  {{$ticket->updated_at}}</p>
