@@ -94,6 +94,11 @@
             return redirect()->route('community', $community->idcommunity);
         }
 
+        public function communitySearch(){
+             return view('pages.communities.searchCommunities');
+        }
+
+
         public static function getCommunitiesForAdmin(){
             return DB::select('SELECT idcommunity, name
                                FROM community
