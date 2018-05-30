@@ -94,6 +94,12 @@
             return redirect()->route('community', $community->idcommunity);
         }
 
+        public static function getCommunitiesForAdmin(){
+            return DB::select('SELECT idcommunity, name
+                               FROM community
+                                ');
+        }
+
 
         public function delete(Community $community){
 
@@ -205,9 +211,8 @@
             $notificationAlreadySent = DB::table('notification')
                 ->where([
                     ['type', '=', 'community'],
-                    ['recipient', '=', $user],
-                    ['buddy', '=', $request->friendId],
-                    ['community', '=', $request->eventId]])
+                    ['recipient', '=', $request->friendId],
+                    ['community', '=', $request->communityId]])
                 ->get();
 
             $frienAlreadyAtEvent =
@@ -215,7 +220,7 @@
                     ->join('community_member', function ($join) use ($user, $request) {
                         $join
                             ->on('community_member.idcommunity', '=', 'community.idcommunity')
-                            ->where([['community_member.idcommunity', '=', $request->comunityId], ['community_member.idmember', '=', $request->friendId]]);
+                            ->where([['community_member.idcommunity', '=', $request->communityId], ['community_member.idmember', '=', $request->friendId]]);
                     })->get();
 
 
@@ -227,10 +232,23 @@
             insert([
                 'timestamp' => now()->toDateString(),
                 'type' => 'community',
-                'recipient' => $user,
-                'buddy' => $request->friendId,
+                'recipient' => $request->friendId,
                 'community' => $request->communityId
             ]);
+
+            /*CREATE TABLE community_member (
+                idcommunity integer NOT NULL,
+                idmember integer NOT NULL,
+                isadmin boolean DEFAULT false NOT NULL*/
+
+
+            DB::table('community_member')->insert(
+                [
+                    'idcommunity' => $request->communityId,
+                    'idmember' => $request->friendId,
+                    'isadmin' => 'false'
+                ]
+            );
 
             return response("true",200);
         }

@@ -6,7 +6,7 @@ $query;
 
 if (isset($_GET['searchField'])) {
 
-    $query = MemberController::searchMyFriends($_GET['searchField']);
+    $query = MemberController::searchMembers($_GET['searchField']);
 }
 
 // JSON encode

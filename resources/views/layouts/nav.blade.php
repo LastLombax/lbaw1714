@@ -38,6 +38,16 @@
                         Communities</a>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('searchMembers')}}">Members</a>
+            </li>
+
+            @if(Auth::user()->isadmin())
+            <li class="nav-item">
+                <a class="nav-link" href =" {{route('administration')}}" >Administration</a>
+            </li>
+            @endif
+
             <li class="nav-item dropdown" id="profileText">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                    aria-expanded="false"> My Account</a>
@@ -49,20 +59,6 @@
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
-        <!--<table style="font-size: 12px; color: white; text-align: right; margin-right: 15px;">
-                <tr style="font-size: 9.5px">
-                    <td>
-                        @if (Auth::check())
-            Welcome, <span>{{ Auth::user()->name }}</span>
-                        @endif
-                </td>
-            </tr>
-            <tr>
-                <td style="padding-left: 5px; padding-right: 5px; border: 1px solid white;"><i class="fas fa-plus"></i>
-               <a href="{{route('createEvent')}}" style="text-decoration: none; color: white;"> <b>Add Event</b> </a>
-                    </td>
-                </tr>
-            </table>-->
             @if (Auth::check())
                 <div class="nav-item dropdown" id="profileIcon">
                     <i class="material-icons"

@@ -33,6 +33,11 @@ Route::get('searchFriend', function () {
     return view('internal.searchFriends');
 })->name('searchFriend');
 
+//Search Member
+Route::get('searchMember', function () {
+    return view('internal.searchMembers');
+})->name('searchMember');
+
 //Advanced Search
 Route::get('advancedSearch', function () {
     return view('internal.advancedSearch');
@@ -94,6 +99,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::post('inviteToCommunity', 'CommunityController@inviteToCommunity');
 
     Route::get('friends', 'MemberController@friends')->name('friends');
+    Route::get('searchMembers', 'MemberController@searchMembersPage')->name('searchMembers');
+
 
     Route::post('buddies/remove/{member}', 'MemberController@removeBuddy')->name('removeBuddy')->where('member', '[0-9]+}');
 
@@ -120,7 +127,11 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
         Route::get('communities/{community}/edit', 'CommunityController@editForm')->name('editCommunity')->where('community', '[0-9]+');
         Route::patch('communities/{community}/edit', 'CommunityController@edit')->name('editCommunity');
         Route::delete('communities/{community}', 'CommunityController@delete')->name('deleteCommunity');
-  });
+    });
+
+      //Administration
+     Route::get('administration', 'AdminController@index')->name('administration')->middleware('App\Http\Middleware\AdminMiddleware');
+    
 });
 
 
