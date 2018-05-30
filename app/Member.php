@@ -35,11 +35,7 @@
 
 	}
 
-        /*		public function friend($member){
-                //return $
-            }
 
-    */
 
 		use Notifiable;
 

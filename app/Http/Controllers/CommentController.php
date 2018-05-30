@@ -71,12 +71,20 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request)
     {
-        //
+        $comment = Comment::find($request->idComment);
+
+
+        if ($comment->author != Auth::id())
+            return Request("That Comment isn't yours",403);
+
+        $comment->text = $request->commentText;
+        $comment->save();
+
+        return Request(200);
     }
 
     /**
