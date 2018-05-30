@@ -6,20 +6,18 @@
     use App\Event;
 	use App\Http\Controllers\Controller;
 	use App\Member;
-    use App\Ticket;
     use App\TicketType;
     use Auth;
     use http\Env\Response;
     use Illuminate\Http\Request;
-    use Illuminate\Support\Facades\DB;
+	use Illuminate\Support\Facades\DB;
 	use Illuminate\Support\Facades\Validator;
 	use Illuminate\Support\Facades\Gate;
 
-	class EventController extends Controller
+	class AdminController extends Controller
 	{
 		public function index(){
-            $events = Event::all()->where('ispublic','=', true);
-			return view('pages.events.viewEvents')->with('events', $events);
+			return view('pages.administration.administration');
 		}
 
 		public function createForm(){
@@ -108,13 +106,7 @@
 			}
 
 			return view('pages.events.event')->with('event', $event);
-        }
-        
-        public static function getEventsForAdmin(){
-            return DB::select('SELECT idevent, name, description
-                               FROM event
-                                ');
-        }
+		}
 
 
 		public function delete(Event $event){
@@ -178,21 +170,6 @@
             return $validate;
 
 		}
-
-		public static function validateTicket(Request $request){
-		    if(!Auth::user()->isAdmin)
-		       return null;
-
-		    $ticket = Ticket::find($request->idTicket);
-
-		    if(!$ticket->used){
-                $ticket->used = true;
-                return view('tickets.noUsed', [$ticket]);
-            }
-            else
-                return view('tickets.used', [$ticket]);
-
-        }
 
         public static function basicSearch(Request $request){
             if (!isset($request->search))
@@ -952,8 +929,11 @@
 
         public static function buyTicket(Request $request){
 
+            //$_GET['id'], $_GET['quantity'], $_GET['taxNumber'], $_GET['invoiceName'], $_GET['invoiceAddress'])
+
 
             $user = Auth::id();
+            //$reqObj = json_decode($request->)
 
 		    $ticketType = TicketType::find($request->ticketTypeId)->get();
 		    $availableTickets = $ticketType[0]->availablequantity;
@@ -978,6 +958,8 @@
                 TicketType::where('idtickettype', '=', $request->ticketTypeId)->update(['availablequantity' => $availableTickets-$request->nrOfTickets]);
                 return response("true",200);
 		    }
+
+            return response("false",200);
         }
 
         public static function inviteToEvent(Request $request){
