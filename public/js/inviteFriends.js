@@ -1,3 +1,11 @@
+try {
+    siteRoot = document.location.origin; //"http://localhost:8000/"
+}
+catch (e) {
+    let siteRoot = document.location.origin; //"http://localhost:8000/"
+
+}
+
 let usernameField = document.querySelector('#usernameField');
 
 usernameField.addEventListener('keyup', searchFriend);

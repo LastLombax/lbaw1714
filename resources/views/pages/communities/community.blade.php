@@ -2,7 +2,7 @@
 
 @section('extraScript')
     <script src="{{ asset('js/inviteFriends.js') }}" defer></script>
-
+    <script src="{{ asset('js/inviteFriendToCommunity.js') }}" defer></script>
 @endsection
 
 @section('titleIcon')
@@ -53,20 +53,10 @@
                                         <p>{{$community->printDate()}}</p>
                                     </div>
                                 </fieldset>
-                                @if(!Auth::guest())
-                                <button type="submit" style="background-color: #f3a933dc; border-color: #f5956f"
-                                        onclick="event.preventDefault(); location.href = 'register2.html';"
-                                        class="btn btn-info">Message the admins
-                                </button>
-                                <button type="submit" style="border-color: #f5956f"
-                                        onclick="event.preventDefault(); location.href = 'register2.html';"
-                                        class="btn btn-danger">Report
-                                </button>
-                                <button type="submit"
-                                        style="background-color: #f3a933dc; border-color: #f5956f; margin-top:5px;"
-                                        class="btn btn-info" data-toggle="modal" data-target="#modalInvite">Invite
-                                    Friends
-                                </button>
+                                @if(!\Illuminate\Support\Facades\Auth::guest())
+                                    <button style="width: 130px; margin-bottom: 2px;" type="button" class="btn btn-info" data-toggle="modal" data-target="#modalInvite">
+                                        Invite Friends
+                                    </button>
                                 @endif
                                 <br>
                                  @can('community-admin', $community)
@@ -184,5 +174,6 @@
 
             </div>
         </div>
+    @include('pages.communities.partials.modals')
 @endsection
 

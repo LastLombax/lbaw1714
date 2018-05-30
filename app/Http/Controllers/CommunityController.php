@@ -176,7 +176,6 @@
         public static function communityUpcoming($community)
         {
             $todayDate = date('Y-m-d');
-            $todayHour = date('H:i:s');
             return DB::select('
                             SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
                             FROM "event", "community"
@@ -190,7 +189,6 @@
         public static function communityHistory($community)
         {
             $todayDate = date('Y-m-d');
-            $todayHour = date('H:i:s');
             return DB::select('
                             SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
                             FROM "event", "community"
@@ -199,6 +197,42 @@
                             Order BY "event".startday DESC', [$community, $todayDate]);
 
             //    LIMIT $selectedLimit OFFSET $selectedOffset
+        }
+
+        public static function inviteToCommunity(Request $request){
+            $user = Auth::id();
+
+            $notificationAlreadySent = DB::table('notification')
+                ->where([
+                    ['type', '=', 'community'],
+                    ['recipient', '=', $user],
+                    ['buddy', '=', $request->friendId],
+                    ['community', '=', $request->eventId]])
+                ->get();
+
+            $frienAlreadyAtEvent =
+                DB::table('community')
+                    ->join('community_member', function ($join) use ($user, $request) {
+                        $join
+                            ->on('community_member.idcommunity', '=', 'community.idcommunity')
+                            ->where([['community_member.idcommunity', '=', $request->comunityId], ['community_member.idmember', '=', $request->friendId]]);
+                    })->get();
+
+
+            if(sizeof($notificationAlreadySent) > 0 || sizeof($frienAlreadyAtEvent))
+                return response("false",200);
+
+
+            DB::table('notification')->
+            insert([
+                'timestamp' => now()->toDateString(),
+                'type' => 'community',
+                'recipient' => $user,
+                'buddy' => $request->friendId,
+                'community' => $request->communityId
+            ]);
+
+            return response("true",200);
         }
 
 

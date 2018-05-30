@@ -60,6 +60,7 @@ foreach ($query as $notification){
 			';
 			break;
 		case 'community':
+		    //dd($notification->type);
 			$communityName = Community::find($notification->community)->name;
    			$communitiesLink = route('communities');
    			$link = $communitiesLink . '/' . $notification->community;

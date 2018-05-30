@@ -91,6 +91,8 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::post('blockFriend', 'MemberController@blockFriend');
     Route::post('searchFriends', 'MemberController@searchFriends');
     Route::post('inviteToEvent', 'EventController@inviteToEvent');
+    Route::post('inviteToCommunity', 'CommunityController@inviteToCommunity');
+
     Route::get('friends', 'MemberController@friends')->name('friends');
 
     Route::post('buddies/remove/{member}', 'MemberController@removeBuddy')->name('removeBuddy')->where('member', '[0-9]+}');
