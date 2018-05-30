@@ -887,7 +887,7 @@
 
 
 		public static function topEvents($limit){ //Mostrar top events, eventos com mais membros que vão
-			return Event::with('attendants')->get()->sortBy(function($event)
+			return Event::where('ispublic', '=', true)->with('attendants')->get()->sortBy(function($event)
 			{
 				return $event->attendants->count();
 			}, null, true)->take($limit); //Using null to skip arguments at function call
@@ -898,6 +898,7 @@
         public static function memberTopEvents($limit, $offset){ //Mostrar top events, eventos com mais membros que vão
             return DB::select('SELECT count(event_member.idmember) as attendants, event.*
 							FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                            WHERE event.ispublic = true                            
 							GROUP BY(event.idevent)
 							ORDER BY attendants DESC LIMIT ? OFFSET ?', [$limit, $offset]);
 		}

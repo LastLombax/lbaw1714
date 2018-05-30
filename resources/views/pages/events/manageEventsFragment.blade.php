@@ -16,6 +16,7 @@ if (sizeof($query) == 0){
                   You do not own any event. Start by creating one'; echo "<a href=\" $eventsLink \"> here</a>.";
 
  echo'         </div>
+          </div>
           </div>';
 }
 
@@ -38,7 +39,7 @@ foreach ($query as $event){
 		       
 	          	echo ' </h6>
 	         </div>
-             <img style="width: 100%; height: 200px; object-fit: cover;" src="'. Storage::url($event->imagepath) .'" alt="Card image" title="">
+             <img style="width: 100%; height: 200px; object-fit: cover;" src="'. Storage::url($event->imagepath) .'" alt="Event image" title="">
               <div class="card-body">
                 <p class="card-text">'.$event->description.'</p>
               </div>

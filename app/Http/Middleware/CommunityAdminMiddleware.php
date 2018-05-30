@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class MemberMiddleware
+class CommunityAdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,8 +17,10 @@ class MemberMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guest())
-			return redirect()->route('login');
+        $result = DB::table('community_member')->where([['idmember', '=', Auth::id()], ['idcommunity', '=', $request->community->idcommunity]])->first();
+        
+        if (! ($result != null && $result->isadmin))
+			return redirect()->route('homepage');
         
         return $next($request);
     }

@@ -1,6 +1,4 @@
-function sendEventInvite(){
-
-    let sendInviteBt = document.querySelector('button[name=sendInviteBt]').getAttribute('id');
+function sendEventInvite(sendInviteBt){
 
     let request = new XMLHttpRequest();
 
@@ -9,7 +7,7 @@ function sendEventInvite(){
     request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
     request.setRequestHeader("Content-type", "application/json");
 
-    request.addEventListener('load', eventInviteRequest);
+    request.addEventListener('load', eventInviteRequest.bind(sendInviteBt));
 
     let eventId = document.querySelector('.friendsBody').getAttribute('id');
 
@@ -18,15 +16,18 @@ function sendEventInvite(){
     request.send(JSON.stringify(data));
 }
 
-function eventInviteRequest(){
-    let lines = JSON.parse(this.responseText);
+function eventInviteRequest(response){
+    let lines = JSON.parse(response.originalTarget.responseText);
+
+    console.log('#inviteBt-' + this);
+
 
     if(lines){
-        let inviteBt = document.querySelector('#inviteBt');
+        let inviteBt = document.querySelector('#inviteBt-' + this);
         inviteBt.innerHTML = '<button type="button" class="btn btn-success disabled">Invited</button>\n';
     }
     else {
-        let inviteBt = document.querySelector('#inviteBt');
+        let inviteBt = document.querySelector('#inviteBt-' + this);
         inviteBt.innerHTML = '<button type="button" class="btn btn-danger disabled">Already Joined/Invited</button>\n';
     }
 

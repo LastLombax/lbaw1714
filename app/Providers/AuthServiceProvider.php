@@ -27,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
 				Gate::define('event-admin', 'App\Policies\EventPolicy@isAdmin');
                 Gate::define('event-view', 'App\Policies\EventPolicy@view');
                 Gate::define('edit-profile', 'App\Policies\MemberPolicy@edit');
+                Gate::define('community-admin', 'App\Policies\CommunityPolicy@isAdmin');
 
 		}
 }
