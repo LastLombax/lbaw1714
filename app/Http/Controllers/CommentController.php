@@ -24,26 +24,13 @@ class CommentController extends Controller
         {
             $event = Event::find($request->idEvent);
 
-            dd($event);
 
             if(Gate::denies('event-view', $event))
                 return response("Doesn't have access",200);
 
-
-
             try {
-                DB::transaction(function () {
-                   $comment = DB::Insert('INSERT INTO comment (text, timestamp, event, author) VALUES (?, ?, ?, ?)',
-                    [$request->text, date('Y-m-d H:i:s'), $request->idEvent, Auth::id()]);
-
-                    $members = DB::Select('SELECT * FROM event_member WHERE event_member.idevent = ' . $event);
-
-                    foreach($members as $member){
-                        DB::Insert('INSERT INTO NOTIFICATION (timestamp, type, community, recipient, comment, event)
-                        VALUES (now(), \'comment\', null, ' . $member->idmember . ', ' . $comment->idcomment . ', ' . $event .')');
-                    }
-
-                }, 3);
+                DB::Insert('INSERT INTO comment (text, timestamp, event, author) VALUES (?, ?, ?, ?)',
+                [$request->text, date('Y-m-d H:i:s'), $request->idEvent, Auth::id()]);
             }
             catch (QueryException $e) {
                 return response("false",200);
