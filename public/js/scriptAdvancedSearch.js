@@ -142,15 +142,18 @@ function searchEventsReceived(){
     lines.forEach(function(data){
 
         let link = siteRoot + '/events/' + data.idevent;
-
-        let image = '/storage/' + data.imagepath;
+        let image;
+        if (data.imagepath == null)
+            image = '/storage/img/community/unknown.png';
+        else
+            image = '/storage/' + data.imagepath;
 
         div3.innerHTML +=
             '            <div class="col-lg-4 align-self-start">\n' +
             '              <div class="bs-ccomponent">\n' +
             '                <div class="card mb-4" style="box-shadow: 1px 1px 30px #ddd;">\n' +
             '                  <div class="card-body">\n' +
-            '                  <h3 class="card-title" style="background-color: #fff;"><a style="color: #000;" href="{{asset(\\\'events/\' + data.idevent +\'\\\')}}">' + data.name + '</a></h3>\n' +
+            '                  <h3 class="card-title" style="background-color: #fff;"><a style="color: #000;" href="' + link + '">' + data.name + '</a></h3>\n' +
             '                    <h6 class="card-subtitle text-muted">' + data.startday + '</h6>\n' +
             '                  </div>\n' +
             '                  <img style="width: 100%; height: 200px; object-fit: cover;" src="' + image + '" alt="Card image">\n' +

@@ -57,7 +57,11 @@ function searchCommunitiesReceived(){
 
         let link = siteRoot + '/communities/' + data.idcommunity;
 
-        let image = '/storage/' + data.profilepicture;
+        let image;
+        if (data.imagepath == null)
+            image = '/storage/img/community/unknown.png';
+        else
+            image = '/storage/' + data.imagepath;
 
         div3.innerHTML +=
             '            <div class="col-lg-4 align-self-start">\n' +

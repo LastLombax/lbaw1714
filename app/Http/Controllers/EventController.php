@@ -163,9 +163,9 @@
 			$validate = Validator::make($data, [
 				'name' => 'required|string|max:64',
 				'description' => 'required|string|max:516',
-                'startDate'=> 'date_format:"Y-m-d|after_or_equal:' . $now,
+                'startDate'=> 'date_format:"Y-m-d"|after_or_equal:' . $now,
 				'startTime' => '',
-				'endDate' => 'date_format:"Y-m-d|after_or_equal:startDate',
+				'endDate' => 'date_format:"Y-m-d"|after_or_equal:startDate',
 				'endTime' => '',
 				'country' => 'required|string|exists:country,name',
 				'ispublic'=> 'boolean',
