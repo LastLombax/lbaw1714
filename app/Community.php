@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+
 
 class Community extends Model
 {
@@ -11,7 +13,7 @@ class Community extends Model
     public $timestamps = false;
 
     //Relations
-	
+
 	public function members(){ //memberTuples
 		return $this->belongsToMany('App\Member','community_member', 'idcommunity', 'idmember');
 	}
@@ -19,6 +21,13 @@ class Community extends Model
     public function numMembers(){
         return count($this->members);
     }
+
+    public function imagePath(){
+		if($this->imagepath == null)
+            return Storage::url('img/community/unknown.png');
+		else
+			return Storage::url($this->imagepath);
+	}
 
 
     public function printDate(){
