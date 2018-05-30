@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/">
-        <img src="{{asset('icon/logo.png')}}">
+        <img alt="ReEvent" src="{{asset('icon/logo.png')}}">
         <b> ReEvent</b>
     </a>
 
@@ -19,7 +19,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true"
                    aria-expanded="false">Events</a>
-                <div class="dropdown-menu" x-placement="bottom-start">
+                <div class="dropdown-menu" >
                     <a class="dropdown-item" href="{{route('createEvent')}}"><i class="fas fa-plus"></i> Add Event</a>
                     <a class="dropdown-item" href="{{route('manageEvents')}}"><i class="fas fa-edit"></i> Manage your
                         Events</a>
@@ -29,7 +29,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                    aria-expanded="false">Communities</a>
-                <div class="dropdown-menu" x-placement="bottom-start">
+                <div class="dropdown-menu" >
                     <a class="dropdown-item" href="{{route('createCommunity')}}"><i class="fas fa-plus"></i> Add
                         Community</a>
                     <a class="dropdown-item" href="{{route('manageCommunities')}}"><i class="fas fa-edit"></i> Manage
@@ -51,7 +51,7 @@
             <li class="nav-item dropdown" id="profileText">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                    aria-expanded="false"> My Account</a>
-                <div class="dropdown-menu" x-placement="bottom-start">
+                <div class="dropdown-menu" >
                     <a class="dropdown-item" href="/members/{{Auth::user()->username}}"><i class="fas fa-user"></i> My Profile</a>
                     <a class="dropdown-item" href="{{route('friends')}}"><i class="fas fa-users"></i> My Friends</a>
                     <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -63,10 +63,10 @@
                 <div class="nav-item dropdown" id="profileIcon">
                     <i class="material-icons"
                        style="font-size: 32px; color: rgba(255, 255, 255, 1); cursor: pointer;" data-toggle="dropdown"
-                       href="#" role="button" aria-haspopup="true" aria-expanded="false">account_circle</i>
+                       role="button" aria-haspopup="true" aria-expanded="false">account_circle</i>
 
-                    <div class="dropdown-menu" x-placement="bottom-start"
-                         style="position: flex; transform: translate3d(-85px, 42px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    <div class="dropdown-menu"
+                         style="transform: translate3d(-85px, 42px, 0px); top: 0px; left: 0px; will-change: transform;">
 
                         <a class="dropdown-item" href="/profile"><i class="fas fa-user"></i> My
                             Profile</a>

@@ -9,7 +9,7 @@
     <script src="{{ asset('js/inviteFriends.js') }}" defer></script>
     <script src="{{ asset('js/inviteFriendToEvent.js') }}" defer></script>
     <script src="{{ asset('js/addMeToEvent.js') }}" defer></script>
-    
+
 @endsection
 
 
@@ -41,46 +41,36 @@
                             <fieldset>
 
                                 <div class="form-group">
-                                    <label class="col-form-label" for="inputDefault">
                                         <b>Description</b>
-                                    </label>
                                     <p>{{$event->description}}</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-form-label" for="inputDefault">
                                         <b>Date</b>
-                                    </label>
                                     <p>
                                         {{$event->printDate()}}
                                     </p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-form-label" for="inputDefault">
                                         <b>Location</b>
-                                    </label>
                                     <p id="address">
                                         {{$event->address}}, {{$event->city}}
                                     </p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-form-label" for="inputDefault">
                                         <b>Country</b>
-                                    </label>
                                     <p id="country">
                                         {{$event->country->name}}
                                     </p>
                                 </div>
                                 @if($event->community != null)
                                 <div class="form-group">
-                                    <label class="col-form-label" for="inputDefault">
                                         <b>Community</b>
-                                    </label>
                                     <p id="country">
-                                    <?php                                    
-                                      $community = App\Community::find($event->community);       
+                                    <?php
+                                      $community = App\Community::find($event->community);
                                         echo '<a href ="/communities/' . $community->idcommunity . '"> ' .  $community->name . '</a>';
                                     ?>
                                     </p>
@@ -117,7 +107,7 @@
                                     <button style="width: 130px; margin-bottom: 2px" type="submit" onclick="window.location='/events/{{$event->idevent}}/edit'"
                                             class="btn btn-info">Edit Event
                                     </button>
-                                    
+
                                     <form action="{{ route('deleteEvent', $event) }}" method="post">
                                         <input type="hidden" name="_method" value="delete"/>
                                         {{ csrf_field() }}

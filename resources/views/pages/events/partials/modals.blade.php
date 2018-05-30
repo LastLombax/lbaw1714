@@ -12,7 +12,7 @@
 
                 <div class="form-group" style="width: 100%;">
                     <input class="form-control form-control-lg" id="usernameField" type="text"
-                           placeholder="Input username..." id="inputLarge">
+                           placeholder="Input username...">
                 </div>
 
                 <div class="friendsBody" id="{{$event->idevent}}">
@@ -26,13 +26,13 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalBuyTicket" tabindex="-1" role="dialog" aria-labelledby="modalBuyTicket"
+<div class="modal fade" id="modalBuyTicket" tabindex="-1" role="dialog" aria-labelledby="modalBuyTicketTitle"
      aria-hidden="true">
     <div class="modal-dialog" role="document" id="ticketTypeBody">
 
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalInviteTitle">{{$event->name}}'s Tickets</h5>
+                <h5 class="modal-title" id="modalBuyTicketTitle">{{$event->name}}'s Tickets</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
