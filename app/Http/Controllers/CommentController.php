@@ -42,17 +42,16 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function showEventComments(Request $request)
-    {
+    public function showEventComments(Request $request) {
+
         $event = Event::find($request->idEvent);
 
-        if(!Auth::guest()) {
-            if (Gate::denies('event-view', $event))
-                return Response([], 403);
-        }
+
+        if (!Auth::guest() && Gate::denies('event-view', $event))
+            return Response([], 403);
+
         $comments = $event->commentTuples;
 
         foreach ($comments as $comment){

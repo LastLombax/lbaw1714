@@ -15,7 +15,7 @@ echo '<h5 class="card-title" style="font-size: 1.2em "><a href="' . $link . '" >
 echo '<h6 class="card-subtitle text-muted ">'. $first->attendants .' members</h6>';
 echo '</div>';
 
-echo '<img style="width: 100%; height: 200px; object-fit: cover; " src="'.$first->imagepath.' " alt="Community image ">
+echo '<a href="' . $link . '" ><img style="width: 100%; height: 200px; object-fit: cover; " src="'.$first->imagepath.' " alt="Community image "></a>
         <div class="card-body ">
             <p class="card-text ">'. $first->description .'</p>
         </div>';
