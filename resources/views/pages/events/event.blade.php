@@ -9,9 +9,7 @@
     <script src="{{ asset('js/inviteFriends.js') }}" defer></script>
     <script src="{{ asset('js/inviteFriendToEvent.js') }}" defer></script>
     <script src="{{ asset('js/addMeToEvent.js') }}" defer></script>
-
-
-
+    
 @endsection
 
 
@@ -99,25 +97,22 @@
                                             Buy Tickets
                                         </button>
 
-                                        @can('event-admin', $event)
-                                            <form action="{{ route('deleteEvent', $event) }}" method="post">
-                                                <input type="hidden" name="_method" value="delete"/>
-                                                {{ csrf_field() }}
-
-                                                <button style="width: 130px; margin-bottom: 2px" type="submit" onClick="confirmDeletion(this.form);"
-                                                        class="btn btn-info">Delete event
-                                                </button>
-                                            </form>
-                                        @endcan
-                                    @endif
+                                        <br>
 
                                     @can('event-admin', $event)
 
-                                            <button style="width: 130px; margin-bottom: 2px" type="submit" onClick="{{route('editEventForm', $event)}}"
-                                                    class="btn btn-info">Edit Event
-                                            </button>
-                                    @endcan
+                                    <button style="width: 130px; margin-bottom: 2px" type="submit" onclick="window.location='/events/{{$event->idevent}}/edit'"
+                                            class="btn btn-info">Edit Event
+                                    </button>
+                                    
+                                    <form action="{{ route('deleteEvent', $event) }}" method="post">
+                                        <input type="hidden" name="_method" value="delete"/>
+                                        {{ csrf_field() }}
 
+                                        <button style="width: 130px; margin-bottom: 2px" type="submit" class="btn btn-info">Delete event </button>
+                                    </form>
+                                        @endcan
+                                    @endif
                                         <br>
 
                                     @if($event->ispublic)

@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class MemberMiddleware
+class EventAdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,8 +17,10 @@ class MemberMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guest())
-			return redirect()->route('login');
+        $result = DB::table('event_member')->where([['idmember', '=', Auth::id()], ['idevent', '=', $request->event->idevent]])->first();
+        
+        if (! ($result != null && $result->isadmin))
+			return redirect()->route('homepage');
         
         return $next($request);
     }

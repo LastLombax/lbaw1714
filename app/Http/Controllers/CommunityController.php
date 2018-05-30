@@ -33,7 +33,6 @@
             $community->description = $request->description;
             $community->creationdate = date('Y-m-d');            
             $community->ispublic = $request->visibility;
-            $community->publiclink = null;
             
             $community->save();
 
@@ -77,7 +76,6 @@
             $community->name = $request->name;
             $community->description = $request->description;  
             $community->ispublic = $request->visibility;
-            $community->publiclink = null;
             
             $community->save();
 
@@ -96,26 +94,36 @@
             return redirect()->route('community', $community->idcommunity);
         }
 
+
         public function delete(Community $community){
 
-            return view('pages.communities.community')->with('community', $community);
-        }
+			if (Gate::allows('community-admin', $community)) {
+
+				//Event::find($event->idevent)->delete();
+				try {
+					$community->delete();
+				} catch (\Exception $e) {
+					echo "Error in deleting Community";
+				}
+
+				return redirect()->route('homepage');
+			}
+
+			else
+                return view('pages.communities.community')->with('community', $community);
+
+		}
 
         public static function topCommunities($limit, $offset){ 
             return DB::select('SELECT count(community_member.idmember) as attendants, community.*
                             FROM community_member INNER JOIN community ON community_member.idcommunity = community.idcommunity
+                            AND community.ispublic = true
                             GROUP BY(community.idcommunity)
                             ORDER BY attendants DESC LIMIT ? OFFSET ?', [$limit, $offset]);
         }
 
 
         protected function validator(array $data) {
-//          $messages = [
-//              'unique' => 'That :attribue is already in use!',
-//              'max'    => 'The :attribute surpassed the maximum length :max!',
-//              'email.required' => 'We need to know your e-mail address!',
-//
-//          ];
 
             $validate = Validator::make($data, [
                 'name' => 'required|string|max:64',
@@ -172,7 +180,7 @@
                             SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
                             FROM "event", "community"
                             WHERE "community".idcommunity = ?
-                             AND "event".startday >= ?                  
+                            AND "event".startday >= ?                  
                             Order BY "event".startday DESC', [$community, $todayDate]);
 
             //    LIMIT $selectedLimit OFFSET $selectedOffset
