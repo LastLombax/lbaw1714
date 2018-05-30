@@ -13,19 +13,8 @@ let newMaxPrice;
 let newSelectedOrder;
 
 
-
-
-
-
-
 let searchFormInput = document.querySelector('input[id=search_text]');
 
-// let forms = document.querySelectorAll('form');
-//
-// //Prevents Enter submition
-// forms.forEach(function(form) {
-//     form.preventDefault();
-// });
 
 searchFormInput.addEventListener('keyup', searchEvent);
 
@@ -75,8 +64,6 @@ function searchEvent() {
 
 
 
-
-
 window.addEventListener("load", function(event) {
 
     searchEvent();
@@ -123,12 +110,10 @@ for(var i = 0; i < selectedOrders.length; i++) {
 
 
 
-
-
-
-
 function searchEventsReceived(){
     let lines = JSON.parse(this.responseText);
+
+  
 
     container.innerHTML = '';
 
@@ -142,18 +127,33 @@ function searchEventsReceived(){
     div3.classList.add('row', 'justify-content-center',  'align-items-center');
 
 
+    if (lines.length == 0){
+        div3.innerHTML +=
+        '            <div class="col-lg-4 align-self-start">\n' +
+        '              <div class="bs-ccomponent">\n' +
+        '                <div class="card mb-4" style="box-shadow: 1px 1px 30px #ddd;">\n' +
+        '                   No event found!' + 
+        '                </div>\n' +
+        '              </div>\n' +
+        '            </div>';
+
+    }
+
     lines.forEach(function(data){
 
         let link = siteRoot + '/events/' + data.idevent;
-
-        let image = '/storage/' + data.imagepath;
+        let image;
+        if (data.imagepath == null)
+            image = '/storage/img/community/unknown.png';
+        else
+            image = '/storage/' + data.imagepath;
 
         div3.innerHTML +=
             '            <div class="col-lg-4 align-self-start">\n' +
             '              <div class="bs-ccomponent">\n' +
             '                <div class="card mb-4" style="box-shadow: 1px 1px 30px #ddd;">\n' +
             '                  <div class="card-body">\n' +
-            '                  <h3 class="card-title" style="background-color: #fff;"><a style="color: #000;" href="{{asset(\\\'events/\' + data.idevent +\'\\\')}}">' + data.name + '</a></h3>\n' +
+            '                  <h3 class="card-title" style="background-color: #fff;"><a style="color: #000;" href="' + link + '">' + data.name + '</a></h3>\n' +
             '                    <h6 class="card-subtitle text-muted">' + data.startday + '</h6>\n' +
             '                  </div>\n' +
             '                  <img style="width: 100%; height: 200px; object-fit: cover;" src="' + image + '" alt="Card image">\n' +

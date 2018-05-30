@@ -25,7 +25,10 @@
 
                     <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
                         <fieldset>
-                            <h3>Personal details</h3>
+                            <h3 data-toggle="tooltip" title="These details are used so that other users can identify and connect with you.">
+                                Personal details
+                                <span style="font-size: x-small">(?)</span>
+                            </h3>
 
                             <div class="form-group">
                                 <label class="col-form-label" for="name">
@@ -130,7 +133,10 @@
                 <div class="bs-ccomponent">
 
                     <div style="background-color: #eee; padding: 20px; padding-top: 10px; border: 1px solid #ccc; box-shadow: 1px 1px 30px #ddd;">
-                        <h3>Account details</h3>
+                        <h3 data-toggle="tooltip" title="These details are used within our internal data structures.">
+                            Account details
+                            <span style="font-size: x-small">(?)</span>
+                        </h3>
                         <fieldset style=" margin-bottom:1.140em;">
                             <div class="form-group">
                                 <label class="col-form-label" for="about">

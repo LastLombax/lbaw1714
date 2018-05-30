@@ -22,6 +22,14 @@
 
                         <fieldset>
                             <div class="form-group">
+
+                                <?php
+                                use Illuminate\Support\Facades\Input;
+                                $com = Input::get('community');
+                                if($com!= null)
+                                    echo '<input id="com" type="hidden" name="community" value="{{$com}}">';
+                                ?>
+
                                 <label class="col-form-label" for="name">
                                     <b>Event Name</b>
                                 </label>
@@ -31,7 +39,7 @@
                                 <div class="alert alert-dismissible alert-danger">
                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                                 <strong>Error: </strong>{{$errors->first('name')}}
-                                </div>                                  
+                                </div>
                                 @else
                                <input id="name" name="name" required type="text" style="width:100%;"
                                class="form-control col-xs-3" placeholder="Enter event name" maxlength="80">
@@ -61,14 +69,14 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="startDate" style="width:100%;">
-                                    <b>Start date</b>
+                                    <b>Start date and time</b>
                                 </label>
                                 <div class="form-inline form-group mb-2" style="width:100%;">
 
                                 @if ($errors->has('startDate'))
                                     <input id="startDate" name="startDate" required type="date"
                                            style="margin-right:0.25em" class="form-control col-lg-8"
-                                           placeholder="March 4, 2018" style="width:100%;">                                  
+                                           placeholder="March 4, 2018" style="width:100%;">
                                      <div class="alert alert-dismissible alert-danger">
                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                                     <strong>Error: </strong>{{$errors->first('startDate')}}
@@ -77,33 +85,33 @@
                                 @else
                                     <input id="startDate" name="startDate" required type="date"
                                            style="margin-right:0.25em" class="form-control col-lg-8"
-                                           placeholder="March 4, 2018" style="width:100%;">                                  
+                                           placeholder="March 4, 2018" style="width:100%;">
                                 @endif
 
                                  @if ($errors->has('startTime'))
                                      <input id="startTime" name="startTime" required type="time"
-                                           class="form-control col-lg-3 is-invalid" placeholder="12:00 pm" style="width:100%;">                                
+                                           class="form-control col-lg-3 is-invalid" placeholder="12:00 pm" style="width:100%;">
                                      <div class="alert alert-dismissible alert-danger">
                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                                     <strong>Error: </strong>{{$errors->first('startTime')}}
                                     </div>
                                 @else
                                         <input id="startTime" name="startTime" required type="time"
-                                        class="form-control col-lg-3" placeholder="12:00 pm" style="width:100%;">                         
+                                        class="form-control col-lg-3" placeholder="12:00 pm" style="width:100%;">
                                 @endif
                               </div>
 
                             </div>
                             <div class="form-group">
                             <label class="col-form-label" for="endDate" style="width:100%;">
-                                <b>End date</b>
+                                <b>End date and time</b>
                                 </label>
                                 <div class="form-inline form-group mb-2" style="width:100%;">
 
                                     @if ($errors->has('endDate'))
                                         <input id="endDate" name="endDate" required type="date"
                                                style="margin-right:0.25em" class="form-control col-lg-8"
-                                               placeholder="March 4, 2018" style="width:100%;">                                  
+                                               placeholder="March 4, 2018" style="width:100%;">
                                          <div class="alert alert-dismissible alert-danger">
                                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                                         <strong>Error: </strong>{{$errors->first('endDate')}}
@@ -112,19 +120,19 @@
                                     @else
                                         <input id="endDate" name="endDate" required type="date"
                                                style="margin-right:0.25em" class="form-control col-lg-8"
-                                               placeholder="March 4, 2018" style="width:100%;">                                  
+                                               placeholder="March 4, 2018" style="width:100%;">
                                     @endif
 
                                     @if ($errors->has('endTime'))
                                          <input id="endTime" name="endTime" required type="time"
-                                               class="form-control col-lg-3 is-invalid" placeholder="12:00 pm" style="width:100%;">                                
+                                               class="form-control col-lg-3 is-invalid" placeholder="12:00 pm" style="width:100%;">
                                          <div class="alert alert-dismissible alert-danger">
                                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                                         <strong>Error: </strong>{{$errors->first('endTime')}}
                                         </div>
                                     @else
                                         <input id="endTime" name="endTime" required type="time"
-                                        class="form-control col-lg-3" placeholder="12:00 pm" style="width:100%;"> 
+                                        class="form-control col-lg-3" placeholder="12:00 pm" style="width:100%;">
                                     @endif
                               </div>
                             </div>
@@ -139,7 +147,9 @@
                            </div>
                             <div class="form-group">
                             <label class="col-form-label" for="visibility">
-                                <b>Event Visibility</b>
+                                <b data-toggle="tooltip" title="Private events are only visited to invited people.">
+                                    Event Visibility
+                                <span style="font-size: x-small">(?)</span></b>
                                 <br>
                                 <div class="form-group">
                                     <select id="visibility" name="visibility" class="form-control" required>
@@ -163,7 +173,7 @@
                             <div class="form-group">
                                 <label class="col-form-label" for="address">
                                     <b>Location</b>
-                                </label>                                 
+                                </label>
                                 @if ($errors->has('address'))
                                  <input id="address" name="address" type="text" class="form-control is-invalid"
                                        placeholder="Example: Casa da Música, Porto, Portugal" maxlength="60"
@@ -177,7 +187,7 @@
                                        placeholder="Example: Casa da Música, Porto, Portugal" maxlength="60"
                                        required>
                                 @endif
-                               
+
                             </div>
 
                             <div class="form-group">
@@ -199,7 +209,9 @@
 
                             <div class="form-group">
                                 <label class="col-form-label" for="lodging">
-                                    <b>Lodging link</b>
+                                    <b data-toggle="tooltip" title="This is a link you can add to other websites to help attendees in finding a place to stay.">
+                                        Lodging link
+                                    <span style="font-size: x-small">(?)</span></b>
                                 </label>
                                 <input id="lodging" name="lodging" type="text" class="form-control"
                                        placeholder="Enter lodging link" required>

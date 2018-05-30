@@ -42,7 +42,9 @@
 			$event->idcountry = Country::where('name', '=',  $request->country)->first()->idcountry;
 			$event->address = $request->address;
 			$event->city = $request->city;
-			$event->ispublic = $request->visibility;
+            $event->ispublic = $request->visibility;
+            if(isset($request->community))
+                $event->community = $request->community;
 
 			$event->save();
 
@@ -163,9 +165,9 @@
 			$validate = Validator::make($data, [
 				'name' => 'required|string|max:64',
 				'description' => 'required|string|max:516',
-                'startDate'=> 'date_format:"Y-m-d|after_or_equal:' . $now,
+                'startDate'=> 'date_format:"Y-m-d"|after_or_equal:' . $now,
 				'startTime' => '',
-				'endDate' => 'date_format:"Y-m-d|after_or_equal:startDate',
+				'endDate' => 'date_format:"Y-m-d"|after_or_equal:startDate',
 				'endTime' => '',
 				'country' => 'required|string|exists:country,name',
 				'ispublic'=> 'boolean',
@@ -229,6 +231,7 @@
 
                                 WHERE e1.startday >= \''. now()->toDateString() .'\'
                                 AND e1.idcountry = ?
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selectedCountry]);
                     }
@@ -257,6 +260,7 @@
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selectedCountry, $user]);
                     }
@@ -282,6 +286,7 @@
                                 ) c3 ON true
 
                                 WHERE e1.idcountry = ?
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selectedCountry]);
                     }
@@ -309,6 +314,7 @@
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selectedCountry, $user]);
                     }
@@ -341,6 +347,7 @@
                                 WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
                                 AND e1.idcountry = ?
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $selectedCountry]);
                     }
@@ -370,6 +377,7 @@
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $selectedCountry, $user]);
 
@@ -397,6 +405,7 @@
 
                                 WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND e1.idcountry = ?
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $selectedCountry]);
                     }
@@ -425,6 +434,7 @@
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $selectedCountry, $user]);
                     }
@@ -440,7 +450,8 @@
                     {
                         return Event::where([
                             ['startday','>=', now()->toDateString()],
-                            ['idcountry','=', $selectedCountry]
+                            ['idcountry','=', $selectedCountry],
+                            ['ispublic', '=', 'true'],
 
                         ])
                             ->orderBy('startday', 'ASC')
@@ -458,6 +469,7 @@
                                 AND event_member.isadmin = true
                                 AND event.startday >= \''. now()->toDateString() .'\'
                                 AND event.idcountry = ?
+                                AND event.ispublic = true
                                 ORDER BY event.startday ASC LIMIT 9', [$user, $selectedCountry]);
                     }
                 }
@@ -469,6 +481,7 @@
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE event.idcountry = ?
                                 GROUP BY(event.idevent)
+                                AND event.ispublic = true
                                 ORDER BY attendants DESC LIMIT 9', [$selectedCountry]);
                     }
                     else
@@ -481,6 +494,7 @@
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 AND event.idcountry = ?
+                                AND event.ispublic = true
                                 GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$user, $selectedCountry]);
                     }
@@ -498,7 +512,8 @@
                             [
                                 ['name','ILIKE', $selected],
                                 ['startday','>=', now()->toDateString()],
-                                ['idcountry','=', $selectedCountry]
+                                ['idcountry','=', $selectedCountry],
+                                ['ispublic', '=', 'true'],
                             ]
                         )
                             ->orderBy('startday', 'ASC')
@@ -518,6 +533,7 @@
                                 AND event.startday >= \''. now()->toDateString() .'\'
                                 AND event.idcountry = ?
                                 GROUP BY(event.idevent)
+                                AND event.ispublic = true
                                 ORDER BY event.startday DESC LIMIT 9', [$selected, $user, $selectedCountry]);
                     }
                 }
@@ -529,6 +545,7 @@
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND event.idcountry = ?
+                                AND event.ispublic = true                                                         
                                 GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$selected, $selectedCountry]);
                     }
@@ -543,6 +560,7 @@
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 AND event.idcountry = ?
+                                AND event.ispublic = true
                                 GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$selected, $user, $selectedCountry]);
                     }
@@ -573,6 +591,7 @@
                                 ) c3 ON true
 
                                 WHERE e1.startday >= \''. now()->toDateString() .'\'
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice]);
                     }
@@ -600,6 +619,7 @@
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $user]);
                     }
@@ -623,7 +643,7 @@
                                     WHERE
                                     em.idevent = e1.idevent
                                 ) c3 ON true
-
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice]);
                     }
@@ -650,6 +670,7 @@
                                 WHERE event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $user]);
                     }
@@ -681,6 +702,7 @@
 
                                 WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
                                 AND e1.startday >= \''. now()->toDateString() .'\'
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selected]);
                     }
@@ -709,6 +731,7 @@
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY e1.startday DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $user]);
 
@@ -735,6 +758,7 @@
                                 ) c3 ON true
 
                                 WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected]);
                     }
@@ -762,6 +786,7 @@
                                 AND event_member.idevent = e1.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
+                                AND e1.ispublic = true
                                 GROUP BY(e1.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$minPrice, $maxPrice, $selected, $user]);
                     }
@@ -776,7 +801,8 @@
                     if($selectedRange == "all")
                     {
                         return Event::where(
-                            'startday','>=', now()->toDateString()
+                            ['startday','>=', now()->toDateString()],
+                            ['ispublic', '=', 'true']
                         )
                             ->orderBy('startday', 'ASC')
                             ->limit(9)
@@ -792,6 +818,7 @@
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 AND event.startday >= \''. now()->toDateString() .'\'
+                                AND event.ispublic = true
                                 ORDER BY event.startday ASC LIMIT 9', [$user]);
 		            }
 		        }
@@ -801,6 +828,7 @@
                     {
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
+                                AND event.ispublic = true
                                 GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9');
                     }
@@ -813,6 +841,7 @@
                                 WHERE event.idevent = event_member.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
+                                AND event.ispublic = true
                                 GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$user]);
                     }
@@ -830,6 +859,7 @@
                             [
                                 ['name','ILIKE', $selected],
                                 ['startday','>=', now()->toDateString()],
+                                ['ispublic', '=', 'true'],
                             ]
                         )
                             ->orderBy('startday', 'ASC')
@@ -847,6 +877,7 @@
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
                                 AND event.startday >= \''. now()->toDateString() .'\'
+                                AND event.ispublic = true
                                 GROUP BY(event.idevent)
                                 ORDER BY event.startday DESC LIMIT 9', [$selected, $user]);
                     }
@@ -858,6 +889,7 @@
                         return DB::select('SELECT count(event_member.idmember) as attendants, event.*
                                 FROM event_member INNER JOIN event ON event_member.idevent = event.idevent
                                 WHERE fts_vector @@ to_tsquery(\'portuguese\', ?)
+                                AND event.ispublic = true
                                 GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$selected]);
                     }
@@ -871,6 +903,7 @@
                                 AND event.idevent = event_member.idevent
                                 AND event_member.idmember = ?
                                 AND event_member.isadmin = true
+                                AND event.ispublic = true
                                 GROUP BY(event.idevent)
                                 ORDER BY attendants DESC LIMIT 9', [$selected, $user]);
                     }
@@ -879,16 +912,13 @@
 
         }
 
-        public static function nearbyMemberEvents(){
-
-        }
-
             //Queries
 		public static function upcomingPublicEvents(){
             return Event::where(
                     [
                         ['ispublic', '=', 'true'],
-                        ['startday','>=', now()->toDateString()]
+                        ['startday','>=', now()->toDateString()],
+                        ['ispublic', '=', 'true'],
                     ]
                 )
                 ->orderBy('startday', 'ASC')
@@ -940,8 +970,7 @@
         }
 
         public static function searchEventByNameAndDesc($searchInput){
-		    //DEBUG >>> App\Event::whereRaw('fts_vector @@ to_tsquery(\'initialize\')')->orderBy('startday', 'ASC')->limit(9)->get();
-					return Event::whereRaw('fts_vector @@ to_tsquery(\'portuguese\', ?)', [$searchInput])->orderBy('startday', 'ASC')->limit(9)->get();
+		    		return Event::whereRaw('fts_vector @@ to_tsquery(\'portuguese\', ?)', [$searchInput])->orderBy('startday', 'ASC')->limit(9)->get();
 				}
 
         public static function getTicketInfo($eventId){
@@ -949,7 +978,6 @@
         }
 
         public static function buyTicket(Request $request){
-
 
             $user = Auth::id();
 
@@ -1030,8 +1058,6 @@
         }
 
         public static function addMeToEvent(Request $request){
-
-		    //dd($request->eventId);
 
             $user = Auth::id();
 

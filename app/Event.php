@@ -13,7 +13,7 @@ class Event extends Model
     protected $table = 'event';
 	public $timestamps  = false;
 
-    
+
 	public function commentTuples(){
 		return $this->hasMany('App\Comment', 'event')->orderBy('timestamp', 'DESC');
 	}
@@ -47,7 +47,7 @@ class Event extends Model
 
 	public function imagePath(){
 		if($this->imagepath == null)
-			return 'LINK para imagem null';
+        	return Storage::url('img/community/unknown.png');
 		else
 			return Storage::url($this->imagepath);
 	}

@@ -12,20 +12,20 @@ if(timeline != null){
 
 let searchFormInput = document.querySelector('input[id=search_text]');
 
-window.addEventListener('load', searchFriend);
+window.addEventListener('load', searchCommunity);
 
-searchFormInput.addEventListener('keyup', searchFriend);
+searchFormInput.addEventListener('keyup', searchCommunity);
 
-function searchFriend(event) {
+function searchCommunity(event) {
     let request = new XMLHttpRequest();
     request.open('get', siteRoot + '/searchCommunity?' + encodeForAjax({'searchField': searchFormInput.value}), true);
-    request.addEventListener('load', searchFriendsReceived);
+    request.addEventListener('load', searchCommunitiesReceived);
     request.send();
 
     event.preventDefault();
 }
 
-function searchFriendsReceived(){
+function searchCommunitiesReceived(){
     let lines = JSON.parse(this.responseText);
 
 
@@ -57,7 +57,11 @@ function searchFriendsReceived(){
 
         let link = siteRoot + '/communities/' + data.idcommunity;
 
-        let image = '/storage/' + data.profilepicture;
+        let image;
+        if (data.imagepath == null)
+            image = '/storage/img/community/unknown.png';
+        else
+            image = '/storage/' + data.imagepath;
 
         div3.innerHTML +=
             '            <div class="col-lg-4 align-self-start">\n' +
