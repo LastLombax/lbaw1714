@@ -2316,18 +2316,28 @@ CREATE TRIGGER inviteFriend
 
 ---------------------------------------------------------------------
 
-CREATE OR REPLACE FUNCTION inviteCommunityMembers(integer, integer) RETURNS VOID AS $BODY$
+
+
+CREATE OR REPLACE FUNCTION invite_community_to_event()
+RETURNS trigger AS $BODY$
 DECLARE
-	idevent ALIAS FOR $1;
-	idcommunity ALIAS FOR $2;
-	tuple RECORD;
+_idmember record;
 BEGIN
- FOR tuple IN (SELECT community_member.idmember as idmember, community_member.isadmin  as isadmin
-      FROM community_member
-      WHERE community_member.idcommunity = idcommunity) LOOP
-    INSERT INTO event_member VALUES(idevent, tuple.idmember, tuple.isadmin);
-    --TODO Falta gerar as notificacoes
-  END LOOP;
+FOR _idmember IN (SELECT idmember FROM community_member where community_member.idcommunity = new.community)
+LOOP
+	INSERT INTO notification(timestamp, type, community, recipient, comment, event, buddy) VALUES (CURRENT_TIMESTAMP, 'event', new.community, _idmember.idmember, null, new.idevent, null);
+END LOOP;
+RETURN NEW;
 END;
-$BODY$ LANGUAGE plpgsql;
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXists after_community_event on event;
+CREATE  TRIGGER after_community_event AFTER INSERT
+ON "event"
+FOR EACH ROW
+WHEN (new.community IS NOT null)
+EXECUTE PROCEDURE invite_community_to_event();
+
+
 
