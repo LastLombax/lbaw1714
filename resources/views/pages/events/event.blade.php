@@ -9,9 +9,7 @@
     <script src="{{ asset('js/inviteFriends.js') }}" defer></script>
     <script src="{{ asset('js/inviteFriendToEvent.js') }}" defer></script>
     <script src="{{ asset('js/addMeToEvent.js') }}" defer></script>
-
-
-
+    
 @endsection
 
 
@@ -107,17 +105,12 @@
                                             class="btn btn-info">Edit Event
                                     </button>
                                     
-                                    @endcan
+                                    <form action="{{ route('deleteEvent', $event) }}" method="post">
+                                        <input type="hidden" name="_method" value="delete"/>
+                                        {{ csrf_field() }}
 
-                                        @can('event-admin', $event)
-                                            <form action="{{ route('deleteEvent', $event) }}" method="post">
-                                                <input type="hidden" name="_method" value="delete"/>
-                                                {{ csrf_field() }}
-
-                                                <button style="width: 130px; margin-bottom: 2px" type="submit" onClick="confirmDeletion(this.form);"
-                                                        class="btn btn-info">Delete event
-                                                </button>
-                                            </form>
+                                        <button style="width: 130px; margin-bottom: 2px" type="submit" class="btn btn-info">Delete event </button>
+                                    </form>
                                         @endcan
                                     @endif
                                         <br>

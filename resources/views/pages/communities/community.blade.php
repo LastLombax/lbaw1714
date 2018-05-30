@@ -45,16 +45,7 @@
                                                 @endif</a>
                                         </p>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label" for="inputDefault">
-                                            <b>Administrators</b>
-                                        </label>
-                                        <p>
-                                        <!--   {{$community->admins}} -->
-                                            <a href="#" style="color: #f36833">God</a>
-
-                                        </p>
-                                    </div>
+                                   
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">
                                             <b>Created on</b>
@@ -77,7 +68,28 @@
                                     Friends
                                 </button>
                                 @endif
-                             
+                                <br>
+                                 @can('community-admin', $community)
+
+                                    <button style="background-color: #f3a933dc; border-color: #f5956f; margin-top:5px;" type="submit" onclick="window.location='/communities/{{$community->idcommunity}}/edit'"
+                                        class="btn btn-info">Edit Community
+                                    </button>
+
+                                    <form action="{{ route('deleteCommunity', $community) }}" method="post">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    {{ csrf_field() }}
+
+                                    <button style="background-color: #f3a933dc; border-color: #f5956f; margin-top:5px;" type="submit" class="btn btn-info">Delete community </button>
+
+                                    </button>
+                                    </form>
+                                @endcan
+                                <br>
+                                @if($community->ispublic)
+                                        <span style="float: right"  class="badge badge-success">Public</span>
+                                    @else
+                                        <span style="float: right" class="badge badge-danger">Private</span>
+                                    @endif
                             </div>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar"
