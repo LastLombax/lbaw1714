@@ -22,6 +22,14 @@
 
                         <fieldset>
                             <div class="form-group">
+                            
+                                <?php 
+                                use Illuminate\Support\Facades\Input;
+                                $com = Input::get('community'); 
+                                if($com!= null)
+                                    echo '<input id="com" type="hidden" name="community" value="{{$com}}">';
+                                ?>
+
                                 <label class="col-form-label" for="name">
                                     <b>Event Name</b>
                                 </label>

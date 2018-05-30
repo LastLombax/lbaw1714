@@ -190,8 +190,9 @@
                             SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
                             FROM "event", "community"
                             WHERE "community".idcommunity = ?
-                            AND "event".startday >= ?                  
-                            Order BY "event".startday DESC', [$community, $todayDate]);
+                            AND "event".startday >= ?          
+                            AND "event".community = "community".idcommunity     
+                            Order BY "event".startday ASC', [$community, $todayDate]);
 
             //    LIMIT $selectedLimit OFFSET $selectedOffset
         }
@@ -203,7 +204,8 @@
                             SELECT idevent, "event".name, "event".description, "event".imagePath, startday, starttime, endtime
                             FROM "event", "community"
                             WHERE "community".idcommunity = ?
-                             AND "event".startday <= ?                  
+                            AND "event".startday < ?    
+                            AND "event".community = "community".idcommunity              
                             Order BY "event".startday DESC', [$community, $todayDate]);
 
             //    LIMIT $selectedLimit OFFSET $selectedOffset

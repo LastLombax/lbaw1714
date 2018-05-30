@@ -73,6 +73,19 @@
                                         {{$event->country->name}}
                                     </p>
                                 </div>
+                                @if($event->community != null)
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">
+                                        <b>Community</b>
+                                    </label>
+                                    <p id="country">
+                                    <?php                                    
+                                      $community = App\Community::find($event->community);       
+                                        echo '<a href ="/communities/' . $community->idcommunity . '"> ' .  $community->name . '</a>';
+                                    ?>
+                                    </p>
+                                </div>
+                                @endif
                                 <br>
                                 @if(!\Illuminate\Support\Facades\Auth::guest())
                                     <div>

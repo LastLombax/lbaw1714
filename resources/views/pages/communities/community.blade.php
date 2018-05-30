@@ -73,6 +73,18 @@
 
                                     </button>
                                     </form>
+
+                                    <form action="{{ route('createEvent')}}" method="get">
+                                    <input type="hidden" name="community" value="{{$community->idcommunity}}"/>
+                                        {{ csrf_field() }}
+
+                                    <button style="background-color: #f3a933dc; border-color: #f5956f; margin-top:5px;" type="submit" class="btn btn-info">
+                                    Create an event for the community </button>
+
+                                    </button>
+                                    </form>
+
+
                                 @endcan
                                 <br>
                                 @if($community->ispublic)
