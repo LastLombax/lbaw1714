@@ -24,6 +24,13 @@
 			return $this->belongsToMany('App\Event','event_member', 'idmember', 'idevent')->withPivot('isadmin');
 		}
 
+
+        public function upcomingEvents(){
+            return $this->belongsToMany('App\Event','event_member', 'idmember', 'idevent')
+                ->where('startday','>=', now()->toDateString())
+                ->orderBy('startday', 'ASC')->limit(5);
+        }
+
 		public function  communityTuples(){
 			return $this->belongsToMany('App\Community','community_member', 'idmember', 'idcommunity')->withPivot('isadmin');
 		}
