@@ -96,11 +96,11 @@
                                 <div class="btn-group" data-toggle="buttons">
                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
-                                            <input id="public" name="visibility" type="radio"
+                                            <input id="public" name="visibility" type="radio" value="true"
                                                    autocomplete="off" checked> Public
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input id="private" name="visibility" type="radio"
+                                            <input id="private" name="visibility" type="radio" value="false"
                                                    autocomplete="off"> Private
                                         </label>
                                     </div>

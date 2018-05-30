@@ -1,3 +1,11 @@
+try {
+    siteRoot = document.location.origin; //"http://localhost:8000/"
+}
+catch (e) {
+    let siteRoot = document.location.origin; //"http://localhost:8000/"
+
+}
+
 let usernameField = document.querySelector('#usernameField');
 
 usernameField.addEventListener('keyup', searchFriend);
@@ -56,8 +64,8 @@ function friendList() {
                                 '<h6>'+ data.username +'</h6> ' +
                             '</td> ' +
                             '<td style="width:33.33%;"> ' +
-                                '<h6 id="inviteBt">' +
-                                    '<button type="button" name="sendInviteBt" class="btn btn-info" onclick="sendEventInvite();" id="'+ data.idmember +'">' +
+                                '<h6 id="inviteBt-'+data.idmember+'">' +
+                                    '<button type="button" name="sendInviteBt" class="btn btn-info" onclick="sendEventInvite('+data.idmember+');" id="'+ data.idmember +'">' +
                                         'Invite' +
                                     '</button>' +
                                 '</h6> ' +
@@ -69,65 +77,3 @@ function friendList() {
     });
 }
 
-function sendEventInvite(){
-
-    let sendInviteBt = document.querySelector('button[name=sendInviteBt]').getAttribute('id');
-
-    let request = new XMLHttpRequest();
-
-    request.open('POST', siteRoot + '/inviteToEvent', true);
-
-    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
-    request.setRequestHeader("Content-type", "application/json");
-
-    request.addEventListener('load', eventInviteRequest);
-
-    let eventId = document.querySelector('.friendsBody').getAttribute('id');
-
-    let data = {'friendId': sendInviteBt, 'eventId': eventId};
-
-    request.send(JSON.stringify(data));
-}
-
-function eventInviteRequest(){
-    let lines = JSON.parse(this.responseText);
-
-    if(lines){
-        let inviteBt = document.querySelector('#inviteBt');
-        inviteBt.innerHTML = '<button type="button" class="btn btn-success disabled">Invited</button>\n';
-    }
-    else {
-        let inviteBt = document.querySelector('#inviteBt');
-        inviteBt.innerHTML = '<button type="button" class="btn btn-danger disabled">Already Joined/Invited</button>\n';
-    }
-
-}
-
-function addMeToEvent(event) {
-
-
-    let request = new XMLHttpRequest();
-
-    request.open('POST', siteRoot + '/addMeToEvent', true);
-
-    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
-    request.setRequestHeader("Content-type", "application/json");
-
-    request.addEventListener('load', addMeResponse);
-
-    let eventId = document.querySelector('.friendsBody').getAttribute('id');
-
-    let data = {'eventId': eventId};
-
-    request.send(JSON.stringify(data));
-}
-
-function addMeResponse(){
-    let lines = JSON.parse(this.responseText);
-
-    if(lines){
-        let addBt = document.querySelector('#addMeBt');
-        addBt.innerHTML = '<button style="width: 130px; margin-bottom: 2px;" type="button" class="btn btn-success disabled">Joined</button>\n';
-    }
-
-}

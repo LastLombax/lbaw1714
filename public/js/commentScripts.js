@@ -7,8 +7,6 @@ let commentContainers;
 
 let refreshFlag = true;
 
-console.log(insertCommentBt);
-
 function addEventListeners() {
     let editBtns = document.querySelectorAll(".editComment");
 
@@ -17,7 +15,7 @@ function addEventListeners() {
     commentContainers = document.querySelectorAll(".commentDiv");
 
     for (let i = 0; i < editBtns.length; i++) {
-        editBtns[i].addEventListener('click', function(event){
+        editBtns[i].addEventListener('click', function(){
 
             refreshFlag = !refreshFlag;
 
@@ -28,18 +26,17 @@ function addEventListeners() {
 
             console.log("EDIT " + idComment);
 
-            let commentText = commentContainers[i].querySelector(".commentText");
+            let commentMessage = commentContainers[i].querySelector(".commentText");
 
-            commentText.innerHTML = '<input type="text" name="comment">';
+            commentMessage.innerHTML = '<input type="text" name="comment">';
 
-            commentText.addEventListener('keyup', sendEditComment.bind(idComment));
+            commentMessage.addEventListener('keyup', sendEditComment.bind(idComment));
         });
     }
 
     for (let i = 0; i < deleteBtns.length; i++) {
-        console.log(deleteBtns[i]);
 
-        deleteBtns[i].addEventListener('click', function (event) {
+        deleteBtns[i].addEventListener('click', function () {
 
             refreshFlag = true;
 
@@ -63,8 +60,16 @@ function addEventListeners() {
     }
 }
 
-function sendEditComment(event, idComment) {
-    console.log("sendEditComent" + idComment);
+function sendEditComment(event) {
+
+    let idComment = this;
+
+    if (event.keyCode !== 13)
+        return;
+
+    let commentText = document.querySelector(".commentDiv input").value;
+
+
     let request = new XMLHttpRequest();
 
     request.open('PATCH', siteRoot + '/ajax/events/comment/', true);
@@ -74,8 +79,11 @@ function sendEditComment(event, idComment) {
 
     request.addEventListener('load', commentsRefresh);
 
+    refreshFlag = true;
+
     let data = {
-        'idComment': idComment
+        'idComment': idComment,
+        'commentText': commentText
     };
     request.send(JSON.stringify(data));
 

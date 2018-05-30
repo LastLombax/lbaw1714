@@ -24,6 +24,10 @@
 			return $this->belongsToMany('App\Event','event_member', 'idmember', 'idevent')->withPivot('isadmin');
 		}
 
+		public function  communityTuples(){
+			return $this->belongsToMany('App\Community','community_member', 'idmember', 'idcommunity')->withPivot('isadmin');
+		}
+
 		public function isadmin(){
 			return $this->iswebsiteadmin;
 		}	
@@ -35,11 +39,7 @@
 
 	}
 
-        /*		public function friend($member){
-                //return $
-            }
 
-    */
 
 		use Notifiable;
 
