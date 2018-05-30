@@ -98,10 +98,11 @@
              return view('pages.communities.searchCommunities');
         }
 
-        
-        public static function searchCommunity($word){
-              return Community::where([['name', 'ILIKE', '%'.$word.'%']])->get();
-     }
+
+     public static function searchCommunity($word){
+        return Community::where([['name', 'ILIKE', '%'.$word.'%']
+            ,['ispublic','=','true']])->get();
+    }
 
         public static function getCommunitiesForAdmin(){
             return DB::select('SELECT idcommunity, name
@@ -261,8 +262,4 @@
             return response("true",200);
         }
 
-        public static function searchCommunity($word){
-            return Community::where([['name', 'ILIKE', '%'.$word.'%']
-                ,['ispublic','=','true']])->get();
-        }
     }
