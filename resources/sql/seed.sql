@@ -784,6 +784,7 @@ INSERT INTO communitycategory (name) VALUES ('desporto');
 --
 -- Data for Name: event; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
 --
+
 insert into event (name, description, imagepath, startDay, endDay, startTime, endTime, idcountry, city, address, ispublic, community) values ('Pedir um adiamento a LBAW', 'podemos adiar para quinta à hora de almoço pls', 'img/event/1.jpg', '2018-05-29', '2018-05-30', '06:10 AM', '11:30 AM', 178 , 'Porto', 'Rua Dr. Roberto Frias, s/n', true, null);
 insert into event (name, description, imagepath, startDay, endDay, startTime, endTime, idcountry, city, address, ispublic, community) values ('Queima das Fitas do Porto', 'Chegou o teu porto de encontro! Vive a vida académica ao máximo nas Noites da Queima!', 'img/event/2.jpg', '2018-05-06', '2018-05-13', '00:01 AM', '06:00 AM', 178 , 'Porto', 'Queimódromo', true, null);
 insert into event (name, description, imagepath, startDay, endDay, startTime, endTime, idcountry, city, address, ispublic, community) values ('Festa de aniversário da Josefina', ':)', 'img/event/3.jpg', '2018-07-31', '2018-06-25', '11:58 AM', '10:00 AM', 178 , 'Lisbon', 'Praça do Comércio', false, null);
@@ -857,6 +858,9 @@ insert into event_eventcategory (idevent, ideventcategory) values (14, 10);
 --
 -- Data for Name: event_member; Type: TABLE DATA; Schema: lbaw1714; Owner: lbaw1714
 --
+
+insert into event_member (idevent, idmember, isadmin) values (16, 103, true);
+insert into event_member (idevent, idmember, isadmin) values (17, 101, true);
 insert into event_member (idevent, idmember, isadmin) values (6, 84, false);
 insert into event_member (idevent, idmember, isadmin) values (2, 13, true);
 insert into event_member (idevent, idmember, isadmin) values (7, 51, true);
