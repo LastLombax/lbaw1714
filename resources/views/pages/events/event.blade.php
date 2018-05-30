@@ -185,6 +185,8 @@
                         </div>
                     </div>
                     <div style="margin-top: 1rem; margin-left: 0;">
+                        {{--{{dd($comments)}}--}}
+                        {{$comments->links()}}
                         <ul class="pagination ">
                             <li class="page-item disabled ">
                                 <a class="page-link " href="# ">&laquo;</a>

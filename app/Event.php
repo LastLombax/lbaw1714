@@ -15,7 +15,7 @@ class Event extends Model
 
     
 	public function commentTuples(){
-		return $this->hasMany('App\Comment', 'event')->orderBy('timestamp', 'DESC')->limit(10);
+		return $this->hasMany('App\Comment', 'event')->orderBy('timestamp', 'DESC');
 	}
 
 	public function attendants(){ //memberTuples

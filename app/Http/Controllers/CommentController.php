@@ -26,7 +26,7 @@ class CommentController extends Controller
 
 
             if(Gate::denies('event-view', $event))
-                return response("Doesn't have access",200);
+                return response("You don't have access",200);
 
             try {
                 DB::Insert('INSERT INTO comment (text, timestamp, event, author) VALUES (?, ?, ?, ?)',
@@ -52,7 +52,9 @@ class CommentController extends Controller
         if (!Auth::guest() && Gate::denies('event-view', $event))
             return Response([], 403);
 
-        $comments = $event->commentTuples;
+
+        $comments = $event->commentTuples()->simplePaginate(2);
+
 
         foreach ($comments as $comment){
             $comment->isAuthor = Auth::id() == $comment->author;
@@ -61,7 +63,11 @@ class CommentController extends Controller
             $comment->date = $comment->printDate();
         }
 
-        return $comments;
+        $links = $comments->links();
+        $comments->$links  = $links;
+
+        return json_encode($comments);
+
     }
 
 

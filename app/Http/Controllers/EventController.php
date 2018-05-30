@@ -18,7 +18,7 @@
 	class EventController extends Controller
 	{
 		public function index(){
-            $events = Event::all()->where('ispublic','=', true);
+            $events = Event::where('ispublic','=', true)->paginate(9);
 			return view('pages.events.viewEvents')->with('events', $events);
 		}
 
@@ -68,7 +68,9 @@
 		}
 
 		public function show(Event $event){
-			return view('pages.events.event')->with('event', $event);
+            $commentPaginator = $event->commentTuples()->simplePaginate(10);
+
+			return view('pages.events.event')->with('event', $event)->with('comments', $commentPaginator);
 		}
 
 		public function editForm(Event $event){
@@ -175,18 +177,18 @@
 
 		}
 
-		public static function validateTicket(Request $request){
-		    if(!Auth::user()->isAdmin)
+		public static function validateTicket(Ticket $ticket){
+		    if(!Auth::user()->iswebsiteadmin)
 		       return null;
 
-		    $ticket = Ticket::find($request->idTicket);
 
 		    if(!$ticket->used){
                 $ticket->used = true;
-                return view('tickets.noUsed', [$ticket]);
+                $ticket->save();
+                return view('tickets.notUsed', ['ticket' => $ticket]);
             }
             else
-                return view('tickets.used', [$ticket]);
+                return view('tickets.used', ['ticket' => $ticket]);
 
         }
 
