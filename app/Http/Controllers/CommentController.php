@@ -66,7 +66,7 @@ class CommentController extends Controller
             return Response([], 403);
 
 
-        $comments = $event->commentTuples()->simplePaginate(2);
+        $comments = $event->commentTuples;
 
 
         foreach ($comments as $comment){
@@ -76,10 +76,7 @@ class CommentController extends Controller
             $comment->date = $comment->printDate();
         }
 
-        $links = $comments->links();
-        $comments->$links  = $links;
-
-        return json_encode($comments);
+        return $comments;
 
     }
 
