@@ -36,7 +36,7 @@ foreach ($query as $notification){
 		    }
 			break;
 		case 'comment':
-			//dd($notification);
+			dd($notification);
 			$eventName = Event::find($notification->event)->name;
    			$eventsLink = route('events');
    			$link = $eventsLink . '/' . $notification->event;

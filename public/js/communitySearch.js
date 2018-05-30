@@ -10,17 +10,11 @@ if(timeline != null){
     timelineCopy = timeline.innerHTML;
 }
 
-
-let containerCopy = container.innerHTML;
 let searchFormInput = document.querySelector('input[id=search_text]');
 
 window.addEventListener('load', searchFriend);
 
 searchFormInput.addEventListener('keyup', searchFriend);
-
-searchFormInput.addEventListener('submit', function (event) {
-    event.preventDefault();
-})
 
 function searchFriend(event) {
     let request = new XMLHttpRequest();

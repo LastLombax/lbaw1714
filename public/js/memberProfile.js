@@ -40,8 +40,6 @@ let friend;
 
 function acceptRequest(buddy){
 
-    console.log("merda")
-
     let request = new XMLHttpRequest();
 
     friend = buddy;

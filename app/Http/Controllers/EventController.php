@@ -155,17 +155,13 @@
 		 * @return boolean
 		 */
 		protected function validator(array $data) {
-//			$messages = [
-//				'unique' => 'That :attribue is already in use!',
-//				'max'    => 'The :attribute surpassed the maximum length :max!',
-//				'email.required' => 'We need to know your e-mail address!',
-//
-//			];
 
+
+            $now = date('Y-m-d');
 			$validate = Validator::make($data, [
 				'name' => 'required|string|max:64',
 				'description' => 'required|string|max:516',
-				'startDate'=> 'date_format:"Y-m-d',
+                'startDate'=> 'date_format:"Y-m-d|after_or_equal:' . $now,
 				'startTime' => '',
 				'endDate' => 'date_format:"Y-m-d|after_or_equal:startDate',
 				'endTime' => '',

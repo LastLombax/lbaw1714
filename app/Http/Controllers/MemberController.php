@@ -252,7 +252,7 @@ class MemberController extends Controller
     {
         $user = Auth::id();
 
-        DB::table('friend')->where([['idf2', '=', $user],['idf1', '=', $request->idFriend]])->update(['accepted' => true]);
+        DB::table('friend')->where([['idf2', '=', $user],['idf1', '=', $request->idFriend]])->orwhere([['idf1', '=', $user],['idf2', '=', $request->idFriend]])->update(['accepted' => true]);
 
         return response("true",200);
 
@@ -344,7 +344,7 @@ class MemberController extends Controller
             })
             ->where([['idf2', '=', $user], ['accepted', '=', true]])
             ->orWhere([['idf1', '=', $user], ['accepted', '=', true]])
-            ->limit(5)
+            ->limit(12)
             ->select('member.*')
             ->get();
 
