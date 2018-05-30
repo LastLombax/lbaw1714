@@ -177,7 +177,7 @@
                         <div class="bs-ccomponent">
                             <div class="list-group">
 
-                                @include('pages.members.profileFeed', ['$member' => $member->id])
+                                @include('pages.members.profileFeed', ['$member' => $member->idmember])
 
                             </div>
                         </div>
