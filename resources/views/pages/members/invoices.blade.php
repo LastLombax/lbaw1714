@@ -15,9 +15,7 @@ foreach ($query as $invoice){
                     <table style="width: 100%; text-align: right;">
                         <tr>
                             <td style="width: 100px;">
-                                <a href="invoices/' . $invoice->id . '">
-                                    <img src="'.Storage::url($invoice->image).'" style="width: 100px; height: 100px; object-fit: cover; float:left;">
-                                </a>
+                                <img src="'.Storage::url($invoice->image).'" style="width: 100px; height: 100px; object-fit: cover; float:left;">
                             </td>
                             <td>
                             <table style="width: 100%; margin: 10px;">
