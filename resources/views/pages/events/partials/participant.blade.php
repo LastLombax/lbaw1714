@@ -4,7 +4,7 @@
                 <tr>
                     <td style="width: 100px;">
                         <a href="{{route('member', $member->username)}}">
-                            <img src="{{$member->imagePath()}}" style="width: 100px; height: 100px; object-fit: cover; float:left;">
+                            <img alt="{{$member->username}}'s profile picture" src="{{$member->imagePath()}}" style="width: 100px; height: 100px; object-fit: cover; float:left;">
                         </a>
                     </td>
                     <td>
